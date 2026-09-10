@@ -1,0 +1,179 @@
+id,name,lat,lng,suburb,state,postcode,url,operator,market_days_raw,frequency,trading_day,open_hour,close_hour,hours_open,hours_per_month,geocode_ok,is_duplicate
+4795,Adelaide Showground Farmers’ Market,-34.948172,138.585781,Wayville,SA,5034,https://www.adelaidefarmersmarket.com.au/,Adelaide Showground Farmers' Market Inc,Sundays,Weekly,Sunday,8.5,12.5,4.0,17.32,1,0
+4796,Barossa Farmers’ Market,-34.493207,139.026846,Angaston,SA,5353,https://www.barossafarmersmarket.com,Barossa Farmers' Market Inc,Saturdays,Weekly,Saturday,7.5,11.5,4.0,17.32,1,0
+4798,Limestone Coast Farmers’ Markets,-32.0289,135.002151,Limestone Coast,SA,,https://www.limestonecoastfood.com.au/,Limestone Coast Food Group,Various dates (contact manager),Irregular,Saturday,9.0,13.0,4.0,2.0,0,0
+4804,Mount Pleasant Farmers’ Market,-34.772887,139.051225,Mount Pleasant,SA,5235,http://www.mtpleasantfarmersmarket.com.au,Mount Pleasant Farmers Market Inc,Saturdays,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+5378,Wirrabara Producers Market,-33.032615,138.269137,Wirrabara,SA,5481,https://www.facebook.com/wirrabaraproducersmarket/,Wirrabara Progress Association,3rd Sunday,Monthly,Sunday,8.0,12.0,4.0,4.0,1,0
+6272,Berry Farmers’ Market,-34.775911,150.697217,Berry,NSW,2535,http://www.berryfarmersmarket.com.au,Kiama Farmers Market Inc,Thursdays,Weekly,Thursday,14.0,17.0,3.0,12.99,1,0
+4712,Blackheath Growers’ Market,-33.633168,150.285121,Blackheath,NSW,2785,https://www.blackcastleevents.com.au/,Black Castle Events,2nd Sunday,Monthly,Sunday,8.0,12.0,4.0,4.0,1,0
+4708,Camden Produce Market,-34.055435,150.696304,Camden,NSW,2570,http://www.camdenproducemarket.com.au,Macarthur Growers Pty Ltd,Saturday,Weekly,Saturday,7.0,12.0,5.0,21.65,1,0
+4709,Carriageworks Farmers’ Market,-33.892197,151.195053,Eveleigh,NSW,2008,https://www.carriageworks.com.au/CARRIAGEWORKS-FARMERS-MARKET,Carriageworks Pty Ltd,Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,0
+5879,Concord Farmers’ Market,-33.862562,151.10812,Concord,NSW,2137,http://www.concordfarmersmarket.com.au,Concord Rotary,1st & 3rd Sundays,Fortnightly,Sunday,8.5,12.5,4.0,8.0,1,0
+4749,Kangaroo Valley Farmers’ Market,-34.736126,150.533735,Kangaroo Valley,NSW,2577,https://visitkangaroovalley.com.au/kangaroo-valley-farmers-market,Kangaroo Valley Farmers’ Markets,2nd Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+4746,Kiama Farmers’ Market,-34.669923,150.8555,Kiama,NSW,2533,http://www.facebook.com/kiamafarmersmarket,Kiama Farmers Market Inc Assoc,Wednesdays,Weekly,Wednesday,14.0,17.0,3.0,12.99,1,0
+6046,Maitland Earth Market,-32.732146,151.555721,Maitland,NSW,2320,http://www.facebook.com/earthmarketmaitland,Slow Food Hunter Valley,1st & 3rd Thursday,Fortnightly,Thursday,8.0,12.5,4.5,9.0,1,0
+4759,Moss Vale Railway Street Farmers’ Market,-34.552431,150.369017,Moss Vale,NSW,2577,http://www.facebook.com/RailwayStMarketMossVale/,On The Grow Southern Highlands Inc,Thursdays,Weekly,Thursday,15.0,17.0,2.0,8.66,1,0
+4710,Northside Produce Market,-33.833688,151.207471,North Sydney,NSW,2060,https://www.northsydneycentre.com.au/,North Sydney Community Centre Inc,1st & 3rd Saturday,Fortnightly,Saturday,8.0,12.0,4.0,8.0,1,0
+4741,Parramatta Farmers’ Market,-33.815129,151.003155,Parramatta,NSW,2150,http://www.facebook.com/parramattafarmersmarket,Parramatta City Council,Wednesday,Weekly,Wednesday,7.5,14.5,7.0,30.31,1,0
+13135,Powerhouse Growers Market,-33.942954,150.916681,Casula,NSW,2170,https://www.facebook.com/powerhousemarket,Cresco Collaborative,Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,1
+4711,Powerhouse Growers’ Market,-33.912216,150.945851,Casula,NSW,2170,https://www.facebook.com/powerhousemarket,United Growers Pty Ltd,Saturdays,Weekly,Saturday,7.0,12.0,5.0,21.65,1,0
+7957,Richmond Good Food Market,-33.59801,150.751414,Richmond,NSW,2753,http://www.richmondmarket.com.au,,Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,0
+4761,Shire Farmers’ Market,-34.032395,151.060668,Sutherland,NSW,2232,https://www.shirefarmersmarket.com.au/,Shire Farmers' Market,Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,0
+4760,Tarana Community Farmers’ Market,-33.524919,149.908942,Tarana,NSW,2787,https://www.facebook.com/Tarana-Community-Farmers-Market-171785459833966/,Tarana Bushfire Brigade,4th Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+7619,Armidale Farmers’ Market,-30.53996,151.588748,Armidale,NSW,2350,http://www.armidalefarmersmarket.com.au,Armidale Farmers Market Inc,2nd Sunday,Monthly,Sunday,8.5,12.5,4.0,4.0,1,0
+4713,Bathurst Regional Farmers’ Market,-33.417262,149.589168,Bathurst,NSW,2795,https://bathurstfarmersmarket.com.au/,Lions Club of Bathurst Inc,4th Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+4714,Bega Produce Market,-36.67556,149.842717,Bega,NSW,2550,http://www.markets.scpa.org.au,SCPA - South East Producers Inc.,Friday,Weekly,Friday,8.0,13.0,5.0,21.65,1,0
+10123,Bermagui Growers Market,-36.42691,150.072248,Bermagui,NSW,2546,http://www.bermimarket.au,Bermagui Growers Market Inc,Thursdays,Weekly,Thursday,15.5,17.5,2.0,8.66,1,0
+4748,Braidwood Farmers’ Market,-35.445475,149.803734,Braidwood,NSW,2622,http://www.facebook.com/braidwoodfarmersmarket,Braidwood Farmers' Market Inc,Ist & 3rd Saturdays,Fortnightly,Saturday,8.5,12.5,4.0,8.0,1,0
+4752,Bungendore Farmers’ Market,-35.255112,149.443032,Bungendore,NSW,2621,https://www.southernharvest.org.au/farmers-market,Southern NSW Harvest Cooperative,Saturdays,Weekly,Saturday,9.0,12.0,3.0,12.99,1,0
+14138,Capital Region Farmers Market,-35.260775,149.132299,Mitchell,ACT,2911,https://capitalregionfarmersmarket.com.au/,Hall Rotary,Saturday,Weekly,Saturday,7.0,11.5,4.5,19.48,1,0
+4719,Dubbo Farmers’ Market,-32.242936,148.601495,Dubbo,NSW,2830,https://www.dubbofarmersmarket.org.au/,Macquarie Valley Food & Wine Inc,1st & 3rd Saturdays,Fortnightly,Saturday,8.0,12.0,4.0,8.0,1,0
+8634,Eungai Creek Farmers Market,-30.828283,152.882206,Eungai,NSW,2441,http://www.facebook.com/ECFarming,EC Farming,Saturdays,Weekly,Saturday,9.0,12.0,3.0,12.99,1,0
+8310,Farmers at Burrill (FAB),-35.392212,150.443548,Burrill Lake,NSW,2539,http://www.farmersatburrill.org.au,Ulladulla Milton Lions Club,Friday (October - March),Weekly,Friday,17.0,19.0,2.0,8.66,1,0
+7624,Forbes Farmers’ Markets,-33.386229,148.007866,Forbes,NSW,2871,http://www.facebook.com/forbesfarmersmarkets,,4th Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+4721,Forster Farmers’  Market,-32.183265,152.512953,Forster,NSW,2428,https://www.fnc.org.au/,Forster Neighbourhood Centre,3rd Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+10371,Goulburn Farmers Market,-34.762344,149.71655,Goulburn,NSW,2580,http://www.goulburnfarmersmarket.com.au,International Volunteers for Peace Inc,4th Saturday,Monthly,Saturday,8.0,11.0,3.0,3.0,1,0
+4724,Mudgee Farmers’ Market,-32.591338,149.588867,Mudgee,NSW,2850,http://www.mudgeefinefoods.com.au,Mudgee Fine Foods Inc,1st Sunday (exc Jan & Feb) + 3rd Saturday,Fortnightly,Saturday,8.5,12.5,4.0,8.0,1,0
+4725,Nabiac Farmers’ Market,-32.100412,152.382613,Nabiac,NSW,2312,https://www.nabiac.com,NMNC Inc,Last Saturday (Jan - Nov),Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+4744,Nethercote Produce Market,-37.016887,149.8292,Nethercote,NSW,2549,https://www.nethercoteproducemarket.com,Nethercote Produce Market,"4th Saturday January, April, July, October",Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+4731,Orange Farmers’ Market,-33.280296,149.10353,Orange,NSW,2800,https://www.orangefarmersmarket.org.au/,Orange Farmers Market Inc,2nd Saturday (All year - different location May & Oct,Monthly,Saturday,8.5,12.0,3.5,3.5,1,0
+5876,Riverina Producers’ Market,-35.124716,147.352307,Wagga Wagga,NSW,2650,http://www.riverinaproducersmarket.com.au,,Thursdays,Weekly,Thursday,13.0,18.5,5.5,23.82,1,0
+4742,SAGE Moruya Farmers’ Market,-35.908634,150.0867,Moruya,NSW,2537,http://www.sageproject.org.au,SAGE Sustainable Agriculture & Gardening Eurobodalla,Tuesdays,Weekly,Tuesday,15.0,17.0,2.0,8.66,1,0
+15099,Sapphire Farmers Market,-36.929052,149.874782,Pambula,NSW,2549,,,Wednesday,Weekly,Wednesday,14.0,17.0,3.0,12.99,1,0
+4623,Southside Farmers’ Market,-35.348358,149.095856,Phillip,ACT,2606,https://www.facebook.com/SouthsideFarmersMarketCanberra/,Canberra Farmers’ Markets,Sundays,Weekly,Sunday,7.5,11.5,4.0,17.32,1,0
+4757,Upper Hunter Farmers’ Market,-32.264764,150.889097,Muswellbrook,NSW,2333,https://www.upperhunterfarmersmarkets.com.au/,Hunter Land Management Pty Ltd,Every Saturday,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+4729,Wagga Wagga Farmers’ Market,-35.109361,147.372706,Wagga Wagga,NSW,2650,http://www.riverinaproducersmarket.com.au,,Thursday,Weekly,Thursday,13.0,18.0,5.0,21.65,1,0
+4743,Walcha Farmers’ Market,-30.98481,151.590384,Walcha,NSW,2354,https://www.walchafarmersmarket.org.au/,Walcha Farmers Market Inc,3rd Saturdays (Closed June - Aug),Monthly,Saturday,9.0,12.5,3.5,3.5,1,0
+4722,Wauchope Farmers’ Market,-31.456895,152.72275,Wauchope,NSW,2446,http://www.facebook.com/wauchopefarmersmarket,Hastings Shire Council,4th Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+8187,Wingham Farmers Market,-31.87756,152.332037,Wingham,NSW,2429,http://www.facebook.com/winghamfarmersmarket,Wingham Farmers Market Inc,1st Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+6373,Abbotsford Convent Farmers’ Market,-37.802198,145.004052,Abbotsford,VIC,3067,https://www.facebook.com/rfmabbotsfordconvent/,Regional Farmers Markets,2nd Saturday,Monthly,Saturday,9.0,14.0,5.0,5.0,1,0
+4803,Adelaide Hills Farmers’ Market,-35.06886,138.859396,Mount Barker,SA,5121,https://www.ahfm.org.au/,Adelaide Hills Farmers' Market Inc,Every Saturday,Weekly,Saturday,8.5,12.5,4.0,17.32,1,0
+4638,Albury Wodonga Farmers’ Market,-36.093491,146.903229,Albury - Wodonga,NSW,3690,http://www.alburywodongafarmersmarket.com,Albury Wodonga Farmers Market Inc,Saturdays,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+6204,Alphington Farmers’ Market,-37.77684,145.03286,Alphington,VIC,3078,http://www.mfm.com.au/pages/alphington-farmers-market,Melbourne Farmers' Markets,Every Sunday,Weekly,Sunday,9.0,13.0,4.0,17.32,1,0
+11738,Aura Farmers Market,-26.820651,153.059427,Nirimba,QLD,4551,http://www.facebook.com/aurafarmersmarket,Caloundra Chamber Commerce,Saturday,Weekly,Saturday,7.0,12.0,5.0,21.65,1,0
+4227,Avenel Market,-36.897153,145.230927,Avenel,VIC,3664,http://www.avenelmarket.com.au,Jubilee Park Committee Management,2nd Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+4634,Bairnsdale Farmers’ Market,-37.825088,147.607777,East Bairnsdale,VIC,3875,https://www.farmersmarketbairnsdale.org.au/,Secondary College Chaplaincy Committee,1st Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,0
+4679,Ballan & District Farmers’ Market,-37.600001,144.2297,Ballan,VIC,3342,http://www.ballanfarmersmarket.com,Ballan Chamber of Commerce,2nd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+4754,Ballina Farmers’ Market,-28.871128,153.575671,Ballina,NSW,2478,https://www.ballinafarmersmarket.com.au/,,Sundays,Weekly,Sunday,6.0,13.0,7.0,30.31,1,0
+4716,Bangalow Farmers’ Market,-28.686841,153.523225,Bangalow,NSW,2479,https://www.byronfarmersmarket.com.au/,Byron Farmers' Market Inc,Saturdays,Weekly,Saturday,7.0,11.0,4.0,17.32,1,0
+4691,Bayside Farmers’ Market,-37.945799,144.999018,Sandringham,VIC,3191,https://www.baysidefarmersmarket.com.au/,Hampton/ Sandringham Rotary,4th Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,0
+4689,Bellarine Community Farmers’ Market,-38.264516,144.5232,Ocean Grove,VIC,3226,http://www.facebook.com/BCFsMarket,Bellarine Community Farmers Market,Every 3rd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+7648,Bellingen  Growers Market,-30.449147,152.899647,Bellingen,NSW,2454,http://www.bellingengrowersmarket.com.au,BGM Inc Assoc,Saturday except 3rd Sat,Monthly,Saturday,7.5,11.5,4.0,4.0,1,0
+6458,Bellingen Farmers’ & Producers Market,-30.448931,152.898025,Bellingen,NSW,2454,http://www.facebook.com/bellingenfarmersandproducersmarket,Bellingen Farmers’ & Producers Market,Wednesdays,Weekly,Wednesday,14.5,18.0,3.5,15.16,1,0
+4670,Bendigo Community Farmers’ Market,-36.762292,144.284369,Bendigo,VIC,3550,http://www.bcfm.org.au,Bendigo Community Farmers Market,2nd Saturday,Monthly,Saturday,9.0,12.5,3.5,3.5,1,0
+4680,Bentleigh Farmers’ Market,-37.934558,145.0697,Bentleigh East,VIC,3165,https://www.bentleighfarmersmarket.org.au/,East Bentleigh Primary School,4th Saturday,Monthly,Saturday,8.0,12.5,4.5,4.5,1,0
+5440,Blue Knob Farmers’ Market,-28.545055,153.18701,Lilian Rock,NSW,2480,http://www.blueknobgallery.com/farmers_market.html,Blue Knob Gallery,Saturdays,Weekly,Saturday,8.5,12.0,3.5,15.16,1,0
+4690,Bonbeach Farmers’ Market,-38.067026,145.125902,Bonbeach,VIC,3196,https://www.bonbeachfarmersmarket.weebly.com/,,2nd Sunday,Monthly,Sunday,8.5,12.5,4.0,4.0,1,0
+4627,Boroondara Farmers’ Market,-37.841754,145.041,East Hawthorn,VIC,3123,http://www.facebook.com/boroondarafarmersmarket/,Boroondara City Council,"1st, 3rd & 5th Saturday",Fortnightly,Saturday,8.0,12.5,4.5,9.0,1,0
+4810,Bream Creek Farmers’ Market,-42.805047,147.834305,Bream Creek,TAS,7175,https://www.breamcreekfarmersmarket.com.au,BCFM Committee,First Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+7797,Brighton Farmers’ Market,-37.911292,144.992688,Brighton,VIC,3186,http://www.communityfarmersmarkets.com.au/brighton-farmers-market,Community Farmers Markets,3rd Saturday,Monthly,Saturday,8.5,13.0,4.5,4.5,1,0
+13062,Burleigh Farmers Market,-28.088014,153.449663,Burleigh Heads,QLD,4220,http://www.facebook.com/burleighmarket,,Saturdays,Weekly,Saturday,6.5,12.0,5.5,23.82,1,0
+11355,Burnie City Market,-41.070465,145.930582,Burnie,TAS,7320,https://www.facebook.com/BurnieCityMarket,Burnie Council,1st & 3rd Saturday,Fortnightly,Saturday,8.5,13.0,4.5,9.0,1,0
+4715,Byron Farmers’ Market,-28.643778,153.610293,Byron Bay,NSW,2481,https://www.byronfarmersmarket.com.au/,Byron Farmers' Market INC,Thursdays,Weekly,Thursday,7.0,11.0,4.0,17.32,1,0
+4693,Carlton Farmers’ Market,-37.795844,144.970524,Carlton North,VIC,3054,https://mfm.com.au/pages/carlton-farmers-market,Melbourne Farmers Markets,Every Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,0
+6153,Casino Farmers’ Market,-28.865863,153.040529,Casino,NSW,2470,,,Thursdays,Weekly,Thursday,7.0,12.0,5.0,21.65,1,0
+8709,Churchill Island Farmers Market,-38.499704,145.337983,Churshill Island,VIC,,http://www.facebook.com/rfmchurchillisland/,Regional Farmers Markets,Ist Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,1
+4630,Churchill Island Farmers’ Market,-38.498911,145.337577,Phillip Island,VIC,3925,http://www.rfm.net.au,Regional Farmers Markets PL,4th Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,0
+5975,Cittaslow Goolwa Farmers’ Market,-35.504198,138.785408,Goolwa,SA,5214,http://www.cittaslowgoolwa.com.au,Citta Slow Goolwa,2nd & 4th Sundays - Temporary Covid Closure,Fortnightly,Sunday,9.0,13.0,4.0,8.0,1,0
+4698,Clunes Farmers’ Market,-37.294017,143.787282,Clunes,VIC,3370,http://www.facebook.com/clunesfarmersmarket,,2nd Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+4671,Coal Creek Farmers’ Market,-38.443825,145.831232,Korumburra,VIC,3950,https://www.coalcreekfarmersmarket.com.au,Coal Creek Community Museum,2nd Saturday,Monthly,Saturday,8.0,12.5,4.5,4.5,1,0
+4676,Coburg Farmers’ Market,-37.736251,144.951793,Coburg,VIC,3058,http://www.mfm.com.au/pages/coburg-farmers-market,Melbourne Farmers' Markets,Every Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,0
+4717,Coffs Coast Growers’ Market,-30.297545,153.11506,Coffs Harbour,NSW,2450,http://www.facebook.com/coffscoastgrowers,Coffs Harbour City Council,Thursday,Weekly,Thursday,8.0,14.0,6.0,25.98,1,0
+4771,Dagun Growers’ Market,-26.321679,152.676166,Dagun,QLD,4570,https://www.facebook.com/DagunGrowersMarket,Dagun Growers’ Market,Saturdays,Weekly,Saturday,15.0,18.0,3.0,12.99,1,0
+14356,Daylesford Farmers Market,-37.344996,144.141422,Daylesford,VIC,3460,http://www.facebook.com/RotaryDaylesfordFarmersMarket/,Daylesford Rotary,4th Saturday,Monthly,Saturday,8.5,14.0,5.5,5.5,1,0
+6220,Deniliquin Farmers’ Market,-35.529955,144.962904,Deniliquin,NSW,2710,http://www.facebook.com/Deniliquin-Naponda-Farmers-Market-286627388024376/,Deniliquin Farmers’ Market,2nd Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+10545,Devonport Farmers Market,-41.172642,146.356519,Devonport,TAS,7310,http://www.facebook.com/devonportfarmersmarket,,Saturdays,Weekly,Saturday,8.5,12.5,4.0,17.32,1,0
+13203,Docklands Farmers Markets,-37.815212,144.941298,Docklands,VIC,3008,http://www.communityfarmersmarkets.com.au,Community Farmers Markets,3rd Sunday,Monthly,Sunday,10.0,15.0,5.0,5.0,1,0
+4635,Echuca Farmers’ Market,-36.125225,144.749342,Echuca,VIC,3564,http://www.facebook.com/echucafarmersmarket/,Central Murray Produce Group,1st & 3rd Saturdays,Fortnightly,Saturday,8.5,12.5,4.0,8.0,1,0
+4681,Eltham Farmers’ Market,-37.71517,145.15,Eltham,VIC,3095,http://www.facebook.com/elthamfarmersmarket/,Local Food Connect,Sundays,Weekly,Sunday,8.0,12.5,4.5,19.48,1,0
+4682,Elwood Farmers’ Market,-37.882308,144.9846,Elwood,VIC,3184,https://www.elwoodfarmersmarket.com.au/,Community Farmers Markets,2nd & 4th Saturdays,Fortnightly,Saturday,8.5,13.0,4.5,9.0,1,0
+4683,Euroa Farmers’ Market,-36.751075,145.5727,Euroa,VIC,3666,http://www.facebook.com/EuroaFarmersMarket,Rotary Club Euroa,3rd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+8163,Farmers Market @ Old Cheese Factory,-38.054395,145.332999,Berwick,VIC,3806,http://www.farmersmarketattheoldcheesefactory.org.au,Berwick Rotary,2nd + 4th Saturday,Fortnightly,Saturday,8.0,12.5,4.5,9.0,1,0
+4636,Gasworks Farmers’ Market,-37.842919,144.947069,Albert Park,VIC,3206,https://gasworks.org.au/whats-on/gasworks-farmers-market,Gasworks Arts Park,3rd Saturday,Monthly,Saturday,8.5,13.0,4.5,4.5,1,0
+4765,Gold Coast Organic Farmers’ Market,-28.064566,153.439189,Mermaid Waters,QLD,4218,https://www.gcorganicmarket.com/,David Whyle,Sundays,Weekly,Sunday,6.0,11.5,5.5,23.82,1,0
+4662,Golden Plains Farmers’ Market,-38.046528,144.171067,Bannockburn,VIC,3331,https://www.goldenplainsfarmersmarket.com.au/,Golden Plains Shire Council,1st Saturday,Monthly,Saturday,8.5,12.5,4.0,4.0,1,0
+4772,Gympie Farmers Market,-26.188735,152.665925,Gympie,QLD,4570,https://www.gympieregionalproduce.com.au/markets,Gympoie Show Society,2nd + 4th Sunday,Fortnightly,Sunday,6.0,12.0,6.0,12.0,1,0
+4809,Harvest Launceston Community Farmers’ Market,-41.433201,147.14,Launceston,TAS,7250,https://www.harvestmarket.org.au/,Harvest Launceston Community Farmers' Market Inc,Saturday,Weekly,Saturday,8.5,12.5,4.0,17.32,1,0
+4637,Heathmont Farmers’ Market,-37.825345,145.236468,Heathmont,VIC,3135,http://www.facebook.com/rfmheathmont,Regional Farmers' Markets,4th Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,0
+13065,Helensvale Farmers Market,-27.897133,153.328546,Helensvale,QLD,4212,http://www.helensvalefarmersmarket.com.au,,Saturday,Weekly,Saturday,6.0,11.0,5.0,21.65,1,0
+4677,Inverloch Farmers’ Market,-38.633462,145.729562,Inverloch,VIC,3996,http://www.facebook.com/rfminverloch/,Regional Farmers Markets + Lions Club,3rd Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,0
+14604,Kawana Farmers Market,-26.740272,153.126787,Birtinya,QLD,4551,http://www.kawanafarmersmarket.com.au,QLD Farmers Markets,Saturday,Weekly,Saturday,6.0,12.0,6.0,25.98,1,0
+4641,Kingston Farmers’ Market,-37.955487,145.049754,Cheltenham,VIC,3192,https://www.kingston.vic.gov.au/,Rankins Pastoral,1st Saturday (except Jan),Monthly,Saturday,8.0,12.5,4.5,4.5,1,0
+4652,Koonwarra Farmers’ Market,-38.546452,145.946732,Koonwarra,VIC,3954,https://www.kfm.org.au/,Sth Gippsland FM Committee,1st Saturday,Monthly,Saturday,8.5,12.5,4.0,4.0,1,0
+4642,Kyneton Farmers’ Market,-37.244488,144.449742,Kyneton,VIC,3444,https://www.facebook.com/KynetonFarmersMarket/,St Pauls Anglican Church,2nd Saturday,Monthly,Saturday,8.5,13.0,4.5,4.5,1,0
+10429,Kyogle Farmers Market,-28.621536,153.005839,Kyogle,NSW,2474,http://www.facebook.com/kyoglefarmersmarket,Kyogle Tidy Towns,Saturday,Weekly,Saturday,8.0,13.0,5.0,21.65,1,1
+6113,Kyogle Farmers’ Market,-28.621536,153.005839,Kyogle,NSW,2474,http://www.facebook.com/pg/Kyoglefarmersmarket,Kyogle Tidy Towns,Saturdays,Weekly,Saturday,7.5,12.0,4.5,19.48,1,0
+4643,Lancefield District Farmers’ Market,-37.276768,144.732578,Lancefield,VIC,3435,https://www.facebook.com/LancefieldFM,Lancefield Neighborhood House,4th Saturday (3rd Sat. in Dec),Fortnightly,Saturday,9.0,13.0,4.0,8.0,1,0
+4750,Leeton Farmers’ Market,-34.5618,146.4017,Leeton,NSW,2705,https://www.facebook.com/LeetonFarmersMarkets,Leeton Chamber of Commerce & Rotary,First Saturday,Monthly,Saturday,9.0,12.5,3.5,3.5,1,0
+4726,Lismore Farmers’ Market,-28.79613,153.274126,North Lismore,NSW,2480,https://www.facebook.com/Lismore.Farmers.Market,North Coast National A&I Society,Saturdays,Weekly,Saturday,8.0,11.0,3.0,12.99,1,0
+4738,Lismore Produce Market,-28.812422,153.28273,Lismore,NSW,2480,,Lismore Produce Market Inc,Thursdays,Weekly,Thursday,14.5,18.5,4.0,17.32,1,0
+7582,Malmsbury Village Farmers’ Market,-37.188923,144.382122,Malmsbury,VIC,3446,http://www.malmsburyfarmersmarket.com,Malmsbury Farmers Market Inc,3rd Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+4661,Mansfield Farmers’ Market,-37.052193,146.087291,Mansfield,VIC,3724,https://www.mansfieldfarmersmarket.com.au/,Walker Events,2nd & 4th Saturday (except January),Fortnightly,Saturday,8.5,13.0,4.5,9.0,1,0
+13068,Marina Mirage Farmers Market,-27.968508,153.426046,Main Beach,QLD,,http://www.facebook.com/marinamiragefarmersmarket,Marina Mirage,Saturdays,Weekly,Saturday,6.5,12.0,5.5,23.82,1,0
+4663,Mount Eliza Farmers’ Market,-38.183609,145.089178,Mt Eliza,VIC,3930,http://www.mtelizafarmersmarket.com.au,Mt Eliza Chamber of Commerce,4th Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+8248,Mulgrave Farmers Market,-37.931644,145.193693,Mulgrave,VIC,3170,http://www.mulgravefarmersmarket.com.au,Urban Markets,Sunday,Weekly,Sunday,8.0,12.5,4.5,19.48,1,0
+4734,Mullumbimby Farmers’ Market,-28.545064,153.486261,Mullumbimby,NSW,2482,https://www.mullumfarmersmarket.org.au/,North Byron Farmers Market,Friday,Weekly,Friday,7.0,11.0,4.0,17.32,1,0
+4745,Murwillumbah Farmers’ Market,-28.320258,153.3932,Murwillumbah,NSW,2484,https://www.murwillumbahfarmersmarket.com.au/,Caldera Farmers Market Murwillumbah Inc,Wednesdays,Weekly,Wednesday,7.0,11.0,4.0,17.32,1,0
+4704,Myrtleford Farmers’ Market,-36.560652,146.724948,Myrtleford,VIC,3737,https://www.myrtlefordfarmersmarket.com.au/,TAFCO Rural Supplies,4th Saturday,Monthly,Saturday,8.5,12.5,4.0,4.0,1,0
+4705,Nagambie Farmers’ Market,-36.785557,145.153236,Nagambie,VIC,3608,https://www.nagambiefarmersmarket.com.au/,Nagambie Lakes Tourism Commerce Inc,4th Sunday,Monthly,Sunday,10.0,14.0,4.0,4.0,1,0
+4692,New Beaumaris Farmers’ Market,-37.97768,145.034609,Beaumaris,VIC,3193,http://www.beaumarisfarmersmarket.au,Sandringham Rotary Club,3rd Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+4732,New Brighton Farmers’ Market,-28.507749,153.548586,New Brighton,NSW,2483,https://www.newbrightonfarmersmarket.org.au/,North Byron Farmers' Market,Tuesdays,Weekly,Tuesday,8.0,11.0,3.0,12.99,1,0
+11352,New Norfolk Market,-42.780561,147.064067,New Norfolk,TAS,7140,http://www.newnorfolkmarket.com.au,,Saturday,Weekly,Saturday,8.0,14.0,6.0,25.98,1,0
+5437,Nimbin Farmers’ Market,-28.596867,153.22323,Nimbin,NSW,2480,http://www.facebook.com/nimbinfarmersmarket,,Wednesdays,Weekly,Wednesday,15.0,18.0,3.0,12.99,1,0
+8544,Noosa Farmers Market,-26.405734,153.076998,Noosaville,QLD,4566,http://www.noosafarmersmarket.com.au,QLD Farmers Markets,Sundays,Weekly,Sunday,7.0,12.0,5.0,21.65,1,0
+4665,North Essendon Farmers’ Market,-37.748406,144.910036,Essendon,VIC,3041,http://www.facebook.com/rfmessendon/,Regional Farmers' Markets,3rd Sunday,Monthly,Sunday,8.0,13.0,5.0,5.0,1,0
+4764,Northey Street Organic Farmers Market,-27.442753,153.028876,Windsor,QLD,4030,https://www.nscf.org.au/organic-farmers-market,Northey Street City Farm,Sunday,Weekly,Sunday,6.0,11.0,5.0,21.65,1,0
+4774,Palm Beach Farmers’ Market,-28.129438,153.473407,Palm Beach,QLD,4221,http://www.themarketcogc.com.au,The Market Co GC Pty Ltd,Saturdays,Weekly,Saturday,6.0,11.5,5.5,23.82,1,0
+4647,Port Fairy Farmers’ Market,-38.383628,142.237997,Port Fairy,VIC,3284,https://showgrounds.port-fairy.com/port-fairy-farmers-marke,Port Fairy Show Society,1st & 3rd Saturday,Fortnightly,Saturday,8.0,13.0,5.0,10.0,1,0
+4648,Prom Country Farmers’ Market,-38.651823,146.203228,Foster,VIC,3960,https://www.promcountryfarmersmarket.org,Foster Community Association,3rd Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+4728,Rainbow Region Organic Market,-28.796015,153.274555,North Lismore,NSW,2480,http://www.tropo.org.au,Tweed Richmond Organic Producers’ Organisation,Tuesdays,Weekly,Tuesday,7.5,11.0,3.5,15.16,1,0
+4649,Riddells Creek Farmers’ Market,-37.45519,144.686546,Riddells Creek,VIC,3431,http://www.riddellscreekfm.com.au,Riddells Creek Neighbourhood House,3rd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+4657,Sale Producers Market,-38.112,147.057983,Sale,VIC,3850,https://www.facebook.com/SaleProducersMarket,Wellington Visitor Information Centre,3rd Saturday,Monthly,Saturday,8.0,12.5,4.5,4.5,1,0
+14403,Slow Food Edgewater Farmers Market,-37.782964,144.891862,Maribyrnong,VIC,3032,http://www.facebook.com/slowfoodmelbourne/,Slow Food Melbourne,1st Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+4651,Slow Food Spotswood Farmers’ Market,-37.802295,145.003583,Spotswood,VIC,3067,http://www.slowfoodmelbourne.com.au/farmers-markets,Slow Food Melbourne,4th Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+14406,Slow Food West Footscray (WeFo) Farmers Market,-37.795693,144.8806,West Footscray,VIC,3012,http://www.slowfoodmelbourne.com.au/farmers-markets,Slow Food Melbourne,2nd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+4707,South Geelong Farmers’ Market,-38.156495,144.359129,South Geelong,VIC,3220,http://www.facebook.com/SouthGeelongFM/,Community Farmers Markets,1st & 3rd Sundays,Fortnightly,Sunday,8.5,13.0,4.5,9.0,1,0
+4673,Sunraysia Farmers’ Market,-34.190304,142.171535,Mildura,VIC,3502,https://www.facebook.com/SunraysiaFarmersMarket/,Sunraysia Farmers' Market Inc,1st & 3rd Saturday,Fortnightly,Saturday,8.0,12.0,4.0,8.0,1,0
+4654,Talbot Farmers’ Market,-37.171404,143.702105,Talbot,VIC,3371,https://www.talbotfarmersmarket.org.au/,Talbot Farmers' Market Committee Management Inc,3rd Sunday,Monthly,Sunday,9.0,13.0,4.0,4.0,1,0
+4666,Tallarook Farmers’ Market,-37.099572,145.099184,Tallarook,VIC,3659,http://www.tallarookfarmersmarket.com.au,Tallarook Mechanics Institute,1st Sunday,Monthly,Sunday,8.5,12.5,4.0,4.0,1,0
+4808,Tasmanian Farm Gate Market,-42.880618,147.325634,Hobart,TAS,7000,https://www.farmgatemarket.com.au/,Farm Gate Market,Every Sunday,Weekly,Sunday,8.5,13.0,4.5,19.48,1,0
+14215,Tasmanian Produce Market,-42.870445,147.368166,Rosny Park,TAS,7018,http://www.facebook.com/tasmanianproducemarket,,Saturday,Weekly,Saturday,9.0,13.0,4.0,17.32,1,0
+10238,Tenterfield Farmers’ Market,-29.055724,152.021039,Tenterfield,NSW,2372,http://www.facebook.com/TenterfieldFarmersandProducersMarket,,3rd Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+11701,The Outdoor Provedore,-37.052321,146.092354,Mansfield,VIC,3722,http://www.outdoorprovedore.au,Outdoor Provedore,3rd Saturday,Monthly,Saturday,8.5,12.5,4.0,4.0,1,0
+10323,Toowoomba Farmers Market,-27.555392,151.964833,Toowoomba,QLD,4350,http://www.toowoombafarmersmarket.com.au,,Saturday,Weekly,Saturday,7.0,12.0,5.0,21.65,1,0
+4653,Traralgon Farmers’ Market,-38.194092,146.532061,Traralgon,VIC,3844,https://www.traralgonfarmersmarket.org.au/,Traralgon Lions Club Inc,4th Saturday,Monthly,Saturday,8.0,13.0,5.0,5.0,1,0
+4667,Trentham Farmers’ Market,-37.386755,144.32568,Trentham,VIC,3458,https://www.dmproduce.com.au/trentham-farmers-market,Trentham Lions Club Inc,3rd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+8891,Tweed Farmers’ Market,-28.169227,153.549321,Tweed Heads,NSW,2486,http://www.tweedfarmersmarket.com,,1st + 3rd Saturdays,Fortnightly,Saturday,8.0,12.0,4.0,8.0,1,0
+6150,Uki Farmers’ Market,-28.414079,153.334813,Uki,NSW,2484,,,Saturdays,Weekly,Saturday,8.0,12.5,4.5,19.48,1,0
+10423,Veg Out Community Gardens Market,-37.868839,144.978932,St Kilda,VIC,3004,http://www.vegoutfarmersmarket.org.au,Veg Out,1st Saturday,Monthly,Saturday,8.5,13.0,4.5,4.5,1,0
+5373,Victor Harbor Farmers’ Market,-35.553564,138.621557,Victor Harbor,SA,5211,http://www.victorharborfarmersmarket.com.au,Victor Harbor Farmers' Market Association,Saturdays,Weekly,Saturday,8.0,12.5,4.5,19.48,1,0
+4701,Wangaratta Farmers’ Market,-36.352237,146.329719,Wangaratta,VIC,3677,https://wangarattafarmersmarket.com.au/,Wangaratta Farmers' Market Inc,2nd Saturday,Monthly,Saturday,8.0,12.0,4.0,4.0,1,0
+4688,Warragul Farmers’ Market,-38.158843,145.9342,Warragul,VIC,3820,https://www.warragulfarmersmarket.com.au/,Warragul Farmers Market Inc,3rd Saturday,Monthly,Saturday,8.5,13.0,4.5,4.5,1,0
+4659,Whitehorse Farmers’ Market,-37.818394,145.181442,Nunawading,VIC,3131,https://www.whitehorse.vic.gov.au/Whitehorse-Farmers-Market.html,Combined Rotary Clubs of Whitehorse,2nd Sunday,Monthly,Sunday,8.0,13.0,5.0,5.0,1,0
+4668,Williamstown Farmers’ Market,-37.856902,144.897698,Williamstown,VIC,3016,http://www.facebook.com.rfmwilliamstown,Regional Farmers' Markets,2nd Sunday,Monthly,Sunday,9.0,14.0,5.0,5.0,1,0
+4801,Willunga Farmers’ Market,-35.272049,138.554496,Willunga,SA,5172,https://www.willungafarmersmarket.com.au,Willunga Farmers' Market Inc,Saturdays,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+4672,Woodend Community Farmers’ Market,-37.353916,144.530957,Woodend,VIC,3442,http://www.mrsg.org.au/farmers-markets,Macedon Ranges Sustainability Group,1st Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+6259,Yamba Farmers’ Market,-29.431355,153.357977,Yamba,NSW,2464,http://www.yambafarmersandproducersmarket.com.au,Clarence Valley Council,Wednesday,Weekly,Wednesday,7.0,11.0,4.0,17.32,1,0
+4660,Yarraville Village Farmers’ Market,-37.814178,144.897582,Yarraville,VIC,3013,http://www.yarravillevillagefarmersmarket.com.au/,Melbourne Markets Pty Ltd,3rd Saturday,Monthly,Saturday,9.0,13.0,4.0,4.0,1,0
+4669,Yarrawonga Farmers’ Market,-36.008119,146.005352,Yarrawonga,VIC,3730,https://www.yarrawongafarmersmarket.com.au/,Yarrawonga Farmers' Market,4th Sunday,Monthly,Sunday,8.5,12.5,4.0,4.0,1,0
+4775,Albany Farmers’ Market,-35.025092,117.882335,Albany,WA,6330,http://www.albanyfarmersmarket.com.au,Great Southern Farmers Market Albany Inc.(GSFMA),Saturdays,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+6050,Bindoon Farmers’ Market,-31.382385,116.094724,Bindoon,WA,6502,http://www.facebook.com/bindoonfarmersmarket,Bindoon Farmers Maket Committee,Sunday,Weekly,Sunday,8.5,12.5,4.0,17.32,1,0
+4792,Boyanup & Districts Farmers Market,-33.487717,115.7306,Boyanup,WA,6237,https://www.boyanupfarmersmarket.com,Boyanup Farmers' Market Inc,4th Sunday,Monthly,Sunday,8.0,12.0,4.0,4.0,1,0
+13598,Collie Farmers Market,-33.355862,116.15259,Collie,WA,6225,http://www.colliefarmersmarket.com,Collie Farmers Market Inc,Saturday (Opens Sept 25),Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+4794,Freo Farmers’ Market,-32.066932,115.76751,Beaconsfield,WA,6162,http://www.freofarmersmarket.com.au,Red Tent Events,Every Sunday,Weekly,Sunday,8.0,12.0,4.0,17.32,1,0
+4777,Gascoyne Growers’ Market,-24.883472,113.656939,Carnarvon,WA,6152,https://www.gascoynefood.com.au/growers-market,Gascoyne Growers’ Market Inc,Saturdays May to October,Weekly,Saturday,8.0,11.5,3.5,15.16,1,0
+4778,Geraldton-Greenough Farmers’ Market,-28.778622,114.612057,Geraldton,WA,6531,http://www.geraldtongreenoughfarmersmarket.com/,Geraldton-Greenough Farmers' Market,Every Saturday,Weekly,Saturday,9.0,12.0,3.0,12.99,1,0
+4782,Kalamunda Farmers’ Market,-31.974253,116.058723,Kalamunda,WA,6076,https://www.kalamundafarmersmarket.com,Kalamunda Chamber Commerce,Every Sunday,Weekly,Sunday,8.0,12.0,4.0,17.32,1,0
+4789,Kyilla Community Farmers’ Market,-31.920442,115.8521,North Perth,WA,6006,https://www.kcfm.com.au/,Kyilla Primary School P&C,Saturdays,Weekly,Saturday,8.0,11.5,3.5,15.16,1,0
+4773,Mackay Farmers’ Market,-21.140349,149.186038,Mackay,QLD,4740,http://www.facebook.com/mackayfarmersmarket,Mackay Farmers Market Inc.,Wednesdays,Weekly,Wednesday,6.5,10.5,4.0,17.32,1,0
+13377,Manning Road Farmers Market,-32.011669,115.909459,Bentley,WA,6102,http://www.manningroadfarmersmarket.com.au,In the Bag Events,Saturday,Weekly,Saturday,7.25,12.25,5.0,21.65,1,0
+4780,Margaret River Farmers’ Market,-33.951607,115.068097,Margaret River,WA,6285,https://www.margaretriverfarmersmarket.com.au/,Margaret River Regional Producers Association,Saturdays,Weekly,Saturday,7.5,11.5,4.0,17.32,1,0
+4781,Mount Claremont Farmers’ Market,-31.968845,115.782478,Mt Claremont,WA,6010,https://www.mtclaremontfarmersmarket.com.au,Mt Claremont Primary School P&C,Saturdays,Weekly,Saturday,7.5,11.5,4.0,17.32,1,0
+9151,Mundaring Garden & Farmers Market,-31.903864,116.165138,Mundaring,WA,6073,http://www.mundaring.org.au/mundaringchamberofcommerce.com.au,Mundaring Chamber of Commerce,Saturday,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+6033,Palmyra Western Farmers’ Market,-32.045288,115.784716,Palmyra,WA,6157,http://www.palmyrafarmersmarket.org,Heart of Inspired Events / Palmyra Primary School,Sundays,Weekly,Sunday,8.0,12.0,4.0,17.32,1,0
+4776,Perth City Farm Organic Growers’ Market,-31.950864,115.870512,East Perth,WA,6004,https://www.perthcityfarm.org.au/,Perth City Farm,Saturdays,Weekly,Saturday,7.5,11.5,4.0,17.32,1,0
+8556,Serpentine Jarrahdale Farmers’ Market,-32.298724,115.983991,Mudijong,WA,6123,http://www.sjfarmersmarket.com.au,Serpentine + Jarrahdale Food & Farm Alliance Inc,Saturday,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+4786,Stirling Farmers’ Market,-31.889828,115.809,Stirling,WA,6021,http://www.facebook.com/stirlingfarmersmarket,Rotary Club Karrinyup,Sundays,Weekly,Sunday,7.5,11.5,4.0,17.32,1,0
+4783,Subi Farmers’ Market,-31.950467,115.822829,Subiaco,WA,6008,https://www.subifarmersmarket.com.au/,Subiaco Primary School,Saturday,Weekly,Saturday,8.0,12.0,4.0,17.32,1,0
+5993,Toodyay Farmers’ Market,-31.549869,116.464227,Toodyay,WA,6566,http://www.facebook.com/toodyayfarmersmarket,Toodyay Farmers Market Inc,Sunday,Weekly,Sunday,9.0,13.0,4.0,17.32,1,0
+4791,Vic Park Farmers’ Market,-31.983574,115.9004,Victoria Park,WA,6101,http://www.vicparkmarket.com.au,Rotary Club Victoria Park,Sundays,Weekly,Sunday,8.0,12.0,4.0,17.32,1,0

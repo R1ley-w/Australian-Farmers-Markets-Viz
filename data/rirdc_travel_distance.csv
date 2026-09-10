@@ -1,0 +1,6 @@
+band,order,share_pct,cumulative_pct
+20 km or less,1,35,35
+21–50 km,2,22,57
+51–100 km,3,18,75
+101–200 km,4,11,86
+201 km or more,5,14,100

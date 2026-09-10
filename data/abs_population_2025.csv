@@ -1,0 +1,17 @@
+region,region_type,state_code,state,erp,reference_date,source
+New South Wales,STE,1,NSW,8593900,2025-06-30,ABS National state and territory population Jun 2025
+Victoria,STE,2,VIC,7074500,2025-06-30,ABS National state and territory population Jun 2025
+Queensland,STE,3,QLD,5669800,2025-06-30,ABS National state and territory population Jun 2025
+South Australia,STE,4,SA,1902300,2025-06-30,ABS National state and territory population Jun 2025
+Western Australia,STE,5,WA,3043700,2025-06-30,ABS National state and territory population Jun 2025
+Tasmania,STE,6,TAS,576000,2025-06-30,ABS National state and territory population Jun 2025
+Northern Territory,STE,7,NT,264400,2025-06-30,ABS National state and territory population Jun 2025
+Australian Capital Territory,STE,8,ACT,484800,2025-06-30,ABS National state and territory population Jun 2025
+Greater Sydney,GCCSA,1,NSW,5638830,2025-06-30,ABS Regional population 2024-25
+Greater Melbourne,GCCSA,2,VIC,5435590,2025-06-30,ABS Regional population 2024-25
+Greater Brisbane,GCCSA,3,QLD,2833524,2025-06-30,ABS Regional population 2024-25
+Greater Adelaide,GCCSA,4,SA,1491015,2025-06-30,ABS Regional population 2024-25
+Greater Perth,GCCSA,5,WA,2452765,2025-06-30,ABS Regional population 2024-25
+Greater Hobart,GCCSA,6,TAS,255250,2025-06-30,ABS Regional population 2024-25
+Greater Darwin,GCCSA,7,NT,159284,2025-06-30,ABS Regional population 2024-25
+Australian Capital Territory,GCCSA,8,ACT,484630,2025-06-30,ABS Regional population 2024-25

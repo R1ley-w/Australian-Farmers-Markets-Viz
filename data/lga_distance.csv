@@ -1,0 +1,545 @@
+lga_code,lga,state,lat,lng,area_sqkm,km_to_nearest_market,nearest_market
+27350,Yarra,VIC,-37.80119,145.00396,19.5,0.1,Abbotsford Convent Farmers’ Market
+24600,Melbourne,VIC,-37.81561,144.94322,37.5,0.2,Docklands Farmers Markets
+56580,Nedlands,WA,-31.9694,115.78577,19.6,0.3,Mount Claremont Farmers’ Market
+57980,Subiaco,WA,-31.95164,115.81985,5.6,0.3,Subi Farmers’ Market
+58510,Victoria Park,WA,-31.98137,115.90285,17.9,0.3,Vic Park Farmers’ Market
+11520,Canada Bay,NSW,-33.86005,151.10415,19.9,0.5,Concord Farmers’ Market
+24330,Maribyrnong,VIC,-37.79899,144.87747,31.2,0.5,Slow Food West Footscray (WeFo) Farmers Market
+24700,Merri-bek,VIC,-37.73469,144.94524,51.0,0.6,Coburg Farmers’ Market
+53430,Fremantle,WA,-32.06283,115.77202,19.3,0.6,Freo Farmers’ Market
+15950,North Sydney,NSW,-33.82773,151.21323,10.5,0.8,Northside Produce Market
+17200,Sydney,NSW,-33.89588,151.20247,26.7,0.8,Carriageworks Farmers’ Market
+25900,Port Phillip,VIC,-37.86383,144.97087,20.6,0.9,Veg Out Community Gardens Market
+57910,Stirling,WA,-31.88368,115.81945,104.7,1.2,Stirling Farmers’ Market
+53150,East Fremantle,WA,-32.0391,115.76989,3.1,1.6,Palmyra Western Farmers’ Market
+26350,Stonnington,VIC,-37.85668,145.03531,25.7,1.7,Boroondara Farmers’ Market
+25060,Moonee Valley,VIC,-37.75803,144.89334,43.1,1.8,North Essendon Farmers’ Market
+47980,Unley,SA,-34.95519,138.6037,14.3,1.8,Adelaide Showground Farmers’ Market
+58570,Vincent,WA,-31.93669,115.85688,11.4,1.9,Kyilla Community Farmers’ Market
+57080,Perth,WA,-31.96141,115.84093,13.7,2.1,Subi Farmers’ Market
+57840,South Perth,WA,-32.00014,115.89074,19.8,2.1,Vic Park Farmers’ Market
+51680,Chittering,WA,-31.37206,116.07547,1219.9,2.2,Bindoon Farmers’ Market
+11300,Burwood,NSW,-33.884,151.10342,7.1,2.4,Concord Farmers’ Market
+51750,Claremont,WA,-31.98937,115.77343,5.0,2.4,Mount Claremont Farmers’ Market
+14850,Lismore,NSW,-28.77486,153.28617,1287.7,2.6,Rainbow Region Organic Market
+20910,Bayside (Vic.),VIC,-37.92644,145.01812,37.2,2.7,Bayside Farmers’ Market
+44550,Mount Barker,SA,-35.08506,138.88184,594.6,2.7,Adelaide Hills Farmers’ Market
+12380,Cumberland,NSW,-33.83633,150.98773,72.7,2.8,Parramatta Farmers’ Market
+26980,Whitehorse,VIC,-37.83029,145.15393,64.3,2.8,Whitehorse Farmers’ Market
+24410,Maroondah,VIC,-37.81366,145.2662,61.4,2.9,Heathmont Farmers’ Market
+40070,Adelaide,SA,-34.92221,138.59827,15.6,3.1,Adelaide Showground Farmers’ Market
+15350,Mosman,NSW,-33.83106,151.2424,8.7,3.2,Northside Produce Market
+17100,Strathfield,NSW,-33.87443,151.0769,14.0,3.2,Concord Farmers’ Market
+14700,Lane Cove,NSW,-33.8199,151.17618,10.5,3.3,Northside Produce Market
+15050,Maitland,NSW,-32.70249,151.56081,391.5,3.3,Maitland Earth Market
+51330,Canning,WA,-32.039,115.92242,64.9,3.3,Manning Road Farmers Market
+62810,Hobart,TAS,-42.89553,147.29064,77.9,3.3,Tasmanian Farm Gate Market
+16260,Parramatta,NSW,-33.79707,151.0326,83.8,3.4,Parramatta Farmers’ Market
+21110,Boroondara,VIC,-37.82025,145.06786,60.2,3.4,Boroondara Farmers’ Market
+48410,West Torrens,SA,-34.94639,138.54809,37.1,3.4,Adelaide Showground Farmers’ Market
+52170,Cottesloe,WA,-31.99406,115.75805,3.9,3.6,Mount Claremont Farmers’ Market
+51310,Cambridge,WA,-31.93195,115.79056,22.0,3.7,Subi Farmers’ Market
+56930,Peppermint Grove,WA,-31.99927,115.76738,1.1,3.7,Mount Claremont Farmers’ Market
+18250,Willoughby,NSW,-33.80176,151.18746,22.4,4.0,Northside Produce Market
+14170,Inner West,NSW,-33.89491,151.14919,35.2,4.2,Carriageworks Farmers’ Market
+25150,Moorabool,VIC,-37.63486,144.21252,2110.6,4.2,Ballan & District Farmers’ Market
+14100,Hunters Hill,NSW,-33.83276,151.13732,5.7,4.3,Concord Farmers’ Market
+23110,Hobsons Bay,VIC,-37.84546,144.85132,64.2,4.3,Williamstown Farmers’ Market
+55320,Melville,WA,-32.05747,115.82844,52.9,4.3,Palmyra Western Farmers’ Market
+55740,Mosman Park,WA,-32.01291,115.76009,4.3,4.3,Palmyra Western Farmers’ Market
+22310,Glen Eira,VIC,-37.89815,145.04119,38.7,4.5,Brighton Farmers’ Market
+16550,Randwick,NSW,-33.92328,151.23764,36.3,5.2,Carriageworks Farmers’ Market
+21890,Darebin,VIC,-37.73254,145.0134,53.5,5.2,Alphington Farmers’ Market
+50420,Bayswater,WA,-31.90509,115.90425,34.6,5.2,Kyilla Community Farmers’ Market
+21610,Casey,VIC,-38.10042,145.3168,409.4,5.3,Farmers Market @ Old Cheese Factory
+50490,Belmont,WA,-31.9569,115.94703,39.8,5.3,Vic Park Farmers’ Market
+18500,Woollahra,NSW,-33.87501,151.25082,12.3,5.5,Carriageworks Farmers’ Market
+24970,Monash,VIC,-37.89773,145.1463,81.5,5.6,Mulgrave Farmers Market
+20660,Banyule,VIC,-37.73972,145.07799,62.5,5.7,Alphington Farmers’ Market
+17550,Tweed,NSW,-28.36601,153.35655,1307.8,5.8,Uki Farmers’ Market
+24210,Manningham,VIC,-37.76371,145.19668,113.3,6.2,Whitehorse Farmers’ Market
+23430,Kingston (Vic.),VIC,-37.99168,145.10431,91.4,6.3,Kingston Farmers’ Market
+40700,Burnside,SA,-34.9407,138.6554,27.5,6.4,Adelaide Showground Farmers’ Market
+44340,Mitcham,SA,-34.99723,138.62214,75.5,6.4,Adelaide Showground Farmers’ Market
+46510,Prospect,SA,-34.89155,138.59834,7.8,6.4,Adelaide Showground Farmers’ Market
+48260,Walkerville,SA,-34.896,138.61596,3.5,6.4,Adelaide Showground Farmers’ Market
+57700,Serpentine-Jarrahdale,WA,-32.33598,116.03637,901.2,6.4,Serpentine Jarrahdale Farmers’ Market
+27170,Wodonga,VIC,-36.15144,146.89316,433.0,6.5,Albury Wodonga Farmers’ Market
+45290,Norwood Payneham and St Peters,SA,-34.90664,138.63661,15.1,6.5,Adelaide Showground Farmers’ Market
+11450,Camden,NSW,-34.00217,150.72865,201.5,6.6,Camden Produce Market
+18050,Waverley,NSW,-33.88641,151.26628,9.4,6.6,Carriageworks Farmers’ Market
+31000,Brisbane,QLD,-27.47267,152.97163,1342.7,6.6,Northey Street Organic Farmers Market
+16700,Ryde,NSW,-33.80116,151.11292,40.5,6.8,Concord Farmers’ Market
+23670,Knox,VIC,-37.89546,145.25802,113.9,6.9,Mulgrave Farmers Market
+10470,Bathurst,NSW,-33.44917,149.52342,3817.9,7.1,Bathurst Regional Farmers’ Market
+12850,Fairfield,NSW,-33.86292,150.8976,101.5,7.1,Powerhouse Growers’ Market
+54200,Kalamunda,WA,-32.02112,116.11008,324.3,7.1,Kalamunda Farmers’ Market
+61610,Devonport,TAS,-41.21771,146.29417,111.3,7.2,Devonport Farmers Market
+24130,Macedon Ranges,VIC,-37.34032,144.61545,1748.3,7.6,Woodend Community Farmers’ Market
+17750,Wagga Wagga,NSW,-35.194,147.35397,4824.5,7.7,Riverina Producers’ Market
+10250,Ballina,NSW,-28.85084,153.49947,485.0,7.8,Ballina Farmers’ Market
+41060,Charles Sturt,SA,-34.89906,138.5252,54.8,7.8,Adelaide Showground Farmers’ Market
+51890,Collie,WA,-33.29918,116.2017,1709.8,7.8,Collie Farmers Market
+10500,Bayside (NSW),NSW,-33.95749,151.16232,50.6,7.9,Carriageworks Farmers’ Market
+42600,Holdfast Bay,SA,-34.99363,138.51945,13.8,7.9,Adelaide Showground Farmers’ Market
+22170,Frankston,VIC,-38.12875,145.17297,129.6,8.0,Bonbeach Farmers’ Market
+12930,Georges River,NSW,-33.96432,151.0912,38.3,8.1,Shire Farmers’ Market
+22670,Greater Dandenong,VIC,-38.00408,145.19117,129.5,8.1,Mulgrave Farmers Market
+26080,Queenscliffe,VIC,-38.27411,144.61487,8.6,8.1,Bellarine Community Farmers’ Market
+56090,Mundaring,WA,-31.89883,116.25021,643.2,8.1,Mundaring Garden & Farmers Market
+16150,Orange,NSW,-33.34709,149.14031,284.2,8.2,Orange Farmers’ Market
+11350,Byron,NSW,-28.62048,153.48343,565.8,8.3,Bangalow Farmers’ Market
+17150,Sutherland,NSW,-34.08113,150.99311,333.6,8.3,Shire Farmers’ Market
+18350,Wingecarribee,NSW,-34.47683,150.3781,2689.3,8.4,Moss Vale Railway Street Farmers’ Market
+11570,Canterbury-Bankstown,NSW,-33.9188,151.04241,110.2,8.7,Concord Farmers’ Market
+21180,Brimbank,VIC,-37.74582,144.80503,123.4,8.7,Slow Food West Footscray (WeFo) Farmers Market
+44060,Marion,SA,-35.0163,138.53862,55.6,8.7,Adelaide Showground Farmers’ Market
+50350,Bassendean,WA,-31.90203,115.94369,10.3,8.8,Perth City Farm Organic Growers’ Market
+25340,Mornington Peninsula,VIC,-38.2587,145.12314,724.0,8.9,Mount Eliza Farmers’ Market
+62610,Glenorchy,TAS,-42.84158,147.22972,121.2,8.9,Tasmanian Farm Gate Market
+48050,Victor Harbor,SA,-35.5058,138.53925,384.6,9.1,Victor Harbor Farmers’ Market
+22910,Hepburn,VIC,-37.29845,144.05582,1473.0,9.2,Daylesford Farmers Market
+51820,Cockburn,WA,-32.12787,115.83373,167.9,9.2,Freo Farmers’ Market
+33430,Gold Coast,QLD,-27.98329,153.3285,1333.4,9.6,Helensvale Farmers Market
+10050,Albury,NSW,-36.03373,146.98113,305.6,9.7,Albury Wodonga Farmers’ Market
+51400,Capel,WA,-33.52629,115.63455,557.9,9.9,Boyanup & Districts Farmers Market
+24850,Mitchell,VIC,-37.15062,145.00637,2862.1,10.0,Tallarook Farmers’ Market
+45890,Port Adelaide Enfield,SA,-34.85638,138.58785,91.8,10.2,Adelaide Showground Farmers’ Market
+53780,Gosnells,WA,-32.06861,115.99381,127.3,10.2,Manning Road Farmers Market
+14400,Kiama,NSW,-34.67767,150.74273,257.7,10.3,Kiama Farmers’ Market
+14750,Leeton,NSW,-34.53817,146.2907,1167.2,10.5,Leeton Farmers’ Market
+54170,Joondalup,WA,-31.80024,115.76049,98.9,11.0,Stirling Farmers’ Market
+40910,Campbelltown (SA),SA,-34.88646,138.68088,24.3,11.1,Adelaide Showground Farmers’ Market
+22750,Greater Geelong,VIC,-38.07878,144.44048,1248.0,11.2,South Geelong Farmers’ Market
+64810,Sorell,TAS,-42.77363,147.70312,583.8,11.3,Bream Creek Farmers’ Market
+14500,Ku-ring-gai,NSW,-33.7398,151.15723,85.4,11.4,Northside Produce Market
+45340,Onkaparinga,SA,-35.16941,138.57239,518.1,11.5,Willunga Farmers’ Market
+26170,South Gippsland,VIC,-38.60673,146.05556,3296.3,11.6,Koonwarra Farmers’ Market
+14900,Liverpool,NSW,-33.93839,150.82259,305.7,11.7,Powerhouse Growers’ Market
+52660,Dardanup,WA,-33.41864,115.82753,525.8,11.8,Boyanup & Districts Farmers Market
+25710,Nillumbik,VIC,-37.62504,145.22578,432.3,12.0,Eltham Farmers’ Market
+23810,Latrobe (Vic.),VIC,-38.27668,146.44176,1425.6,12.1,Traralgon Farmers’ Market
+10900,Blue Mountains,NSW,-33.70709,150.39819,1431.1,13.3,Blackheath Growers’ Market
+16900,Shellharbour,NSW,-34.58172,150.75813,147.4,13.3,Kiama Farmers’ Market
+58330,Toodyay,WA,-31.46223,116.36877,1691.6,13.3,Toodyay Farmers’ Market
+22620,Greater Bendigo,VIC,-36.72973,144.42983,3000.0,13.5,Bendigo Community Farmers’ Market
+11800,Coffs Harbour,NSW,-30.19228,153.04394,1173.7,13.6,Coffs Coast Growers’ Market
+26430,Strathbogie,VIC,-36.7627,145.42002,3303.3,13.7,Euroa Farmers’ Market
+17400,Tenterfield,NSW,-28.94048,152.07815,7324.3,14.0,Tenterfield Farmers’ Market
+10750,Blacktown,NSW,-33.75086,150.87179,238.8,14.1,Parramatta Farmers’ Market
+12900,Forbes,NSW,-33.43611,147.86656,4710.1,14.2,Forbes Farmers’ Markets
+12750,Eurobodalla,NSW,-35.94589,149.93484,3428.2,14.3,SAGE Moruya Farmers’ Market
+11500,Campbelltown (NSW),NSW,-34.07445,150.85062,311.4,14.4,Camden Produce Market
+35740,Noosa,QLD,-26.32241,152.96481,869.9,14.5,Noosa Farmers Market
+15270,Mid-Western,NSW,-32.59611,149.74606,8752.3,14.7,Mudgee Farmers’ Market
+15990,Northern Beaches,NSW,-33.70791,151.25483,254.2,14.7,Northside Produce Market
+13310,Goulburn Mulwaree,NSW,-34.86304,149.82469,3220.1,14.9,Goulburn Farmers Market
+60410,Brighton,TAS,-42.73747,147.24032,171.2,15.2,New Norfolk Market
+61410,Clarence,TAS,-42.73705,147.41232,378.0,15.3,Tasmanian Produce Market
+64010,Launceston,TAS,-41.36185,147.29927,1413.6,15.5,Harvest Launceston Community Farmers’ Market
+40310,Barossa,SA,-34.63808,139.00343,893.5,15.6,Mount Pleasant Farmers’ Market
+51190,Bunbury,WA,-33.35719,115.66751,65.4,15.7,Boyanup & Districts Farmers Market
+10600,Bellingen,NSW,-30.40839,152.73499,1600.4,16.3,Bellingen Farmers’ & Producers Market
+21670,Central Goldfields,VIC,-37.01999,143.71815,1532.8,16.9,Talbot Farmers’ Market
+23270,Hume,VIC,-37.60295,144.8536,503.8,16.9,North Essendon Farmers’ Market
+54830,Kwinana,WA,-32.22327,115.82847,120.0,16.9,Serpentine Jarrahdale Farmers’ Market
+15800,Narrandera,NSW,-34.59525,146.58278,4116.3,17.0,Leeton Farmers’ Market
+29399,Unincorporated Vic,VIC,-38.3457,145.32404,283.2,17.1,Churchill Island Farmers’ Market
+43650,Light,SA,-34.42211,138.85933,1276.8,17.3,Barossa Farmers’ Market
+40220,Alexandrina,SA,-35.36368,138.87158,1826.8,17.5,Cittaslow Goolwa Farmers’ Market
+63810,Latrobe (Tas.),TAS,-41.24323,146.54529,600.5,17.6,Devonport Farmers Market
+50280,Augusta Margaret River,WA,-34.04208,115.22739,2122.4,17.8,Margaret River Farmers’ Market
+57490,Rockingham,WA,-32.35733,115.80631,257.5,17.9,Serpentine Jarrahdale Farmers’ Market
+16490,Queanbeyan-Palerang,NSW,-35.4116,149.60902,5319.0,18.0,Braidwood Farmers’ Market
+10550,Bega Valley,NSW,-36.82543,149.71801,6278.5,18.1,Sapphire Farmers Market
+16380,Port Macquarie-Hastings,NSW,-31.41169,152.5361,3682.4,18.4,Wauchope Farmers’ Market
+24250,Mansfield,VIC,-37.19323,146.20342,3843.9,18.5,The Outdoor Provedore
+47140,Salisbury,SA,-34.7836,138.61276,159.8,18.5,Adelaide Showground Farmers’ Market
+15900,Newcastle,NSW,-32.87178,151.66831,186.7,18.8,Maitland Earth Market
+27070,Whittlesea,VIC,-37.55312,145.08232,489.7,19.0,Eltham Farmers’ Market
+89399,Unincorporated ACT,ACT,-35.49726,148.98463,2358.1,19.4,Southside Farmers’ Market
+47700,Tea Tree Gully,SA,-34.80822,138.71643,95.2,19.6,Adelaide Showground Farmers’ Market
+20740,Bass Coast,VIC,-38.49561,145.58716,865.8,19.7,Inverloch Farmers’ Market
+58050,Swan,WA,-31.74919,116.06253,1043.0,19.7,Mundaring Garden & Farmers Market
+33620,Gympie,QLD,-26.14478,152.47237,6884.0,19.9,Gympie Farmers Market
+60610,Burnie,TAS,-41.2186,145.79636,611.0,19.9,Burnie City Market
+17420,The Hills,NSW,-33.61768,150.9691,386.2,20.3,Richmond Good Food Market
+40120,Adelaide Hills,SA,-34.8853,138.83089,794.5,20.6,Adelaide Hills Farmers’ Market
+16350,Penrith,NSW,-33.78378,150.72369,404.7,20.8,Richmond Good Food Market
+56730,Northam,WA,-31.67014,116.63356,1431.2,20.9,Toodyay Farmers’ Market
+15700,Nambucca Valley,NSW,-30.67316,152.75475,1491.3,21.1,Eungai Creek Farmers Market
+23350,Indigo,VIC,-36.21834,146.72442,2040.5,21.2,Albury Wodonga Farmers’ Market
+50210,Armadale,WA,-32.16787,116.14749,559.5,21.2,Serpentine Jarrahdale Farmers’ Market
+14550,Kyogle,NSW,-28.62296,152.7862,3584.2,21.4,Kyogle Farmers’ Market
+36720,Sunshine Coast,QLD,-26.68641,152.895,2253.9,22.1,Aura Farmers Market
+20570,Ballarat,VIC,-37.49453,143.79129,739.0,22.3,Clunes Farmers’ Market
+25430,Mount Alexander,VIC,-37.04139,144.21102,1529.6,22.3,Malmsbury Village Farmers’ Market
+21450,Cardinia,VIC,-38.09337,145.58549,1282.6,22.5,Farmers Market @ Old Cheese Factory
+63610,Kingborough,TAS,-43.08035,147.26739,720.1,22.7,Tasmanian Farm Gate Market
+16610,Richmond Valley,NSW,-29.07213,153.04159,3047.4,22.9,Casino Farmers’ Market
+18400,Wollondilly,NSW,-34.10445,150.45393,2555.4,23.0,Camden Produce Market
+27260,Wyndham,VIC,-37.87537,144.62494,542.1,24.0,Williamstown Farmers’ Market
+16400,Port Stephens,NSW,-32.73235,151.81692,858.4,24.4,Maitland Earth Market
+21370,Campaspe,VIC,-36.34663,144.7147,4519.1,24.8,Echuca Farmers’ Market
+24650,Melton,VIC,-37.69369,144.6261,527.5,25.1,Slow Food West Footscray (WeFo) Farmers Market
+48750,Yankalilla,SA,-35.51308,138.34504,751.3,25.4,Victor Harbor Farmers’ Market
+20830,Baw Baw,VIC,-37.98627,146.13069,4027.6,25.8,Warragul Farmers’ Market
+14350,Kempsey,NSW,-30.96203,152.65757,3375.7,26.1,Eungai Creek Farmers Market
+26700,Wangaratta,VIC,-36.57336,146.4269,3645.1,26.1,Wangaratta Farmers’ Market
+60810,Central Coast (Tas.),TAS,-41.29201,146.03756,933.1,26.2,Burnie City Market
+14000,Hornsby,NSW,-33.58929,151.09566,455.0,26.5,Parramatta Farmers’ Market
+65210,Tasman,TAS,-43.0431,147.83646,660.4,26.5,Bream Creek Farmers’ Market
+15240,Mid-Coast,NSW,-32.01639,152.09852,10053.9,26.9,Wingham Farmers Market
+26810,Wellington,VIC,-37.89381,146.92463,10817.4,26.9,Sale Producers Market
+26730,Warrnambool,VIC,-38.40383,142.55104,120.9,27.4,Port Fairy Farmers’ Market
+65810,West Tamar,TAS,-41.29773,146.8634,691.2,27.6,Harvest Launceston Community Farmers’ Market
+17850,Walcha,NSW,-31.16964,151.78735,6261.0,27.8,Walcha Farmers’ Market
+13800,Hawkesbury,NSW,-33.34804,150.77276,2775.1,27.9,Richmond Good Food Market
+17650,Uralla,NSW,-30.50171,151.29805,3226.5,28.2,Armidale Farmers’ Market
+34580,Lockyer Valley,QLD,-27.64066,152.23725,2269.0,28.5,Toowoomba Farmers Market
+52870,Donnybrook-Balingup,WA,-33.66445,115.96431,1559.9,29.2,Boyanup & Districts Farmers Market
+42030,Gawler,SA,-34.60704,138.73468,41.1,29.6,Barossa Farmers’ Market
+45680,Playford,SA,-34.68877,138.66438,345.2,29.7,Adelaide Showground Farmers’ Market
+58760,Wanneroo,WA,-31.6178,115.76355,683.3,30.6,Stirling Farmers’ Market
+44830,Mount Remarkable,SA,-32.75876,138.19931,3422.8,31.1,Wirrabara Producers Market
+12390,Dubbo,NSW,-32.4306,148.85068,7534.5,31.4,Dubbo Farmers’ Market
+15650,Muswellbrook,NSW,-32.43914,150.62559,3404.9,31.4,Upper Hunter Farmers’ Market
+26490,Surf Coast,VIC,-38.31601,144.05564,1552.9,31.6,Golden Plains Farmers’ Market
+34590,Logan,QLD,-27.75413,153.04929,958.1,31.7,Helensvale Farmers Market
+25990,Pyrenees,VIC,-37.30384,143.37606,3434.6,32.4,Talbot Farmers’ Market
+16950,Shoalhaven,NSW,-35.1044,150.37306,4567.2,32.6,Farmers at Burrill (FAB)
+22490,Golden Plains,VIC,-37.88828,143.84401,2703.4,33.6,Golden Plains Farmers’ Market
+14650,Lake Macquarie,NSW,-33.0365,151.52585,648.6,34.0,Maitland Earth Market
+11400,Cabonne,NSW,-33.17049,148.75754,6022.3,34.4,Orange Farmers’ Market
+25490,Moyne,VIC,-38.13211,142.47439,5481.7,34.8,Port Fairy Farmers’ Market
+56230,Murray,WA,-32.61209,116.00212,1703.5,34.9,Serpentine Jarrahdale Farmers’ Market
+10180,Armidale,NSW,-30.3747,151.89944,7809.4,35.0,Armidale Farmers’ Market
+63210,Kentish,TAS,-41.45555,146.1729,1156.2,35.0,Devonport Farmers Market
+10850,Blayney,NSW,-33.59567,149.1316,1524.6,35.2,Orange Farmers’ Market
+11720,Cessnock,NSW,-32.91838,151.24875,1965.2,35.4,Maitland Earth Market
+18450,Wollongong,NSW,-34.34923,150.84363,684.3,35.4,Camden Produce Market
+53990,Harvey,WA,-33.11434,115.90422,1727.6,35.4,Collie Farmers Market
+45120,Northern Areas,SA,-33.29132,138.51608,2986.2,36.8,Wirrabara Producers Market
+17620,Upper Hunter,NSW,-31.96645,150.71755,8096.1,36.9,Upper Hunter Farmers’ Market
+14870,Lithgow,NSW,-33.27966,150.1796,4512.3,37.1,Tarana Community Farmers’ Market
+35010,Moreton Bay,QLD,-27.11359,152.87453,2041.5,37.4,Aura Farmers Market
+36250,Redland,QLD,-27.48934,153.40656,537.2,37.6,Northey Street Organic Farmers Market
+21010,Benalla,VIC,-36.58784,146.01665,2352.6,38.3,Wangaratta Farmers’ Market
+62210,George Town,TAS,-41.09808,147.03441,653.4,38.3,Harvest Launceston Community Farmers’ Market
+34770,Mackay,QLD,-21.16125,148.81687,7613.3,38.4,Mackay Farmers’ Market
+51260,Busselton,WA,-33.71694,115.37525,1454.1,38.5,Margaret River Farmers’ Market
+20110,Alpine,VIC,-36.85477,146.97143,4788.2,39.4,Myrtleford Farmers’ Market
+12730,Edward River,NSW,-35.16878,144.94168,8883.4,40.2,Deniliquin Farmers’ Market
+10650,Berrigan,NSW,-35.73347,145.71029,2065.9,40.5,Yarrawonga Farmers’ Market
+18710,Yass Valley,NSW,-34.96106,148.87943,3995.0,40.5,Capital Region Farmers Market
+44210,Mid Murray,SA,-34.43944,139.46357,6271.6,40.5,Barossa Farmers’ Market
+46450,Port Pirie,SA,-33.37413,138.11058,1760.7,40.7,Wirrabara Producers Market
+16100,Oberon,NSW,-33.89384,149.82424,3625.0,41.8,Tarana Community Farmers’ Market
+36910,Toowoomba,QLD,-27.57457,151.53908,12957.2,42.0,Toowoomba Farmers Market
+45040,Murray Bridge,SA,-35.15335,139.31044,1831.8,42.1,Adelaide Hills Farmers’ Market
+27450,Yarra Ranges,VIC,-37.71108,145.69473,2468.2,42.2,Heathmont Farmers’ Market
+53570,Gingin,WA,-31.20107,115.70319,3208.4,42.3,Bindoon Farmers’ Market
+12700,Dungog,NSW,-32.35188,151.6124,2250.0,42.6,Maitland Earth Market
+33960,Ipswich,QLD,-27.66204,152.6712,1093.9,42.9,Northey Street Organic Farmers Market
+24900,Moira,VIC,-36.05447,145.53079,4045.9,43.0,Yarrawonga Farmers’ Market
+14300,Junee,NSW,-34.8022,147.66496,2030.0,43.3,Wagga Wagga Farmers’ Market
+50080,Albany,WA,-34.73437,118.19989,4308.5,43.4,Albany Farmers’ Market
+22830,Greater Shepparton,VIC,-36.38165,145.40636,2421.9,43.7,Euroa Farmers’ Market
+13340,Greater Hume,NSW,-35.7565,147.17459,5749.4,44.7,Albury Wodonga Farmers’ Market
+17000,Singleton,NSW,-32.66378,150.96397,4892.7,44.9,Upper Hunter Farmers’ Market
+17640,Upper Lachlan,NSW,-34.41482,149.45895,7127.4,45.3,Goulburn Farmers Market
+53710,Goomalling,WA,-31.24196,116.78252,1835.4,45.7,Toodyay Farmers’ Market
+58540,Victoria Plains,WA,-31.01623,116.32043,2551.0,46.0,Bindoon Farmers’ Market
+13450,Griffith,NSW,-34.30233,146.00747,1639.2,46.3,Leeton Farmers’ Market
+65010,Southern Midlands,TAS,-42.43668,147.41264,2615.5,47.7,New Norfolk Market
+59370,York,WA,-31.92157,116.73396,2131.6,48.6,Toodyay Farmers’ Market
+25620,Murrindindi,VIC,-37.30571,145.62735,3879.8,49.5,Mansfield Farmers’ Market
+15850,Narromine,NSW,-32.22403,148.06626,5261.5,50.4,Dubbo Farmers’ Market
+65410,Waratah-Wynyard,TAS,-41.38855,145.49303,3535.9,50.9,Burnie City Market
+64210,Meander Valley,TAS,-41.62408,146.49029,3330.8,51.4,Devonport Farmers Market
+40150,Adelaide Plains,SA,-34.4839,138.4587,932.5,52.1,Barossa Farmers’ Market
+64610,Northern Midlands,TAS,-41.83626,147.46203,5135.3,52.2,Harvest Launceston Community Farmers’ Market
+61510,Derwent Valley,TAS,-42.81694,146.41809,4108.1,52.9,New Norfolk Market
+36510,Scenic Rim,QLD,-28.06664,152.80356,4243.0,54.9,Helensvale Farmers Market
+57210,Plantagenet,WA,-34.59709,117.57845,4876.7,55.1,Albany Farmers’ Market
+58890,West Arthur,WA,-33.45296,116.73822,2831.8,55.4,Collie Farmers Market
+55110,Mandurah,WA,-32.68402,115.60676,174.9,55.6,Serpentine Jarrahdale Farmers’ Market
+16200,Parkes,NSW,-32.88382,147.96738,5957.6,56.0,Forbes Farmers’ Markets
+18100,Weddin,NSW,-33.89424,147.99905,3414.9,56.5,Forbes Farmers’ Markets
+12000,Coolamon,NSW,-34.64381,147.11291,2430.9,56.9,Wagga Wagga Farmers’ Market
+14950,Lockhart,NSW,-35.33159,146.77869,2895.8,57.0,Riverina Producers’ Market
+23940,Loddon,VIC,-36.37687,143.85869,6696.4,57.3,Bendigo Community Farmers’ Market
+11650,Central Coast (NSW),NSW,-33.31364,151.28244,1681.0,58.2,Northside Produce Market
+56300,Nannup,WA,-34.131,115.66288,3053.9,58.3,Margaret River Farmers’ Market
+41140,Clare and Gilbert Valleys,SA,-34.01772,138.72809,1892.4,59.6,Barossa Farmers’ Market
+58820,Waroona,WA,-32.85326,115.91532,832.2,60.1,Collie Farmers Market
+12870,Federation,NSW,-35.49666,146.27341,5684.9,61.8,Yarrawonga Farmers’ Market
+62410,Glamorgan-Spring Bay,TAS,-42.25404,147.93539,2591.6,61.8,Bream Creek Farmers’ Market
+61810,Dorset,TAS,-41.07851,147.71116,3230.5,61.9,Harvest Launceston Community Farmers’ Market
+59170,Williams,WA,-33.06753,116.72399,2304.7,62.1,Collie Farmers Market
+58680,Wandering,WA,-32.55352,116.581,1903.9,62.8,Serpentine Jarrahdale Farmers’ Market
+50630,Boddington,WA,-32.82727,116.39764,1904.5,63.1,Collie Farmers Market
+63010,Huon Valley,TAS,-43.2515,146.60384,5507.4,64.4,New Norfolk Market
+17310,Tamworth,NSW,-30.90701,150.91275,9884.4,65.2,Walcha Farmers’ Market
+11730,Clarence Valley,NSW,-29.69616,152.75374,10428.7,65.4,Yamba Farmers’ Market
+50560,Beverley,WA,-32.1741,116.78134,2370.5,65.4,Mundaring Garden & Farmers Market
+36580,Somerset,QLD,-27.00069,152.42657,5373.4,65.9,Aura Farmers Market
+52450,Cunderdin,WA,-31.60178,117.15919,1862.4,66.1,Toodyay Farmers’ Market
+45400,Orroroo Carrieton,SA,-32.51977,138.63575,3321.8,66.5,Wirrabara Producers Market
+13010,Glen Innes Severn,NSW,-29.64894,151.90454,5480.0,66.9,Tenterfield Farmers’ Market
+21750,Colac Otway,VIC,-38.44734,143.59568,3437.5,67.2,Golden Plains Farmers’ Market
+51610,Chapman Valley,WA,-28.31746,115.05815,3981.3,67.3,Geraldton-Greenough Farmers’ Market
+26670,Towong,VIC,-36.34831,147.59103,6675.2,67.9,Albury Wodonga Farmers’ Market
+50770,Boyup Brook,WA,-33.88965,116.50923,2826.5,67.9,Collie Farmers Market
+46090,Port Augusta,SA,-32.59557,137.75833,1158.0,68.1,Wirrabara Producers Market
+12350,Cowra,NSW,-33.80537,148.70083,2808.8,69.3,Orange Farmers’ Market
+18200,Wentworth,NSW,-33.56813,142.24462,26255.9,69.5,Sunraysia Farmers’ Market
+50840,Bridgetown-Greenbushes,WA,-33.99146,116.17545,1337.4,69.5,Boyanup & Districts Farmers Market
+12160,Cootamundra-Gundagai,NSW,-34.85902,148.07871,3981.4,70.1,Wagga Wagga Farmers’ Market
+61010,Central Highlands (Tas.),TAS,-42.22048,146.65262,7982.4,70.8,New Norfolk Market
+12950,Gilgandra,NSW,-31.60951,148.68436,4831.5,70.9,Dubbo Farmers’ Market
+52730,Denmark,WA,-34.8975,117.11839,1859.8,71.0,Albany Farmers’ Market
+15520,Murray River,NSW,-35.3243,144.21466,11863.0,71.5,Deniliquin Farmers’ Market
+48540,Whyalla,SA,-33.03312,137.49293,1071.3,72.4,Wirrabara Producers Market
+33220,Fraser Coast,QLD,-25.53579,152.65783,7104.6,72.6,Gympie Farmers Market
+32330,Cherbourg,QLD,-26.28548,151.92818,31.6,74.4,Gympie Farmers Market
+15560,Murrumbidgee,NSW,-34.95183,145.72595,6880.8,75.4,Leeton Farmers’ Market
+36660,Southern Downs,QLD,-28.38325,151.89332,7106.4,75.8,Tenterfield Farmers’ Market
+54060,Irwin,WA,-29.3199,115.08696,2369.3,75.9,Geraldton-Greenough Farmers’ Market
+60210,Break O'Day,TAS,-41.41447,148.05657,3523.9,76.4,Harvest Launceston Community Farmers’ Market
+45540,Peterborough,SA,-32.86212,139.06327,3020.1,76.5,Wirrabara Producers Market
+61210,Circular Head,TAS,-41.11267,145.01648,4897.7,76.7,Burnie City Market
+52940,Dowerin,WA,-31.11908,117.10547,1863.1,77.5,Toodyay Farmers’ Market
+22110,East Gippsland,VIC,-37.36899,148.28846,20939.5,78.5,Bairnsdale Farmers’ Market
+25810,Northern Grampians,VIC,-36.8515,142.90419,5729.9,79.3,Talbot Farmers’ Market
+17350,Temora,NSW,-34.38487,147.47541,2802.0,81.1,Wagga Wagga Farmers’ Market
+48130,Wakefield,SA,-33.99179,138.34703,3468.5,83.7,Barossa Farmers’ Market
+20260,Ararat,VIC,-37.49742,142.84414,4211.1,84.1,Talbot Farmers’ Market
+17040,Snowy Monaro,NSW,-36.39811,148.95774,15164.8,84.9,Bega Produce Market
+21830,Corangamite,VIC,-38.20063,143.19416,4407.5,85.9,Port Fairy Farmers’ Market
+24780,Mildura,VIC,-34.86794,141.68773,22081.9,87.4,Sunraysia Farmers’ Market
+53800,Greater Geraldton,WA,-28.57852,115.48502,9909.0,88.0,Geraldton-Greenough Farmers’ Market
+17080,Snowy Valleys,NSW,-35.73928,148.24299,8958.9,88.6,Southside Farmers’ Market
+40430,Barunga West,SA,-33.78938,137.96369,1590.4,88.8,Wirrabara Producers Market
+14920,Liverpool Plains,NSW,-31.55413,150.44131,5082.2,89.6,Upper Hunter Farmers’ Market
+47800,Coorong,SA,-35.71205,139.74513,8833.4,89.8,Cittaslow Goolwa Farmers’ Market
+10800,Bland,NSW,-33.89267,146.96658,8557.7,90.7,Leeton Farmers’ Market
+43080,Karoonda East Murray,SA,-34.9415,140.02375,4415.8,90.7,Mount Pleasant Farmers’ Market
+22250,Gannawarra,VIC,-35.74344,143.82084,3737.6,93.8,Echuca Farmers’ Market
+50910,Brookton,WA,-32.35849,117.00542,1601.2,93.9,Mundaring Garden & Farmers Market
+55530,Mingenew,WA,-29.16701,115.4702,1934.9,94.0,Geraldton-Greenough Farmers’ Market
+42110,Goyder,SA,-33.64529,139.07137,6715.1,94.4,Barossa Farmers’ Market
+22410,Glenelg,VIC,-37.87175,141.37608,6218.8,94.5,Port Fairy Farmers’ Market
+26260,Southern Grampians,VIC,-37.54587,142.03518,6654.0,94.8,Port Fairy Farmers’ Market
+51540,Carnarvon,WA,-24.3357,114.38946,46574.7,95.9,Gascoyne Growers’ Market
+48830,Yorke Peninsula,SA,-34.6764,137.58441,5899.6,96.3,Adelaide Showground Farmers’ Market
+52240,Cranbrook,WA,-34.31838,117.25047,3276.0,97.5,Albany Farmers’ Market
+58190,Tammin,WA,-31.60382,117.50196,1101.7,98.5,Toodyay Farmers’ Market
+59310,Wongan-Ballidu,WA,-30.71904,116.82296,3365.1,98.5,Toodyay Farmers’ Market
+55600,Moora,WA,-30.48993,116.18289,3763.0,99.6,Bindoon Farmers’ Market
+14220,Inverell,NSW,-29.4133,151.07444,9404.8,100.1,Tenterfield Farmers’ Market
+59330,Wyalkatchem,WA,-31.19604,117.43686,1594.5,100.4,Toodyay Farmers’ Market
+54550,Kojonup,WA,-33.89574,117.03208,2931.0,101.2,Collie Farmers Market
+36630,South Burnett,QLD,-26.39709,151.64757,8381.6,102.8,Dagun Growers’ Market
+57350,Quairading,WA,-32.00124,117.41427,2016.9,102.9,Toodyay Farmers’ Market
+41830,Flinders Ranges,SA,-32.08442,138.28541,4070.5,105.4,Wirrabara Producers Market
+52590,Dandaragan,WA,-30.55294,115.51416,6711.6,107.6,Bindoon Farmers’ Market
+14600,Lachlan,NSW,-32.90842,146.98369,14968.3,109.2,Forbes Farmers’ Markets
+56460,Narrogin,WA,-32.996,117.25878,1631.3,110.5,Collie Farmers Market
+53640,Gnowangerup,WA,-34.06387,118.27924,4265.0,112.9,Albany Farmers’ Market
+59320,Woodanilling,WA,-33.53403,117.35258,1128.8,113.1,Collie Farmers Market
+58610,Wagin,WA,-33.27727,117.37444,1946.2,113.9,Collie Farmers Market
+51080,Broomehill-Tambellup,WA,-34.00986,117.6615,2609.7,114.7,Albany Farmers’ Market
+56790,Northampton,WA,-27.74621,114.64222,12543.7,114.8,Geraldton-Greenough Farmers’ Market
+18020,Warrumbungle,NSW,-31.46462,149.40454,12372.1,115.1,Dubbo Farmers’ Market
+13910,Hilltops,NSW,-34.355,148.49938,7140.9,116.1,Capital Region Farmers Market
+52310,Cuballing,WA,-32.7347,117.15393,1195.3,116.1,Collie Farmers Market
+41560,Copper Coast,SA,-33.97537,137.7279,772.9,116.2,Wirrabara Producers Market
+57140,Pingelly,WA,-32.51989,117.19859,1294.6,116.6,Serpentine Jarrahdale Farmers’ Market
+43790,Loxton Waikerie,SA,-34.51142,140.34904,7763.9,121.2,Barossa Farmers’ Market
+58260,Three Springs,WA,-29.52721,115.5734,2656.7,125.1,Geraldton-Greenough Farmers’ Market
+46670,Renmark Paringa,SA,-34.18067,140.81039,916.4,125.2,Sunraysia Farmers’ Market
+54410,Kellerberrin,WA,-31.58768,117.81704,1915.4,128.2,Toodyay Farmers’ Market
+65610,West Coast,TAS,-42.29005,145.63828,9583.5,128.9,New Norfolk Market
+42750,Kangaroo Island,SA,-35.83425,137.21655,4400.9,130.7,Victor Harbor Farmers’ Market
+55180,Manjimup,WA,-34.55639,116.32176,7029.6,130.7,Boyanup & Districts Farmers Market
+17950,Warren,NSW,-31.33839,147.68001,10753.8,133.0,Dubbo Farmers’ Market
+41960,Franklin Harbour,SA,-33.5341,136.96169,2755.6,133.7,Wirrabara Producers Market
+13550,Gunnedah,NSW,-31.05891,150.18435,4987.0,134.2,Walcha Farmers’ Market
+11600,Carrathool,NSW,-33.61208,145.49857,18934.5,134.4,Leeton Farmers’ Market
+10300,Balranald,NSW,-33.94679,143.61014,21690.7,135.2,Sunraysia Farmers’ Market
+26610,Swan Hill,VIC,-35.11955,143.12701,6115.5,135.3,Sunraysia Farmers’ Market
+40520,Berri Barmera,SA,-34.26626,140.48283,476.2,136.0,Barossa Farmers’ Market
+58400,Trayning,WA,-31.14455,117.81496,1651.2,136.0,Toodyay Farmers’ Market
+13850,Hay,NSW,-34.31743,144.68661,11325.9,137.2,Deniliquin Farmers’ Market
+54690,Koorda,WA,-30.59904,117.41779,2832.3,139.4,Toodyay Farmers’ Market
+55670,Morawa,WA,-29.07327,116.01698,3510.6,140.6,Geraldton-Greenough Farmers’ Market
+44620,Mount Gambier,SA,-37.82398,140.78279,33.9,141.7,Port Fairy Farmers’ Market
+51470,Carnamah,WA,-29.76785,115.56526,2870.9,143.7,Geraldton-Greenough Farmers’ Market
+54340,Katanning,WA,-33.64669,117.67632,1518.2,144.9,Collie Farmers Market
+42250,Grant,SA,-37.84503,140.71389,1897.8,146.2,Port Fairy Farmers’ Market
+13660,Gwydir,NSW,-29.60012,150.51741,9259.7,146.8,Armidale Farmers’ Market
+21270,Buloke,VIC,-35.91702,143.01658,7998.2,147.4,Bendigo Community Farmers’ Market
+23190,Horsham,VIC,-36.83488,142.07469,4266.8,149.3,Talbot Farmers’ Market
+31820,Bundaberg,QLD,-24.96595,152.03535,6431.1,150.0,Gympie Farmers Market
+52100,Corrigin,WA,-32.35273,117.79428,2681.3,154.0,Toodyay Farmers’ Market
+59100,Wickepin,WA,-32.78794,117.66033,2040.9,154.0,Collie Farmers Market
+47290,Southern Mallee,SA,-35.3924,140.56567,5702.2,154.1,Mount Pleasant Farmers’ Market
+51120,Bruce Rock,WA,-31.94971,118.02729,2724.7,154.3,Toodyay Farmers’ Market
+54130,Jerramungup,WA,-34.06258,119.09536,6511.2,154.3,Albany Farmers’ Market
+52030,Coorow,WA,-30.02555,115.73846,4189.9,154.7,Bindoon Farmers’ Market
+12150,Coonamble,NSW,-30.86655,148.29621,9916.1,155.8,Dubbo Farmers’ Market
+37340,Whitsunday,QLD,-20.71022,147.71896,23819.0,159.7,Mackay Farmers’ Market
+52520,Dalwallinu,WA,-30.12702,116.94429,7224.4,161.5,Bindoon Farmers’ Market
+43360,Kingston (SA),SA,-36.63592,140.02489,3339.8,168.1,Cittaslow Goolwa Farmers’ Market
+62010,Flinders (Tas.),TAS,-40.09419,148.10456,1996.6,169.6,Harvest Launceston Community Farmers’ Market
+53010,Dumbleyung,WA,-33.22135,117.97165,2539.2,169.7,Collie Farmers Market
+56860,Nungarin,WA,-31.15591,118.21784,1166.0,172.2,Toodyay Farmers’ Market
+35760,North Burnett,QLD,-25.36128,151.20594,19669.8,172.7,Gympie Farmers Market
+27630,Yarriambiack,VIC,-35.99725,142.41953,7325.8,173.7,Talbot Farmers’ Market
+54480,Kent,WA,-33.55196,118.55496,5624.6,175.1,Albany Farmers’ Market
+37310,Western Downs,QLD,-26.84179,150.34954,37922.5,178.4,Toowoomba Farmers Market
+55460,Merredin,WA,-31.51087,118.36226,3293.8,179.9,Toodyay Farmers’ Market
+47630,Tatiara,SA,-36.2271,140.58505,6527.2,181.0,Cittaslow Goolwa Farmers’ Market
+33610,Goondiwindi,QLD,-28.37171,150.33433,19265.7,181.2,Tenterfield Farmers’ Market
+48340,Wattle Range,SA,-37.46403,140.53286,3926.2,181.2,Port Fairy Farmers’ Market
+33980,Isaac,QLD,-22.23854,147.87338,58707.9,182.5,Mackay Farmers’ Market
+63410,King Island,TAS,-39.85489,143.98271,1095.7,182.9,Bellarine Community Farmers’ Market
+10950,Bogan,NSW,-31.49814,146.86525,14599.9,183.7,Dubbo Farmers’ Market
+15750,Narrabri,NSW,-30.36338,149.56844,13015.0,194.6,Armidale Farmers’ Market
+41190,Cleve,SA,-33.65308,136.28476,5018.8,196.8,Wirrabara Producers Market
+43220,Kimba,SA,-33.00251,136.15302,5697.1,197.3,Wirrabara Producers Market
+55950,Mukinbudin,WA,-30.63096,118.31338,3426.9,203.6,Toodyay Farmers’ Market
+26890,West Wimmera,VIC,-36.68986,141.28248,9108.7,206.3,Port Fairy Farmers’ Market
+57770,Shark Bay,WA,-26.5547,114.55668,24201.5,206.5,Gascoyne Growers’ Market
+57000,Perenjori,WA,-29.44285,116.61043,8301.4,207.7,Geraldton-Greenough Farmers’ Market
+55880,Mount Marshall,WA,-30.18795,117.96071,10184.6,208.2,Toodyay Farmers’ Market
+22980,Hindmarsh,VIC,-36.04738,141.74703,7524.2,210.1,Sunraysia Farmers’ Market
+34530,Livingstone,QLD,-22.79316,150.19233,11757.9,211.1,Mackay Farmers’ Market
+56370,Narembeen,WA,-32.04406,118.65388,3809.0,214.1,Toodyay Farmers’ Market
+46860,Robe,SA,-37.18943,139.97643,1091.7,215.6,Cittaslow Goolwa Farmers’ Market
+45090,Naracoorte Lucindale,SA,-36.97798,140.54572,4519.7,215.9,Port Fairy Farmers’ Market
+59030,Westonia,WA,-30.96076,118.65057,3319.4,217.9,Toodyay Farmers’ Market
+15300,Moree Plains,NSW,-29.25712,149.62285,17902.7,233.9,Tenterfield Farmers’ Market
+54760,Kulin,WA,-32.71224,118.56895,4718.9,236.3,Collie Farmers Market
+59350,Yalgoo,WA,-28.56402,117.04438,27949.5,238.5,Geraldton-Greenough Farmers’ Market
+47910,Tumby Bay,SA,-34.18166,136.03014,2669.1,243.5,Wirrabara Producers Market
+31900,Burdekin,QLD,-19.83257,147.24864,5043.9,248.7,Mackay Farmers’ Market
+46300,Port Lincoln,SA,-34.725,135.85479,30.4,250.5,Adelaide Showground Farmers’ Market
+54900,Lake Grace,WA,-33.05765,119.28129,11886.3,253.9,Albany Farmers’ Market
+11250,Broken Hill,NSW,-31.94171,141.50524,170.1,257.6,Sunraysia Farmers’ Market
+57420,Ravensthorpe,WA,-33.61952,120.1349,9841.8,259.3,Albany Farmers’ Market
+33360,Gladstone,QLD,-24.19942,151.31769,10484.3,259.5,Gympie Farmers Market
+53360,Exmouth,WA,-22.51495,114.15657,6488.2,268.2,Gascoyne Growers’ Market
+17900,Walgett,NSW,-29.81784,148.18449,22308.3,272.6,Dubbo Farmers’ Market
+54620,Kondinin,WA,-32.42182,119.17267,7440.8,273.2,Toodyay Farmers’ Market
+58470,Upper Gascoyne,WA,-24.73022,116.36184,57809.9,273.5,Gascoyne Growers’ Market
+48640,Wudinna,SA,-33.01962,135.31824,5075.3,275.1,Wirrabara Producers Market
+36370,Rockhampton,QLD,-23.43996,150.21598,6570.3,276.8,Mackay Farmers’ Market
+41750,Elliston,SA,-33.56125,135.34775,6741.9,277.8,Wirrabara Producers Market
+56160,Murchison,WA,-26.75695,116.30596,45046.1,279.8,Geraldton-Greenough Farmers’ Market
+43710,Lower Eyre Peninsula,SA,-34.37918,135.60363,4721.4,280.0,Adelaide Showground Farmers’ Market
+59360,Yilgarn,WA,-30.95669,119.34154,30428.8,281.3,Toodyay Farmers’ Market
+11750,Cobar,NSW,-31.86926,145.47814,45575.4,290.8,Forbes Farmers’ Markets
+11700,Central Darling,NSW,-31.85251,143.59311,53492.2,291.8,Sunraysia Farmers’ Market
+46970,Roxby Downs,SA,-30.56006,136.88152,110.5,304.6,Wirrabara Producers Market
+30370,Banana,QLD,-24.92283,149.94317,28550.2,307.3,Gympie Farmers Market
+11200,Brewarrina,NSW,-29.77956,146.95079,19162.0,315.9,Dubbo Farmers’ Market
+37010,Townsville,QLD,-19.40133,146.71553,3730.8,322.2,Mackay Farmers’ Market
+32270,Central Highlands (Qld),QLD,-24.03049,148.41689,59834.8,330.9,Mackay Farmers’ Market
+37550,Woorabinda,QLD,-24.11625,149.4497,390.6,332.0,Mackay Farmers’ Market
+55810,Mount Magnet,WA,-28.25059,117.98411,13858.1,334.6,Geraldton-Greenough Farmers’ Market
+47490,Streaky Bay,SA,-32.7046,134.56249,6222.9,348.1,Wirrabara Producers Market
+52380,Cue,WA,-27.31856,117.93166,13582.2,364.0,Geraldton-Greenough Farmers’ Market
+32310,Charters Towers,QLD,-20.14108,145.78605,68382.2,370.8,Mackay Farmers’ Market
+35790,Palm Island,QLD,-18.74055,146.60434,72.0,379.5,Mackay Farmers’ Market
+34860,Maranoa,QLD,-26.5398,148.29793,58719.3,380.3,Toowoomba Farmers Market
+30300,Balonne,QLD,-28.31493,148.11638,31104.1,387.4,Toowoomba Farmers Market
+19399,Unincorporated NSW,NSW,-30.65888,142.21199,93208.9,392.7,Sunraysia Farmers’ Market
+11150,Bourke,NSW,-29.91307,145.35273,41598.4,403.5,Dubbo Farmers’ Market
+49399,Unincorporated SA,SA,-29.57734,136.76724,619426.1,409.8,Wirrabara Producers Market
+50250,Ashburton,WA,-22.49612,116.73996,100817.3,411.1,Gascoyne Growers’ Market
+30410,Barcaldine,QLD,-23.11889,145.69952,53382.7,421.1,Mackay Farmers’ Market
+41010,Ceduna,SA,-32.09774,133.86948,5420.3,425.2,Wirrabara Producers Market
+33800,Hinchinbrook,QLD,-18.65525,146.05061,2807.2,428.7,Mackay Farmers’ Market
+51960,Coolgardie,WA,-31.18596,120.96583,30297.7,429.3,Toodyay Farmers’ Market
+57630,Sandstone,WA,-28.33874,119.16717,32605.3,441.9,Toodyay Farmers’ Market
+53290,Esperance,WA,-33.22205,122.24956,44797.5,449.2,Albany Farmers’ Market
+32260,Cassowary Coast,QLD,-17.9017,145.8964,4687.8,498.5,Mackay Farmers’ Market
+33200,Flinders (Qld),QLD,-20.97041,144.32186,41199.9,505.1,Mackay Farmers’ Market
+55250,Meekatharra,WA,-25.143,118.86749,100188.5,525.8,Gascoyne Growers’ Market
+30760,Blackall Tambo,QLD,-24.79022,145.7864,30537.2,534.6,Mackay Farmers’ Market
+35800,Paroo,QLD,-28.06823,145.78432,47614.9,537.4,Dubbo Farmers’ Market
+36820,Tablelands,QLD,-17.93119,145.32887,11292.9,539.1,Mackay Farmers’ Market
+54310,Karratha,WA,-21.03831,117.02348,15238.3,549.1,Gascoyne Growers’ Market
+41330,Coober Pedy,SA,-29.0085,134.72957,77.7,560.3,Wirrabara Producers Market
+35600,Murweh,QLD,-26.19234,146.50256,40699.8,562.5,Toowoomba Farmers Market
+32080,Cairns,QLD,-17.13556,145.82028,1689.3,568.5,Mackay Farmers’ Market
+37600,Yarrabah,QLD,-17.02758,145.89126,158.8,573.5,Mackay Farmers’ Market
+55040,Leonora,WA,-28.21626,121.14789,31915.1,584.1,Toodyay Farmers’ Market
+34710,Longreach,QLD,-23.72975,143.96607,40572.2,608.8,Mackay Farmers’ Market
+33100,Etheridge,QLD,-18.50253,143.65709,39199.3,648.4,Mackay Farmers’ Market
+36300,Richmond,QLD,-20.53742,142.90536,26580.7,656.1,Mackay Farmers’ Market
+57280,Port Hedland,WA,-20.92593,118.66498,18417.1,675.7,Gascoyne Growers’ Market
+32810,Douglas,QLD,-16.23397,145.28962,2427.9,682.6,Mackay Farmers’ Market
+31750,Bulloo,QLD,-28.02221,142.60008,73722.0,687.1,Sunraysia Farmers’ Market
+53080,Dundas,WA,-32.00959,124.41977,92886.4,692.4,Albany Farmers’ Market
+37570,Wujal Wujal,QLD,-15.96592,145.31314,11.8,705.4,Mackay Farmers’ Market
+37400,Winton,QLD,-22.54116,142.4327,53813.5,714.1,Mackay Farmers’ Market
+34880,Mareeba,QLD,-16.98663,143.95382,53491.1,718.0,Mackay Farmers’ Market
+55390,Menzies,WA,-29.57523,123.97595,124115.4,751.8,Toodyay Farmers’ Market
+32600,Croydon,QLD,-18.5425,142.21941,29497.9,783.7,Mackay Farmers’ Market
+33830,Hope Vale,QLD,-15.18634,145.17993,1111.7,785.7,Mackay Farmers’ Market
+36150,Quilpie,QLD,-26.35571,143.89763,67414.7,791.0,Mackay Farmers’ Market
+34800,McKinlay,QLD,-20.55441,141.59189,40736.8,791.8,Mackay Farmers’ Market
+44000,Maralinga Tjarutja,SA,-29.34969,130.9639,105766.3,806.3,Wirrabara Producers Market
+54280,Kalgoorlie-Boulder,WA,-30.74747,125.05273,95500.3,820.9,Albany Farmers’ Market
+30450,Barcoo,QLD,-25.13212,142.26522,61830.2,835.1,Mackay Farmers’ Market
+59250,Wiluna,WA,-25.31113,122.24334,181297.3,848.2,Geraldton-Greenough Farmers’ Market
+32250,Carpentaria,QLD,-17.46312,141.36719,64121.0,916.5,Mackay Farmers’ Market
+32450,Cloncurry,QLD,-20.79876,140.27299,47971.3,926.1,Mackay Farmers’ Market
+32750,Diamantina,QLD,-24.62835,139.7322,94722.4,945.3,Wirrabara Producers Market
+40250,Anangu Pitjantjatjara Yankunytjatjara,SA,-27.07705,131.20621,102348.1,948.5,Wirrabara Producers Market
+54970,Laverton,WA,-27.89067,125.4009,179994.0,953.6,Toodyay Farmers’ Market
+32500,Cook,QLD,-14.23403,143.25538,105717.8,991.9,Mackay Farmers’ Market
+34420,Kowanyama,QLD,-15.31397,141.8186,2555.3,1012.1,Mackay Farmers’ Market
+30900,Boulia,QLD,-22.47957,139.25297,60906.5,1036.0,Mackay Farmers’ Market
+72330,MacDonnell,NT,-24.63614,133.15965,268339.0,1057.6,Wirrabara Producers Market
+36070,Pormpuraaw,QLD,-14.71009,141.79907,4395.4,1058.8,Mackay Farmers’ Market
+53220,East Pilbara,WA,-21.7678,123.59891,372295.7,1072.3,Gascoyne Growers’ Market
+35300,Mount Isa,QLD,-19.95305,138.78042,43715.2,1091.3,Mackay Farmers’ Market
+34570,Lockhart River,QLD,-13.00846,143.2327,3576.7,1103.3,Mackay Farmers’ Market
+70200,Alice Springs,NT,-23.75624,133.86571,327.7,1117.5,Wirrabara Producers Market
+31950,Burke,QLD,-18.00776,138.9405,39681.2,1128.2,Mackay Farmers’ Market
+50980,Broome,WA,-18.68027,122.46572,54401.8,1140.9,Gascoyne Growers’ Market
+30250,Aurukun,QLD,-13.61485,141.83032,7424.0,1143.8,Mackay Farmers’ Market
+35250,Mornington,QLD,-16.56676,139.37366,1247.7,1150.5,Mackay Farmers’ Market
+32770,Doomadgee,QLD,-17.7271,138.74543,1827.7,1158.4,Mackay Farmers’ Market
+35670,Napranum,QLD,-12.49393,142.1159,2004.3,1220.4,Mackay Farmers’ Market
+37300,Weipa,QLD,-12.6396,141.86526,10.5,1224.2,Mackay Farmers’ Market
+56620,Ngaanyatjarraku,WA,-25.09494,126.83498,159816.0,1262.1,Bindoon Farmers’ Market
+34830,Mapoon,QLD,-12.21265,141.82773,537.2,1264.2,Mackay Farmers’ Market
+36950,Torres,QLD,-10.90701,142.53932,883.7,1340.8,Mackay Farmers’ Market
+35780,Northern Peninsula Area,QLD,-11.01262,142.29393,1052.1,1344.9,Mackay Farmers’ Market
+70620,Central Desert,NT,-21.48975,132.41472,281338.0,1407.2,Wirrabara Producers Market
+52800,Derby-West Kimberley,WA,-17.79605,124.99036,119731.0,1412.7,Gascoyne Growers’ Market
+36960,Torres Strait Island,QLD,-10.18609,142.26143,490.0,1425.2,Mackay Farmers’ Market
+70420,Barkly,NT,-19.44796,135.086,322710.4,1482.0,Mackay Farmers’ Market
+53920,Halls Creek,WA,-19.26169,127.62002,133046.0,1567.5,Gascoyne Growers’ Market
+73600,Roper Gulf,NT,-15.44036,134.64745,185213.5,1659.5,Mackay Farmers’ Market
+71300,East Arnhem,NT,-12.94758,135.69284,33309.9,1697.7,Mackay Farmers’ Market
+59340,Wyndham-East Kimberley,WA,-15.55857,127.05598,112066.3,1738.6,Gascoyne Growers’ Market
+72200,Katherine,NT,-14.69078,132.19487,7416.6,1933.7,Mackay Farmers’ Market
+74660,West Arnhem,NT,-12.52264,133.27302,49675.0,1943.8,Mackay Farmers’ Market
+74550,Victoria Daly,NT,-16.24195,130.65428,153287.4,2017.7,Wirrabara Producers Market
+74680,West Daly,NT,-14.22388,130.05838,14069.7,2084.3,Gascoyne Growers’ Market
+79399,Unincorporated NT,NT,-12.91953,131.26422,19777.4,2110.9,Mackay Farmers’ Market
+70700,Coomalie,NT,-13.11479,131.06998,2056.1,2119.4,Mackay Farmers’ Market
+72300,Litchfield,NT,-12.54019,131.11537,2903.3,2145.2,Mackay Farmers’ Market
+72800,Palmerston,NT,-12.48149,130.94352,68.2,2164.7,Mackay Farmers’ Market
+71000,Darwin,NT,-12.40792,130.90792,111.3,2172.0,Mackay Farmers’ Market
+71150,Darwin Waterfront Precinct,NT,-12.46879,130.84693,0.7,2174.5,Mackay Farmers’ Market
+74560,Wagait,NT,-12.4394,130.75666,5.7,2184.7,Mackay Farmers’ Market
+70540,Belyuen,NT,-12.53627,130.67875,41.4,2187.0,Mackay Farmers’ Market
+74050,Tiwi Islands,NT,-11.56144,130.81782,7483.2,2227.5,Mackay Farmers’ Market

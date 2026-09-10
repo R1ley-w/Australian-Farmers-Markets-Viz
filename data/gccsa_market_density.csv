@@ -1,0 +1,16 @@
+gccsa_code,gccsa,state,kind,markets,population,markets_per_100k,area_sqkm
+2RVIC,Rest of Vic.,VIC,Rest of state,31,1638910,1.892,217503.6
+1RNSW,Rest of NSW,NSW,Rest of state,53,2955070,1.794,788429.0
+6RTAS,Rest of Tas.,TAS,Rest of state,4,320750,1.247,66322.2
+5RWAU,Rest of WA,WA,Rest of state,7,590935,1.185,2520215.9
+6GHOB,Greater Hobart,TAS,Capital city,3,255250,1.175,1695.4
+4RSAU,Rest of SA,SA,Rest of state,4,411285,0.973,980971.5
+8ACTE,Australian Capital Territory,ACT,Capital city,3,484630,0.619,2358.1
+2GMEL,Greater Melbourne,VIC,Capital city,30,5435590,0.552,9992.6
+5GPER,Greater Perth,WA,Capital city,13,2452765,0.53,6416.6
+3RQLD,Rest of Qld,QLD,Rest of state,11,2836276,0.388,1714329.2
+4GADE,Greater Adelaide,SA,Capital city,4,1491015,0.268,3259.9
+1GSYD,Greater Sydney,NSW,Capital city,9,5638830,0.16,12368.7
+3GBRI,Greater Brisbane,QLD,Capital city,2,2833524,0.071,15842.0
+7GDAR,Greater Darwin,NT,Capital city,0,159284,0.0,3167.7
+7RNTE,Rest of NT,NT,Rest of state,0,105116,0.0,1344966.8

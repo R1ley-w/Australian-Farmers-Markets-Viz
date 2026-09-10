@@ -1,0 +1,11 @@
+id,store,issue,detail
+4798,Limestone Coast Farmers’ Markets,roving market with a placeholder coordinate,"address='Various Locations', no postcode"
+4741,Parramatta Farmers’ Market,trading day disagrees with opening-hours table,market_days='Wednesday' hours='Friday'
+4637,Heathmont Farmers’ Market,trading day disagrees with opening-hours table,market_days='4th Saturday' hours='Sunday'
+6050,Bindoon Farmers’ Market,trading day disagrees with opening-hours table,market_days='Sunday' hours='Saturday'
+4794,Freo Farmers’ Market,trading day disagrees with opening-hours table,market_days='Every Sunday' hours='Saturday'
+13135,Powerhouse Growers Market,duplicate listing,same market as id 4711 (Powerhouse Growers’ Market)
+8709,Churchill Island Farmers Market,duplicate listing,same market as id 4630 (Churchill Island Farmers’ Market)
+10429,Kyogle Farmers Market,duplicate listing,same market as id 6113 (Kyogle Farmers’ Market)
+4651,Slow Food Spotswood Farmers’ Market,coordinate shared with a different market,within 100 m of id 6373 (Abbotsford Convent Farmers’ Market)
+4728,Rainbow Region Organic Market,coordinate shared with a different market,within 100 m of id 4726 (Lismore Farmers’ Market)
