@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Organisations that run more than one farmers' market, by number of markets run.",
+  "width": "container",
+  "height": 260,
+  "data": {
+    "url": "data/operators.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.markets >= 2"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "height": 16
+      },
+      "encoding": {
+        "color": {
+          "value": "#2a78d6"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "markets",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "operator",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Community Farmers Markets",
+        "Regional Farmers' Markets",
+        "Slow Food Melbourne",
+        "Melbourne Farmers' Markets",
+        "QLD Farmers Markets"
+      ],
+      "axis": {
+        "labelLimit": 240
+      }
+    },
+    "x": {
+      "field": "markets",
+      "type": "quantitative",
+      "title": "Markets run",
+      "scale": {
+        "domain": [
+          0,
+          5
+        ]
+      },
+      "axis": {
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "grid": true
+      }
+    },
+    "tooltip": [
+      {
+        "field": "operator",
+        "type": "nominal",
+        "title": "Operator"
+      },
+      {
+        "field": "markets",
+        "type": "quantitative",
+        "title": "Markets run"
+      },
+      {
+        "field": "states",
+        "type": "nominal",
+        "title": "States"
+      }
+    ]
+  }
+}

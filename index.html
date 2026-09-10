@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>175 Markets — Australian farmers' markets, mapped</title>
+<meta name="description" content="Where Australia's farmers' markets are, who can actually reach one, what they do for producers, and how the sustainability case really stacks up.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23fcfcfb'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23eb6834'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<!-- Vega is vendored in vendor/ so the page works offline and the exact
+     library versions are pinned in the repo. See vendor/README.md. -->
+<script src="vendor/vega.min.js"></script>
+<script src="vendor/vega-lite.min.js"></script>
+<script src="vendor/vega-embed.min.js"></script>
+</head>
+<body>
+
+<button id="theme-toggle" class="theme-toggle" type="button">Dark</button>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">FIT3179 · Data Visualisation 2 · Riley Wade</p>
+    <h1>175 markets</h1>
+    <p class="lede">
+      Australia has no official register of farmers' markets. Scraping the only national
+      directory turns up 175 of them — far fewer than the “300-plus” usually quoted, and
+      concentrated so unevenly that half the country's local government areas are more
+      than an hour's drive from one.
+    </p>
+    <p class="lede">
+      This is what that directory looks like when you put it on a map, and what it says
+      about who farmers' markets actually serve.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><div class="v">175</div><div class="k">markets in the national directory, after removing duplicate listings</div></div>
+      <div class="stat"><div class="v">58 km</div><div class="k">median distance from an LGA's centre to its nearest market</div></div>
+      <div class="stat"><div class="v">62%</div><div class="k">of markets trade on a Saturday; 86% on a weekend</div></div>
+      <div class="stat"><div class="v">0</div><div class="k">markets listed anywhere in the Northern Territory</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================ ACT 1 -->
+<section class="act" id="where">
+  <div class="wrap">
+    <p class="act-num">One — Where they are</p>
+    <h2>A south-eastern, small-town institution</h2>
+    <p>
+      The Australian Farmers' Markets Association directory is the de facto national census.
+      It holds 178 listings, which resolve to <strong>175 distinct markets</strong> once
+      duplicates are removed. New South Wales and Victoria hold 70% of them between them.
+      Queensland — a much bigger horticultural producer — has thirteen.
+    </p>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Every farmers' market in the national directory</div>
+        <p class="sub">
+          Colour is how often the market trades; size is how many hours it is open on a
+          market day. Click a legend entry to isolate a frequency, or use the state filter.
+          Clicking a market opens its website.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/01-market-map.vg.json"></div>
+      <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 10 September 2026 · boundaries ABS ASGS Edition 3 (CC BY 4.0)</p>
+    </figure>
+
+    <div class="chart-grid">
+      <figure class="chart">
+        <figcaption>
+          <div class="title">Half of all markets trade weekly</div>
+          <p class="sub">Frequency mix within each state, derived from the directory's free-text trading-days field.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
+        <p class="source">AFMA directory, 2026 · frequency classified from the <code>market_days</code> field</p>
+      </figure>
+
+      <figure class="chart">
+        <figcaption>
+          <div class="title">A handful of organisations run several markets each</div>
+          <p class="sub">Operators running more than one market. Everyone else runs exactly one.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/08-operators.vg.json"></div>
+        <p class="source">AFMA directory, 2026 · <code>market_operator</code> field</p>
+      </figure>
+    </div>
+
+    <div class="takeaway">
+      <strong>The “grassroots” framing needs qualifying.</strong> Most markets are run by a
+      local committee, church, Rotary club or school P&amp;C — but the busiest metropolitan
+      ones cluster under a few professional operators, and those operators are what a
+      shopper in Melbourne actually encounters.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ACT 2 -->
+<section class="act" id="reach">
+  <div class="wrap">
+    <p class="act-num">Two — Who can reach them</p>
+    <h2>Markets are dense where people are thin</h2>
+    <p>
+      Per head of population the pattern inverts what you would expect. Rest-of-Victoria and
+      rest-of-NSW have the highest market density in the country; Greater Brisbane, with
+      2.8 million people, has <strong>two</strong>. Regional towns are well served relative
+      to their size. The problem is that there are not many of them, and they are far apart.
+    </p>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Markets per 100,000 people</div>
+        <p class="sub">
+          By Greater Capital City Statistical Area and rest-of-state — the ABS geography that
+          splits each state into its capital and everything else.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/02-gccsa-density.vg.json"></div>
+      <p class="source">AFMA directory, 2026 · ABS Regional population and National, state and territory population, 30 June 2025 · ABS ASGS Edition 3</p>
+    </figure>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Every region, ranked</div>
+        <p class="sub">
+          The same numbers as a ranked list, because the map can only hint at it. Numbers at
+          the end of each bar are the market count.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/02b-gccsa-ranked.vg.json"></div>
+      <p class="source">AFMA directory, 2026 · ABS population, 30 June 2025</p>
+    </figure>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Two cities the same size, at the same scale</div>
+        <p class="sub">
+          Greater Melbourne and Greater Sydney differ by 200,000 people and by twenty-one
+          farmers' markets. Melbourne's are mostly monthly; Sydney's are mostly weekly.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/04-metro-comparison.vg.json"></div>
+      <p class="source">AFMA directory, 2026 · ABS ASGS Edition 3 LGA 2023 boundaries · both panels at identical map scale</p>
+    </figure>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">How far is the nearest market?</div>
+        <p class="sub">
+          Distance from each local government area's centre to the nearest market, as the crow
+          flies. Orange dots are the markets themselves. Drag the slider to change where the
+          colour scale saturates.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/03-lga-distance.vg.json"></div>
+      <p class="source">Great-circle distance from LGA area centroids to the nearest of 174 geocoded markets · ABS ASGS Edition 3 LGA 2023 boundaries</p>
+    </figure>
+
+    <div class="chart-grid">
+      <figure class="chart">
+        <figcaption>
+          <div class="title">How much of the country is within reach</div>
+          <p class="sub">Cumulative share of LGAs, and of Australia's land area, within a given distance of a market.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/05-coverage-curve.vg.json"></div>
+        <p class="source">Derived from the LGA distance calculation above</p>
+      </figure>
+
+      <figure class="chart">
+        <figcaption>
+          <div class="title">When can you actually shop?</div>
+          <p class="sub">Trading day against opening time. Accessibility is temporal as well as spatial.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/06-day-hour-heatmap.vg.json"></div>
+        <p class="source">AFMA directory, 2026 · opening hours parsed from the directory's hours table</p>
+      </figure>
+    </div>
+
+    <div class="takeaway">
+      <strong>Only 47% of Australia's local government areas are within 50 km of a farmers'
+      market, covering 5% of the land mass — and 86% of markets trade on a weekend morning.</strong>
+      If you work Saturday mornings, most of the national network is closed to you. Whatever
+      farmers' markets do for sustainable shopping, they do it for a particular kind of
+      shopper, in a particular kind of place, at a particular time of week.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ACT 3 -->
+<section class="act" id="producers">
+  <div class="wrap">
+    <p class="act-num">Three — What they do for producers</p>
+    <h2>A good channel, not a livelihood</h2>
+    <p>
+      The best evidence on stallholders is a 2014 RIRDC survey of 286 of them — dated, but
+      still the richest Australian dataset that exists. It shows a genuinely local supply
+      base: 57% of stallholders travel 50 km or less to their main market, and the producer
+      keeps the sale price minus a stall fee that is typically under $80.
+    </p>
+
+    <div class="chart-grid">
+      <figure class="chart">
+        <figcaption>
+          <div class="title">How far stallholders travel</div>
+          <p class="sub">Distance to their main market. The orange line is the running total.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
+        <p class="source">RIRDC Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014), n = 286 stallholders</p>
+      </figure>
+
+      <figure class="chart">
+        <figcaption>
+          <div class="title">What a stall costs</div>
+          <p class="sub">Fee per market day. Mean $61; the full range runs from $3 to $594.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/10-stall-fees.vg.json"></div>
+        <p class="source">RIRDC Publication 14/040 (2014), n = 286 stallholders</p>
+      </figure>
+    </div>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">What stallholders sell</div>
+        <p class="sub">
+          Fruit and vegetables together account for 27% of stallholders — but well over a
+          third of the market is value-added: baked goods, preserves, oils, honey.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/11-product-mix.vg.json"></div>
+      <p class="source">RIRDC Publication 14/040 (2014), Figure 5</p>
+    </figure>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">The market is one channel among several</div>
+        <p class="sub">
+          Every stallholder sells at a farmers' market by definition — but only 7% sell
+          <em>only</em> there, and 30% take less than a quarter of their income from it.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/12-sales-channels.vg.json"></div>
+      <p class="source">RIRDC Publication 14/040 (2014), Figure 19 · shares sum to more than 100% because stallholders use several channels</p>
+    </figure>
+
+    <div class="takeaway">
+      <strong>This is the honest version of “markets support local producers”.</strong> They
+      are a high-margin, customer-facing channel that most stallholders use alongside local
+      shops, restaurants and wholesale — not a replacement for them. That is a real benefit,
+      and it is a smaller claim than the one usually made.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ACT 4 -->
+<section class="act" id="sustainability">
+  <div class="wrap">
+    <p class="act-num">Four — The sustainability case, honestly</p>
+    <h2>Food miles are the weakest argument available</h2>
+    <p>
+      The intuitive case for farmers' markets is transport emissions. The evidence does not
+      support it. Across almost every food, transport is a thin slice of the total footprint —
+      usually under 10%, often under 5%. What you buy matters far more than how far it came.
+    </p>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Where food emissions actually come from</div>
+        <p class="sub">
+          Emissions per kilogram, split by supply-chain stage. Switch to shares to see how
+          thin the transport slice is even for the foods that travel furthest.
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/13-emissions-by-stage.vg.json"></div>
+      <p class="source">Our World in Data, from Poore &amp; Nemecek (2018), <em>Science</em> · CC BY 4.0</p>
+    </figure>
+
+    <p>
+      There is a stronger argument, and it is about waste rather than distance. Almost a
+      third of Australia's food waste happens <em>before food leaves the farm</em> — a
+      large share of it rejected on cosmetic specifications set by retail buyers. Farmers'
+      markets have no cosmetic spec.
+    </p>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Where Australia wastes 7.3 million tonnes of food a year</div>
+        <p class="sub">National Food Waste Baseline, 2016-17. Numbers on the bars are percentage shares.</p>
+      </figcaption>
+      <div class="viz" data-spec="specs/14-food-waste.vg.json"></div>
+      <p class="source">DCCEEW, National Food Waste Baseline (2016-17 reference year) · the published baseline names only the three largest sectors</p>
+    </figure>
+
+    <div class="takeaway">
+      <strong>A market stall that sells the misshapen carrot is doing more for emissions than
+      the short drive it arrived on.</strong> And since 27% of stallholders sell fruit and
+      vegetables — foods roughly two orders of magnitude below beef per kilogram — the
+      composition of what markets sell matters more than their supply chain. Both arguments
+      hold. Neither is the food-miles one.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ACT 5 -->
+<section class="act" id="alternative">
+  <div class="wrap">
+    <p class="act-num">Five — What they are up against</p>
+    <h2>Two chains, two-thirds of the groceries</h2>
+    <p>
+      The scale comparison is stark. Coles and Woolworths together take about 67% of
+      Australian supermarket grocery revenue. At a farmers' market the producer keeps the
+      sale price less a stall fee, with no wholesaler, distributor or retail margin in
+      between — a structurally different arrangement, on a vastly different scale.
+    </p>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">Share of Australian supermarket grocery sales</div>
+        <p class="sub">From the ACCC's supermarkets inquiry final report, February 2025.</p>
+      </figcaption>
+      <div class="viz" data-spec="specs/15-supermarket-share.vg.json"></div>
+      <p class="source">ACCC, <em>Supermarkets Inquiry — Final Report</em> (February 2025), executive summary · “Everyone else” is the residual and is not an ACCC category</p>
+    </figure>
+
+    <div class="takeaway">
+      <strong>175 markets, most of them monthly, most of them open for four hours on a
+      Saturday morning.</strong> Farmers' markets are not an alternative food system at
+      national scale, and reading them as one sets them up to fail. What they are is a
+      direct channel that works well for the producers who can reach one and the shoppers
+      who live near one — and the map is the argument for widening both.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="colophon">
+  <div class="wrap">
+    <h3>Sources and caveats</h3>
+    <ul>
+      <li><strong>There is no official dataset of Australian farmers' markets.</strong> No ABS series, no data.gov.au entry. The AFMA directory is self-registration, so it under-counts small and non-member markets — 175 is a floor, not a census.</li>
+      <li><strong>The stallholder data is twelve years old.</strong> RIRDC 14/040 (2014) surveyed 286 stallholders and 61 market managers. Nothing more recent or more comprehensive exists. Treat it as indicative.</li>
+      <li><strong>Distances are as the crow flies</strong>, from LGA area centroids rather than population-weighted centres, so remote LGAs with a single coastal town read as further from a market than their residents actually are.</li>
+      <li><strong>Trading frequency and day are derived</strong> from a free-text field. Four listings disagree with their own opening-hours table; those and every other cleaning decision are logged in <code>data/data_quality.csv</code>.</li>
+      <li><strong>Vintages differ.</strong> AFMA 2026 · ABS population 30 June 2025 · ABS boundaries 2021 (LGA 2023) · ACCC 2025 · DCCEEW 2016-17 · Poore &amp; Nemecek 2018 · RIRDC 2014.</li>
+    </ul>
+
+    <p>
+      Boundaries © Australian Bureau of Statistics, ASGS Edition 3, CC BY 4.0. Market
+      locations scraped from the public AFMA directory; no licence is stated, and they are
+      reproduced here for a student assignment with attribution.
+      Emissions data CC BY 4.0.
+    </p>
+    <p class="small">
+      Built with Vega-Lite. Data preparation and full method:
+      <a href="https://github.com/R1ley-w/Australian-Farmers-Markets-Viz">github.com/R1ley-w/Australian-Farmers-Markets-Viz</a>
+    </p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

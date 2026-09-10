@@ -29,6 +29,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
+BOUND = DATA / "boundaries"
 
 EARTH_R = 6371.0088
 
@@ -73,7 +74,7 @@ def polygons_of(geom: dict, arcs) -> list[list[list[tuple[float, float]]]]:
 
 
 def load_topo(name: str):
-    topo = json.loads((DATA / name).read_text())
+    topo = json.loads((BOUND / name).read_text())
     arcs = decode_arcs(topo)
     (obj_name, obj), = topo["objects"].items()
     feats = []
@@ -257,6 +258,9 @@ def main() -> None:
         name = f["props"]["GCC_NAME21"]
         p = region_pop.get(name, 0)
         n = counts[name]
+        # Capital cities are slivers at national scale, so the map draws them as
+        # circles at their centre rather than as fills nobody can see.
+        clng, clat = centroid_of(f["polys"])
         rows.append({
             "gccsa_code": f["props"]["GCC_CODE21"],
             "gccsa": name,
@@ -267,6 +271,8 @@ def main() -> None:
             "population": p,
             "markets_per_100k": round(n / p * 100_000, 3) if p else 0,
             "area_sqkm": round(f["props"].get("AREASQKM21") or 0, 1),
+            "lat": round(clat, 4),
+            "lng": round(clng, 4),
         })
     rows.sort(key=lambda r: -r["markets_per_100k"])
     write_csv(DATA / "gccsa_market_density.csv", rows)
@@ -312,14 +318,20 @@ def main() -> None:
     write_csv(DATA / "coverage_curve.csv", curve)
 
     # ------------------------------------------------------- trimmed basemaps
-    n = trim(DATA / "STE_2021_AUST_GDA2020.json", DATA / "states.topo.json",
+    n = trim(BOUND / "STE_2021_AUST_GDA2020.json", DATA / "states.topo.json",
              {"STE_CODE21": "code", "STE_NAME21": "name"}, drop_codes=("9", "Z"))
     print(f"states.topo.json      {n} features")
-    n = trim(DATA / "GCCSA_2021_AUST_GDA2020.json", DATA / "gccsa.topo.json",
-             {"GCC_CODE21": "code", "GCC_NAME21": "name", "STE_NAME21": "state"})
+    # Other Territories (Christmas Is., Cocos, Jervis Bay) have no ERP row and
+    # no markets, so they are dropped rather than drawn as an unfilled hole.
+    n = trim(BOUND / "GCCSA_2021_AUST_GDA2020.json", DATA / "gccsa.topo.json",
+             {"GCC_CODE21": "code", "GCC_NAME21": "name", "STE_NAME21": "state"},
+             drop_codes=("9OTER", "99499", "99799"))
     print(f"gccsa.topo.json       {n} features")
-    n = trim(DATA / "LGA_2023_AUST_GDA2020.json", DATA / "lga.topo.json",
-             {"LGA_CODE23": "code", "LGA_NAME23": "name", "STE_NAME21": "state"})
+    n = trim(BOUND / "LGA_2023_AUST_GDA2020.json", DATA / "lga.topo.json",
+             {"LGA_CODE23": "code", "LGA_NAME23": "name", "STE_NAME21": "state"},
+             drop_codes=tuple(
+                 g["props"]["LGA_CODE23"] for g in lgas
+                 if g["props"].get("STE_CODE21") not in STATE_OF))
     print(f"lga.topo.json         {n} features")
 
     print(f"\n{len(lga_rows)} LGAs; median distance to a market "

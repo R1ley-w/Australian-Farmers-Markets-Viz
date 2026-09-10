@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Number of farmers' markets by trading day and opening hour.",
+  "width": "container",
+  "height": 260,
+  "data": {
+    "url": "data/day_time_heatmap.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "start_hour": "number",
+        "markets": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.day != 'Unknown'"
+    }
+  ],
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 2
+  },
+  "encoding": {
+    "x": {
+      "field": "start_hour",
+      "type": "ordinal",
+      "title": "Opening time",
+      "axis": {
+        "labelExpr": "datum.value == 12 ? '12pm' : datum.value > 12 ? (datum.value - 12) + 'pm' : datum.value + 'am'"
+      },
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "day",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "scale": {
+        "domain": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ]
+      }
+    },
+    "color": {
+      "field": "markets",
+      "type": "quantitative",
+      "title": "Markets",
+      "scale": {
+        "scheme": "blues",
+        "domainMin": 0
+      },
+      "legend": {
+        "orient": "top",
+        "direction": "horizontal",
+        "gradientLength": 130
+      }
+    },
+    "tooltip": [
+      {
+        "field": "day",
+        "type": "nominal",
+        "title": "Day"
+      },
+      {
+        "field": "start_hour",
+        "type": "quantitative",
+        "title": "Opens at (24h)"
+      },
+      {
+        "field": "markets",
+        "type": "quantitative",
+        "title": "Markets"
+      }
+    ]
+  }
+}

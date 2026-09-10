@@ -26,10 +26,15 @@ css/style.css              layout, typography, light/dark tokens
 js/main.js                 chart loader, theme handling, tooltips
 specs/*.vg.json            one Vega-Lite spec per idiom
 data/                      source data and the files derived from it
+vendor/                    Vega, Vega-Lite and Vega-Embed, pinned
 scripts/prep_markets.py    cleans the scraped AFMA directory
 scripts/prep_spatial.py    the spatial joins behind the four maps
 docs/                      data provenance and methodology notes
 ```
+
+Vega is vendored rather than pulled from a CDN, so the page renders offline and
+the exact library versions are pinned in the repo — see `vendor/README.md`.
+There is still nothing to build or install.
 
 To regenerate everything derived from the raw sources:
 
@@ -42,28 +47,44 @@ Both scripts use only the Python standard library.
 
 ## The idioms
 
-**Maps (4)**
+Sixteen idioms, four of them maps.
 
-1. Every farmers' market in Australia — symbol map, coloured by trading
-   frequency, sized by trading hours
-2. Markets per 100,000 people — choropleth by Greater Capital City Statistical
-   Area and rest-of-state
-3. How far is the nearest market? — choropleth of distance from each LGA's
-   centre to its nearest market
-4. Who runs the markets? — the multi-market operator networks, mapped
+**Maps**
 
-**Non-map (9, plus one bonus)**
+| # | Idiom | Spec |
+|---|---|---|
+| 1 | Symbol map — every market, coloured by frequency, sized by trading hours | `01-market-map` |
+| 2 | Choropleth + proportional symbols — markets per 100k by GCCSA | `02-gccsa-density` |
+| 3 | Choropleth — distance from each LGA centre to its nearest market | `03-lga-distance` |
+| 4 | Small-multiple maps — Greater Melbourne vs Greater Sydney at one scale | `04-metro-comparison` |
 
-5. Where food emissions actually come from — emissions by supply-chain stage
-6. How far stallholders travel to market
-7. Trading frequency by state
-8. What stallholders sell — national product mix
-9. What a stall costs — stall fee distribution
-10. What markets are up against — supermarket concentration
-11. Where food is wasted — Australia's food waste baseline by sector
-12. Markets are one channel among several — stallholder sales channels
-13. The operators, by market count
-14. *(bonus)* When can you actually shop? — trading day × opening hour
+**Non-map**
+
+| # | Idiom | Spec |
+|---|---|---|
+| 5 | Ranked bar — every region by market density | `02b-gccsa-ranked` |
+| 6 | Cumulative line — population and land area within N km | `05-coverage-curve` |
+| 7 | Heatmap — trading day × opening hour | `06-day-hour-heatmap` |
+| 8 | Normalised stacked bar — trading frequency by state | `07-frequency-by-state` |
+| 9 | Labelled bar — multi-market operators | `08-operators` |
+| 10 | Bar + cumulative line — stallholder travel distance | `09-travel-distance` |
+| 11 | Histogram — stall fee distribution | `10-stall-fees` |
+| 12 | Grouped bar — national product mix | `11-product-mix` |
+| 13 | Lollipop — stallholder sales channels | `12-sales-channels` |
+| 14 | Stacked bar — food emissions by supply-chain stage | `13-emissions-by-stage` |
+| 15 | Single stacked bar — food waste by sector | `14-food-waste` |
+| 16 | Donut — supermarket concentration | `15-supermarket-share` |
+
+### Two deviations from the original plan
+
+- The **ACCC product-margin slope chart** (Figure 1.3) was dropped. The ACCC
+  publishes those margins only as a chart image; the underlying percentages are
+  not stated numerically anywhere in the report, so the chart could not have been
+  built without inventing numbers. The **food waste baseline** replaces it, and
+  makes a stronger sustainability argument on published Commonwealth data.
+- The **horticulture-value vs market-density bivariate map** was dropped. ABS
+  does not publish gross horticulture value by state in a retrievable form for
+  the current reference year. The **Melbourne / Sydney comparison** replaces it.
 
 ## A note on the data
 

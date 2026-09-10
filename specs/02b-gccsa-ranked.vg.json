@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Every ABS capital-city and rest-of-state region ranked by farmers' markets per 100,000 people.",
+  "width": "container",
+  "height": 380,
+  "data": {
+    "url": "data/gccsa_market_density.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "height": {
+          "band": 0.7
+        }
+      },
+      "encoding": {
+        "color": {
+          "field": "kind",
+          "type": "nominal",
+          "title": null,
+          "sort": [
+            "Rest of state",
+            "Capital city"
+          ],
+          "legend": {
+            "orient": "bottom-right",
+            "direction": "vertical"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "gccsa",
+            "type": "nominal",
+            "title": "Region"
+          },
+          {
+            "field": "kind",
+            "type": "nominal",
+            "title": "Type"
+          },
+          {
+            "field": "markets",
+            "type": "quantitative",
+            "title": "Markets"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "markets_per_100k",
+            "type": "quantitative",
+            "title": "Per 100k people",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 11.5
+      },
+      "encoding": {
+        "text": {
+          "field": "markets",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#898781"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "gccsa",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Rest of Vic.",
+        "Rest of NSW",
+        "Rest of Tas.",
+        "Rest of WA",
+        "Greater Hobart",
+        "Rest of SA",
+        "Australian Capital Territory",
+        "Greater Melbourne",
+        "Greater Perth",
+        "Rest of Qld",
+        "Greater Adelaide",
+        "Greater Sydney",
+        "Greater Brisbane",
+        "Greater Darwin",
+        "Rest of NT"
+      ],
+      "axis": {
+        "labelLimit": 170
+      }
+    },
+    "x": {
+      "field": "markets_per_100k",
+      "type": "quantitative",
+      "title": "Markets per 100,000 people",
+      "axis": {
+        "grid": true,
+        "tickCount": 5,
+        "format": ".1f"
+      }
+    }
+  }
+}

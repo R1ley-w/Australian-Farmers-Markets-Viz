@@ -1,0 +1,277 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Greater Melbourne and Greater Sydney at the same scale. Two cities of almost identical population; one has thirty farmers' markets, the other nine.",
+  "resolve": {
+    "scale": {
+      "color": "shared",
+      "size": "shared"
+    }
+  },
+  "hconcat": [
+    {
+      "title": {
+        "text": "Greater Melbourne",
+        "subtitle": "5.44 million people · 30 markets",
+        "fontSize": 13
+      },
+      "width": 350,
+      "height": 350,
+      "projection": {
+        "type": "mercator",
+        "center": [
+          145.05,
+          -37.88
+        ],
+        "scale": 11000,
+        "translate": [
+          175,
+          175
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/lga.topo.json",
+            "format": {
+              "type": "topojson",
+              "feature": "LGA_2023_AUST_GDA2020"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.properties.state == 'Victoria'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "fill": "#e1e0d9",
+            "fillOpacity": 0.5,
+            "stroke": "#fcfcfb",
+            "strokeWidth": 0.7
+          },
+          "encoding": {
+            "tooltip": {
+              "field": "properties.name",
+              "type": "nominal",
+              "title": "LGA"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "data/markets.csv"
+          },
+          "transform": [
+            {
+              "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1"
+            },
+            {
+              "filter": "datum.lat > -38.6 && datum.lat < -37.2 && datum.lng > 144.2 && datum.lng < 145.8"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "stroke": "#fcfcfb",
+            "strokeWidth": 1,
+            "opacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lng",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "frequency",
+              "type": "nominal",
+              "title": "Trades",
+              "sort": [
+                "Weekly",
+                "Fortnightly",
+                "Monthly",
+                "Irregular"
+              ],
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "title": null
+              }
+            },
+            "size": {
+              "field": "hours_open",
+              "type": "quantitative",
+              "scale": {
+                "type": "sqrt",
+                "domain": [
+                  2,
+                  8
+                ],
+                "range": [
+                  40,
+                  190
+                ]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "type": "nominal",
+                "title": "Market"
+              },
+              {
+                "field": "suburb",
+                "type": "nominal",
+                "title": "Where"
+              },
+              {
+                "field": "market_days_raw",
+                "type": "nominal",
+                "title": "Trades"
+              },
+              {
+                "field": "hours_open",
+                "type": "quantitative",
+                "title": "Hours open",
+                "format": ".1f"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Greater Sydney",
+        "subtitle": "5.64 million people · 9 markets",
+        "fontSize": 13
+      },
+      "width": 350,
+      "height": 350,
+      "projection": {
+        "type": "mercator",
+        "center": [
+          151.0,
+          -33.86
+        ],
+        "scale": 11000,
+        "translate": [
+          175,
+          175
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/lga.topo.json",
+            "format": {
+              "type": "topojson",
+              "feature": "LGA_2023_AUST_GDA2020"
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.properties.state == 'New South Wales'"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "fill": "#e1e0d9",
+            "fillOpacity": 0.5,
+            "stroke": "#fcfcfb",
+            "strokeWidth": 0.7
+          },
+          "encoding": {
+            "tooltip": {
+              "field": "properties.name",
+              "type": "nominal",
+              "title": "LGA"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "data/markets.csv"
+          },
+          "transform": [
+            {
+              "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1"
+            },
+            {
+              "filter": "datum.lat > -34.5 && datum.lat < -33.2 && datum.lng > 150.2 && datum.lng < 151.7"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "stroke": "#fcfcfb",
+            "strokeWidth": 1,
+            "opacity": 0.9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lng",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "frequency",
+              "type": "nominal",
+              "sort": [
+                "Weekly",
+                "Fortnightly",
+                "Monthly",
+                "Irregular"
+              ],
+              "legend": null
+            },
+            "size": {
+              "field": "hours_open",
+              "type": "quantitative",
+              "scale": {
+                "type": "sqrt",
+                "domain": [
+                  2,
+                  8
+                ],
+                "range": [
+                  40,
+                  190
+                ]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "type": "nominal",
+                "title": "Market"
+              },
+              {
+                "field": "suburb",
+                "type": "nominal",
+                "title": "Where"
+              },
+              {
+                "field": "market_days_raw",
+                "type": "nominal",
+                "title": "Trades"
+              },
+              {
+                "field": "hours_open",
+                "type": "quantitative",
+                "title": "Hours open",
+                "format": ".1f"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

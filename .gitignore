@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 .venv/
 node_modules/
+package.json
+package-lock.json
+
+# Cowork session scratch, not part of the project
+outputs/

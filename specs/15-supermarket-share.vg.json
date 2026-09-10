@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Share of Australian supermarket grocery sales, from the ACCC's supermarkets inquiry final report.",
+  "width": "container",
+  "height": 330,
+  "data": { "url": "data/accc_supermarket_share.csv" },
+  "layer": [
+    {
+      "mark": { "type": "arc", "innerRadius": 72, "outerRadius": 120, "padAngle": 0.012, "cornerRadius": 3 },
+      "encoding": {
+        "theta": { "field": "share_pct", "type": "quantitative", "stack": true },
+        "order": { "field": "share_pct", "type": "quantitative", "sort": "descending" },
+        "color": {
+          "field": "retailer",
+          "type": "nominal",
+          "title": null,
+          "sort": ["Woolworths", "Coles", "ALDI", "Metcash-supplied independents", "Everyone else"],
+          "scale": {
+            "domain": ["Woolworths", "Coles", "ALDI", "Metcash-supplied independents", "Everyone else"],
+            "range": ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#c3c2b7"]
+          },
+          "legend": { "orient": "bottom", "direction": "horizontal", "columns": 2, "labelLimit": 230 }
+        },
+        "tooltip": [
+          { "field": "retailer", "type": "nominal", "title": "Retailer" },
+          { "field": "share_pct", "type": "quantitative", "title": "Share of grocery sales (%)" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "text", "radius": 143, "fontSize": 12, "fontWeight": 600 },
+      "encoding": {
+        "theta": { "field": "share_pct", "type": "quantitative", "stack": true },
+        "order": { "field": "share_pct", "type": "quantitative", "sort": "descending" },
+        "text": { "field": "share_pct", "type": "quantitative", "format": ".0f" },
+        "color": { "value": "#52514e" }
+      }
+    },
+    {
+      "data": { "values": [{ "big": "67%" }] },
+      "mark": { "type": "text", "fontSize": 32, "fontWeight": 660, "dy": -10 },
+      "encoding": { "text": { "field": "big", "type": "nominal" }, "color": { "value": "#0b0b0b" } }
+    },
+    {
+      "data": { "values": [{ "small": "Coles + Woolworths" }] },
+      "mark": { "type": "text", "fontSize": 11.5, "dy": 18 },
+      "encoding": { "text": { "field": "small", "type": "nominal" }, "color": { "value": "#898781" } }
+    }
+  ]
+}

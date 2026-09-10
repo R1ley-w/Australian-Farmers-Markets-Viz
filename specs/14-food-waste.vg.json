@@ -1,0 +1,111 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Where Australia's 7.3 million tonnes of annual food waste happens.",
+  "width": "container",
+  "height": 190,
+  "data": {
+    "url": "data/dcceew_food_waste.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 3,
+        "height": 54
+      },
+      "encoding": {
+        "color": {
+          "field": "sector",
+          "type": "nominal",
+          "title": null,
+          "sort": [
+            "Households",
+            "Primary production",
+            "Manufacturing",
+            "Other (wholesale; retail; hospitality)"
+          ],
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 2,
+            "labelLimit": 260
+          }
+        },
+        "tooltip": [
+          {
+            "field": "sector",
+            "type": "nominal",
+            "title": "Where"
+          },
+          {
+            "field": "tonnes_million",
+            "type": "quantitative",
+            "title": "Million tonnes a year"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share (%)"
+          },
+          {
+            "field": "note",
+            "type": "nominal",
+            "title": "Note"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontWeight": 650,
+        "fontSize": 13,
+        "color": "#ffffff"
+      },
+      "encoding": {
+        "text": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "detail": {
+          "field": "sector",
+          "type": "nominal"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share_pct >= 20",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "tonnes_million",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Million tonnes of food wasted a year",
+      "axis": {
+        "grid": true,
+        "values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      }
+    },
+    "order": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "sort": "descending"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Sales channels stallholders use besides the farmers' market itself.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/rirdc_sales_channels.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "channel",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Farmers' markets",
+        "Local shops",
+        "Restaurants / food service",
+        "Farm gate / cellar door",
+        "Online sales",
+        "Wholesale",
+        "Other",
+        "Food processor / value adder",
+        "Major retailer"
+      ],
+      "axis": {
+        "labelLimit": 200
+      }
+    },
+    "x": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "title": "Share of stallholders using this channel (%)",
+      "scale": {
+        "domain": [
+          0,
+          105
+        ]
+      },
+      "axis": {
+        "grid": true,
+        "values": [
+          0,
+          25,
+          50,
+          75,
+          100
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "color": "#e1e0d9"
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        },
+        "x2": {
+          "field": "share_pct"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.channel == \"Farmers' markets\"",
+            "value": "#eb6834"
+          },
+          "value": "#2a78d6"
+        },
+        "tooltip": [
+          {
+            "field": "channel",
+            "type": "nominal",
+            "title": "Channel"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Stallholders using it (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 11.5,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "text": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
+    }
+  ]
+}

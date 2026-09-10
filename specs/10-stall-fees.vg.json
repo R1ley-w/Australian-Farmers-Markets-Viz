@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Distribution of what stallholders pay for a stall on a market day.",
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "data/rirdc_stall_fees.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "width": {
+          "band": 0.86
+        }
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.share_pct >= 29",
+            "value": "#eb6834"
+          },
+          "value": "#2a78d6"
+        },
+        "tooltip": [
+          {
+            "field": "band",
+            "type": "nominal",
+            "title": "Stall fee"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of stallholders (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "fontWeight": 600,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "band",
+      "type": "nominal",
+      "title": "Stall fee per market day",
+      "sort": [
+        "Under $20",
+        "$21–$40",
+        "$41–$60",
+        "$61–$80",
+        "$81–$100",
+        "Over $100"
+      ]
+    },
+    "y": {
+      "field": "share_pct",
+      "type": "quantitative",
+      "title": "Share of stallholders (%)",
+      "scale": {
+        "domain": [
+          0,
+          35
+        ]
+      },
+      "axis": {
+        "grid": true
+      }
+    }
+  }
+}

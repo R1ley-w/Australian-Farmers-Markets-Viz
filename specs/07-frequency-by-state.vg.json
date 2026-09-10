@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Trading frequency mix by state, as a share of each state's markets. Bar width carries the number of markets.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/frequency_by_state.csv"
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['Weekly','Fortnightly','Monthly','Irregular'], datum.frequency)",
+      "as": "freq_order"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "markets",
+          "as": "state_total"
+        }
+      ],
+      "groupby": [
+        "state"
+      ]
+    },
+    {
+      "calculate": "datum.markets / datum.state_total",
+      "as": "share"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadius": 0
+  },
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "state_total",
+        "op": "max",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontWeight": 600
+      }
+    },
+    "x": {
+      "field": "share",
+      "type": "quantitative",
+      "stack": "normalize",
+      "title": "Share of the state's markets",
+      "axis": {
+        "format": ".0%",
+        "grid": true,
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          1
+        ]
+      }
+    },
+    "color": {
+      "field": "frequency",
+      "type": "nominal",
+      "title": "Trades",
+      "sort": [
+        "Weekly",
+        "Fortnightly",
+        "Monthly",
+        "Irregular"
+      ],
+      "legend": {
+        "orient": "top",
+        "direction": "horizontal",
+        "title": null
+      }
+    },
+    "order": {
+      "field": "freq_order",
+      "type": "quantitative",
+      "sort": "ascending"
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "frequency",
+        "type": "nominal",
+        "title": "Frequency"
+      },
+      {
+        "field": "markets",
+        "type": "quantitative",
+        "title": "Markets"
+      },
+      {
+        "field": "state_total",
+        "type": "quantitative",
+        "title": "Markets in state"
+      },
+      {
+        "field": "share",
+        "type": "quantitative",
+        "title": "Share",
+        "format": ".0%"
+      }
+    ]
+  }
+}

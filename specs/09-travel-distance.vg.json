@@ -1,0 +1,157 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "How far stallholders travel to their main farmers' market, with the cumulative share overlaid.",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/rirdc_travel_distance.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "band",
+      "type": "nominal",
+      "title": "Distance travelled to their main market",
+      "sort": [
+        "20 km or less",
+        "21–50 km",
+        "51–100 km",
+        "101–200 km",
+        "201 km or more"
+      ]
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4,
+        "width": {
+          "band": 0.62
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "title": "Share of stallholders (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          },
+          "axis": {
+            "grid": true
+          }
+        },
+        "color": {
+          "value": "#2a78d6"
+        },
+        "tooltip": [
+          {
+            "field": "band",
+            "type": "nominal",
+            "title": "Distance"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of stallholders (%)"
+          },
+          {
+            "field": "cumulative_pct",
+            "type": "quantitative",
+            "title": "Cumulative (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "fontWeight": 600,
+        "fontSize": 12
+      },
+      "encoding": {
+        "y": {
+          "field": "share_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "share_pct",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {
+          "value": "#52514e"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "point": {
+          "filled": true,
+          "size": 60
+        },
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "y": {
+          "field": "cumulative_pct",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "color": {
+          "value": "#eb6834"
+        },
+        "tooltip": [
+          {
+            "field": "band",
+            "type": "nominal",
+            "title": "Within"
+          },
+          {
+            "field": "cumulative_pct",
+            "type": "quantitative",
+            "title": "Cumulative share (%)"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.order == 2"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "dy": -6,
+        "fontSize": 11.5,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "y": {
+          "field": "cumulative_pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "57% within 50 km"
+        },
+        "color": {
+          "value": "#eb6834"
+        }
+      }
+    }
+  ]
+}

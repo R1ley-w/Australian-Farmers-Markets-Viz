@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Greenhouse gas emissions per kilogram of food, split by supply-chain stage. Transport, highlighted in orange, is a thin slice of almost every food's footprint.",
+  "width": "container",
+  "height": 430,
+  "data": { "url": "data/owid_food_emissions_supply_chain.csv" },
+  "params": [
+    {
+      "name": "mode",
+      "value": "Absolute",
+      "bind": {
+        "input": "radio",
+        "options": ["Absolute", "Share"],
+        "labels": ["kg CO₂e per kg of food", "Share of each food's own footprint"],
+        "name": "Show  "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": {
+        "field": "entity",
+        "oneOf": [
+          "Beef (beef herd)", "Lamb & Mutton", "Cheese", "Pig Meat", "Poultry Meat",
+          "Eggs", "Milk", "Rice", "Tofu", "Wheat & Rye", "Berries & Grapes",
+          "Other Fruit", "Apples", "Root Vegetables", "Other Vegetables", "Potatoes"
+        ]
+      }
+    },
+    {
+      "fold": [
+        "food_emissions_land_use", "food_emissions_animal_feed", "food_emissions_farm",
+        "food_emissions_processing", "food_emissions_transport",
+        "food_emissions_retail", "food_emissions_packaging", "food_emissions_losses"
+      ],
+      "as": ["stage_raw", "kg"]
+    },
+    {
+      "calculate": "{'food_emissions_land_use':'Land use change','food_emissions_animal_feed':'Animal feed','food_emissions_farm':'Farm','food_emissions_processing':'Processing','food_emissions_transport':'Transport','food_emissions_retail':'Retail','food_emissions_packaging':'Packaging','food_emissions_losses':'Losses'}[datum.stage_raw]",
+      "as": "Stage"
+    },
+    {
+      "calculate": "indexof(['Land use change','Animal feed','Farm','Processing','Transport','Retail','Packaging','Losses'], datum.Stage)",
+      "as": "stage_order"
+    },
+    { "calculate": "max(datum.kg, 0)", "as": "kg_pos" },
+    { "joinaggregate": [{ "op": "sum", "field": "kg_pos", "as": "total" }], "groupby": ["entity"] },
+    { "calculate": "datum.kg_pos / datum.total", "as": "share" },
+    { "calculate": "mode == 'Share' ? datum.share : datum.kg_pos", "as": "value" }
+  ],
+  "mark": { "type": "bar", "height": { "band": 0.76 } },
+  "encoding": {
+    "y": {
+      "field": "entity",
+      "type": "nominal",
+      "title": null,
+      "sort": { "field": "total", "op": "max", "order": "descending" },
+      "axis": { "labelLimit": 160 }
+    },
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Emissions per kilogram of food",
+      "axis": {
+        "grid": true,
+        "format": { "expr": "mode == 'Share' ? '.0%' : '~s'" }
+      }
+    },
+    "color": {
+      "field": "Stage",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": ["Land use change", "Animal feed", "Farm", "Processing", "Transport", "Retail", "Packaging", "Losses"],
+        "range": ["#cde2fb", "#b7d3f6", "#86b6ef", "#5598e7", "#eb6834", "#256abf", "#184f95", "#0d366b"]
+      },
+      "legend": { "orient": "top", "direction": "horizontal", "columns": 4 }
+    },
+    "order": { "field": "stage_order", "type": "quantitative", "sort": "ascending" },
+    "tooltip": [
+      { "field": "entity", "type": "nominal", "title": "Food" },
+      { "field": "Stage", "type": "nominal", "title": "Stage" },
+      { "field": "kg_pos", "type": "quantitative", "title": "kg CO₂e per kg", "format": ".2f" },
+      { "field": "share", "type": "quantitative", "title": "Share of its footprint", "format": ".1%" },
+      { "field": "total", "type": "quantitative", "title": "Total footprint", "format": ".1f" }
+    ]
+  }
+}
