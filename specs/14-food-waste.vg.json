@@ -29,6 +29,20 @@
             "direction": "horizontal",
             "columns": 2,
             "labelLimit": 260
+          },
+          "scale": {
+            "domain": [
+              "Households",
+              "Primary production",
+              "Manufacturing",
+              "Other (wholesale; retail; hospitality)"
+            ],
+            "range": [
+              "#1f4212",
+              "#a8442a",
+              "#568c43",
+              "#96c387"
+            ]
           }
         },
         "tooltip": [

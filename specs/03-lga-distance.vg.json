@@ -1,62 +1,154 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Distance from each local government area's centre to the nearest farmers' market. Darker means further away.",
+  "description": "Distance from each local government area's centre to the nearest farmers' market, on a log scale — the values span 0.1 km to 2,228 km, so a linear ramp would put most of the continent at one end.",
   "width": "container",
   "height": 520,
   "params": [
     {
-      "name": "maxKm",
-      "value": 200,
+      "name": "nearOnly",
+      "value": false,
       "bind": {
-        "input": "range", "min": 25, "max": 400, "step": 25,
-        "name": "Colour scale tops out at (km)  "
+        "input": "checkbox",
+        "name": "Show only LGAs within 100 km  "
       }
     }
   ],
-  "projection": { "type": "mercator" },
+  "projection": {
+    "type": "mercator"
+  },
   "layer": [
     {
       "data": {
         "url": "data/lga.topo.json",
-        "format": { "type": "topojson", "feature": "LGA_2023_AUST_GDA2020" }
+        "format": {
+          "type": "topojson",
+          "feature": "LGA_2023_AUST_GDA2020"
+        }
       },
       "transform": [
         {
           "lookup": "properties.code",
           "from": {
-            "data": { "url": "data/lga_distance.csv" },
+            "data": {
+              "url": "data/lga_distance.csv"
+            },
             "key": "lga_code",
-            "fields": ["lga", "state", "km_to_nearest_market", "nearest_market"]
+            "fields": [
+              "lga",
+              "state",
+              "km_to_nearest_market",
+              "nearest_market"
+            ]
           }
         },
-        { "filter": "isValid(datum.km_to_nearest_market)" },
-        { "calculate": "min(datum.km_to_nearest_market, maxKm)", "as": "km_capped" }
+        {
+          "filter": "isValid(datum.km_to_nearest_market)"
+        },
+        {
+          "filter": "!nearOnly || datum.km_to_nearest_market <= 100"
+        }
       ],
-      "mark": { "type": "geoshape", "stroke": "#fcfcfb", "strokeWidth": 0.25 },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fdfcf9",
+        "strokeWidth": 0.25
+      },
       "encoding": {
         "color": {
-          "field": "km_capped",
+          "field": "km_to_nearest_market",
           "type": "quantitative",
-          "title": ["Kilometres to the", "nearest market"],
-          "scale": { "scheme": "blues", "domainMin": 0 },
-          "legend": { "orient": "top-left", "gradientLength": 150, "format": ".0f" }
+          "title": [
+            "Kilometres to the",
+            "nearest market"
+          ],
+          "scale": {
+            "type": "log",
+            "domain": [
+              2,
+              2300
+            ],
+            "range": [
+              "#feeddb",
+              "#f7dabb",
+              "#ecc49a",
+              "#dda971",
+              "#c68a45",
+              "#aa6c18",
+              "#8e5400",
+              "#713f00",
+              "#542d00"
+            ],
+            "clamp": true
+          },
+          "legend": {
+            "orient": "top-left",
+            "gradientLength": 160,
+            "values": [
+              5,
+              25,
+              100,
+              500,
+              2000
+            ],
+            "format": ",.0f"
+          }
         },
         "tooltip": [
-          { "field": "lga", "type": "nominal", "title": "LGA" },
-          { "field": "state", "type": "nominal", "title": "State" },
-          { "field": "km_to_nearest_market", "type": "quantitative", "title": "Distance (km)", "format": ".0f" },
-          { "field": "nearest_market", "type": "nominal", "title": "Nearest market" }
+          {
+            "field": "lga",
+            "type": "nominal",
+            "title": "LGA"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "km_to_nearest_market",
+            "type": "quantitative",
+            "title": "Distance (km)",
+            "format": ",.0f"
+          },
+          {
+            "field": "nearest_market",
+            "type": "nominal",
+            "title": "Nearest market"
+          }
         ]
       }
     },
     {
-      "data": { "url": "data/markets.csv" },
-      "transform": [{ "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1" }],
-      "mark": { "type": "circle", "size": 9, "color": "#eb6834", "opacity": 0.9 },
+      "data": {
+        "url": "data/markets.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 11,
+        "color": "#3e5d1b",
+        "opacity": 0.9
+      },
       "encoding": {
-        "longitude": { "field": "lng", "type": "quantitative" },
-        "latitude": { "field": "lat", "type": "quantitative" },
-        "tooltip": [{ "field": "name", "type": "nominal", "title": "Market" }]
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "type": "nominal",
+            "title": "Market"
+          }
+        ]
       }
     }
   ]

@@ -3,84 +3,240 @@
   "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state. Capital cities are drawn as circles because at national scale their polygons are invisible slivers.",
   "width": "container",
   "height": 500,
-  "projection": { "type": "mercator" },
+  "projection": {
+    "type": "mercator"
+  },
   "layer": [
     {
       "data": {
         "url": "data/gccsa.topo.json",
-        "format": { "type": "topojson", "feature": "GCCSA_2021_AUST_GDA2020" }
+        "format": {
+          "type": "topojson",
+          "feature": "GCCSA_2021_AUST_GDA2020"
+        }
       },
       "transform": [
         {
           "lookup": "properties.name",
           "from": {
-            "data": { "url": "data/gccsa_market_density.csv" },
+            "data": {
+              "url": "data/gccsa_market_density.csv"
+            },
             "key": "gccsa",
-            "fields": ["markets", "population", "markets_per_100k", "kind"]
+            "fields": [
+              "markets",
+              "population",
+              "markets_per_100k",
+              "kind"
+            ]
           }
         },
-        { "filter": "datum.kind == 'Rest of state'" }
+        {
+          "filter": "datum.kind == 'Rest of state'"
+        }
       ],
-      "mark": { "type": "geoshape", "stroke": "#fcfcfb", "strokeWidth": 0.8 },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#fdfcf9",
+        "strokeWidth": 0.8
+      },
       "encoding": {
         "color": {
           "field": "markets_per_100k",
           "type": "quantitative",
-          "title": ["Markets per", "100,000 people"],
-          "scale": { "scheme": "blues", "domain": [0, 2] },
-          "legend": { "orient": "top-left", "gradientLength": 150, "format": ".1f" }
+          "title": [
+            "Markets per",
+            "100,000 people"
+          ],
+          "scale": {
+            "range": [
+              "#e7f5e2",
+              "#cfe8c7",
+              "#b6d8aa",
+              "#96c387",
+              "#75a963",
+              "#568c43",
+              "#3e722a"
+            ],
+            "domain": [
+              0,
+              2
+            ],
+            "type": "linear"
+          },
+          "legend": {
+            "orient": "top-left",
+            "gradientLength": 150,
+            "format": ".1f"
+          }
         },
         "tooltip": [
-          { "field": "properties.name", "type": "nominal", "title": "Region" },
-          { "field": "markets", "type": "quantitative", "title": "Markets" },
-          { "field": "population", "type": "quantitative", "title": "Population", "format": "," },
-          { "field": "markets_per_100k", "type": "quantitative", "title": "Per 100k people", "format": ".2f" }
+          {
+            "field": "properties.name",
+            "type": "nominal",
+            "title": "Region"
+          },
+          {
+            "field": "markets",
+            "type": "quantitative",
+            "title": "Markets"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "markets_per_100k",
+            "type": "quantitative",
+            "title": "Per 100k people",
+            "format": ".2f"
+          }
         ]
       }
     },
     {
       "data": {
         "url": "data/gccsa.topo.json",
-        "format": { "type": "topojson", "feature": "GCCSA_2021_AUST_GDA2020" }
+        "format": {
+          "type": "topojson",
+          "feature": "GCCSA_2021_AUST_GDA2020"
+        }
       },
-      "mark": { "type": "geoshape", "fill": null, "stroke": "#c3c2b7", "strokeWidth": 0.5 }
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#c9c2b0",
+        "strokeWidth": 0.5
+      }
     },
     {
-      "data": { "url": "data/gccsa_market_density.csv" },
-      "transform": [{ "filter": "datum.kind == 'Capital city'" }],
-      "mark": { "type": "circle", "stroke": "#0b0b0b", "strokeWidth": 1, "opacity": 0.95 },
+      "data": {
+        "url": "data/gccsa_market_density.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.kind == 'Capital city'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#1f2417",
+        "strokeWidth": 1,
+        "opacity": 0.95
+      },
       "encoding": {
-        "longitude": { "field": "lng", "type": "quantitative" },
-        "latitude": { "field": "lat", "type": "quantitative" },
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
         "size": {
           "field": "population",
           "type": "quantitative",
           "title": "City population",
-          "scale": { "type": "sqrt", "domain": [150000, 5700000], "range": [70, 700] },
-          "legend": { "orient": "bottom-left", "direction": "horizontal", "values": [500000, 2500000, 5000000], "format": ".2s" }
+          "scale": {
+            "type": "sqrt",
+            "domain": [
+              150000,
+              5700000
+            ],
+            "range": [
+              70,
+              700
+            ]
+          },
+          "legend": {
+            "orient": "bottom-left",
+            "direction": "horizontal",
+            "values": [
+              500000,
+              2500000,
+              5000000
+            ],
+            "format": ".2s"
+          }
         },
         "color": {
           "field": "markets_per_100k",
           "type": "quantitative",
-          "scale": { "scheme": "blues", "domain": [0, 2] },
+          "scale": {
+            "range": [
+              "#e7f5e2",
+              "#cfe8c7",
+              "#b6d8aa",
+              "#96c387",
+              "#75a963",
+              "#568c43",
+              "#3e722a"
+            ],
+            "domain": [
+              0,
+              2
+            ],
+            "type": "linear"
+          },
           "legend": null
         },
         "tooltip": [
-          { "field": "gccsa", "type": "nominal", "title": "Capital city" },
-          { "field": "markets", "type": "quantitative", "title": "Markets" },
-          { "field": "population", "type": "quantitative", "title": "Population", "format": "," },
-          { "field": "markets_per_100k", "type": "quantitative", "title": "Per 100k people", "format": ".2f" }
+          {
+            "field": "gccsa",
+            "type": "nominal",
+            "title": "Capital city"
+          },
+          {
+            "field": "markets",
+            "type": "quantitative",
+            "title": "Markets"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "markets_per_100k",
+            "type": "quantitative",
+            "title": "Per 100k people",
+            "format": ".2f"
+          }
         ]
       }
     },
     {
-      "data": { "url": "data/gccsa_market_density.csv" },
-      "transform": [{ "filter": "datum.kind == 'Capital city'" }],
-      "mark": { "type": "text", "dy": 3, "fontSize": 11, "fontWeight": 700, "color": "#0b0b0b" },
+      "data": {
+        "url": "data/gccsa_market_density.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.kind == 'Capital city'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "dy": 3,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#1f2417"
+      },
       "encoding": {
-        "longitude": { "field": "lng", "type": "quantitative" },
-        "latitude": { "field": "lat", "type": "quantitative" },
-        "text": { "field": "markets", "type": "quantitative" }
+        "longitude": {
+          "field": "lng",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "markets",
+          "type": "quantitative"
+        }
       }
     }
   ]

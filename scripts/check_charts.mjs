@@ -23,32 +23,39 @@ const SPECS = path.join(ROOT, 'specs');
 const OUT = '/tmp/afm-charts';
 
 // Mirrors the theme in js/main.js closely enough to spot layout problems.
-const S = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#008300', '#4a3aa7', '#e34948'];
-const BLUES = ['#cde2fb', '#9ec5f4', '#6da7ec', '#3987e5', '#256abf', '#184f95', '#0d366b'];
+const S = ['#3e5d1b', '#af8340', '#3175a4'];          // eucalypt, dry grass, sky
+const EUC = ['#e7f5e2', '#cfe8c7', '#b6d8aa', '#96c387',
+             '#75a963', '#568c43', '#3e722a', '#2d5a1b', '#1f4212'];
+const SERIF = 'Georgia, serif';
+const SANS = 'Helvetica, Arial, sans-serif';
 const config = {
-  background: '#fcfcfb',
-  font: 'sans-serif',
-  title: { color: '#0b0b0b', fontSize: 13, fontWeight: 600, anchor: 'start', subtitleColor: '#898781' },
+  background: '#fdfcf9',
+  font: SANS,
+  title: { font: SERIF, fontWeight: 400, fontSize: 15, color: '#1f2417',
+           anchor: 'start', subtitleFont: SANS, subtitleColor: '#7c7f6e' },
   axis: {
-    labelColor: '#898781', labelFontSize: 11.5, titleColor: '#52514e', titleFontSize: 11.5,
-    titleFontWeight: 600, gridColor: '#e1e0d9', domainColor: '#c3c2b7', tickColor: '#c3c2b7',
+    labelFont: SANS, labelColor: '#7c7f6e', labelFontSize: 11.5,
+    titleFont: SANS, titleColor: '#4a4f3e', titleFontSize: 11.5,
+    titleFontWeight: 700, gridColor: '#e3e0d4', domainColor: '#c3bfc4', tickColor: '#c3bfc4',
   },
   axisX: { grid: false, labelAngle: 0 },
   axisY: { domain: false, ticks: false },
   legend: {
-    labelColor: '#52514e', labelFontSize: 11.5, titleColor: '#52514e',
-    titleFontSize: 11.5, titleFontWeight: 600, symbolStrokeWidth: 0, symbolSize: 90,
+    labelFont: SANS, labelColor: '#4a4f3e', labelFontSize: 11.5,
+    titleFont: SANS, titleColor: '#4a4f3e',
+    titleFontSize: 11.5, titleFontWeight: 700, symbolStrokeWidth: 0, symbolSize: 90,
   },
   view: { stroke: null, continuousWidth: 620, continuousHeight: 300 },
-  range: { category: S, heatmap: BLUES, ramp: BLUES },
-  bar: { cornerRadiusEnd: 4 },
-  rect: { stroke: '#fcfcfb', strokeWidth: 2 },
-  arc: { stroke: '#fcfcfb', strokeWidth: 2 },
+  range: { category: S, heatmap: EUC.slice(0, 7), ramp: EUC.slice(0, 7),
+           ordinal: [EUC[3], EUC[4], EUC[6], EUC[8]] },
+  bar: { cornerRadiusEnd: 3 },
+  rect: { stroke: '#fdfcf9', strokeWidth: 2 },
+  arc: { stroke: '#fdfcf9', strokeWidth: 2 },
   line: { strokeWidth: 2 },
   point: { size: 70, filled: true },
   circle: { size: 70 },
-  text: { color: '#52514e', fontSize: 11.5 },
-  geoshape: { stroke: '#fcfcfb', strokeWidth: 0.5 },
+  text: { font: SANS, color: '#4a4f3e', fontSize: 11.5 },
+  geoshape: { stroke: '#fdfcf9', strokeWidth: 0.5 },
 };
 
 const loader = vega.loader({ baseURL: 'file://' + ROOT + '/', mode: 'file' });

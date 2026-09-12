@@ -75,6 +75,16 @@
       "legend": {
         "orient": "top-left",
         "title": null
+      },
+      "scale": {
+        "domain": [
+          "Local government areas",
+          "Australia’s land area"
+        ],
+        "range": [
+          "#3e5d1b",
+          "#3175a4"
+        ]
       }
     }
   },
@@ -136,7 +146,7 @@
       },
       "encoding": {
         "color": {
-          "value": "#898781"
+          "value": "#7c7f6e"
         },
         "tooltip": [
           {
@@ -179,7 +189,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#52514e"
+          "value": "#4a4f3e"
         }
       }
     }

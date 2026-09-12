@@ -22,14 +22,14 @@ fetch their data with `fetch()`, which browsers block on `file://` origins.
 
 ```
 index.html                 the narrative page
-css/style.css              layout, typography, light/dark tokens
-js/main.js                 chart loader, theme handling, tooltips
+css/style.css              layout, typography, bush palette tokens
+js/main.js                 chart loader, shared Vega-Lite theme
 specs/*.vg.json            one Vega-Lite spec per idiom
 data/                      source data and the files derived from it
 vendor/                    Vega, Vega-Lite and Vega-Embed, pinned
 scripts/prep_markets.py    cleans the scraped AFMA directory
 scripts/prep_spatial.py    the spatial joins behind the four maps
-docs/                      data provenance and methodology notes
+docs/                      data provenance, methodology, design system
 ```
 
 Vega is vendored rather than pulled from a CDN, so the page renders offline and

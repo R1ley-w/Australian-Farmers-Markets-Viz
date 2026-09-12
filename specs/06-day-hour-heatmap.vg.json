@@ -62,8 +62,18 @@
       "type": "quantitative",
       "title": "Markets",
       "scale": {
-        "scheme": "blues",
-        "domainMin": 0
+        "range": [
+          "#e7f5e2",
+          "#cfe8c7",
+          "#b6d8aa",
+          "#96c387",
+          "#75a963",
+          "#568c43",
+          "#3e722a"
+        ],
+        "domainMin": 0,
+        "type": "pow",
+        "exponent": 0.4
       },
       "legend": {
         "orient": "top",

@@ -27,6 +27,16 @@
           "legend": {
             "orient": "bottom-right",
             "direction": "vertical"
+          },
+          "scale": {
+            "domain": [
+              "Rest of state",
+              "Capital city"
+            ],
+            "range": [
+              "#3e5d1b",
+              "#af8340"
+            ]
           }
         },
         "tooltip": [
@@ -73,7 +83,7 @@
           "type": "quantitative"
         },
         "color": {
-          "value": "#898781"
+          "value": "#7c7f6e"
         }
       }
     }

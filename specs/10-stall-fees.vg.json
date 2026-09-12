@@ -19,9 +19,9 @@
         "color": {
           "condition": {
             "test": "datum.share_pct >= 29",
-            "value": "#eb6834"
+            "value": "#a8442a"
           },
-          "value": "#2a78d6"
+          "value": "#3175a4"
         },
         "tooltip": [
           {
@@ -51,7 +51,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#52514e"
+          "value": "#4a4f3e"
         }
       }
     }

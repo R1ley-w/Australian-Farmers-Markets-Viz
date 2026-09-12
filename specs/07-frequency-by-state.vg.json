@@ -77,6 +77,20 @@
         "orient": "top",
         "direction": "horizontal",
         "title": null
+      },
+      "scale": {
+        "domain": [
+          "Weekly",
+          "Fortnightly",
+          "Monthly",
+          "Irregular"
+        ],
+        "range": [
+          "#1f4212",
+          "#3e722a",
+          "#6ba257",
+          "#8abd79"
+        ]
       }
     },
     "order": {

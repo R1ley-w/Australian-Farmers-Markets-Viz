@@ -32,6 +32,24 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 3
+          },
+          "scale": {
+            "domain": [
+              "Fresh produce",
+              "Value-added",
+              "Protein",
+              "Drinks",
+              "Non-food",
+              "Other"
+            ],
+            "range": [
+              "#1f4212",
+              "#3e722a",
+              "#568c43",
+              "#75a963",
+              "#96c387",
+              "#c3bfc4"
+            ]
           }
         },
         "tooltip": [
@@ -67,7 +85,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#898781"
+          "value": "#7c7f6e"
         }
       }
     }

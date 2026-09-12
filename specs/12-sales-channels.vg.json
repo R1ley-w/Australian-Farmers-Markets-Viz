@@ -53,7 +53,7 @@
       "mark": {
         "type": "rule",
         "strokeWidth": 2,
-        "color": "#e1e0d9"
+        "color": "#e3e0d4"
       },
       "encoding": {
         "x": {
@@ -69,16 +69,16 @@
         "type": "point",
         "filled": true,
         "size": 150,
-        "stroke": "#fcfcfb",
+        "stroke": "#fdfcf9",
         "strokeWidth": 1.5
       },
       "encoding": {
         "color": {
           "condition": {
             "test": "datum.channel == \"Farmers' markets\"",
-            "value": "#eb6834"
+            "value": "#a8442a"
           },
-          "value": "#2a78d6"
+          "value": "#3175a4"
         },
         "tooltip": [
           {
@@ -109,7 +109,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#52514e"
+          "value": "#4a4f3e"
         }
       }
     }
