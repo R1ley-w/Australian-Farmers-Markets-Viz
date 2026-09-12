@@ -113,7 +113,7 @@
       "mark": {
         "type": "text",
         "fontSize": 32,
-        "fontWeight": 660,
+        "fontWeight": 600,
         "dy": -10
       },
       "encoding": {
