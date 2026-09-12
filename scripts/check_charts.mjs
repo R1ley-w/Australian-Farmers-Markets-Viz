@@ -23,9 +23,9 @@ const SPECS = path.join(ROOT, 'specs');
 const OUT = '/tmp/afm-charts';
 
 // Mirrors the theme in js/main.js closely enough to spot layout problems.
-const S = ['#3e5d1b', '#af8340', '#3175a4'];          // eucalypt, dry grass, sky
-const EUC = ['#e7f5e2', '#cfe8c7', '#b6d8aa', '#96c387',
-             '#75a963', '#568c43', '#3e722a', '#2d5a1b', '#1f4212'];
+const S = ['#457b45', '#7a4208', '#4199c9', '#b68611']; // eucalypt, bark, waterhole, gold
+const EUC = ['#e5f5e5', '#cce9cb', '#b1d9b0', '#90c48f',
+             '#6eaa6d', '#4d8d4d', '#357336', '#245b26', '#19421a'];
 const SERIF = 'Georgia, serif';
 const SANS = 'Helvetica, Arial, sans-serif';
 const config = {

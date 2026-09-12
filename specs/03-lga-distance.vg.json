@@ -130,7 +130,7 @@
       "mark": {
         "type": "circle",
         "size": 11,
-        "color": "#3e5d1b",
+        "color": "#457b45",
         "opacity": 0.9
       },
       "encoding": {

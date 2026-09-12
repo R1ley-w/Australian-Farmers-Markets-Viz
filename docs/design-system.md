@@ -27,10 +27,11 @@ ground. Everything else is ink.
 
 ---
 
-## The bush palette
+## The nature palette
 
 Built out from the five seed colours: `#D4B48C` sand, `#8AB46F` wattle
-green, `#D3E5C1` pale wattle, `#8B824D` olive, `#C3BFC4` grey.
+green, `#D3E5C1` pale wattle, `#8B824D` olive, `#C3BFC4` grey, extended
+across the nature range — pale blues, greens, browns, golds and rusts.
 
 The seeds are *tints*. Run through the palette validator they fail on
 three counts — three of the five sit outside the lightness band, four
@@ -53,60 +54,78 @@ families.
 | `--ink-olive` | `#6E6733` | eyebrows, links | 5.4:1 |
 | `--grid` | `#E3E0D4` | hairline gridlines | — |
 | `--axis` | `#C3BFC4` | baselines (seed grey) | — |
+| `--neutral` | `#8A877F` | residual "everyone else" categories | 3.5:1 on surface |
 | `--land` | `#E8DCC8` | map landmass (from `#D4B48C`) | — |
 | `--land-stroke` | `#C9C2B0` | map borders | — |
 
-### Series — three slots, and three is the ceiling
+### Series — four slots, and four is the ceiling
 
-| Slot | Name | Hex |
-|---|---|---|
-| 1 | eucalypt | `#3E5D1B` |
-| 2 | dry grass | `#AF8340` |
-| 3 | sky | `#3175A4` |
+| Slot | Name | Hex | Family |
+|---|---|---|---|
+| 1 | eucalypt | `#457B45` | green |
+| 2 | bark | `#7A4208` | brown |
+| 3 | waterhole | `#4199C9` | pale blue |
+| 4 | dry gold | `#B68611` | gold / yellow |
 
 All-pairs validated against the `#FDFCF9` surface: lightness band, chroma
-floor and contrast all pass; worst pair under simulated CVD **ΔE 16.3**
-(protan, dry grass ↔ eucalypt) against a target of 8, and **ΔE 19.4**
-unsimulated against a floor of 15.
+floor and contrast all pass; worst pair under simulated CVD **ΔE 9.2**
+(protan, dry gold ↔ eucalypt) against a target of 8, and **ΔE 16.4**
+unsimulated (bark ↔ eucalypt) against a floor of 15.
 
-**Three is a real ceiling, not a stylistic choice.** A search over ~4,000
-candidate colours in bush hue families at muted chroma found no fourth
-colour that clears the gates: the best bush-hue fourth slot manages CVD
-ΔE 14.3 only by being a bright periwinkle, and no fifth slot clears the
-floor at all. The reason is structural — greens and browns differ mainly
-along the red-green axis, which is exactly the axis colour-vision
-deficiency removes. Past three categories the charts use the ordinal
-ramp below, with direct value labels doing the identity work.
+Opening the palette to golds and oranges is what made a fourth slot
+possible. Green and brown differ mainly along the red-green axis, which
+is exactly the axis colour-vision deficiency removes; gold is separated
+on the *blue-yellow* axis, which CVD preserves.
+
+**Four is where it stops.** Searching the full nature hue range for a
+fifth, teal and rust both fail against this set, and the only colours
+that pass are a second blue — which is no use as a distinct identity.
+Past four categories the charts fold the residual to `--neutral` or use
+the ordinal ramp below.
+
+**Treat these four as fixed values, not a starting point.** The feasible
+region is very narrow: lightening the bark by one step drops the worst
+CVD pair from 9.2 to 4.8, and warming the green by one step drops it to
+7.7. Both fail. If you need to change one, re-run the search rather than
+nudging by eye.
 
 ### Accent
 
 `--accent: #A8442A` red earth. For highlighting one mark in a field of
-one other colour — the modal stall-fee band, the cumulative line, the
-market itself among sales channels.
+one other colour — the modal stall-fee band, the cumulative travel line,
+the market itself among sales channels, primary production in the food
+waste bar.
 
-It pairs safely with sky (ΔE 18.3 CVD) and with dry grass (ΔE 12.0), but
-it **collides with eucalypt** under CVD (ΔE 1.8). So on anything built
-from the green ramp the highlight is sky blue, not red earth — which is
-why Transport is picked out in blue on the emissions chart.
+Safe beside waterhole (CVD ΔE 21.7) and dry gold (ΔE 13.7). It
+**collides with eucalypt** (ΔE 3.6) and **bark** (ΔE 5.2), so it must
+never sit beside those two — which is why the travel-distance bars are
+waterhole rather than green, and why the donut's ring order puts red
+earth between waterhole and the neutral.
+
+On anything built from the green ramp the highlight is **dry gold**, not
+red earth — which is why Transport is gold on the emissions chart.
 
 ### Eucalypt sequential ramp
 
-Choropleths, heatmaps, and any ordered category past three.
+Choropleths, heatmaps, and any ordered category past four.
+
+Regenerated at the series green's own hue (OKLCH H 144) so the ramp and
+slot 1 read as one family.
 
 | step | hex | | step | hex |
 |---|---|---|---|---|
-| 100 | `#E7F5E2` | | 600 | `#568C43` |
-| 200 | `#CFE8C7` | | 700 | `#3E722A` |
-| 300 | `#B6D8AA` | | 800 | `#2D5A1B` |
-| 400 | `#96C387` | | 900 | `#1F4212` |
-| 500 | `#75A963` | | | |
+| 100 | `#E5F5E5` | | 600 | `#4D8D4D` |
+| 200 | `#CCE9CB` | | 700 | `#357336` |
+| 300 | `#B1D9B0` | | 800 | `#245B26` |
+| 400 | `#90C48F` | | 900 | `#19421A` |
+| 500 | `#6EAA6D` | | | |
 
 The **4-step ordinal** used for trading frequency is
-`#1F4212 · #3E722A · #6BA257 · #8ABD79`, run dark-first so darker reads
+`#19421A · #357336 · #5B995A · #89BC87`, run dark-first so darker reads
 as "trades more often". Validated as an ordinal ramp: monotone lightness,
 every adjacent gap ≥ 0.06 ΔL, single hue, and the light end clears the
-2:1 floor at 2.12:1. (The plain 400 step does not — it measures 1.96:1 —
-which is why the light end is `#8ABD79` rather than `#96C387`.)
+2:1 floor at 2.13:1. (The plain 400 step does not — it measures 1.95:1 —
+which is why the light end is `#89BC87` rather than `#90C48F`.)
 
 ### Dry-grass ramp
 
@@ -118,9 +137,11 @@ as you move away from a market, so the metaphor and the "darker = more"
 convention point the same way, and it keeps the distance map visually
 distinct from the density map.
 
-Both sequential maps use a `sqrt` scale. Most of the continent is past any
-sensible distance cap and one heatmap cell holds 70 of 175 markets, so a
-linear ramp floods the first and washes out the second.
+Neither sequential map is linear, for good reason. Distance to a market
+spans 0.1 km to 2,228 km, so the distance choropleth is **log** scaled —
+a capped linear ramp put 38% of LGAs, and most of the land area, on one
+step. The day/hour heatmap has one cell holding 70 of 175 markets, which
+washed every other cell to near-white, so it uses **pow 0.4**.
 
 ---
 
@@ -131,13 +152,17 @@ computes OKLCH lightness and chroma, OKLab ΔE under the
 Machado–Oliveira–Fernandes CVD simulation, and WCAG contrast:
 
 ```bash
-# the three series slots, all pairs
-validate_palette "#3E5D1B,#AF8340,#3175A4" --mode light --surface "#FDFCF9" --pairs all
+# the four series slots, all pairs
+validate_palette "#457B45,#7A4208,#4199C9,#B68611" --mode light --surface "#FDFCF9" --pairs all
 
 # the 4-step frequency ordinal
-validate_palette "#8ABD79,#6BA257,#3E722A,#1F4212" --mode light --surface "#FDFCF9" --ordinal
+validate_palette "#89BC87,#5B995A,#357336,#19421A" --mode light --surface "#FDFCF9" --ordinal
 
 # the accent, against each colour it actually sits beside
-validate_palette "#3175A4,#A8442A" --mode light --surface "#FDFCF9" --pairs all
-validate_palette "#AF8340,#A8442A" --mode light --surface "#FDFCF9" --pairs all
+validate_palette "#4199C9,#A8442A" --mode light --surface "#FDFCF9" --pairs all
+validate_palette "#B68611,#A8442A" --mode light --surface "#FDFCF9" --pairs all
+
+# and the pairs it must NOT sit beside, for the record
+validate_palette "#457B45,#A8442A" --mode light --surface "#FDFCF9" --pairs all   # ΔE 3.6
+validate_palette "#7A4208,#A8442A" --mode light --surface "#FDFCF9" --pairs all   # ΔE 5.2
 ```

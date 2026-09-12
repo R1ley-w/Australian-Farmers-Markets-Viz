@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>175 Markets — Australian farmers' markets, mapped</title>
+<title>Australian Farmers' Markets</title>
 <meta name="description" content="Where Australia's farmers' markets are, who can actually reach one, what they do for producers, and how the sustainability case really stacks up.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233e5d1b'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23e8dcc8'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23af8340'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23fcfcfb'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23eb6834'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
@@ -15,14 +15,15 @@
 </head>
 <body>
 
+<button id="theme-toggle" class="theme-toggle" type="button">Dark</button>
+
 <header class="masthead">
   <div class="wrap">
     <p class="eyebrow">FIT3179 · Data Visualisation 2 · Riley Wade</p>
     <h1>175 markets</h1>
     <p class="lede">
       Australia has no official register of farmers' markets. Scraping the only national
-      directory turns up 175 of them — far fewer than the “300-plus” usually quoted, and
-      concentrated so unevenly that half the country's local government areas are more
+      directory turns up 175 markets which are concentrated so unevenly that half the country's local government areas are more
       than an hour's drive from one.
     </p>
     <p class="lede">
@@ -31,7 +32,7 @@
     </p>
 
     <div class="stats">
-      <div class="stat"><div class="v">175</div><div class="k">markets in the national directory, after removing duplicate listings</div></div>
+      <div class="stat"><div class="v">175</div><div class="k">markets in the national directory, after removing duplicates</div></div>
       <div class="stat"><div class="v">58 km</div><div class="k">median distance from an LGA's centre to its nearest market</div></div>
       <div class="stat"><div class="v">62%</div><div class="k">of markets trade on a Saturday; 86% on a weekend</div></div>
       <div class="stat"><div class="v">0</div><div class="k">markets listed anywhere in the Northern Territory</div></div>
@@ -41,16 +42,16 @@
 
 <main>
 
-<!-- ============================================================ ACT 1 -->
+<!--  ACT 1 -->
 <section class="act" id="where">
   <div class="wrap">
-    <p class="act-num">One — Where they are</p>
+    <p class="act-num">Section 1 — Where can you find a market?</p>
     <h2>A south-eastern, small-town institution</h2>
     <p>
       The Australian Farmers' Markets Association directory is the de facto national census.
       It holds 178 listings, which resolve to <strong>175 distinct markets</strong> once
       duplicates are removed. New South Wales and Victoria hold 70% of them between them.
-      Queensland — a much bigger horticultural producer — has thirteen.
+      Queensland, despite having a much larger horticultural output, has only thirteen.
     </p>
 
     <figure class="chart">
@@ -98,7 +99,7 @@
 <!-- ============================================================ ACT 2 -->
 <section class="act" id="reach">
   <div class="wrap">
-    <p class="act-num">Two — Who can reach them</p>
+    <p class="act-num">Section 2 — How far to your nearest market?</p>
     <h2>Markets are dense where people are thin</h2>
     <p>
       Per head of population the pattern inverts what you would expect. Rest-of-Victoria and
@@ -148,8 +149,8 @@
         <div class="title">How far is the nearest market?</div>
         <p class="sub">
           Distance from each local government area's centre to the nearest market, as the crow
-          flies, on a log scale — the values run from 100 m to 2,228 km. Green dots are the
-          markets themselves. Tick the box to drop everything beyond an hour's drive.
+          flies. Orange dots are the markets themselves. Drag the slider to change where the
+          colour scale saturates.
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/03-lga-distance.vg.json"></div>
@@ -186,10 +187,11 @@
   </div>
 </section>
 
-<!-- ============================================================ ACT 3 -->
+<!-- ACT 3 -->
+
 <section class="act" id="producers">
   <div class="wrap">
-    <p class="act-num">Three — What they do for producers</p>
+    <p class="act-num">Section 3 — How are markets good for producers?</p>
     <h2>A good channel, not a livelihood</h2>
     <p>
       The best evidence on stallholders is a 2014 RIRDC survey of 286 of them — dated, but
@@ -202,7 +204,7 @@
       <figure class="chart">
         <figcaption>
           <div class="title">How far stallholders travel</div>
-          <p class="sub">Distance to their main market. The red-earth line is the running total.</p>
+          <p class="sub">Distance to their main market. The orange line is the running total.</p>
         </figcaption>
         <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
         <p class="source">RIRDC Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014), n = 286 stallholders</p>
@@ -251,10 +253,11 @@
   </div>
 </section>
 
-<!-- ============================================================ ACT 4 -->
+<!--  ACT 4 -->
+
 <section class="act" id="sustainability">
   <div class="wrap">
-    <p class="act-num">Four — The sustainability case, honestly</p>
+    <p class="act-num">Section 4 — Are markets better for the environment?</p>
     <h2>Food miles are the weakest argument available</h2>
     <p>
       The intuitive case for farmers' markets is transport emissions. The evidence does not
@@ -303,7 +306,7 @@
 <!-- ============================================================ ACT 5 -->
 <section class="act" id="alternative">
   <div class="wrap">
-    <p class="act-num">Five — What they are up against</p>
+    <p class="act-num">Section 5 — Markets and Supermarkets</p>
     <h2>Two chains, two-thirds of the groceries</h2>
     <p>
       The scale comparison is stark. Coles and Woolworths together take about 67% of
@@ -349,11 +352,7 @@
       locations scraped from the public AFMA directory; no licence is stated, and they are
       reproduced here for a student assignment with attribution.
       Emissions data CC BY 4.0.
-    </p>
-    <p class="small">
-      Built with Vega-Lite. Data preparation and full method:
-      <a href="https://github.com/R1ley-w/Australian-Farmers-Markets-Viz">github.com/R1ley-w/Australian-Farmers-Markets-Viz</a>
-    </p>
+    </p>`
   </div>
 </footer>
 

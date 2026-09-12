@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Greenhouse gas emissions per kilogram of food, split by supply-chain stage. Transport, picked out in sky blue against the eucalypt ramp, is a thin slice of almost every food's footprint.",
+  "description": "Greenhouse gas emissions per kilogram of food, split by supply-chain stage. Transport, picked out in dry gold against the eucalypt ramp, is a thin slice of almost every food's footprint.",
   "width": "container",
   "height": 430,
   "data": {
@@ -145,14 +145,14 @@
           "Losses"
         ],
         "range": [
-          "#cfe8c7",
-          "#b6d8aa",
-          "#96c387",
-          "#75a963",
-          "#3175a4",
-          "#3e722a",
-          "#2d5a1b",
-          "#1f4212"
+          "#b1d9b0",
+          "#90c48f",
+          "#6eaa6d",
+          "#4d8d4d",
+          "#b68611",
+          "#357336",
+          "#245b26",
+          "#19421a"
         ]
       },
       "legend": {

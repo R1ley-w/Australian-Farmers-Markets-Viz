@@ -5,13 +5,13 @@
    and handed to Vega-Lite as a shared config in js/main.js so the page
    and the charts always agree.
 
-   The palette is an Australian bush palette built out from the five
+   The palette is an Australian nature palette built out from the five
    seed colours: #D4B48C sand, #8AB46F wattle green, #D3E5C1 pale
    wattle, #8B824D olive, #C3BFC4 grey. The seeds are tints — too pale
    and too low-chroma to carry series identity — so they serve as
    surfaces, landmass fills and chrome, while the series colours are
-   deeper steps from the same hue families. See docs/design-system.md
-   for the validation results.
+   deeper steps from the same and neighbouring hue families. See
+   docs/design-system.md for the validation results.
    ------------------------------------------------------------------ */
 
 :root {
@@ -33,30 +33,42 @@
   --land:        #e8dcc8;  /* sand, from #D4B48C */
   --land-stroke: #c9c2b0;
 
-  /* --- series: three slots, validated all-pairs ----------------
-     Worst pair under simulated CVD ΔE 16.3 (protan), 19.4 unsimulated.
-     Three is the ceiling: in this hue range a fourth muted bush colour
-     cannot clear the separation gates. Past three, fold to "other" or
-     use the ordinal ramp below.                                    */
-  --s1:          #3e5d1b;  /* eucalypt   */
-  --s2:          #af8340;  /* dry grass  */
-  --s3:          #3175a4;  /* sky        */
+  /* --- series: four slots, validated all-pairs ------------------
+     Worst pair under simulated CVD ΔE 9.2 (protan, gold vs eucalypt),
+     ΔE 16.4 unsimulated. Four is the ceiling in nature hues: a fifth
+     only ever comes back as a second blue, and teal and rust both fail
+     against this set. Past four, fold to --neutral or use the ordinal
+     ramp below. The feasible region is narrow — lightening the bark or
+     warming the green by one step breaks the CVD gate — so treat these
+     four as fixed values, not as a starting point to nudge.         */
+  --s1:          #457b45;  /* eucalypt      */
+  --s2:          #7a4208;  /* bark          */
+  --s3:          #4199c9;  /* waterhole     */
+  --s4:          #b68611;  /* dry gold      */
 
-  /* --- accent: highlighting one mark in a field of one other ---
-     Red earth. Pairs safely with sky and dry grass; it collides with
-     eucalypt under CVD, so on the green ramp the highlight is sky. */
+  /* --- accent: highlighting one mark in a field of one other ------
+     Red earth. Safe beside waterhole (ΔE 21.7) and gold (ΔE 13.7);
+     it collides with eucalypt (ΔE 3.6) and bark (ΔE 5.2) under CVD,
+     so never put it next to those two. On the green ramp the
+     highlight is gold instead.                                     */
   --accent:      #a8442a;
 
+  /* --- neutral: residual "everyone else" categories ---------------
+     Deliberately achromatic, so it is not a series colour and does
+     not need to clear the chroma floor. Darkened from the seed grey
+     to clear 3:1 on the chart surface.                             */
+  --neutral:     #8a877f;
+
   /* --- eucalypt sequential ramp (choropleths, heatmaps) --------- */
-  --euc-100:     #e7f5e2;
-  --euc-200:     #cfe8c7;
-  --euc-300:     #b6d8aa;
-  --euc-400:     #96c387;
-  --euc-500:     #75a963;
-  --euc-600:     #568c43;
-  --euc-700:     #3e722a;
-  --euc-800:     #2d5a1b;
-  --euc-900:     #1f4212;
+  --euc-100:     #e5f5e5;
+  --euc-200:     #cce9cb;
+  --euc-300:     #b1d9b0;
+  --euc-400:     #90c48f;
+  --euc-500:     #6eaa6d;
+  --euc-600:     #4d8d4d;
+  --euc-700:     #357336;
+  --euc-800:     #245b26;
+  --euc-900:     #19421a;
 
   /* --- typography ---------------------------------------------- */
   --font-serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
