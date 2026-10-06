@@ -20,20 +20,24 @@
 <header class="masthead">
   <div class="wrap">
     <p class="eyebrow">FIT3179 · Data Visualisation 2 · Riley Wade</p>
-    <h1>175 markets</h1>
+    <h1>Australian Farmer's Markets</h1>
     <p class="lede">
-      Australia has no official register of farmers' markets. Scraping the only national
-      directory turns up 175 markets which are concentrated so unevenly that half the country's local government areas are more
-      than an hour's drive from one.
+      This project aims to visualise various metrics on Farmer's Markets in Australia, it use data from the national Farmer's
+      Market directory which contains 175 markets which are concentrated mostly in eastern Australia and are generally not easy to 
+      get to for most Australians.
     </p>
     <p class="lede">
       This is what that directory looks like when you put it on a map, and what it says
       about who farmers' markets actually serve.
     </p>
 
+    <h2>
+      Some Quick Stats
+    </h2>
+
     <div class="stats">
-      <div class="stat"><div class="v">175</div><div class="k">markets in the national directory, after removing duplicates</div></div>
-      <div class="stat"><div class="v">58 km</div><div class="k">median distance from an LGA's centre to its nearest market</div></div>
+      <div class="stat"><div class="v">175</div><div class="k">markets in the national directory (removing duplicates)</div></div>
+      <div class="stat"><div class="v">58 km</div><div class="k">median distance from a council area to its nearest market</div></div>
       <div class="stat"><div class="v">62%</div><div class="k">of markets trade on a Saturday; 86% on a weekend</div></div>
       <div class="stat"><div class="v">0</div><div class="k">markets listed anywhere in the Northern Territory</div></div>
     </div>
@@ -42,16 +46,14 @@
 
 <main>
 
-<!--  ACT 1 -->
-<section class="act" id="where">
+<!--  Section 1 -->
+<section class="section" id="where">
   <div class="wrap">
-    <p class="act-num">Section 1 — Where can you find a market?</p>
-    <h2>A south-eastern, small-town institution</h2>
+    <p class="section-num">Section 1 — Where can you find a market?</p>
     <p>
-      The Australian Farmers' Markets Association directory is the de facto national census.
-      It holds 178 listings, which resolve to <strong>175 distinct markets</strong> once
-      duplicates are removed. New South Wales and Victoria hold 70% of them between them.
-      Queensland, despite having a much larger horticultural output, has only thirteen.
+      The Australian Farmers' Markets Association directory was the main source of data I used.
+      It holds 178 listings, which resolve to <strong>175 distinct markets</strong> (after removing duplicates). 
+      New South Wales and Victoria hold 70% of them, Queensland, despite having a much larger crop output, only has thirteen.
     </p>
 
     <figure class="chart">
@@ -59,19 +61,19 @@
         <div class="title">Every farmers' market in the national directory</div>
         <p class="sub">
           Colour is how often the market trades; size is how many hours it is open on a
-          market day. Click a legend entry to isolate a frequency, or use the state filter.
+          market day. you can click a legend entry to isolate a frequency, or you can use the state filter.
           Clicking a market opens its website.
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/01-market-map.vg.json"></div>
-      <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 10 September 2026 · boundaries ABS ASGS Edition 3 (CC BY 4.0)</p>
+      <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 20 September 2026 · boundaries ABS ASGS Edition 3 (CC BY 4.0)</p>
     </figure>
 
     <div class="chart-grid">
       <figure class="chart">
         <figcaption>
-          <div class="title">Half of all markets trade weekly</div>
-          <p class="sub">Frequency mix within each state, derived from the directory's free-text trading-days field.</p>
+          <div class="title">How often do markets trade</div>
+          <p class="sub">Frequency mix within each state from the directory's free-text trading-days field.</p>
         </figcaption>
         <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
         <p class="source">AFMA directory, 2026 · frequency classified from the <code>market_days</code> field</p>
@@ -79,7 +81,7 @@
 
       <figure class="chart">
         <figcaption>
-          <div class="title">A handful of organisations run several markets each</div>
+          <div class="title">A few organisations run several markets</div>
           <p class="sub">Operators running more than one market. Everyone else runs exactly one.</p>
         </figcaption>
         <div class="viz" data-spec="specs/08-operators.vg.json"></div>
@@ -88,23 +90,19 @@
     </div>
 
     <div class="takeaway">
-      <strong>The “grassroots” framing needs qualifying.</strong> Most markets are run by a
-      local committee, church, Rotary club or school P&amp;C — but the busiest metropolitan
-      ones cluster under a few professional operators, and those operators are what a
-      shopper in Melbourne actually encounters.
-    </div>
+      Most markets are run by a local committee (including my local market), church, Rotary club or school, but the busiest metropolitan
+      ones cluster under a few more professional organisers.
   </div>
 </section>
 
-<!-- ============================================================ ACT 2 -->
-<section class="act" id="reach">
+<!-- Section 2 -->
+<section class="section" id="reach">
   <div class="wrap">
-    <p class="act-num">Section 2 — How far to your nearest market?</p>
-    <h2>Markets are dense where people are thin</h2>
+    <p class="section-num">Section 2 — How far to your nearest market?</p>
     <p>
-      Per head of population the pattern inverts what you would expect. Rest-of-Victoria and
-      rest-of-NSW have the highest market density in the country; Greater Brisbane, with
-      2.8 million people, has <strong>two</strong>. Regional towns are well served relative
+      Markets tend to crop up in rural areas far more frequently than highly populated ones. Rural Victoria and
+      Rural NSW have the highest market density in the country; Greater Brisbane, with
+      2.8 million people, only has <strong>two</strong>. Regional towns are well served relative
       to their size. The problem is that there are not many of them, and they are far apart.
     </p>
 
@@ -112,8 +110,7 @@
       <figcaption>
         <div class="title">Markets per 100,000 people</div>
         <p class="sub">
-          By Greater Capital City Statistical Area and rest-of-state — the ABS geography that
-          splits each state into its capital and everything else.
+          By Greater Capital City Statistical Area and rest-of-state(rural)
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/02-gccsa-density.vg.json"></div>
@@ -122,10 +119,9 @@
 
     <figure class="chart">
       <figcaption>
-        <div class="title">Every region, ranked</div>
+        <div class="title">Every region</div>
         <p class="sub">
-          The same numbers as a ranked list, because the map can only hint at it. Numbers at
-          the end of each bar are the market count.
+          The same numbers as a ranked list
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/02b-gccsa-ranked.vg.json"></div>
@@ -134,10 +130,11 @@
 
     <figure class="chart">
       <figcaption>
-        <div class="title">Two cities the same size, at the same scale</div>
+        <div class="title">Melbourne and Sydney</div>
+        <h2>A Tale Of Two Cities</h2>
         <p class="sub">
-          Greater Melbourne and Greater Sydney differ by 200,000 people and by twenty-one
-          farmers' markets. Melbourne's are mostly monthly; Sydney's are mostly weekly.
+          Greater Melbourne and Greater Sydney differ by 200,000 people but by 21
+          farmers' markets. Melbourne's markets are mainly monthly compared to Sydney's which generally occur weekly
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/04-metro-comparison.vg.json"></div>
@@ -148,29 +145,29 @@
       <figcaption>
         <div class="title">How far is the nearest market?</div>
         <p class="sub">
-          Distance from each local government area's centre to the nearest market, as the crow
-          flies. Orange dots are the markets themselves. Drag the slider to change where the
+          Distance from each local government area's centre to the nearest market (as the crow
+          flies). The orange dots are the markets themselves. You can drag the slider to change where the
           colour scale saturates.
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/03-lga-distance.vg.json"></div>
-      <p class="source">Great-circle distance from LGA area centroids to the nearest of 174 geocoded markets · ABS ASGS Edition 3 LGA 2023 boundaries</p>
+      <p class="source">Great-circle distance from council area centroids to the nearest of 174 geocoded markets · ABS ASGS Edition 3 LGA 2023 boundaries</p>
     </figure>
 
     <div class="chart-grid">
       <figure class="chart">
         <figcaption>
           <div class="title">How much of the country is within reach</div>
-          <p class="sub">Cumulative share of LGAs, and of Australia's land area, within a given distance of a market.</p>
+          <p class="sub">Cumulative share of council areas, and Australia's land area, within a given distance of a market.</p>
         </figcaption>
         <div class="viz" data-spec="specs/05-coverage-curve.vg.json"></div>
-        <p class="source">Derived from the LGA distance calculation above</p>
+        <p class="source">Derived from the council area distance calculation above</p>
       </figure>
 
       <figure class="chart">
         <figcaption>
           <div class="title">When can you actually shop?</div>
-          <p class="sub">Trading day against opening time. Accessibility is temporal as well as spatial.</p>
+          <p class="sub">Trading day against opening time. Accessing a market is about time and location.</p>
         </figcaption>
         <div class="viz" data-spec="specs/06-day-hour-heatmap.vg.json"></div>
         <p class="source">AFMA directory, 2026 · opening hours parsed from the directory's hours table</p>
@@ -178,8 +175,8 @@
     </div>
 
     <div class="takeaway">
-      <strong>Only 47% of Australia's local government areas are within 50 km of a farmers'
-      market, covering 5% of the land mass — and 86% of markets trade on a weekend morning.</strong>
+      <strong>I'm fortunate enough to be within the 47% of Australia's local government areas are within 50 km of a farmers'
+      market. These 'accessible areas' cover only 5% of the land mass, furthermore 86% of markets trade on a weekend morning.</strong>
       If you work Saturday mornings, most of the national network is closed to you. Whatever
       farmers' markets do for sustainable shopping, they do it for a particular kind of
       shopper, in a particular kind of place, at a particular time of week.
@@ -189,9 +186,9 @@
 
 <!-- ACT 3 -->
 
-<section class="act" id="producers">
+<section class="section" id="producers">
   <div class="wrap">
-    <p class="act-num">Section 3 — How are markets good for producers?</p>
+    <p class="section-num">Section 3 — How are markets good for producers?</p>
     <h2>A good channel, not a livelihood</h2>
     <p>
       The best evidence on stallholders is a 2014 RIRDC survey of 286 of them — dated, but
@@ -255,9 +252,9 @@
 
 <!--  ACT 4 -->
 
-<section class="act" id="sustainability">
+<section class="section" id="sustainability">
   <div class="wrap">
-    <p class="act-num">Section 4 — Are markets better for the environment?</p>
+    <p class="section-num">Section 4 — Are markets better for the environment?</p>
     <h2>Food miles are the weakest argument available</h2>
     <p>
       The intuitive case for farmers' markets is transport emissions. The evidence does not
@@ -293,7 +290,7 @@
       <p class="source">DCCEEW, National Food Waste Baseline (2016-17 reference year) · the published baseline names only the three largest sectors</p>
     </figure>
 
-    <div class="takeaway">
+    <div class="takeaway`">
       <strong>A market stall that sells the misshapen carrot is doing more for emissions than
       the short drive it arrived on.</strong> And since 27% of stallholders sell fruit and
       vegetables — foods roughly two orders of magnitude below beef per kilogram — the
@@ -303,10 +300,10 @@
   </div>
 </section>
 
-<!-- ============================================================ ACT 5 -->
-<section class="act" id="alternative">
+<!--  Section 5 -->
+<section class="section" id="alternative">
   <div class="wrap">
-    <p class="act-num">Section 5 — Markets and Supermarkets</p>
+    <p class="section-num">Section 5 — Markets and Supermarkets</p>
     <h2>Two chains, two-thirds of the groceries</h2>
     <p>
       The scale comparison is stark. Coles and Woolworths together take about 67% of
@@ -325,8 +322,8 @@
     </figure>
 
     <div class="takeaway">
-      <strong>175 markets, most of them monthly, most of them open for four hours on a
-      Saturday morning.</strong> Farmers' markets are not an alternative food system at
+      175 markets, most of them monthly, most of them open for four hours on a
+      Saturday morning. Farmers' markets are not an alternative food system at
       national scale, and reading them as one sets them up to fail. What they are is a
       direct channel that works well for the producers who can reach one and the shoppers
       who live near one — and the map is the argument for widening both.

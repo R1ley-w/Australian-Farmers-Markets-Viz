@@ -30,7 +30,8 @@ DATA = ROOT / "data"
 DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday"]
 
-# ---------------------------------------------------------------- helpers
+
+#  helpers #
 
 
 def norm(s: str) -> str:
@@ -107,7 +108,7 @@ def haversine(lat1, lon1, lat2, lon2) -> float:
     return 2 * r * math.asin(math.sqrt(a))
 
 
-# Rough state bounding boxes, used only to catch obviously wrong geocodes.
+# Rough state bounding boxes, used only to catch obviously wrong geocodes. 
 STATE_BOX = {
     "NSW": (-37.6, -28.1, 140.9, 153.7),
     "VIC": (-39.2, -33.9, 140.9, 150.1),
@@ -124,7 +125,7 @@ def main() -> None:
     rows = list(csv.DictReader((DATA / "afma_markets_raw.tsv").open(), delimiter="\t"))
     issues: list[dict] = []
 
-    # ---------------------------------------------------------- clean rows
+    # clean rows
     clean = []
     for r in rows:
         lat, lng = float(r["lat"]), float(r["lng"])
@@ -181,14 +182,11 @@ def main() -> None:
             "open_hour": o,
             "close_hour": c,
             "hours_open": hours,
-            # trading hours available per month — a better "how much market is there"
-            # measure than a raw count, since a monthly 3-hour market and a weekly
-            # 5-hour one are not the same thing
             "hours_per_month": round(hours * markets_per_month(freq), 2) if hours else None,
             "geocode_ok": int(geocode_ok),
         })
 
-    # ------------------------------------------------ duplicate detection
+    #  duplicate detection
     by_key = defaultdict(list)
     for m in clean:
         by_key[(norm(m["name"]), m["state"])].append(m)
@@ -196,10 +194,6 @@ def main() -> None:
     for key, group in by_key.items():
         if len(group) < 2:
             continue
-        # Same normalised name, same state, same trading day, within 5 km -> same
-        # market listed twice. The trading-day test matters: Bellingen has two
-        # genuinely different markets sharing a name, one Saturday and one
-        # Wednesday, and they must not be collapsed.
         for i, a in enumerate(group):
             for b in group[i + 1:]:
                 if a["trading_day"] != b["trading_day"]:
@@ -214,7 +208,7 @@ def main() -> None:
         m["is_duplicate"] = int(m["id"] in dup_ids)
 
     # Distinct markets sharing a coordinate to within ~100 m indicate a
-    # copy-pasted geocode rather than a real co-location.
+    # copy-pasted geocode instead of co-location, more like a duplicate
     for i, a in enumerate(clean):
         for b in clean[i + 1:]:
             if a["is_duplicate"] or b["is_duplicate"]:
@@ -226,7 +220,7 @@ def main() -> None:
 
     active = [m for m in clean if not m["is_duplicate"]]
 
-    # ------------------------------------------------------------ outputs
+    #  outputs #
     write_csv(DATA / "markets.csv", clean)
 
     # by state

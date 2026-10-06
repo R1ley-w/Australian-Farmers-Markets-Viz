@@ -81,7 +81,7 @@ const embedOptions = () => ({
   tooltip: { theme: 'light' },
 });
 
-/* ------------------------------------------------------------ render */
+/*  render */
 
 async function renderOne(el) {
   const url = el.dataset.spec;
