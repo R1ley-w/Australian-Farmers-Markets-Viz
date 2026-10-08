@@ -86,7 +86,9 @@ async function renderOne(el) {
   const url = el.dataset.spec;
   el.innerHTML = '<p class="loading">Loading chart…</p>';
   try {
-    const res = await fetch(url);
+    // no-cache forces a conditional request, so an edited spec is picked up
+    // on reload instead of being served from the browser's cache.
+    const res = await fetch(url, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const spec = await res.json();
     el.innerHTML = '';
