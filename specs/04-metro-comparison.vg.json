@@ -85,32 +85,28 @@
               "type": "quantitative"
             },
             "color": {
-              "field": "state",
+              "field": "frequency",
               "type": "nominal",
-              "title": "State",
+              "title": "Trades",
               "scale": {
                 "domain": [
-                  "NSW",
-                  "VIC",
-                  "QLD",
-                  "WA",
-                  "SA",
-                  "TAS",
-                  "ACT",
-                  "NT"
+                  "Weekly",
+                  "Fortnightly",
+                  "Monthly",
+                  "Irregular"
                 ],
                 "range": [
-                  "#0063a0",
-                  "#c56c00",
-                  "#039b8c",
-                  "#a17cda",
-                  "#8c4062",
-                  "#2d6101",
-                  "#767676",
-                  "#a6a6a6"
+                  "#2f363d",
+                  "#596571",
+                  "#8e9baa",
+                  "#abb7c5"
                 ]
               },
-              "legend": null
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "title": null
+              }
             },
             "size": {
               "field": "hours_open",
@@ -237,29 +233,21 @@
               "type": "quantitative"
             },
             "color": {
-              "field": "state",
+              "field": "frequency",
               "type": "nominal",
-              "title": "State",
+              "title": "Trades",
               "scale": {
                 "domain": [
-                  "NSW",
-                  "VIC",
-                  "QLD",
-                  "WA",
-                  "SA",
-                  "TAS",
-                  "ACT",
-                  "NT"
+                  "Weekly",
+                  "Fortnightly",
+                  "Monthly",
+                  "Irregular"
                 ],
                 "range": [
-                  "#0063a0",
-                  "#c56c00",
-                  "#039b8c",
-                  "#a17cda",
-                  "#8c4062",
-                  "#2d6101",
-                  "#767676",
-                  "#a6a6a6"
+                  "#2f363d",
+                  "#596571",
+                  "#8e9baa",
+                  "#abb7c5"
                 ]
               },
               "legend": null

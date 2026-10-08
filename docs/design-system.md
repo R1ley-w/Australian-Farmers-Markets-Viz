@@ -95,8 +95,8 @@ not a style preference; re-run the search before adding a seventh hue.
 can occur. The highlight below is red, and it is confined to charts that carry
 no state colour at all.
 
-State colour appears in exactly three specs: `02b-gccsa-ranked`,
-`04-metro-comparison`, `08-operators`.
+State colour appears in exactly two specs: `02b-gccsa-ranked` and
+`08-operators`.
 
 ---
 
@@ -126,6 +126,11 @@ the same ramp, run dark-first so darker reads as "trades more often":
 Validated as an ordinal ramp: monotone lightness, every adjacent gap ≥ 0.06 ΔL,
 single hue (4° spread), and the light end clears the 2:1 floor at exactly
 2.00:1 — which is why the light end is step 400 and not step 300.
+
+Trading frequency is a variable in its own right, so it keeps this exact
+four-step scale everywhere it is encoded — the national map (`01`), the state
+breakdown (`07`) and the Melbourne/Sydney panels (`04`). Weekly is always the
+darkest step.
 
 Neither sequential map is linear, for good reason. The day/hour heatmap has one
 cell holding 70 of 175 markets, which washed every other cell to near-white, so
@@ -171,8 +176,8 @@ carry a state colour, so red and green never meet.
 
 | Encoding | Specs |
 |---|---|
-| State identity hues | `02b`, `04`, `08` |
-| Magnitude ramp | `01`, `02`, `06`, `07`, `11`, `13`, `14`, `15` |
+| State identity hues | `02b`, `08` |
+| Magnitude ramp | `01`, `02`, `04`, `06`, `07`, `11`, `13`, `14`, `15` |
 | Distance ramp | `03` |
 | Highlight | `05`, `09`, `10`, `12`, `13`, `14` |
 
