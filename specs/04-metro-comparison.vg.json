@@ -14,18 +14,18 @@
         "subtitle": "5.44 million people · 30 markets",
         "fontSize": 13
       },
-      "width": 350,
-      "height": 350,
+      "width": 380,
+      "height": 380,
       "projection": {
         "type": "mercator",
         "center": [
           145.05,
           -37.88
         ],
-        "scale": 11000,
+        "scale": 11943,
         "translate": [
-          175,
-          175
+          190,
+          190
         ]
       },
       "layer": [
@@ -162,18 +162,18 @@
         "subtitle": "5.64 million people · 9 markets",
         "fontSize": 13
       },
-      "width": 350,
-      "height": 350,
+      "width": 380,
+      "height": 380,
       "projection": {
         "type": "mercator",
         "center": [
           151.0,
           -33.86
         ],
-        "scale": 11000,
+        "scale": 11943,
         "translate": [
-          175,
-          175
+          190,
+          190
         ]
       },
       "layer": [

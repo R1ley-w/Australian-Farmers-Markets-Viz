@@ -98,6 +98,12 @@
      values are; widening any of them breaks the rule. Measured with
      measure.mjs, which counts words per rendered line box.        */
   --measure: 20em;
+
+  /* The text rail. Prose, chart captions and source lines all sit in a
+     column of this width at the left edge, so the eye has one vertical
+     line to follow down the page and each chart sits to the right of
+     the text that introduces it.                                     */
+  --rail: 20rem;
 }
 
 /* ------------------------------------------------------------ base */
@@ -114,7 +120,7 @@ body {
 }
 
 .wrap {
-  max-width: 1120px;
+  max-width: 1240px;
   margin-inline: auto;
   padding-inline: 20px;
 }
@@ -156,6 +162,28 @@ code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size
 header.masthead {
   padding-block: clamp(3rem, 9vw, 6rem) clamp(2rem, 5vw, 3rem);
   border-bottom: 1px solid var(--border);
+}
+
+/* The masthead follows the same rail: eyebrow and title across the top,
+   the lede on the rail, the headline figures beside it. */
+@media (min-width: 900px) {
+  header.masthead > .wrap {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    grid-auto-flow: row dense;
+    column-gap: 2.5rem;
+    align-content: start;
+  }
+  header.masthead .eyebrow,
+  header.masthead h1   { grid-column: 1 / -1; }
+  header.masthead .lede { grid-column: 1; }
+  header.masthead .figures {
+    grid-column: 2;
+    grid-row: 3 / span 8;
+    align-self: start;
+  }
+  header.masthead .figures h2 { margin-top: 0.1rem; }
+  header.masthead .stats { grid-template-columns: 1fr 1fr; }
 }
 
 .eyebrow {
@@ -229,6 +257,42 @@ figure.chart {
   border-radius: 4px;
 }
 
+/* Caption and source on the rail, chart beside them. The caption is the
+   first thing read and the chart is immediately to its right, so the eye
+   goes down the rail and across — never back up to find the text that
+   belongs to a chart it has already passed. */
+@media (min-width: 900px) {
+  /* Pull the card out by its own padding so the caption's left edge lands
+     on the prose above it. Without this the rail is off by the card
+     padding and the sight line kinks at every chart. */
+  .wrap > figure.chart { margin-inline: -1.25rem; }
+
+  figure.chart {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    grid-template-areas:
+      "cap viz"
+      "src viz";
+    grid-template-rows: auto 1fr;
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+  figure.chart > figcaption { grid-area: cap; }
+  figure.chart > .viz      { grid-area: viz; }
+  figure.chart > .source   { grid-area: src; }
+
+  /* Inside a two-up row each figure is already narrow, so it keeps the
+     caption above the chart rather than splitting again. */
+  .chart-grid figure.chart { display: block; }
+
+  /* The metro comparison is two maps pinned to one shared scale, so it
+     cannot shrink: it needs 726px and would scroll inside the rail layout
+     on a narrow laptop. It takes the full card width, with its caption
+     above — starting on the same rail, so the eye still begins in the
+     same place. */
+  figure.chart:has(> .viz[data-spec*="04-metro"]) { display: block; }
+}
+
 figure.chart > figcaption { margin: 0 0 1rem; }
 
 /* Graph titles: serif, regular weight. */
@@ -260,12 +324,13 @@ figcaption .sub {
 }
 .viz .vega-bind { margin-bottom: 0.25rem; }
 
-/* The rule above a source line belongs to the chart, so it spans the whole
-   card; the source text itself stays inside the ten-word measure. */
-.viz { border-bottom: 1px solid var(--border); padding-bottom: 0.9rem; }
-
+/* On the rail the source sits under the caption and carries its own rule.
+   Stacked (narrow screens, and inside a two-up row) it sits under the
+   chart instead, and the rule is the chart's full width. */
 .source {
-  margin: 0.7rem 0 0;
+  margin: 0.9rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border);
   font-size: 0.78rem;
   color: var(--ink-muted);
   max-width: 23em;
