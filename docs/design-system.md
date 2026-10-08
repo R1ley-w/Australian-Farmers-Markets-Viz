@@ -102,30 +102,53 @@ State colour appears in exactly two specs: `02b-gccsa-ranked` and
 
 ## 2. Magnitude — any ordered or continuous quantity
 
-One cool-grey ramp, used for every quantity that is not distance-to-a-market.
-The legend names the quantity; the colour only ever means *more of it*. Because
-it is achromatic it cannot be confused with a state.
+One muted slate-blue ramp, used for every quantity that is not
+distance-to-a-market. The legend names the quantity; the colour only ever means
+*more of it*.
 
 | step | hex | | step | hex |
 |---|---|---|---|---|
-| 100 | `#EDF2F8` | | 600 | `#727F8D` |
-| 200 | `#DAE2EC` | | 700 | `#596571` |
-| 300 | `#C4CFDB` | | 800 | `#444D56` |
-| 400 | `#ABB7C5` | | 900 | `#2F363D` |
-| 500 | `#8E9BAA` | | | |
+| 100 | `#EAF3FC` | | 600 | `#6587A7` |
+| 200 | `#D0E0F0` | | 700 | `#4D6E8D` |
+| 300 | `#B5CCE2` | | 800 | `#375470` |
+| 400 | `#9AB6D2` | | 900 | `#243B51` |
+| 500 | `#7F9FBE` | | 950 | `#132434` |
 
-The ramp is monotone in lightness at a single hue (spread 6°). Its pale end is
-close to the surface by design — in a continuous choropleth or heatmap that end
-means *near zero*, and the polygon strokes keep the shape legible.
+Single hue (OKLCH H 248, spread 1°), monotone in lightness, even steps. Step 950
+exists only for the one scale that needs a ninth dark step — the emissions bar,
+which has eight stages.
+
+**Why a muted blue rather than a saturated one, and how it stays distinct from
+NSW's blue.** Six state hues already span the colour wheel at 47–77° apart, so
+there is no free hue left for a ramp to occupy: every candidate lands next to a
+state. A steel blue at H 214 sits ΔE 2.9 from Queensland's teal under simulated
+CVD; a true blue sits next to New South Wales.
+
+So the ramp is not separated from the state hues by *hue* — it is separated by
+**chroma**. The ramp peaks at C 0.062; the state hues run C 0.110–0.147, two to
+two and a half times higher. A quantity reads as a tinted neutral and an
+identity reads as a colour. That distinction is what the one-variable rule rests
+on here, and it is the reason the ramp must stay muted: saturating it would make
+it compete with the state hues for the same perceptual role.
+
+The ramp and the state hues also never share a chart (`§1` lists where each
+appears), so the remaining closeness is cross-chart only. The tightest case is
+step 800 `#375470` against South Australia's plum, ΔE 2.3 under simulated
+protanopia and 14.5 unsimulated — they sit in different charts and SA is always
+directly labelled.
+
+Its pale end is close to the surface by design — in a continuous choropleth or
+heatmap that end means *near zero*, and the polygon strokes keep the shape
+legible.
 
 The **4-step discrete ordinal** used for trading frequency takes four steps from
 the same ramp, run dark-first so darker reads as "trades more often":
 
-`#2F363D · #596571 · #8E9BAA · #ABB7C5`
+`#243B51 · #4D6E8D · #7F9FBE · #9AB6D2`
 
 Validated as an ordinal ramp: monotone lightness, every adjacent gap ≥ 0.06 ΔL,
-single hue (4° spread), and the light end clears the 2:1 floor at exactly
-2.00:1 — which is why the light end is step 400 and not step 300.
+single hue (1° spread), and the light end clears the 2:1 floor at 2.06:1 — which
+is why the light end is step 400 and not step 300, which measures 1.62:1.
 
 Trading frequency is a variable in its own right, so it keeps this exact
 four-step scale everywhere it is encoded — the national map (`01`), the state
@@ -162,8 +185,10 @@ channels, primary production in the food-waste bar, Transport in the emissions
 bar.
 
 It sits against the magnitude ramp, never against a state hue. Measured against
-the ramp step it most often neighbours, `#596571`: **CVD ΔE 11.6** (protan) and
-**ΔE 19.5** unsimulated — both clear. The validator marks the grey as failing
+every ramp step it can neighbour, the closest is step 800 `#375470` at **CVD ΔE
+11.6** (protan) and **ΔE 23.8** unsimulated; the mid-ramp steps sit further
+still, at ΔE 15.8–21.5 under CVD. The blue ramp separates from the red highlight
+more cleanly than the grey one did. The validator marks the grey as failing
 the chroma floor, which is correct and intended: the grey is not a series
 colour, it is the "everything else" ground the highlight is picked out against.
 
@@ -199,12 +224,16 @@ simulation, and WCAG contrast:
 validate_palette "#0063a0,#c56c00,#039b8c,#a17cda,#8c4062,#2d6101" \
   --mode light --surface "#fdfdfc" --pairs all
 
+# the magnitude ramp, as a sequential scale
+validate_palette "#eaf3fc,#d0e0f0,#b5cce2,#9ab6d2,#7f9fbe,#6587a7,#4d6e8d,#375470,#243b51" \
+  --mode light --surface "#fdfdfc" --ordinal
+
 # the 4-step frequency ordinal
-validate_palette "#abb7c5,#8e9baa,#596571,#2f363d" \
+validate_palette "#9ab6d2,#7f9fbe,#4d6e8d,#243b51" \
   --mode light --surface "#fdfdfc" --ordinal
 
 # the highlight against the ramp step it neighbours
-validate_palette "#596571,#b83025" \
+validate_palette "#375470,#b83025" \
   --mode light --surface "#fdfdfc" --pairs all
 ```
 

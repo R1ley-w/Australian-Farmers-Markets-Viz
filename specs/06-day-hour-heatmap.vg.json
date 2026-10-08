@@ -63,13 +63,13 @@
       "title": "Markets",
       "scale": {
         "range": [
-          "#c4cfdb",
-          "#abb7c5",
-          "#8e9baa",
-          "#727f8d",
-          "#596571",
-          "#444d56",
-          "#2f363d"
+          "#b5cce2",
+          "#9ab6d2",
+          "#7f9fbe",
+          "#6587a7",
+          "#4d6e8d",
+          "#375470",
+          "#243b51"
         ],
         "domainMin": 0,
         "type": "pow",

@@ -53,17 +53,23 @@
   --st-nt:       #a6a6a6;  /* neutral — no markets */
 
   /* --- magnitude: any ordered or continuous quantity ------------
-     One cool-grey ramp. The legend names the quantity; the colour
-     only ever means "more of it".                                */
-  --mag-100:     #edf2f8;
-  --mag-200:     #dae2ec;
-  --mag-300:     #c4cfdb;
-  --mag-400:     #abb7c5;
-  --mag-500:     #8e9baa;
-  --mag-600:     #727f8d;
-  --mag-700:     #596571;
-  --mag-800:     #444d56;
-  --mag-900:     #2f363d;
+     One muted slate-blue ramp, single hue (OKLCH H 248), monotone
+     in lightness. The legend names the quantity; the colour only
+     ever means "more of it". Its chroma peaks at 0.062, against
+     0.110-0.147 for the state hues, so a quantity reads as a
+     tinted neutral and an identity reads as a colour — which is
+     what keeps the two apart, since six state hues already span
+     the wheel and leave no free hue for a ramp to occupy.        */
+  --mag-100:     #eaf3fc;
+  --mag-200:     #d0e0f0;
+  --mag-300:     #b5cce2;
+  --mag-400:     #9ab6d2;
+  --mag-500:     #7f9fbe;
+  --mag-600:     #6587a7;
+  --mag-700:     #4d6e8d;
+  --mag-800:     #375470;
+  --mag-900:     #243b51;
+  --mag-950:     #132434;  /* only where a scale needs a ninth dark step */
 
   /* --- distance from a market: its own ramp, its own meaning ---- */
   --dist-100:    #feefde;
