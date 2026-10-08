@@ -82,8 +82,8 @@
           "Australia’s land area"
         ],
         "range": [
-          "#457b45",
-          "#4199c9"
+          "#2f363d",
+          "#b83025"
         ]
       }
     }
@@ -146,7 +146,7 @@
       },
       "encoding": {
         "color": {
-          "value": "#7c7f6e"
+          "value": "#767c83"
         },
         "tooltip": [
           {
@@ -189,7 +189,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#4a4f3e"
+          "value": "#474d54"
         }
       }
     }

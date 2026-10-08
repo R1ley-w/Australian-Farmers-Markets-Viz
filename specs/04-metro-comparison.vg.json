@@ -44,9 +44,9 @@
           ],
           "mark": {
             "type": "geoshape",
-            "fill": "#e8dcc8",
-            "fillOpacity": 0.85,
-            "stroke": "#fdfcf9",
+            "fill": "#f1f1f2",
+            "fillOpacity": 0.9,
+            "stroke": "#fdfdfc",
             "strokeWidth": 0.7
           },
           "encoding": {
@@ -71,7 +71,7 @@
           ],
           "mark": {
             "type": "circle",
-            "stroke": "#fdfcf9",
+            "stroke": "#fdfdfc",
             "strokeWidth": 1,
             "opacity": 0.9
           },
@@ -85,34 +85,32 @@
               "type": "quantitative"
             },
             "color": {
-              "field": "frequency",
+              "field": "state",
               "type": "nominal",
-              "title": "Trades",
-              "sort": [
-                "Weekly",
-                "Fortnightly",
-                "Monthly",
-                "Irregular"
-              ],
-              "legend": {
-                "orient": "bottom",
-                "direction": "horizontal",
-                "title": null
-              },
+              "title": "State",
               "scale": {
                 "domain": [
-                  "Weekly",
-                  "Fortnightly",
-                  "Monthly",
-                  "Irregular"
+                  "NSW",
+                  "VIC",
+                  "QLD",
+                  "WA",
+                  "SA",
+                  "TAS",
+                  "ACT",
+                  "NT"
                 ],
                 "range": [
-                  "#19421a",
-                  "#357336",
-                  "#5b995a",
-                  "#89bc87"
+                  "#0063a0",
+                  "#c56c00",
+                  "#039b8c",
+                  "#a17cda",
+                  "#8c4062",
+                  "#2d6101",
+                  "#767676",
+                  "#a6a6a6"
                 ]
-              }
+              },
+              "legend": null
             },
             "size": {
               "field": "hours_open",
@@ -140,6 +138,11 @@
                 "field": "suburb",
                 "type": "nominal",
                 "title": "Where"
+              },
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
               },
               {
                 "field": "market_days_raw",
@@ -193,9 +196,9 @@
           ],
           "mark": {
             "type": "geoshape",
-            "fill": "#e8dcc8",
-            "fillOpacity": 0.85,
-            "stroke": "#fdfcf9",
+            "fill": "#f1f1f2",
+            "fillOpacity": 0.9,
+            "stroke": "#fdfdfc",
             "strokeWidth": 0.7
           },
           "encoding": {
@@ -220,7 +223,7 @@
           ],
           "mark": {
             "type": "circle",
-            "stroke": "#fdfcf9",
+            "stroke": "#fdfdfc",
             "strokeWidth": 1,
             "opacity": 0.9
           },
@@ -234,29 +237,32 @@
               "type": "quantitative"
             },
             "color": {
-              "field": "frequency",
+              "field": "state",
               "type": "nominal",
-              "sort": [
-                "Weekly",
-                "Fortnightly",
-                "Monthly",
-                "Irregular"
-              ],
-              "legend": null,
+              "title": "State",
               "scale": {
                 "domain": [
-                  "Weekly",
-                  "Fortnightly",
-                  "Monthly",
-                  "Irregular"
+                  "NSW",
+                  "VIC",
+                  "QLD",
+                  "WA",
+                  "SA",
+                  "TAS",
+                  "ACT",
+                  "NT"
                 ],
                 "range": [
-                  "#19421a",
-                  "#357336",
-                  "#5b995a",
-                  "#89bc87"
+                  "#0063a0",
+                  "#c56c00",
+                  "#039b8c",
+                  "#a17cda",
+                  "#8c4062",
+                  "#2d6101",
+                  "#767676",
+                  "#a6a6a6"
                 ]
-              }
+              },
+              "legend": null
             },
             "size": {
               "field": "hours_open",
@@ -284,6 +290,11 @@
                 "field": "suburb",
                 "type": "nominal",
                 "title": "Where"
+              },
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
               },
               {
                 "field": "market_days_raw",

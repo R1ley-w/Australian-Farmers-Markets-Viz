@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Distance from each local government area's centre to the nearest farmers' market, on a log scale — the values span 0.1 km to 2,228 km, so a linear ramp would put most of the continent at one end.",
+  "description": "Distance from each local government area's centre to the nearest farmers' market, using a log scale the values span 0.1 km to 2,228 km.",
   "width": "container",
   "height": 520,
   "params": [
@@ -50,7 +50,7 @@
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "#fdfcf9",
+        "stroke": "#fdfdfc",
         "strokeWidth": 0.25
       },
       "encoding": {
@@ -68,15 +68,15 @@
               2300
             ],
             "range": [
-              "#feeddb",
-              "#f7dabb",
-              "#ecc49a",
-              "#dda971",
-              "#c68a45",
-              "#aa6c18",
-              "#8e5400",
-              "#713f00",
-              "#542d00"
+              "#feefde",
+              "#f7dcbc",
+              "#edc698",
+              "#ddac6e",
+              "#c58d41",
+              "#a96f10",
+              "#8c5600",
+              "#6e4000",
+              "#4f2c00"
             ],
             "clamp": true
           },
@@ -130,7 +130,7 @@
       "mark": {
         "type": "circle",
         "size": 11,
-        "color": "#457b45",
+        "color": "#1c1f23",
         "opacity": 0.9
       },
       "encoding": {

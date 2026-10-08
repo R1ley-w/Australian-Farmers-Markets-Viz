@@ -1,9 +1,18 @@
 # Design system
 
-Light theme only. One palette, two typefaces. The tokens live in
-`css/style.css` and are handed to Vega-Lite as a shared config in
-`js/main.js`, so the page and the charts are styled from one source and
-no spec carries fonts or chrome colours of its own.
+Light theme only. One rule governs the whole page:
+
+> **A colour encodes exactly one variable.** A saturated hue always means a
+> state and nothing else. Quantities use a reserved ramp. One highlight marks
+> the single category a chart is arguing about. Nothing is reused for a second
+> meaning anywhere on the page.
+
+The tokens live in `css/style.css` and are handed to Vega-Lite as a shared
+config in `js/main.js`, so the page and the charts are styled from one source
+and no spec carries fonts or chrome colours of its own. Every categorical scale
+in every spec names its own `domain` and `range`; the shared config deliberately
+has **no default categorical range**, so a colour cannot pick up a second
+meaning by falling through to a shared default.
 
 ---
 
@@ -21,148 +30,180 @@ no spec carries fonts or chrome colours of its own.
 --font-sans:  "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 ```
 
-No colour on any title. The eyebrows and act numbers are olive
-`#6E6733` — the seed olive `#8B824D` deepened to clear 4.5:1 on the page
-ground. Everything else is ink.
+No colour on any title — every heading is ink. Eyebrows and act numbers are
+`--ink-strong` `#3D434A`, a darker grey rather than a hue, because a hue there
+would be a colour that encodes nothing.
 
 ---
 
-## The nature palette
+## Surfaces and chrome — no meaning
 
-Built out from the five seed colours: `#D4B48C` sand, `#8AB46F` wattle
-green, `#D3E5C1` pale wattle, `#8B824D` olive, `#C3BFC4` grey, extended
-across the nature range — pale blues, greens, browns, golds and rusts.
-
-The seeds are *tints*. Run through the palette validator they fail on
-three counts — three of the five sit outside the lightness band, four
-read as grey against the chroma floor, and wattle-green against sand
-measures ΔE 4.2 under simulated protanopia, which is indistinguishable.
-So the seeds do the job they are good at — surfaces, landmass fill,
-chrome — and the series colours are deeper steps from the same hue
-families.
-
-### Surfaces and chrome
+These carry no data. They are neutral so that the only chromatic thing on the
+page is an encoding.
 
 | Token | Hex | Role | Contrast on page |
 |---|---|---|---|
-| `--page` | `#FAF7F0` | warm paper | — |
-| `--surface` | `#FDFCF9` | chart surface | — |
-| `--tint` | `#EEF3E3` | takeaway panels (from `#D3E5C1`) | — |
-| `--ink` | `#1F2417` | primary ink | 14.8:1 |
-| `--ink-2` | `#4A4F3E` | secondary ink | 7.9:1 |
-| `--ink-muted` | `#7C7F6E` | axis labels, captions | 3.8:1 |
-| `--ink-olive` | `#6E6733` | eyebrows, links | 5.4:1 |
-| `--grid` | `#E3E0D4` | hairline gridlines | — |
-| `--axis` | `#C3BFC4` | baselines (seed grey) | — |
-| `--neutral` | `#8A877F` | residual "everyone else" categories | 3.5:1 on surface |
-| `--land` | `#E8DCC8` | map landmass (from `#D4B48C`) | — |
-| `--land-stroke` | `#C9C2B0` | map borders | — |
+| `--page` | `#F7F7F5` | page ground | — |
+| `--surface` | `#FDFDFC` | chart surface | — |
+| `--tint` | `#F0F1EE` | takeaway panels | — |
+| `--ink` | `#1C1F23` | primary ink | 14.9:1 |
+| `--ink-2` | `#474D54` | secondary ink, lede | 7.9:1 |
+| `--ink-muted` | `#767C83` | axis labels, captions | 4.0:1 |
+| `--ink-strong` | `#3D434A` | eyebrows, act numbers, links | 10.1:1 |
+| `--grid` | `#E6E6E3` | hairline gridlines | — |
+| `--axis` | `#C6C6C2` | baselines | — |
+| `--land` | `#E9EAEC` | map landmass | — |
+| `--land-stroke` | `#CDCED1` | map borders | — |
 
-### Series — four slots, and four is the ceiling
+The landmass is grey on purpose. On the two choropleths the polygons carry a
+`--land-stroke` hairline, so a region at the pale end of a ramp is still
+readable as a shape rather than disappearing into the surface.
 
-| Slot | Name | Hex | Family |
+---
+
+## 1. State identity
+
+A state keeps the same colour everywhere it appears on the page. Victoria is
+`#C56C00` in the ranked list, in the metro comparison and in the operator
+chart, and orange means Victoria and nothing else in any of the sixteen charts.
+
+| State | Token | Hex | Hue |
 |---|---|---|---|
-| 1 | eucalypt | `#457B45` | green |
-| 2 | bark | `#7A4208` | brown |
-| 3 | waterhole | `#4199C9` | pale blue |
-| 4 | dry gold | `#B68611` | gold / yellow |
+| NSW | `--st-nsw` | `#0063A0` | blue |
+| VIC | `--st-vic` | `#C56C00` | orange |
+| QLD | `--st-qld` | `#039B8C` | teal |
+| WA | `--st-wa` | `#A17CDA` | violet |
+| SA | `--st-sa` | `#8C4062` | plum |
+| TAS | `--st-tas` | `#2D6101` | green |
+| ACT | `--st-act` | `#767676` | neutral — 2 markets |
+| NT | `--st-nt` | `#A6A6A6` | neutral — 0 markets |
 
-All-pairs validated against the `#FDFCF9` surface: lightness band, chroma
-floor and contrast all pass; worst pair under simulated CVD **ΔE 9.2**
-(protan, dry gold ↔ eucalypt) against a target of 8, and **ΔE 16.4**
-unsimulated (bark ↔ eucalypt) against a floor of 15.
+All six hues validated all-pairs against the `#FDFDFC` chart surface: lightness
+band, chroma floor and 3:1 contrast all pass; worst pair under simulated CVD
+**ΔE 9.7** (deutan, TAS ↔ SA) against a target of 8, and **ΔE 18.3**
+unsimulated (QLD ↔ NSW) against a floor of 15.
 
-Opening the palette to golds and oranges is what made a fourth slot
-possible. Green and brown differ mainly along the red-green axis, which
-is exactly the axis colour-vision deficiency removes; gold is separated
-on the *blue-yellow* axis, which CVD preserves.
+**Why two of the eight are grey.** Eight distinguishable hues is not achievable
+at this surface and lightness band. The best eight-way set found reaches only
+ΔE 12.4 unsimulated — under the 15 floor — and the best seven-way set reaches
+7.7 / 14.0, which also fails. Rather than ship two colours that cannot be told
+apart, the two jurisdictions with two markets and none take neutral greys, which
+is honest about how little there is to distinguish. This is a measured ceiling,
+not a style preference; re-run the search before adding a seventh hue.
 
-**Four is where it stops.** Searching the full nature hue range for a
-fifth, teal and rust both fail against this set, and the only colours
-that pass are a second blue — which is no use as a distinct identity.
-Past four categories the charts fold the residual to `--neutral` or use
-the ordinal ramp below.
+**There is no red in this set**, which is what guarantees no red/green pairing
+can occur. The highlight below is red, and it is confined to charts that carry
+no state colour at all.
 
-**Treat these four as fixed values, not a starting point.** The feasible
-region is very narrow: lightening the bark by one step drops the worst
-CVD pair from 9.2 to 4.8, and warming the green by one step drops it to
-7.7. Both fail. If you need to change one, re-run the search rather than
-nudging by eye.
+State colour appears in exactly three specs: `02b-gccsa-ranked`,
+`04-metro-comparison`, `08-operators`.
 
-### Accent
+---
 
-`--accent: #A8442A` red earth. For highlighting one mark in a field of
-one other colour — the modal stall-fee band, the cumulative travel line,
-the market itself among sales channels, primary production in the food
-waste bar.
+## 2. Magnitude — any ordered or continuous quantity
 
-Safe beside waterhole (CVD ΔE 21.7) and dry gold (ΔE 13.7). It
-**collides with eucalypt** (ΔE 3.6) and **bark** (ΔE 5.2), so it must
-never sit beside those two — which is why the travel-distance bars are
-waterhole rather than green, and why the donut's ring order puts red
-earth between waterhole and the neutral.
-
-On anything built from the green ramp the highlight is **dry gold**, not
-red earth — which is why Transport is gold on the emissions chart.
-
-### Eucalypt sequential ramp
-
-Choropleths, heatmaps, and any ordered category past four.
-
-Regenerated at the series green's own hue (OKLCH H 144) so the ramp and
-slot 1 read as one family.
+One cool-grey ramp, used for every quantity that is not distance-to-a-market.
+The legend names the quantity; the colour only ever means *more of it*. Because
+it is achromatic it cannot be confused with a state.
 
 | step | hex | | step | hex |
 |---|---|---|---|---|
-| 100 | `#E5F5E5` | | 600 | `#4D8D4D` |
-| 200 | `#CCE9CB` | | 700 | `#357336` |
-| 300 | `#B1D9B0` | | 800 | `#245B26` |
-| 400 | `#90C48F` | | 900 | `#19421A` |
-| 500 | `#6EAA6D` | | | |
+| 100 | `#EDF2F8` | | 600 | `#727F8D` |
+| 200 | `#DAE2EC` | | 700 | `#596571` |
+| 300 | `#C4CFDB` | | 800 | `#444D56` |
+| 400 | `#ABB7C5` | | 900 | `#2F363D` |
+| 500 | `#8E9BAA` | | | |
 
-The **4-step ordinal** used for trading frequency is
-`#19421A · #357336 · #5B995A · #89BC87`, run dark-first so darker reads
-as "trades more often". Validated as an ordinal ramp: monotone lightness,
-every adjacent gap ≥ 0.06 ΔL, single hue, and the light end clears the
-2:1 floor at 2.13:1. (The plain 400 step does not — it measures 1.95:1 —
-which is why the light end is `#89BC87` rather than `#90C48F`.)
+The ramp is monotone in lightness at a single hue (spread 6°). Its pale end is
+close to the surface by design — in a continuous choropleth or heatmap that end
+means *near zero*, and the polygon strokes keep the shape legible.
 
-### Dry-grass ramp
+The **4-step discrete ordinal** used for trading frequency takes four steps from
+the same ramp, run dark-first so darker reads as "trades more often":
 
-The second sequential context, for distance to the nearest market:
-`#FEEDDB · #F7DABB · #ECC49A · #DDA971 · #C68A45 · #AA6C18 · #8E5400`.
+`#2F363D · #596571 · #8E9BAA · #ABB7C5`
 
-Distance gets grass rather than green on purpose — the country browns off
-as you move away from a market, so the metaphor and the "darker = more"
-convention point the same way, and it keeps the distance map visually
-distinct from the density map.
+Validated as an ordinal ramp: monotone lightness, every adjacent gap ≥ 0.06 ΔL,
+single hue (4° spread), and the light end clears the 2:1 floor at exactly
+2.00:1 — which is why the light end is step 400 and not step 300.
 
-Neither sequential map is linear, for good reason. Distance to a market
-spans 0.1 km to 2,228 km, so the distance choropleth is **log** scaled —
-a capped linear ramp put 38% of LGAs, and most of the land area, on one
-step. The day/hour heatmap has one cell holding 70 of 175 markets, which
-washed every other cell to near-white, so it uses **pow 0.4**.
+Neither sequential map is linear, for good reason. The day/hour heatmap has one
+cell holding 70 of 175 markets, which washed every other cell to near-white, so
+it uses **pow 0.4**.
+
+---
+
+## 3. Distance from a market — its own ramp
+
+Distance gets a separate warm ramp so that the distance map is never mistaken
+for the density map, and so "how far" never shares a colour with "how many".
+
+`#FEEFDE · #F7DCBC · #EDC698 · #DDAC6E · #C58D41 · #A96F10 · #8C5600 · #6E4000 · #4F2C00`
+
+Monotone in lightness at a single hue (spread 7°). Used in one spec only:
+`03-lga-distance`.
+
+Distance to a market spans 0.1 km to 2,228 km, so this choropleth is **log**
+scaled — a capped linear ramp put 38% of LGAs, and most of the land area, on a
+single step.
+
+---
+
+## 4. Highlight
+
+`--highlight: #B83025`. The one category a chart is arguing about: the modal
+stall-fee band, the cumulative travel line, the market itself among sales
+channels, primary production in the food-waste bar, Transport in the emissions
+bar.
+
+It sits against the magnitude ramp, never against a state hue. Measured against
+the ramp step it most often neighbours, `#596571`: **CVD ΔE 11.6** (protan) and
+**ΔE 19.5** unsimulated — both clear. The validator marks the grey as failing
+the chroma floor, which is correct and intended: the grey is not a series
+colour, it is the "everything else" ground the highlight is picked out against.
+
+The highlight appears in `05`, `09`, `10`, `12`, `13`, `14` — none of which
+carry a state colour, so red and green never meet.
+
+---
+
+## Where each colour appears
+
+| Encoding | Specs |
+|---|---|
+| State identity hues | `02b`, `04`, `08` |
+| Magnitude ramp | `01`, `02`, `06`, `07`, `11`, `13`, `14`, `15` |
+| Distance ramp | `03` |
+| Highlight | `05`, `09`, `10`, `12`, `13`, `14` |
+
+The only pairing that occurs is highlight against the magnitude ramp, which is
+the highlight doing exactly its one job — picking one category out of a neutral
+field. State identity and the distance ramp each appear alone. No spec mixes
+state hues with the highlight, and none mixes the two ramps.
 
 ---
 
 ## Reproducing the validation
 
-The palette checks come from the data-viz skill's validator, which
-computes OKLCH lightness and chroma, OKLab ΔE under the
-Machado–Oliveira–Fernandes CVD simulation, and WCAG contrast:
+The checks come from the data-viz skill's validator, which computes OKLCH
+lightness and chroma, OKLab ΔE under the Machado–Oliveira–Fernandes CVD
+simulation, and WCAG contrast:
 
 ```bash
-# the four series slots, all pairs
-validate_palette "#457B45,#7A4208,#4199C9,#B68611" --mode light --surface "#FDFCF9" --pairs all
+# the six state hues, all pairs
+validate_palette "#0063a0,#c56c00,#039b8c,#a17cda,#8c4062,#2d6101" \
+  --mode light --surface "#fdfdfc" --pairs all
 
 # the 4-step frequency ordinal
-validate_palette "#89BC87,#5B995A,#357336,#19421A" --mode light --surface "#FDFCF9" --ordinal
+validate_palette "#abb7c5,#8e9baa,#596571,#2f363d" \
+  --mode light --surface "#fdfdfc" --ordinal
 
-# the accent, against each colour it actually sits beside
-validate_palette "#4199C9,#A8442A" --mode light --surface "#FDFCF9" --pairs all
-validate_palette "#B68611,#A8442A" --mode light --surface "#FDFCF9" --pairs all
-
-# and the pairs it must NOT sit beside, for the record
-validate_palette "#457B45,#A8442A" --mode light --surface "#FDFCF9" --pairs all   # ΔE 3.6
-validate_palette "#7A4208,#A8442A" --mode light --surface "#FDFCF9" --pairs all   # ΔE 5.2
+# the highlight against the ramp step it neighbours
+validate_palette "#596571,#b83025" \
+  --mode light --surface "#fdfdfc" --pairs all
 ```
+
+The two 9-step ramps are continuous scales, not discrete ordinals, so they are
+checked for lightness monotonicity and single hue rather than against the
+discrete-step gap and light-end contrast floors, which assume each step has to
+stand alone as a mark.

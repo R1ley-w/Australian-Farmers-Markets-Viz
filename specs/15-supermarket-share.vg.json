@@ -34,7 +34,7 @@
             "Woolworths",
             "Coles",
             "ALDI",
-            "Independents",
+            "Metcash-supplied independents",
             "Everyone else"
           ],
           "scale": {
@@ -46,11 +46,11 @@
               "Everyone else"
             ],
             "range": [
-              "#457b45",
-              "#a8442a",
-              "#4199c9",
-              "#b68611",
-              "#8a877f"
+              "#2f363d",
+              "#596571",
+              "#8e9baa",
+              "#abb7c5",
+              "#dae2ec"
             ]
           },
           "legend": {
@@ -98,7 +98,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#4a4f3e"
+          "value": "#474d54"
         }
       }
     },
@@ -122,7 +122,7 @@
           "type": "nominal"
         },
         "color": {
-          "value": "#1f2417"
+          "value": "#1c1f23"
         }
       }
     },
@@ -145,7 +145,7 @@
           "type": "nominal"
         },
         "color": {
-          "value": "#7c7f6e"
+          "value": "#767c83"
         }
       }
     }

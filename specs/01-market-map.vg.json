@@ -37,9 +37,9 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#e8dcc8",
-        "fillOpacity": 0.8,
-        "stroke": "#c9c2b0",
+        "fill": "#f1f1f2",
+        "fillOpacity": 0.9,
+        "stroke": "#cdced1",
         "strokeWidth": 0.6
       },
       "encoding": {
@@ -68,7 +68,7 @@
       ],
       "mark": {
         "type": "circle",
-        "stroke": "#fdfcf9",
+        "stroke": "#fdfdfc",
         "strokeWidth": 0.8,
         "opacity": 0.88,
         "cursor": "pointer"
@@ -130,10 +130,10 @@
               "Irregular"
             ],
             "range": [
-              "#19421a",
-              "#357336",
-              "#5b995a",
-              "#89bc87"
+              "#2f363d",
+              "#596571",
+              "#8e9baa",
+              "#abb7c5"
             ]
           }
         },

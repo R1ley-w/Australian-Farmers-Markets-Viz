@@ -1,76 +1,87 @@
 /* ------------------------------------------------------------------
    Australian Farmers' Markets — visual system
 
-   Light theme only. One palette, one set of type stacks, defined here
-   and handed to Vega-Lite as a shared config in js/main.js so the page
-   and the charts always agree.
+   Light theme only. The tokens here are handed to Vega-Lite as a
+   shared config in js/main.js so the page and the charts agree.
 
-   The palette is an Australian nature palette built out from the five
-   seed colours: #D4B48C sand, #8AB46F wattle green, #D3E5C1 pale
-   wattle, #8B824D olive, #C3BFC4 grey. The seeds are tints — too pale
-   and too low-chroma to carry series identity — so they serve as
-   surfaces, landmass fills and chrome, while the series colours are
-   deeper steps from the same and neighbouring hue families. See
-   docs/design-system.md for the validation results.
+   Colour encodes exactly one variable. A saturated hue always means
+   a state and nothing else; quantities use the magnitude ramp; the
+   distance-to-a-market quantity has its own ramp; one highlight
+   marks the category a chart is arguing about. Nothing is reused
+   for a second meaning. See docs/design-system.md for the key.
    ------------------------------------------------------------------ */
 
 :root {
   color-scheme: light;
 
-  /* --- surfaces and chrome ------------------------------------- */
-  --page:        #faf7f0;  /* warm paper */
-  --surface:     #fdfcf9;  /* chart surface */
-  --tint:        #eef3e3;  /* pale wattle, from #D3E5C1 */
-  --ink:         #1f2417;  /* near-black, green cast    14.8:1 on page */
-  --ink-2:       #4a4f3e;  /*                            7.9:1 */
-  --ink-muted:   #7c7f6e;  /*                            3.8:1 */
-  --ink-olive:   #6e6733;  /* eyebrows and act numbers   5.4:1 */
-  --grid:        #e3e0d4;  /* hairline gridline */
-  --axis:        #c3bfc4;  /* seed grey */
-  --border:      rgba(31, 36, 23, 0.12);
+  /* --- surfaces and chrome (carry no meaning) -------------------- */
+  --page:        #f7f7f5;
+  --surface:     #fdfdfc;
+  --tint:        #f0f1ee;  /* takeaway panels */
+  --ink:         #1c1f23;  /* primary ink      14.9:1 on page */
+  --ink-2:       #474d54;  /*                   7.9:1 */
+  --ink-muted:   #767c83;  /*                   4.0:1 */
+  --ink-strong:  #3d434a;  /* eyebrows, act numbers, links */
+  --grid:        #e6e6e3;
+  --axis:        #c6c6c2;
+  --border:      rgba(28, 31, 35, 0.12);
+  --land:        #e9eaec;  /* map landmass — deliberately neutral */
+  --land-stroke: #cdced1;
 
-  /* --- map basemap --------------------------------------------- */
-  --land:        #e8dcc8;  /* sand, from #D4B48C */
-  --land-stroke: #c9c2b0;
+  /* === COLOUR ENCODES ONE VARIABLE =============================
+     Every colour below has exactly one meaning across the whole
+     page. Saturated hues are reserved for STATE IDENTITY and are
+     used nowhere else; quantities use the reserved ramps; the
+     highlight marks the one category a chart is arguing about.
+     See docs/design-system.md for the full key.
+     ============================================================= */
 
-  /* --- series: four slots, validated all-pairs ------------------
-     Worst pair under simulated CVD ΔE 9.2 (protan, gold vs eucalypt),
-     ΔE 16.4 unsimulated. Four is the ceiling in nature hues: a fifth
-     only ever comes back as a second blue, and teal and rust both fail
-     against this set. Past four, fold to --neutral or use the ordinal
-     ramp below. The feasible region is narrow — lightening the bark or
-     warming the green by one step breaks the CVD gate — so treat these
-     four as fixed values, not as a starting point to nudge.         */
-  --s1:          #457b45;  /* eucalypt      */
-  --s2:          #7a4208;  /* bark          */
-  --s3:          #4199c9;  /* waterhole     */
-  --s4:          #b68611;  /* dry gold      */
+  /* --- state identity: a state keeps its colour everywhere ------
+     Six states carry a hue; all-pairs validated, worst CVD ΔE 9.7,
+     worst unsimulated ΔE 18.3. Eight distinct hues is not
+     achievable — the best 8-way set reaches ΔE 12.4 unsimulated,
+     below the 15 floor — so the two territories with two markets
+     and none take neutrals instead. No red anywhere in this set,
+     so a red/green pairing cannot occur.                         */
+  --st-nsw:      #0063a0;  /* blue    */
+  --st-vic:      #c56c00;  /* orange  */
+  --st-qld:      #039b8c;  /* teal    */
+  --st-wa:       #a17cda;  /* violet  */
+  --st-sa:       #8c4062;  /* plum    */
+  --st-tas:      #2d6101;  /* green   */
+  --st-act:      #767676;  /* neutral — 2 markets */
+  --st-nt:       #a6a6a6;  /* neutral — no markets */
 
-  /* --- accent: highlighting one mark in a field of one other ------
-     Red earth. Safe beside waterhole (ΔE 21.7) and gold (ΔE 13.7);
-     it collides with eucalypt (ΔE 3.6) and bark (ΔE 5.2) under CVD,
-     so never put it next to those two. On the green ramp the
-     highlight is gold instead.                                     */
-  --accent:      #a8442a;
+  /* --- magnitude: any ordered or continuous quantity ------------
+     One cool-grey ramp. The legend names the quantity; the colour
+     only ever means "more of it".                                */
+  --mag-100:     #edf2f8;
+  --mag-200:     #dae2ec;
+  --mag-300:     #c4cfdb;
+  --mag-400:     #abb7c5;
+  --mag-500:     #8e9baa;
+  --mag-600:     #727f8d;
+  --mag-700:     #596571;
+  --mag-800:     #444d56;
+  --mag-900:     #2f363d;
 
-  /* --- neutral: residual "everyone else" categories ---------------
-     Deliberately achromatic, so it is not a series colour and does
-     not need to clear the chroma floor. Darkened from the seed grey
-     to clear 3:1 on the chart surface.                             */
-  --neutral:     #8a877f;
+  /* --- distance from a market: its own ramp, its own meaning ---- */
+  --dist-100:    #feefde;
+  --dist-200:    #f7dcbc;
+  --dist-300:    #edc698;
+  --dist-400:    #ddac6e;
+  --dist-500:    #c58d41;
+  --dist-600:    #a96f10;
+  --dist-700:    #8c5600;
+  --dist-800:    #6e4000;
+  --dist-900:    #4f2c00;
 
-  /* --- eucalypt sequential ramp (choropleths, heatmaps) --------- */
-  --euc-100:     #e5f5e5;
-  --euc-200:     #cce9cb;
-  --euc-300:     #b1d9b0;
-  --euc-400:     #90c48f;
-  --euc-500:     #6eaa6d;
-  --euc-600:     #4d8d4d;
-  --euc-700:     #357336;
-  --euc-800:     #245b26;
-  --euc-900:     #19421a;
+  /* --- highlight: the one category a chart is arguing about -----
+     Never appears in a chart that carries state colour, so it
+     never sits beside the green.                                 */
+  --highlight:   #b83025;
 
-  /* --- typography ---------------------------------------------- */
+/* --- typography ---------------------------------------------- */
   --font-serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
   --font-sans:  "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 
@@ -120,8 +131,8 @@ h3 { font-size: 1.02rem; margin: 0 0 0.35em; }
 
 /* Body: Helvetica. */
 p { margin: 0 0 1em; max-width: var(--measure); }
-a { color: var(--ink-olive); text-underline-offset: 2px; }
-a:hover { color: var(--accent); }
+a { color: var(--ink-strong); text-underline-offset: 2px; }
+a:hover { color: var(--highlight); }
 
 .lede   { font-size: 1.13rem; color: var(--ink-2); max-width: 40rem; }
 .muted  { color: var(--ink-muted); }
@@ -141,7 +152,7 @@ header.masthead {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-olive);
+  color: var(--ink-strong);
   margin: 0 0 1.1em;
 }
 
@@ -185,7 +196,7 @@ section.act:last-of-type { border-bottom: 0; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-olive);
+  color: var(--ink-strong);
   margin: 0 0 0.7em;
 }
 
@@ -251,7 +262,7 @@ figcaption .sub {
 .takeaway {
   margin: 1.5rem 0 0;
   padding: 0.95rem 1.15rem;
-  border-left: 3px solid var(--s1);
+  border-left: 3px solid var(--ink-strong);
   background: var(--tint);
   border-radius: 0 4px 4px 0;
   font-size: 0.95rem;
@@ -265,7 +276,7 @@ figcaption .sub {
   color: var(--ink-muted);
   font-size: 0.88rem;
 }
-.chart-error { color: var(--accent); }
+.chart-error { color: var(--highlight); }
 
 /* ---------------------------------------------------------- footer */
 

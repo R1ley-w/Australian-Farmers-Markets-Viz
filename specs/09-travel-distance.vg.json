@@ -45,7 +45,7 @@
           }
         },
         "color": {
-          "value": "#4199c9"
+          "value": "#444d56"
         },
         "tooltip": [
           {
@@ -84,7 +84,7 @@
           "format": ".0f"
         },
         "color": {
-          "value": "#4a4f3e"
+          "value": "#474d54"
         }
       }
     },
@@ -110,7 +110,7 @@
           }
         },
         "color": {
-          "value": "#a8442a"
+          "value": "#b83025"
         },
         "tooltip": [
           {
@@ -149,7 +149,7 @@
           "value": "57% within 50 km"
         },
         "color": {
-          "value": "#a8442a"
+          "value": "#b83025"
         }
       }
     }

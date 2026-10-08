@@ -20,7 +20,35 @@
       },
       "encoding": {
         "color": {
-          "value": "#457b45"
+          "field": "states",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+            "domain": [
+              "NSW",
+              "VIC",
+              "QLD",
+              "WA",
+              "SA",
+              "TAS",
+              "ACT",
+              "NT"
+            ],
+            "range": [
+              "#0063a0",
+              "#c56c00",
+              "#039b8c",
+              "#a17cda",
+              "#8c4062",
+              "#2d6101",
+              "#767676",
+              "#a6a6a6"
+            ]
+          },
+          "legend": {
+            "orient": "bottom-right",
+            "direction": "vertical"
+          }
         }
       }
     },
@@ -37,7 +65,7 @@
           "type": "quantitative"
         },
         "color": {
-          "value": "#4a4f3e"
+          "value": "#474d54"
         }
       }
     }

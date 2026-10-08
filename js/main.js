@@ -22,9 +22,7 @@ function theme() {
   const surface = token('--surface');
   const serif = token('--font-serif');
   const sans = token('--font-sans');
-  const series = ['--s1', '--s2', '--s3', '--s4'].map(token);
-  const euc = ['--euc-100', '--euc-200', '--euc-300', '--euc-400', '--euc-500',
-    '--euc-600', '--euc-700', '--euc-800', '--euc-900'].map(token);
+  const mag = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => token(`--mag-${i}00`));
 
   return {
     background: null,
@@ -53,11 +51,12 @@ function theme() {
     },
     view: { stroke: null, continuousWidth: 620, continuousHeight: 300 },
     range: {
-      // Four categorical slots is the documented ceiling for this palette.
-      category: series,
-      heatmap: euc.slice(0, 7),
-      ramp: euc.slice(0, 7),
-      ordinal: [euc[3], euc[4], euc[6], euc[8]],
+      // No default categorical range. Every categorical scale in this
+      // project names its own domain and range, so a colour cannot pick up
+      // a second meaning by falling through to a shared default.
+      heatmap: mag.slice(2, 9),
+      ramp: mag.slice(2, 9),
+      ordinal: [mag[8], mag[6], mag[4], mag[3]],
     },
     mark: { tooltip: true },
     bar: { cornerRadiusEnd: 3 },
@@ -81,7 +80,7 @@ const embedOptions = () => ({
   tooltip: { theme: 'light' },
 });
 
-/*  render */
+/* ------------------------------------------------------------ render */
 
 async function renderOne(el) {
   const url = el.dataset.spec;
