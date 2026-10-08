@@ -91,7 +91,13 @@
   --font-serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
   --font-sans:  "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 
-  --measure: 34rem;
+  /* Line length is capped so no line of text exceeds ten words.
+     The limits are in em, not rem, so each element's own font size
+     sets its character count rather than its pixel width. Ten words
+     of short words is about forty characters, which is what these
+     values are; widening any of them breaks the rule. Measured with
+     measure.mjs, which counts words per rendered line box.        */
+  --measure: 20em;
 }
 
 /* ------------------------------------------------------------ base */
@@ -140,7 +146,7 @@ p { margin: 0 0 1em; max-width: var(--measure); }
 a { color: var(--ink-strong); text-underline-offset: 2px; }
 a:hover { color: var(--highlight); }
 
-.lede   { font-size: 1.13rem; color: var(--ink-2); max-width: 40rem; }
+.lede   { font-size: 1.13rem; color: var(--ink-2); max-width: 18em; }
 .muted  { color: var(--ink-muted); }
 .small  { font-size: 0.83rem; }
 code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
@@ -153,6 +159,7 @@ header.masthead {
 }
 
 .eyebrow {
+  max-width: none;   /* a short label, already well under ten words */
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
@@ -202,6 +209,7 @@ section.section:last-of-type { border-bottom: 0; }
 
 .act-num,
 .section-num {
+  max-width: none;   /* a short label, already well under ten words */
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
@@ -236,7 +244,7 @@ figcaption .sub {
   font-family: var(--font-sans);
   color: var(--ink-2);
   font-size: 0.89rem;
-  max-width: 46rem;
+  max-width: 20em;
   margin: 0;
 }
 
@@ -252,13 +260,15 @@ figcaption .sub {
 }
 .viz .vega-bind { margin-bottom: 0.25rem; }
 
+/* The rule above a source line belongs to the chart, so it spans the whole
+   card; the source text itself stays inside the ten-word measure. */
+.viz { border-bottom: 1px solid var(--border); padding-bottom: 0.9rem; }
+
 .source {
-  margin: 0.9rem 0 0;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--border);
+  margin: 0.7rem 0 0;
   font-size: 0.78rem;
   color: var(--ink-muted);
-  max-width: none;
+  max-width: 23em;
 }
 .source a { color: inherit; }
 
@@ -278,7 +288,7 @@ figcaption .sub {
   border-radius: 0 4px 4px 0;
   font-size: 0.95rem;
   color: var(--ink-2);
-  max-width: 46rem;
+  max-width: 20em;
 }
 .takeaway strong { color: var(--ink); font-weight: 700; }
 
@@ -298,7 +308,7 @@ footer.colophon {
   font-size: 0.86rem;
 }
 footer.colophon h3 { color: var(--ink-2); }
-footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: 46rem; }
+footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: 21em; }
 footer.colophon li { margin-bottom: 0.4em; }
 
 /* ---------------------------------------------------------- narrow */
