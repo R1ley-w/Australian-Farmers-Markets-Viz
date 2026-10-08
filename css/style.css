@@ -187,10 +187,15 @@ header.masthead {
 
 /* -------------------------------------------------------- sections */
 
-section.act { padding-block: clamp(3rem, 7vw, 5rem); border-bottom: 1px solid var(--border); }
-section.act:last-of-type { border-bottom: 0; }
+/* The page markup uses .section / .section-num; .act / .act-num are kept as
+   aliases so either spelling picks up the same styling. */
+section.act,
+section.section { padding-block: clamp(3rem, 7vw, 5rem); border-bottom: 1px solid var(--border); }
+section.act:last-of-type,
+section.section:last-of-type { border-bottom: 0; }
 
-.act-num {
+.act-num,
+.section-num {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
