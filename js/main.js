@@ -102,7 +102,7 @@ async function renderOne(el) {
 }
 
 /* Charts render when they first scroll into view, so the page is usable
-   immediately rather than after sixteen specs have all compiled. */
+   immediately rather than after fifteen specs have all compiled. */
 function observe() {
   const els = [...document.querySelectorAll('.viz[data-spec]')];
   if (!('IntersectionObserver' in window)) {
