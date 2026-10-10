@@ -1,243 +1,635 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state. Capital cities are drawn as circles because at national scale their polygons are invisible slivers.",
-  "width": "container",
-  "height": 500,
-  "projection": {
-    "type": "mercator"
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state. Capital cities are drawn as circles because at national scale their polygons are invisible slivers. Clicking a region or city picks its state; the inset compares the last two picked states at state level. Plain Vega because Vega-Lite cannot cap a selection at two.",
+  "autosize": {
+    "type": "pad",
+    "resize": true
   },
-  "layer": [
+  "signals": [
     {
-      "data": {
-        "url": "data/gccsa.topo.json",
-        "format": {
-          "type": "topojson",
-          "feature": "GCCSA_2021_AUST_GDA2020"
+      "name": "width",
+      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 760",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : width"
         }
+      ]
+    },
+    {
+      "name": "stacked",
+      "update": "width < 600"
+    },
+    {
+      "name": "height",
+      "update": "stacked ? 590 : 500"
+    },
+    {
+      "name": "insetW",
+      "update": "stacked ? min(width, 340) : 240"
+    },
+    {
+      "name": "insetH",
+      "update": "112"
+    },
+    {
+      "name": "mapW",
+      "update": "stacked ? width : width - insetW - 16"
+    },
+    {
+      "name": "mapH",
+      "update": "stacked ? height - insetH - 16 - 64 - 58 : height"
+    },
+    {
+      "name": "mapTop",
+      "update": "stacked ? 64 : 0"
+    },
+    {
+      "name": "insetX",
+      "update": "stacked ? 0 : width - insetW"
+    },
+    {
+      "name": "insetY",
+      "update": "stacked ? height - insetH : (height - insetH) / 2 + 10"
+    },
+    {
+      "name": "picked",
+      "description": "The last two states clicked, oldest first. Clicking a picked state (on the map or its bar) removes it; a third pick drops the oldest.",
+      "value": [],
+      "on": [
+        {
+          "events": "click",
+          "update": "item() && isObject(datum) && isString(datum.state) ? (indexof(picked, datum.state) >= 0 ? (picked[0] === datum.state ? slice(picked, 1) : slice(picked, 0, 1)) : (length(picked) === 0 ? [datum.state] : [peek(picked), datum.state])) : picked"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "density",
+      "url": "data/gccsa_market_density.csv",
+      "format": {
+        "type": "csv",
+        "parse": "auto"
+      }
+    },
+    {
+      "name": "regions",
+      "url": "data/gccsa.topo.json",
+      "format": {
+        "type": "topojson",
+        "feature": "GCCSA_2021_AUST_GDA2020"
       },
       "transform": [
         {
-          "lookup": "properties.name",
-          "from": {
-            "data": {
-              "url": "data/gccsa_market_density.csv"
-            },
-            "key": "gccsa",
-            "fields": [
-              "markets",
-              "population",
-              "markets_per_100k",
-              "kind"
-            ]
-          }
-        },
-        {
-          "filter": "datum.kind == 'Rest of state'"
-        }
-      ],
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#fdfdfc",
-        "strokeWidth": 0.8
-      },
-      "encoding": {
-        "color": {
-          "field": "markets_per_100k",
-          "type": "quantitative",
-          "title": [
-            "Markets per",
-            "100,000 people"
+          "type": "lookup",
+          "from": "density",
+          "key": "gccsa",
+          "fields": [
+            "properties.name"
           ],
-          "scale": {
-            "range": [
-              "#b5cce2",
-              "#9ab6d2",
-              "#7f9fbe",
-              "#6587a7",
-              "#4d6e8d",
-              "#375470",
-              "#243b51"
-            ],
-            "domain": [
-              0,
-              2
-            ],
-            "type": "linear"
-          },
-          "legend": {
-            "orient": "top-left",
-            "gradientLength": 150,
-            "format": ".1f"
-          }
-        },
-        "tooltip": [
-          {
-            "field": "properties.name",
-            "type": "nominal",
-            "title": "Region"
-          },
-          {
-            "field": "markets",
-            "type": "quantitative",
-            "title": "Markets"
-          },
-          {
-            "field": "population",
-            "type": "quantitative",
-            "title": "Population",
-            "format": ","
-          },
-          {
-            "field": "markets_per_100k",
-            "type": "quantitative",
-            "title": "Per 100k people",
-            "format": ".2f"
-          }
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "data/gccsa.topo.json",
-        "format": {
-          "type": "topojson",
-          "feature": "GCCSA_2021_AUST_GDA2020"
+          "values": [
+            "state",
+            "kind",
+            "markets",
+            "population",
+            "markets_per_100k"
+          ]
         }
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": null,
-        "stroke": "#cdced1",
-        "strokeWidth": 0.5
+      ]
+    },
+    {
+      "name": "restOfState",
+      "source": "regions",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.kind === 'Rest of state'"
+        }
+      ]
+    },
+    {
+      "name": "pickedRegions",
+      "source": "regions",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(picked, datum.state) >= 0"
+        }
+      ]
+    },
+    {
+      "name": "capitals",
+      "source": "density",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.kind === 'Capital city'"
+        }
+      ]
+    },
+    {
+      "name": "states",
+      "url": "data/markets_by_state.csv",
+      "format": {
+        "type": "csv",
+        "parse": "auto"
       }
     },
     {
-      "data": {
-        "url": "data/gccsa_market_density.csv"
+      "name": "pickedStates",
+      "source": "states",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(picked, datum.state) >= 0"
+        },
+        {
+          "type": "formula",
+          "as": "slot",
+          "expr": "indexof(picked, datum.state)"
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "name": "projection",
+      "type": "mercator",
+      "fit": {
+        "signal": "data('regions')"
+      },
+      "extent": {
+        "signal": "[[0, mapTop], [mapW, mapTop + mapH]]"
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "density",
+      "type": "linear",
+      "domain": [
+        0,
+        2
+      ],
+      "clamp": true,
+      "range": [
+        "#b5cce2",
+        "#9ab6d2",
+        "#7f9fbe",
+        "#6587a7",
+        "#4d6e8d",
+        "#375470",
+        "#243b51"
+      ]
+    },
+    {
+      "name": "citySize",
+      "type": "sqrt",
+      "domain": [
+        150000,
+        5700000
+      ],
+      "range": [
+        70,
+        700
+      ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "density",
+      "type": "gradient",
+      "orient": "top-left",
+      "title": [
+        "Markets per",
+        "100,000 people"
+      ],
+      "gradientLength": 150,
+      "format": ".1f",
+      "values": [
+        0,
+        1,
+        2
+      ],
+      "direction": "horizontal"
+    }
+  ],
+  "marks": [
+    {
+      "name": "regionShapes",
+      "type": "shape",
+      "from": {
+        "data": "restOfState"
+      },
+      "encode": {
+        "update": {
+          "fill": {
+            "scale": "density",
+            "field": "markets_per_100k"
+          },
+          "stroke": {
+            "value": "#fdfdfc"
+          },
+          "strokeWidth": {
+            "value": 0.8
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "signal": "{'Region': datum.properties.name, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.state}"
+          }
+        }
       },
       "transform": [
         {
-          "filter": "datum.kind == 'Capital city'"
+          "type": "geoshape",
+          "projection": "projection"
         }
-      ],
-      "mark": {
-        "type": "circle",
-        "stroke": "#1c1f23",
-        "strokeWidth": 1,
-        "opacity": 0.95
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lng",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "size": {
-          "field": "population",
-          "type": "quantitative",
-          "title": "City population",
-          "scale": {
-            "type": "sqrt",
-            "domain": [
-              150000,
-              5700000
-            ],
-            "range": [
-              70,
-              700
-            ]
-          },
-          "legend": {
-            "orient": "bottom-left",
-            "direction": "horizontal",
-            "values": [
-              500000,
-              2500000,
-              5000000
-            ],
-            "format": ".2s"
-          }
-        },
-        "color": {
-          "field": "markets_per_100k",
-          "type": "quantitative",
-          "scale": {
-            "range": [
-              "#b5cce2",
-              "#9ab6d2",
-              "#7f9fbe",
-              "#6587a7",
-              "#4d6e8d",
-              "#375470",
-              "#243b51"
-            ],
-            "domain": [
-              0,
-              2
-            ],
-            "type": "linear"
-          },
-          "legend": null
-        },
-        "tooltip": [
-          {
-            "field": "gccsa",
-            "type": "nominal",
-            "title": "Capital city"
-          },
-          {
-            "field": "markets",
-            "type": "quantitative",
-            "title": "Markets"
-          },
-          {
-            "field": "population",
-            "type": "quantitative",
-            "title": "Population",
-            "format": ","
-          },
-          {
-            "field": "markets_per_100k",
-            "type": "quantitative",
-            "title": "Per 100k people",
-            "format": ".2f"
-          }
-        ]
-      }
+      ]
     },
     {
-      "data": {
-        "url": "data/gccsa_market_density.csv"
+      "type": "shape",
+      "from": {
+        "data": "regions"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "fill": {
+            "value": null
+          },
+          "stroke": {
+            "value": "#cdced1"
+          },
+          "strokeWidth": {
+            "value": 0.5
+          }
+        }
       },
       "transform": [
         {
-          "filter": "datum.kind == 'Capital city'"
+          "type": "geoshape",
+          "projection": "projection"
         }
-      ],
-      "mark": {
-        "type": "text",
-        "dy": 3,
-        "fontSize": 11,
-        "fontWeight": 700,
-        "color": "#1c1f23"
+      ]
+    },
+    {
+      "name": "pickedOutline",
+      "type": "shape",
+      "from": {
+        "data": "pickedRegions"
       },
-      "encoding": {
-        "longitude": {
-          "field": "lng",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "markets",
-          "type": "quantitative"
+      "interactive": false,
+      "encode": {
+        "update": {
+          "fill": {
+            "value": null
+          },
+          "stroke": {
+            "value": "#1c1f23"
+          },
+          "strokeWidth": {
+            "value": 2
+          },
+          "strokeJoin": {
+            "value": "round"
+          }
+        }
+      },
+      "transform": [
+        {
+          "type": "geoshape",
+          "projection": "projection"
+        }
+      ]
+    },
+    {
+      "name": "capitalMarks",
+      "type": "symbol",
+      "from": {
+        "data": "capitals"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[0]"
+          },
+          "y": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[1]"
+          },
+          "shape": {
+            "value": "circle"
+          },
+          "size": {
+            "scale": "citySize",
+            "field": "population"
+          },
+          "fill": {
+            "scale": "density",
+            "field": "markets_per_100k"
+          },
+          "stroke": {
+            "value": "#1c1f23"
+          },
+          "strokeWidth": {
+            "signal": "indexof(picked, datum.state) >= 0 ? 2.5 : 1"
+          },
+          "opacity": {
+            "value": 0.95
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "signal": "{'Capital city': datum.gccsa, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.state}"
+          }
         }
       }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "capitals"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[0]"
+          },
+          "y": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[1]"
+          },
+          "dy": {
+            "value": 3
+          },
+          "align": {
+            "value": "center"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "text": {
+            "field": "markets"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "fill": {
+            "value": "#1c1f23"
+          }
+        }
+      }
+    },
+    {
+      "name": "inset",
+      "type": "group",
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "insetX"
+          },
+          "y": {
+            "signal": "insetY"
+          },
+          "width": {
+            "signal": "insetW"
+          },
+          "height": {
+            "signal": "insetH"
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "stroke": {
+            "value": "#e2e3e5"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "cornerRadius": {
+            "value": 4
+          }
+        }
+      },
+      "signals": [
+        {
+          "name": "labelW",
+          "update": "38"
+        },
+        {
+          "name": "valueW",
+          "update": "112"
+        },
+        {
+          "name": "barMax",
+          "update": "max(40, insetW - 24 - labelW - valueW)"
+        }
+      ],
+      "scales": [
+        {
+          "name": "barX",
+          "type": "linear",
+          "domain": {
+            "data": "states",
+            "field": "markets_per_100k"
+          },
+          "zero": true,
+          "nice": false,
+          "range": [
+            0,
+            {
+              "signal": "barMax"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "text",
+          "interactive": false,
+          "encode": {
+            "update": {
+              "x": {
+                "value": 12
+              },
+              "y": {
+                "value": 20
+              },
+              "text": {
+                "value": "Compare two states"
+              },
+              "fontWeight": {
+                "value": 700
+              },
+              "fontSize": {
+                "value": 11.5
+              },
+              "fill": {
+                "value": "#474d54"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "interactive": false,
+          "encode": {
+            "update": {
+              "x": {
+                "value": 12
+              },
+              "y": {
+                "signal": "length(picked) === 0 ? 50 : insetH - 12"
+              },
+              "text": {
+                "signal": "length(picked) === 0 ? ['Click any two states on the map', 'to compare them here.'] : length(picked) === 1 ? 'Click one more state.' : 'Markets per 100,000 people'"
+              },
+              "lineHeight": {
+                "value": 16
+              },
+              "fontSize": {
+                "value": 11.5
+              },
+              "fill": {
+                "value": "#767c83"
+              }
+            }
+          }
+        },
+        {
+          "name": "bars",
+          "type": "rect",
+          "from": {
+            "data": "pickedStates"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "12 + labelW"
+              },
+              "width": {
+                "scale": "barX",
+                "field": "markets_per_100k"
+              },
+              "y": {
+                "signal": "34 + datum.slot * 28"
+              },
+              "height": {
+                "value": 18
+              },
+              "fill": {
+                "scale": "density",
+                "field": "markets_per_100k"
+              },
+              "cornerRadiusTopRight": {
+                "value": 3
+              },
+              "cornerRadiusBottomRight": {
+                "value": 3
+              },
+              "cursor": {
+                "value": "pointer"
+              },
+              "tooltip": {
+                "signal": "{'State': datum.state, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to remove'}"
+              }
+            }
+          }
+        },
+        {
+          "type": "rule",
+          "interactive": false,
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "12 + labelW"
+              },
+              "x2": {
+                "signal": "12 + labelW"
+              },
+              "y": {
+                "value": 30
+              },
+              "y2": {
+                "signal": "34 + max(1, length(picked)) * 28 - 6"
+              },
+              "stroke": {
+                "value": "#c3c6ca"
+              },
+              "opacity": {
+                "signal": "length(picked) ? 1 : 0"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "data": "pickedStates"
+          },
+          "interactive": false,
+          "encode": {
+            "update": {
+              "x": {
+                "value": 12
+              },
+              "y": {
+                "signal": "34 + datum.slot * 28 + 9"
+              },
+              "baseline": {
+                "value": "middle"
+              },
+              "text": {
+                "field": "state"
+              },
+              "fontWeight": {
+                "value": 700
+              },
+              "fontSize": {
+                "value": 11.5
+              },
+              "fill": {
+                "value": "#1c1f23"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "data": "pickedStates"
+          },
+          "interactive": false,
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "12 + labelW + scale('barX', datum.markets_per_100k) + 6"
+              },
+              "y": {
+                "signal": "34 + datum.slot * 28 + 9"
+              },
+              "baseline": {
+                "value": "middle"
+              },
+              "text": {
+                "signal": "format(datum.markets_per_100k, '.2f') + '  \u00b7  ' + datum.markets + (datum.markets === 1 ? ' market' : ' markets')"
+              },
+              "fontSize": {
+                "value": 11.5
+              },
+              "fill": {
+                "value": "#474d54"
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }
