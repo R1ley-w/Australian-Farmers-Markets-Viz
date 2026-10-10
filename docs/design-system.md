@@ -95,8 +95,8 @@ not a style preference; re-run the search before adding a seventh hue.
 can occur. The highlight below is red, and it is confined to charts that carry
 no state colour at all.
 
-State colour appears in exactly two specs: `02b-gccsa-ranked` and
-`08-operators`.
+State colour appears in exactly three specs: `02b-gccsa-ranked`,
+`07-frequency-by-state` (the inner ring of the sunburst) and `08-operators`.
 
 ---
 
@@ -131,11 +131,21 @@ identity reads as a colour. That distinction is what the one-variable rule rests
 on here, and it is the reason the ramp must stay muted: saturating it would make
 it compete with the state hues for the same perceptual role.
 
-The ramp and the state hues also never share a chart (`§1` lists where each
-appears), so the remaining closeness is cross-chart only. The tightest case is
-step 800 `#375470` against South Australia's plum, ΔE 2.3 under simulated
-protanopia and 14.5 unsimulated — they sit in different charts and SA is always
-directly labelled.
+The ramp and the state hues share exactly one chart: the frequency sunburst
+(`07`), where states take the inner ring and the frequency ordinal takes the
+outer ring. Everywhere else the closeness is cross-chart only. The tightest
+cross-chart case is step 800 `#375470` against South Australia's plum, ΔE 2.3
+under simulated protanopia and 14.5 unsimulated. SA is always directly labelled.
+
+**The sunburst exception, measured.** Its closest pairs are NSW `#0063A0` against
+Fortnightly `#4D6E8D` (ΔE 7.5 unsimulated, 2.7 tritan) and ACT `#767676` against
+Fortnightly (ΔE 7.4). Both fall below the 15 floor, so colour alone would not
+separate them. Here it doesn't have to: **ring position tells you which variable
+is being read.** Anything on the inner ring is a state and anything on the outer
+ring is a frequency, so a reader never has to decide from hue whether an arc is
+NSW or Fortnightly. Every state is also labelled directly (inside its arc where
+it fits, outside the ring where it doesn't). Each encoding keeps its one meaning.
+Don't copy this pairing into a chart without a structural separation like this.
 
 Its pale end is close to the surface by design — in a continuous choropleth or
 heatmap that end means *near zero*, and the polygon strokes keep the shape
@@ -151,8 +161,8 @@ single hue (1° spread), and the light end clears the 2:1 floor at 2.06:1 — wh
 is why the light end is step 400 and not step 300, which measures 1.62:1.
 
 Trading frequency is a variable in its own right, so it keeps this exact
-four-step scale everywhere it is encoded — the national map (`01`), the state
-breakdown (`07`) and the Melbourne/Sydney panels (`04`). Weekly is always the
+four-step scale everywhere it is encoded — the national map (`01`), the outer
+ring of the state sunburst (`07`) and the Melbourne/Sydney panels (`04`). Weekly is always the
 darkest step.
 
 Neither sequential map is linear, for good reason. The day/hour heatmap has one
@@ -201,15 +211,16 @@ carry a state colour, so red and green never meet.
 
 | Encoding | Specs |
 |---|---|
-| State identity hues | `02b`, `08` |
+| State identity hues | `02b`, `07` (inner ring), `08` |
 | Magnitude ramp | `01`, `02`, `04`, `06`, `07`, `11`, `13`, `14`, `15` |
 | Distance ramp | `03` |
 | Highlight | `05`, `09`, `10`, `12`, `13`, `14` |
 
 The only pairing that occurs is highlight against the magnitude ramp, which is
 the highlight doing exactly its one job — picking one category out of a neutral
-field. State identity and the distance ramp each appear alone. No spec mixes
-state hues with the highlight, and none mixes the two ramps.
+field. The one exception is `07`, where state hues and the frequency ordinal sit
+on separate rings (see §2). The distance ramp appears alone. No spec mixes state
+hues with the highlight, and none mixes the two ramps.
 
 ---
 

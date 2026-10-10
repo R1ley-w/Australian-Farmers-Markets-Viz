@@ -24,7 +24,7 @@ fetch their data with `fetch()`, which browsers block on `file://` origins.
 index.html                 the narrative page
 css/style.css              layout, typography, bush palette tokens
 js/main.js                 chart loader, shared Vega-Lite theme
-specs/*.vg.json            one Vega-Lite spec per idiom
+specs/*.vg.json            one spec per idiom (Vega-Lite; 07 is plain Vega)
 data/                      source data and the files derived from it
 vendor/                    Vega, Vega-Lite and Vega-Embed, pinned
 scripts/prep_markets.py    cleans the scraped AFMA directory
@@ -65,7 +65,7 @@ Sixteen idioms, four of them maps.
 | 5 | Ranked bar — every region by market density | `02b-gccsa-ranked` |
 | 6 | Cumulative line — population and land area within N km | `05-coverage-curve` |
 | 7 | Heatmap — trading day × opening hour | `06-day-hour-heatmap` |
-| 8 | Normalised stacked bar — trading frequency by state | `07-frequency-by-state` |
+| 8 | Sunburst — states (inner ring) by trading frequency (outer ring) | `07-frequency-by-state` |
 | 9 | Labelled bar — multi-market operators | `08-operators` |
 | 10 | Bar + cumulative line — stallholder travel distance | `09-travel-distance` |
 | 11 | Histogram — stall fee distribution | `10-stall-fees` |
