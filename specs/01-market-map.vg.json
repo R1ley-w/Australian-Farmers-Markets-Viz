@@ -27,7 +27,7 @@
         {"events": "dblclick", "update": "null"}
       ]},
     {"name": "zoomK", "update": "focusArea ? 2.2 : focusState ? 1.4 : 1"},
-    {"name" : "freqSel", "value" : "null", "on" : [
+    {"name" : "freqSel", "value" : null, "on" : [
       {"events": "@freqLegendSymbols:click, @freqLegendLabels:click",
       "update": "datum.value === freqSel ? null : datum.value"}
     ]}
@@ -97,7 +97,7 @@
   "projections": [{
     "name" : "projection" , "type" : "mercator",
     "fit" : {"signal" : "focusArea ? data('focusAreaShape'): focusState ? data('focusStateShape') : data('states')"},
-    "extend" : {"signal": "[[0, 0], [width, mapH]]"}
+    "extent" : {"signal": "[[0, 0], [width, mapH]]"}
   }],
   "scales": [ 
     {
@@ -109,7 +109,7 @@
     {
       "name" : "hours",
       "type" : "sqrt",
-      "domain" : [2.8],
+      "domain" : [2,8],
       "range" : [28, 190]
     }
    ],
