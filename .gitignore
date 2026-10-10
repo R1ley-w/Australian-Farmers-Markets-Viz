@@ -5,6 +5,7 @@ __pycache__/
 node_modules/
 package.json
 package-lock.json
+*.md
 
 # Cowork session scratch, not part of the project
 outputs/

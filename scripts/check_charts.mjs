@@ -81,13 +81,24 @@ for (const file of fs.readdirSync(SPECS).sort()) {
     // console.warn; capture them rather than letting them scroll past.
     const realWarn = console.warn;
     console.warn = (...m) => warnings.push(`${file}: ${m.join(' ')}`);
-    let compiled;
+    // A spec with a Vega (not Vega-Lite) $schema is already a Vega spec — the
+    // sunburst in 07 needs the partition transform, which Vega-Lite lacks.
+    // Headless there is no container, so pin its width signal to 760 too.
+    const isVega = /\/schema\/vega\/v\d/.test(spec.$schema || '');
+    let vgSpec;
     try {
-      compiled = vl.compile(spec, { config });
+      if (isVega) {
+        const w = (spec.signals || []).find((s) => s.name === 'width');
+        if (w) { delete w.init; delete w.on; w.value = 760; }
+        vgSpec = spec;
+      } else {
+        vgSpec = vl.compile(spec, { config }).spec;
+      }
     } finally {
       console.warn = realWarn;
     }
-    const view = new vega.View(vega.parse(compiled.spec), { renderer: 'none', loader });
+    const view = new vega.View(vega.parse(vgSpec, isVega ? config : undefined),
+                               { renderer: 'none', loader });
     await view.runAsync();
 
     // A lookup that joins nothing still "works" — report row counts so an
