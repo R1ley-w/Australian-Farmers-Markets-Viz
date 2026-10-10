@@ -49,37 +49,39 @@
 <!--  Section 1 -->
 <section class="section" id="where">
   <div class="wrap">
-    <p class="section-num">Section 1 — Where can you find a market?</p>
 
     <!-- Row 1: introduction left, organisations chart right -->
-    <div class="chart-grid">
-      <div class="intro">
-        <p>
+    <div class="chart-grid row-match">
+      <header class = "sec-head">
+        <h2>
+          <span class = "sec-word">
+            <svg viewBox="0 0 1000 196" aria-hidden="true" focusable="false">
+              <text x="0" y="194" textLength="1000" lengthAdjust="spacingAndGlyphs">SECTION</text>
+            </svg>
+            <span class = "visually hidden">Section</span>
+          </span>
+          <span class = "sec-num">1</span>
+          <span class = "sec-1">Where can you find a market?</span>
+        </h2>
+        <p class = "sec-intro">
           The Australian Farmers' Markets Association directory was the main source of data I used.
           It holds 178 listings, which resolve to <strong>175 markets</strong> (after removing duplicates). 
           New South Wales and Victoria hold 70% of them, Queensland, despite having a much larger crop output, only has thirteen.
         </p>
-      </div>
+      </header>
 
-      <figure class="chart">
+      <figure class = "chart">
         <figcaption>
-          <div class="title">A few organisations run several markets</div>
-          <p class="sub">Operators running more than one market. Everyone else runs exactly one.</p>
+          <div class = "title">Organisations running markets</div>
+          <p class = "sub">a few organisations run multiple markets, the rest are independently managed</p>
         </figcaption>
-        <div class="viz" data-spec="specs/08-operators.vg.json"></div>
-        <p class="source">AFMA directory, 2026 · <code>market_operator</code> field</p>
+        <div class = "viz" data-spec = "specs/08-operators.vg.json"></div>
       </figure>
-    </div>
 
     <!-- Row 2: the map across the full width -->
     <figure class="chart wide">
       <figcaption>
         <div class="title">Every farmers' market in the national directory</div>
-        <p class="sub">
-          Colour is how often the market trades; size is how many hours it is open on a
-          market day. you can click a legend entry to isolate a frequency, or you can use the state filter.
-          Clicking a market opens its website.
-        </p>
       </figcaption>
       <div class="viz" data-spec="specs/01-market-map.vg.json"></div>
       <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 20 September 2026 · boundaries ABS ASGS Edition 3 (CC BY 4.0)</p>
@@ -93,7 +95,6 @@
           <p class="sub">Frequency mix within each state from the directory's free-text trading-days field.</p>
         </figcaption>
         <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
-        <p class="source">AFMA directory, 2026 · frequency classified from the <code>market_days</code> field</p>
       </figure>
 
       <div class="aside">

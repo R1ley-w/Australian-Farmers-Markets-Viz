@@ -293,6 +293,10 @@ figure.chart {
   figure.chart:has(> .viz[data-spec*="04-metro"]) { display: block; }
 }
 
+@media (min-width: 900px) {
+  figure.chart.wide { display: block; }
+}
+
 figure.chart > figcaption { margin: 0 0 1rem; }
 
 /* Graph titles: serif, regular weight. */
@@ -364,6 +368,16 @@ figure.photo figcaption {
   margin-top: 2.2rem;
 }
 .chart-grid figure.chart { margin-top: 0; }
+.chart-grid.row-match{ align-items: stretch; }
+.row-match > figure.chart {
+  display: flex;
+  flex-direction: column;
+}
+.row-match > figure.chart > .viz {
+  flex: 1 1 0;          /* takes all the spare height in the card*/
+  min-height: 260px;    
+  overflow: hidden;     /* the chart's own size can't push the card taller */
+}
 
 .takeaway {
   margin: 1.5rem 0 0;
@@ -409,6 +423,3 @@ footer.colophon li { margin-bottom: 0.4em; }
   * { animation: none !important; transition: none !important; }
 }
 
-@media (min-width: 900px) {
-  figure.chart.wide { display: block; }
-}

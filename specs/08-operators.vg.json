@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Organisations that run more than one farmers' market, by number of markets run.",
   "width": "container",
-  "height": 260,
+  "height": "container",
   "data": {
     "url": "data/operators.csv"
   },
