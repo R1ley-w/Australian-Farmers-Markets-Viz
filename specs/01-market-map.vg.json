@@ -1,204 +1,284 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "Every farmers' market in the AFMA directory, coloured by trading frequency and sized by hours open on a market day.",
-  "width": "container",
   "height": 540,
-  "params": [
+  "autosize" : {"type" : "pad", "resize" : true},
+  "signals" : [
     {
-      "name": "stateFilter",
-      "value": "All states",
-      "bind": {
-        "input": "select",
-        "options": [
-          "All states",
-          "NSW",
-          "VIC",
-          "QLD",
-          "WA",
-          "SA",
-          "TAS",
-          "ACT"
-        ],
-        "name": "State  "
+      "name" : "width",
+      "init" : "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 760",
+      "on" : [
+        { 
+          "events" : "window:resize",
+          "update" : "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : width"
+        }
+      ]
+    },
+    {"name" : "mapTop", "value" : 64},
+    {"name" : "mapH", "update" : "height - mapTop - 42"},
+    {"name" : "focusState", "value" : null, "on" : [
+        {"events": "@stateShapes:click", "update": "focusState ? focusState : datum.properties.name"},
+        {"events": "@backButton:click, @backLabel:click", "update": "focusArea ? focusState : null"},
+        {"events": "dblclick", "update": "null"}
+      ]},
+    {"name" : "focusArea", "value" : null, "on" : [
+        {"events": "@areaShapes:click", "update": "datum.properties.name"},
+        {"events": "@backButton:click, @backLabel:click", "update": "null"},
+        {"events": "dblclick", "update": "null"}
+      ]},
+    {"name": "zoomK", "update": "focusArea ? 2.2 : focusState ? 1.4 : 1"},
+    {"name" : "freqSel", "value" : "null", "on" : [
+      {"events": "@freqLegendSymbols:click, @freqLegendLabels:click",
+      "update": "datum.value === freqSel ? null : datum.value"}
+    ]}
+  ],
+  "data": [
+    {
+      "name" : "states",
+      "url" : "data/states.topo.json",
+      "format" : {"type" : "topojson", "feature" : "STE_2021_AUST_GDA2020"}
+    },
+    {
+      "name" : "capitalAreas",
+      "url" : "data/gccsa.topo.json",
+      "format" : {"type" : "topojson", "feature" : "GCCSA_2021_AUST_GDA2020"},
+      "transform" : [
+        {"type" : "filter", "expr" : "indexof(datum.properties.name, 'Rest of') !== 0"}
+      ]
+    },
+    {
+      "name" : "lgas",
+      "url" : "data/lga.topo.json",
+      "format" : {"type" : "topojson", "feature" : "LGA_2023_AUST_GDA2020"}
+    },
+    {
+    "name": "focusStateShape",
+    "source": "states",
+    "transform": [
+      {"type": "filter", "expr": "datum.properties.name === focusState"}
+    ]
+    },
+    {
+      "name": "focusAreaShape",
+      "source": "capitalAreas",
+      "transform": [
+        {"type": "filter", "expr": "datum.properties.name === focusArea"}
+      ]
+    },
+    {
+      "name": "areasInState",
+      "source": "capitalAreas",
+      "transform": [
+        {"type": "filter", "expr": "focusState && !focusArea && datum.properties.state === focusState"}
+      ]
+    },
+    {
+      "name": "lgasInState",
+      "source": "lgas",
+      "transform": [
+        {"type": "filter", "expr": "focusArea && datum.properties.state === focusState"}
+      ]
+    },
+    {
+      "name": "markets",
+      "url": "data/markets.csv",
+      "format": {"type": "csv", "parse": "auto"},
+      "transform": [
+        {"type": "filter", "expr": "datum.is_duplicate == 0 && datum.geocode_ok == 1"},
+        {"type": "formula", "as": "hrs", "expr": "datum.hours_open ? datum.hours_open : 4"},
+        {
+          "type": "formula",
+          "as": "stateName",
+          "expr": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]"
+        }
+      ]
+    }
+  ],
+  "projections": [{
+    "name" : "projection" , "type" : "mercator",
+    "fit" : {"signal" : "focusArea ? data('focusAreaShape'): focusState ? data('focusStateShape') : data('states')"},
+    "extend" : {"signal": "[[0, 0], [width, mapH]]"}
+  }],
+  "scales": [ 
+    {
+      "name" : "freq",
+      "type" : "ordinal",
+      "domain" : ["Weekly", "Fortnightly", "Monthly", "Irregular"],
+      "range" : ["#243b51", "#4d6e8d", "#7f9fbe", "#9ab6d2"]
+    },
+    {
+      "name" : "hours",
+      "type" : "sqrt",
+      "domain" : [2.8],
+      "range" : [28, 190]
+    }
+   ],
+  "legends": [
+    {
+      "size" : "hours",
+      "title" : "Hours Open",
+      "orient" : "top-left",
+      "direction" : "horizontal",
+      "values" : [3,4,5,6],
+      "symbolType" : "circle",
+      "encode" : {"symbols" : {"update" : {"fill" : {"value" : "#7f9fbe"}, "strokeWidth" : {"value" : 0}}}}
+    },
+    {
+      "fill": "freq",
+      "title": "Trading frequency",
+      "orient": "top-right",
+      "symbolType": "circle",
+      "encode": {
+        "symbols": {
+          "name": "freqLegendSymbols",
+          "interactive": true,
+          "update": {
+            "opacity": {"signal": "!freqSel || datum.value === freqSel ? 1 : 0.25"},
+            "cursor": {"value": "pointer"}
+          }
+        },
+        "labels": {
+          "name": "freqLegendLabels",
+          "interactive": true,
+          "update": {
+            "opacity": {"signal": "!freqSel || datum.value === freqSel ? 1 : 0.4"},
+            "cursor": {"value": "pointer"}
+          }
+        }
       }
     }
   ],
-  "projection": {
-    "type": "mercator"
-  },
-  "layer": [
+  "marks": [
     {
-      "data": {
-        "url": "data/states.topo.json",
-        "format": {
-          "type": "topojson",
-          "feature": "STE_2021_AUST_GDA2020"
+      "name": "mapBox",
+      "type": "group",
+      "encode": {
+        "update": {
+          "x": {"value": 0},
+          "y": {"signal": "mapTop"},
+          "width": {"signal": "width"},
+          "height": {"signal": "mapH"},
+          "clip": {"value": true}
         }
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#f1f1f2",
-        "fillOpacity": 0.9,
-        "stroke": "#cdced1",
-        "strokeWidth": 0.6
-      },
-      "encoding": {
-        "tooltip": {
-          "field": "properties.name",
-          "type": "nominal",
-          "title": "State"
+      "marks": [
+        {
+          "name": "stateShapes",
+          "type": "shape",
+          "from": {"data": "states"},
+          "encode": {
+            "update": {
+              "fill": {"value": "#f1f1f2"},
+              "fillOpacity": {"signal": "!focusState || datum.properties.name === focusState ? 0.9 : 0.35"},
+              "stroke": {"value": "#cdced1"},
+              "strokeWidth": {"value": 0.6},
+              "cursor": {"signal": "focusState ? 'default' : 'zoom-in'"},
+              "tooltip": {"signal": "focusState ? null : datum.properties.name + ' (click to zoom)'"}
+            }
+          },
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
+          "type": "shape",
+          "from": {"data": "lgasInState"},
+          "interactive": false,
+          "encode": {"update": {"fill": {"value": null}, "stroke": {"value": "#fdfdfc"}, "strokeWidth": {"value": 0.8}}},
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
+          "name": "areaShapes",
+          "type": "shape",
+          "from": {"data": "areasInState"},
+          "encode": {
+            "update": {
+              "fill": {"value": "#e2e3e5"},
+              "fillOpacity": {"value": 0.6},
+              "stroke": {"value": "#767c83"},
+              "strokeWidth": {"value": 1},
+              "strokeDash": {"value": [4, 3]},
+              "cursor": {"value": "zoom-in"},
+              "tooltip": {"signal": "datum.properties.name + ' (click to zoom)'"}
+            }
+          },
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
+          "name": "marketDots",
+          "type": "symbol",
+          "from": {"data": "markets"},
+          "encode": {
+            "update": {
+              "x": {"signal": "scale('projection', [datum.lng, datum.lat])[0]"},
+              "y": {"signal": "scale('projection', [datum.lng, datum.lat])[1]"},
+              "shape": {"value": "circle"},
+              "size": {"signal": "scale('hours', datum.hrs) * zoomK"},
+              "fill": {"scale": "freq", "field": "frequency"},
+              "stroke": {"value": "#fdfdfc"},
+              "strokeWidth": {"value": 0.8},
+              "opacity": {
+                "signal": "(!freqSel || datum.frequency === freqSel ? 0.88 : 0.1) * (!focusState || datum.stateName === focusState ? 1 : 0.3)"
+              },
+              "cursor": {"value": "pointer"},
+              "href": {"field": "url"},
+              "tooltip": {
+                "signal": "{'Market': datum.name, 'Where': datum.suburb, 'State': datum.state, 'Trades': datum.market_days_raw, 'Frequency': datum.frequency, 'Hours open': isValid(datum.hours_open) ? format(datum.hours_open, '.1f') : '—', 'Operator': datum.operator}"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "backButton",
+      "type": "rect",
+      "encode": {
+        "update": {
+          "x": {"value": 0},
+          "y": {"signal": "height - 34"},
+          "width": {"signal": "focusArea ? 150 : 140"},
+          "height": {"value": 26},
+          "cornerRadius": {"value": 4},
+          "fill": {"value": "#ffffff"},
+          "stroke": {"value": "#c3c6ca"},
+          "cursor": {"value": "pointer"},
+          "opacity": {"signal": "focusState ? 1 : 0"},
+          "tooltip": {"signal": "null"}
         }
       }
     },
     {
-      "data": {
-        "url": "data/markets.csv"
-      },
-      "transform": [
-        {
-          "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1"
-        },
-        {
-          "filter": "stateFilter == 'All states' || datum.state == stateFilter"
-        },
-        {
-          "calculate": "datum.hours_open ? datum.hours_open : 4",
-          "as": "hrs"
+      "name": "backLabel",
+      "type": "text",
+      "encode": {
+        "update": {
+          "x": {"value": 10},
+          "y": {"signal": "height - 21"},
+          "baseline": {"value": "middle"},
+          "text": {"signal": "focusArea ? '← Back to ' + focusState : '← All of Australia'"},
+          "fontSize": {"value": 11.5},
+          "fill": {"value": "#1c1f23"},
+          "cursor": {"value": "pointer"},
+          "opacity": {"signal": "focusState ? 1 : 0"},
+          "tooltip": {"signal": "null"}
         }
-      ],
-      "mark": {
-        "type": "circle",
-        "stroke": "#fdfdfc",
-        "strokeWidth": 0.8,
-        "opacity": 0.88,
-        "cursor": "pointer"
-      },
-      "encoding": {
-        "longitude": {
-          "field": "lng",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "size": {
-          "field": "hrs",
-          "type": "quantitative",
-          "title": "Hours open",
-          "scale": {
-            "type": "sqrt",
-            "domain": [
-              2,
-              8
-            ],
-            "range": [
-              28,
-              190
-            ]
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {"signal": "width"},
+          "y": {"signal": "height - 21"},
+          "align": {"value": "right"},
+          "baseline": {"value": "middle"},
+          "text": {
+            "signal": "focusArea ? focusArea : focusState ? focusState + ' · click the dashed city area to zoom in' : 'Click a state to zoom in'"
           },
-          "legend": {
-            "orient": "top-left",
-            "direction": "horizontal",
-            "values": [
-              3,
-              4,
-              5,
-              6
-            ]
-          }
-        },
-        "color": {
-          "field": "frequency",
-          "type": "nominal",
-          "title": "Trading frequency",
-          "sort": [
-            "Weekly",
-            "Fortnightly",
-            "Monthly",
-            "Irregular"
-          ],
-          "legend": {
-            "orient": "top-right",
-            "direction": "vertical"
-          },
-          "scale": {
-            "domain": [
-              "Weekly",
-              "Fortnightly",
-              "Monthly",
-              "Irregular"
-            ],
-            "range": [
-              "#243b51",
-              "#4d6e8d",
-              "#7f9fbe",
-              "#9ab6d2"
-            ]
-          }
-        },
-        "opacity": {
-          "condition": {
-            "param": "freqSel",
-            "value": 0.88
-          },
-          "value": 0.1
-        },
-        "href": {
-          "field": "url",
-          "type": "nominal"
-        },
-        "tooltip": [
-          {
-            "field": "name",
-            "type": "nominal",
-            "title": "Market"
-          },
-          {
-            "field": "suburb",
-            "type": "nominal",
-            "title": "Where"
-          },
-          {
-            "field": "state",
-            "type": "nominal",
-            "title": "State"
-          },
-          {
-            "field": "market_days_raw",
-            "type": "nominal",
-            "title": "Trades"
-          },
-          {
-            "field": "frequency",
-            "type": "nominal",
-            "title": "Frequency"
-          },
-          {
-            "field": "hours_open",
-            "type": "quantitative",
-            "title": "Hours open",
-            "format": ".1f"
-          },
-          {
-            "field": "operator",
-            "type": "nominal",
-            "title": "Operator"
-          }
-        ]
-      },
-      "params": [
-        {
-          "name": "freqSel",
-          "select": {
-            "type": "point",
-            "fields": [
-              "frequency"
-            ]
-          },
-          "bind": "legend"
+          "fontSize": {"value": 11.5},
+          "fill": {"value": "#767c83"}
         }
-      ]
+      }
     }
   ]
 }
