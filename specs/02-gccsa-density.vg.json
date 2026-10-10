@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state. Capital cities are drawn as circles because at national scale their polygons are invisible slivers. Clicking a region or city picks its state; the inset compares the last two picked states at state level. Plain Vega because Vega-Lite cannot cap a selection at two.",
+  "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state. Capital-city regions are small at national scale, so their figures are mainly read from tooltips. Clicking a region picks its state; the inset compares the last two picked states at state level. Plain Vega because Vega-Lite cannot cap a selection at two.",
   "autosize": {
     "type": "pad",
     "resize": true
@@ -22,7 +22,7 @@
     },
     {
       "name": "height",
-      "update": "stacked ? 590 : 500"
+      "update": "stacked ? 532 : 500"
     },
     {
       "name": "insetW",
@@ -38,7 +38,7 @@
     },
     {
       "name": "mapH",
-      "update": "stacked ? height - insetH - 16 - 64 - 58 : height"
+      "update": "stacked ? height - insetH - 16 - 64 : height"
     },
     {
       "name": "mapTop",
@@ -99,32 +99,12 @@
       ]
     },
     {
-      "name": "restOfState",
-      "source": "regions",
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.kind === 'Rest of state'"
-        }
-      ]
-    },
-    {
       "name": "pickedRegions",
       "source": "regions",
       "transform": [
         {
           "type": "filter",
           "expr": "indexof(picked, datum.state) >= 0"
-        }
-      ]
-    },
-    {
-      "name": "capitals",
-      "source": "density",
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.kind === 'Capital city'"
         }
       ]
     },
@@ -182,18 +162,6 @@
         "#375470",
         "#243b51"
       ]
-    },
-    {
-      "name": "citySize",
-      "type": "sqrt",
-      "domain": [
-        150000,
-        5700000
-      ],
-      "range": [
-        70,
-        700
-      ]
     }
   ],
   "legends": [
@@ -220,7 +188,7 @@
       "name": "regionShapes",
       "type": "shape",
       "from": {
-        "data": "restOfState"
+        "data": "regions"
       },
       "encode": {
         "update": {
@@ -304,87 +272,6 @@
           "projection": "projection"
         }
       ]
-    },
-    {
-      "name": "capitalMarks",
-      "type": "symbol",
-      "from": {
-        "data": "capitals"
-      },
-      "encode": {
-        "update": {
-          "x": {
-            "signal": "scale('projection', [datum.lng, datum.lat])[0]"
-          },
-          "y": {
-            "signal": "scale('projection', [datum.lng, datum.lat])[1]"
-          },
-          "shape": {
-            "value": "circle"
-          },
-          "size": {
-            "scale": "citySize",
-            "field": "population"
-          },
-          "fill": {
-            "scale": "density",
-            "field": "markets_per_100k"
-          },
-          "stroke": {
-            "value": "#1c1f23"
-          },
-          "strokeWidth": {
-            "signal": "indexof(picked, datum.state) >= 0 ? 2.5 : 1"
-          },
-          "opacity": {
-            "value": 0.95
-          },
-          "cursor": {
-            "value": "pointer"
-          },
-          "tooltip": {
-            "signal": "{'Capital city': datum.gccsa, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.state}"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {
-        "data": "capitals"
-      },
-      "interactive": false,
-      "encode": {
-        "update": {
-          "x": {
-            "signal": "scale('projection', [datum.lng, datum.lat])[0]"
-          },
-          "y": {
-            "signal": "scale('projection', [datum.lng, datum.lat])[1]"
-          },
-          "dy": {
-            "value": 3
-          },
-          "align": {
-            "value": "center"
-          },
-          "baseline": {
-            "value": "middle"
-          },
-          "text": {
-            "field": "markets"
-          },
-          "fontSize": {
-            "value": 11
-          },
-          "fontWeight": {
-            "value": 700
-          },
-          "fill": {
-            "value": "#1c1f23"
-          }
-        }
-      }
     },
     {
       "name": "inset",
@@ -618,7 +505,7 @@
                 "value": "middle"
               },
               "text": {
-                "signal": "format(datum.markets_per_100k, '.2f') + '  \u00b7  ' + datum.markets + (datum.markets === 1 ? ' market' : ' markets')"
+                "signal": "format(datum.markets_per_100k, '.2f') + '  ·  ' + datum.markets + (datum.markets === 1 ? ' market' : ' markets')"
               },
               "fontSize": {
                 "value": 11.5
