@@ -235,6 +235,53 @@ section.section { padding-block: clamp(3rem, 7vw, 5rem); border-bottom: 1px soli
 section.act:last-of-type,
 section.section:last-of-type { border-bottom: 0; }
 
+/* section titles */
+.sec-head {
+  container-type: inline-size;     /* sizes below scale with the block's own width */
+  display: grid;
+  grid-template-columns: auto 1fr; /* the big number, then everything else */
+  column-gap: 4cqi;
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+.sec-head h2 { display: contents; }  /* its parts join the grid above */
+
+.sec-word { grid-column: 1 / -1; }
+.sec-word svg { display: block; width: 100%; height: auto; overflow: visible; }
+.sec-word text {
+  font-family: var(--font-sans);
+  font-size: 268px;            /* SVG units: caps fill the 196-unit-tall box */
+  font-weight: 700;
+  letter-spacing: -0.06em;     /* letters touch, as in your picture */
+  fill: currentColor;
+}
+.sec-num {
+  grid-row: 2;
+  font-size: 52cqi;
+  font-weight: 700;
+  line-height: 0.73;
+  letter-spacing: -0.06em;
+  margin-top: 6cqi;
+}
+.sec-q {
+  grid-row: 2;
+  grid-column: 2;
+  font-size: 13cqi;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-top: 4cqi;
+}
+.sec-head .sec-intro {
+  grid-column: 2;
+  margin: 5cqi 0 0;
+  font-size: 1rem;
+}
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
 .act-num,
 .section-num {
   max-width: none;   /* a short label, already well under ten words */
@@ -312,7 +359,7 @@ figcaption .sub {
   font-family: var(--font-sans);
   color: var(--ink-2);
   font-size: 0.89rem;
-  max-width: 20em;
+  max-width: none;
   margin: 0;
 }
 
@@ -354,6 +401,29 @@ figure.photo img {
   margin-top: 0;
 }
 
+.aside-match .takeaway { max-width: none; }     /* full column width */
+
+@media (min-width: 740px) {                     /* only when side by side */
+  .chart-grid.aside-match { align-items: stretch; }
+  .aside-match > .aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .aside-match figure.photo {
+    flex: 1 1 0;          /* the photo takes whatever height is left... */
+    min-height: 140px;    /* ...but never shrinks to nothing */
+    display: flex;
+    flex-direction: column;
+  }
+  .aside-match figure.photo img {
+    flex: 1 1 0;
+    min-height: 0;
+    height: 100%;
+    object-fit: cover;    /* crop to fill, never stretch */
+  }
+}
+
 figure.photo figcaption {
   margin-top: 0.5rem;
   font-size: 0.85rem;
@@ -387,7 +457,7 @@ figure.photo figcaption {
   border-radius: 0 4px 4px 0;
   font-size: 0.95rem;
   color: var(--ink-2);
-  max-width: 20em;
+  max-width: none;
   margin-top: 0;
 }
 .takeaway strong { color: var(--ink); font-weight: 700; }

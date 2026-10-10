@@ -6,7 +6,7 @@
 <title>Australian Farmers' Markets</title>
 <meta name="description" content="Where Australia's farmers' markets are, who can actually reach one, what they do for producers, and how the sustainability case really stacks up.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f363d'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23f7f7f5'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23abb7c5'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/style.css?v=8">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
 <script src="vendor/vega.min.js"></script>
@@ -58,10 +58,10 @@
             <svg viewBox="0 0 1000 196" aria-hidden="true" focusable="false">
               <text x="0" y="194" textLength="1000" lengthAdjust="spacingAndGlyphs">SECTION</text>
             </svg>
-            <span class = "visually hidden">Section</span>
+            <span class = "visually-hidden">Section</span>
           </span>
           <span class = "sec-num">1</span>
-          <span class = "sec-1">Where can you find a market?</span>
+          <span class = "sec-q">Where can you find a market?</span>
         </h2>
         <p class = "sec-intro">
           The Australian Farmers' Markets Association directory was the main source of data I used.
@@ -77,6 +77,7 @@
         </figcaption>
         <div class = "viz" data-spec = "specs/08-operators.vg.json"></div>
       </figure>
+    </div>
 
     <!-- Row 2: the map across the full width -->
     <figure class="chart wide">
@@ -88,7 +89,7 @@
     </figure>
 
     <!-- Row 3: sunburst left, image with text underneath right -->
-    <div class="chart-grid">
+    <div class="chart-grid aside-match">         
       <figure class="chart">
         <figcaption>
           <div class="title">How often do markets trade</div>
@@ -97,7 +98,7 @@
         <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
       </figure>
 
-      <div class="aside">
+      <div class="aside">                         
         <figure class="photo">
           <img src="images/market.jpg" alt="DESCRIBE THE PHOTO HERE">
           <figcaption>PHOTO CREDIT AND SOURCE HERE</figcaption>
