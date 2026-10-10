@@ -157,7 +157,7 @@ a:hover { color: var(--highlight); }
 .small  { font-size: 0.83rem; }
 code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
 
-/* ----------------------------------------------------------- header */
+/*  header */
 
 header.masthead {
   padding-block: clamp(3rem, 9vw, 6rem) clamp(2rem, 5vw, 3rem);
@@ -197,7 +197,7 @@ header.masthead {
   margin: 0 0 1.1em;
 }
 
-/* ------------------------------------------------------- stat tiles */
+/*  stat tiles */
 
 .stats {
   display: grid;
@@ -226,7 +226,7 @@ header.masthead {
   line-height: 1.4;
 }
 
-/* -------------------------------------------------------- sections */
+/* sections */
 
 /* The page markup uses .section / .section-num; .act / .act-num are kept as
    aliases so either spelling picks up the same styling. */
@@ -247,7 +247,7 @@ section.section:last-of-type { border-bottom: 0; }
   margin: 0 0 0.7em;
 }
 
-/* --------------------------------------------------------- figures */
+/*  figures */
 
 figure.chart {
   margin: 2.2rem 0 0;
@@ -334,8 +334,28 @@ figcaption .sub {
   font-size: 0.78rem;
   color: var(--ink-muted);
   max-width: 23em;
+  align-items: start;
 }
 .source a { color: inherit; }
+
+.intro > p:first-child {margin-top: 0;}
+
+.aside { display: grid; gap: 1.25rem; }
+figure.photo { margin: 0; }
+figure.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-top: 0;
+}
+
+figure.photo figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  max-width: 23em;   /* keeps the ten-word line limit */
+}
 
 .chart-grid {
   display: grid;
@@ -354,6 +374,7 @@ figcaption .sub {
   font-size: 0.95rem;
   color: var(--ink-2);
   max-width: 20em;
+  margin-top: 0;
 }
 .takeaway strong { color: var(--ink); font-weight: 700; }
 
@@ -364,7 +385,7 @@ figcaption .sub {
 }
 .chart-error { color: var(--highlight); }
 
-/* ---------------------------------------------------------- footer */
+/*  footer */
 
 footer.colophon {
   padding-block: 3rem 4rem;
@@ -376,7 +397,7 @@ footer.colophon h3 { color: var(--ink-2); }
 footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: 21em; }
 footer.colophon li { margin-bottom: 0.4em; }
 
-/* ---------------------------------------------------------- narrow */
+/*  narrow */
 
 @media (max-width: 640px) {
   .wrap { padding-inline: 16px; }
@@ -386,4 +407,8 @@ footer.colophon li { margin-bottom: 0.4em; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
+}
+
+@media (min-width: 900px) {
+  figure.chart.wide { display: block; }
 }

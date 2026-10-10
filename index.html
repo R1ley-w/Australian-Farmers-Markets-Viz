@@ -50,13 +50,29 @@
 <section class="section" id="where">
   <div class="wrap">
     <p class="section-num">Section 1 — Where can you find a market?</p>
-    <p>
-      The Australian Farmers' Markets Association directory was the main source of data I used.
-      It holds 178 listings, which resolve to <strong>175 markets</strong> (after removing duplicates). 
-      New South Wales and Victoria hold 70% of them, Queensland, despite having a much larger crop output, only has thirteen.
-    </p>
 
-    <figure class="chart">
+    <!-- Row 1: introduction left, organisations chart right -->
+    <div class="chart-grid">
+      <div class="intro">
+        <p>
+          The Australian Farmers' Markets Association directory was the main source of data I used.
+          It holds 178 listings, which resolve to <strong>175 markets</strong> (after removing duplicates). 
+          New South Wales and Victoria hold 70% of them, Queensland, despite having a much larger crop output, only has thirteen.
+        </p>
+      </div>
+
+      <figure class="chart">
+        <figcaption>
+          <div class="title">A few organisations run several markets</div>
+          <p class="sub">Operators running more than one market. Everyone else runs exactly one.</p>
+        </figcaption>
+        <div class="viz" data-spec="specs/08-operators.vg.json"></div>
+        <p class="source">AFMA directory, 2026 · <code>market_operator</code> field</p>
+      </figure>
+    </div>
+
+    <!-- Row 2: the map across the full width -->
+    <figure class="chart wide">
       <figcaption>
         <div class="title">Every farmers' market in the national directory</div>
         <p class="sub">
@@ -69,6 +85,7 @@
       <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 20 September 2026 · boundaries ABS ASGS Edition 3 (CC BY 4.0)</p>
     </figure>
 
+    <!-- Row 3: sunburst left, image with text underneath right -->
     <div class="chart-grid">
       <figure class="chart">
         <figcaption>
@@ -79,19 +96,18 @@
         <p class="source">AFMA directory, 2026 · frequency classified from the <code>market_days</code> field</p>
       </figure>
 
-      <figure class="chart">
-        <figcaption>
-          <div class="title">A few organisations run several markets</div>
-          <p class="sub">Operators running more than one market. Everyone else runs exactly one.</p>
-        </figcaption>
-        <div class="viz" data-spec="specs/08-operators.vg.json"></div>
-        <p class="source">AFMA directory, 2026 · <code>market_operator</code> field</p>
-      </figure>
-    </div>
+      <div class="aside">
+        <figure class="photo">
+          <img src="images/market.jpg" alt="DESCRIBE THE PHOTO HERE">
+          <figcaption>PHOTO CREDIT AND SOURCE HERE</figcaption>
+        </figure>
 
-    <div class="takeaway">
-      Most markets are run by a local committee (including my local market), church, Rotary club or school, but the busiest metropolitan
-      ones cluster under a few more professional organisers.
+        <div class="takeaway">
+          Most markets are run by a local committee (including my local market), church, Rotary club or school, but the busiest metropolitan
+          ones cluster under a few more professional organisers.
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
