@@ -1,0 +1,340 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Share of Australian supermarket, grocery and liquor retail turnover held by the Coles and Woolworths businesses (supermarkets plus their liquor chains) and everyone else, FY1994-FY2025. Stacked area (detail) above a small overview strip; drag on the strip to brush a range of years and the detail chart zooms to it. Retailer colours are categorical hues chosen by Riley (Woolworths green, Coles cream); every band is also labelled directly, and the cream band is outlined because it sits close to the page colour.",
+  "data": {
+    "url": "data/supermarket_share.csv",
+    "format": {
+      "parse": {
+        "fy": "number",
+        "share": "number",
+        "sales_52w_m": "number",
+        "abs_turnover_m": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "{'Coles': 1, 'Woolworths': 2, 'Everyone else': 3}[datum.retailer]",
+      "as": "order"
+    },
+    {
+      "stack": "share",
+      "groupby": [
+        "fy"
+      ],
+      "sort": [
+        {
+          "field": "order"
+        }
+      ],
+      "as": [
+        "y0",
+        "y1"
+      ]
+    },
+    {
+      "calculate": "(datum.y0 + datum.y1) / 2",
+      "as": "ymid"
+    }
+  ],
+  "vconcat": [
+    {
+      "width": "container",
+      "height": 300,
+      "layer": [
+        {
+          "mark": {
+            "type": "area",
+            "clip": true,
+            "interpolate": "monotone",
+            "stroke": "#fdfdfc",
+            "strokeWidth": 2,
+            "tooltip": null
+          },
+          "encoding": {
+            "x": {
+              "field": "fy",
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "param": "brush"
+                },
+                "nice": false
+              },
+              "axis": {
+                "title": "Financial year ending June",
+                "format": "d",
+                "tickMinStep": 1,
+                "labelExpr": "'FY' + slice(datum.label, 2)",
+                "labelFlush": true
+              }
+            },
+            "y": {
+              "field": "y0",
+              "type": "quantitative",
+              "scale": {
+                "domain": [
+                  0,
+                  1
+                ]
+              },
+              "axis": {
+                "title": null,
+                "format": ".0%",
+                "tickCount": 5
+              }
+            },
+            "y2": {
+              "field": "y1"
+            },
+            "color": {
+              "field": "retailer",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Coles",
+                  "Woolworths",
+                  "Everyone else"
+                ],
+                "range": [
+                  "#e8d5a0",
+                  "#2f8a47",
+                  "#7b52ae"
+                ]
+              },
+              "legend": null
+            },
+            "order": {
+              "field": "order"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "line",
+            "clip": true,
+            "interpolate": "monotone",
+            "color": "#1c1f23",
+            "strokeWidth": 1,
+            "opacity": 0.55,
+            "tooltip": null
+          },
+          "transform": [
+            {
+              "filter": "datum.retailer !== 'Everyone else'"
+            }
+          ],
+          "encoding": {
+            "x": {
+              "field": "fy",
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "param": "brush"
+                },
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "y1",
+              "type": "quantitative"
+            },
+            "detail": {
+              "field": "retailer"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "point",
+            "clip": true,
+            "filled": true,
+            "size": 34,
+            "color": "#1c1f23",
+            "opacity": 0.75
+          },
+          "transform": [
+            {
+              "filter": "datum.retailer !== 'Everyone else'"
+            }
+          ],
+          "encoding": {
+            "x": {
+              "field": "fy",
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "param": "brush"
+                },
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "y1",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "retailer",
+                "type": "nominal",
+                "title": "Retailer"
+              },
+              {
+                "field": "fy",
+                "type": "quantitative",
+                "title": "Financial year",
+                "format": "d"
+              },
+              {
+                "field": "share",
+                "type": "quantitative",
+                "title": "Share of turnover",
+                "format": ".1%"
+              },
+              {
+                "field": "sales_52w_m",
+                "type": "quantitative",
+                "title": "Sales incl. liquor ($m, 52 wks)",
+                "format": ",.0f"
+              },
+              {
+                "field": "abs_turnover_m",
+                "type": "quantitative",
+                "title": "Supermarket + liquor market ($m, ABS)",
+                "format": ",.0f"
+              },
+              {
+                "field": "basis",
+                "type": "nominal",
+                "title": "Figure"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.fy === (isValid(brush.fy) ? floor(brush.fy[1]) : 2025)"
+            },
+            {
+              "calculate": "datum.retailer + '  ' + format(datum.share, '.0%')",
+              "as": "label"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -10,
+            "fontSize": 12.5,
+            "fontWeight": 700,
+            "tooltip": null
+          },
+          "encoding": {
+            "x": {
+              "field": "fy",
+              "type": "quantitative",
+              "scale": {
+                "domain": {
+                  "param": "brush"
+                },
+                "nice": false
+              }
+            },
+            "y": {
+              "field": "ymid",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label",
+              "type": "nominal"
+            },
+            "color": {
+              "condition": {
+                "test": "datum.retailer === 'Coles'",
+                "value": "#1c1f23"
+              },
+              "value": "#fdfdfc"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": "container",
+      "height": 56,
+      "params": [
+        {
+          "name": "brush",
+          "select": {
+            "type": "interval",
+            "encodings": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "stroke": "#fdfdfc",
+        "strokeWidth": 1,
+        "tooltip": null
+      },
+      "encoding": {
+        "x": {
+          "field": "fy",
+          "type": "quantitative",
+          "scale": {
+            "nice": false
+          },
+          "axis": {
+            "title": "Drag to choose years",
+            "format": "d",
+            "tickMinStep": 1,
+            "labelExpr": "'FY' + slice(datum.label, 2)",
+            "labelFlush": true
+          }
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1
+            ]
+          },
+          "axis": null
+        },
+        "y2": {
+          "field": "y1"
+        },
+        "color": {
+          "field": "retailer",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Coles",
+              "Woolworths",
+              "Everyone else"
+            ],
+            "range": [
+              "#e8d5a0",
+              "#2f8a47",
+              "#7b52ae"
+            ]
+          },
+          "legend": null
+        },
+        "order": {
+          "field": "order"
+        }
+      }
+    }
+  ],
+  "spacing": 18,
+  "autosize": {
+    "type": "pad",
+    "resize": true
+  }
+}
