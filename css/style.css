@@ -319,7 +319,7 @@ figure.chart {
     grid-template-columns: var(--rail) minmax(0, 1fr);
     grid-template-areas:
       "cap viz"
-      "src viz";
+      "src src";
     grid-template-rows: auto 1fr;
     column-gap: 2.5rem;
     align-items: start;
