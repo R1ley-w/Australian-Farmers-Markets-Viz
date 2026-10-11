@@ -2,12 +2,7 @@
    Chart loader and shared Vega-Lite theme.
 
    The specs carry no fonts and no chrome colours of their own; they
-   come from here, read off the CSS custom properties in css/style.css,
-   so the page and the charts are styled from one source. Light theme
-   only — there is no theme switching.
-
-   Type roles follow the page: graph titles are serif, everything
-   functional (axes, legends, labels, tooltips) is Helvetica.
+   come from here, read off the CSS custom properties in css/style.css
    ------------------------------------------------------------------ */
 
 const token = (name) =>
@@ -80,6 +75,34 @@ const embedOptions = () => ({
   tooltip: { theme: 'light' },
 });
 
+/* ------------------------------------------------------------- links
+
+   Charts that share a selection declare it in their spec:
+     "usermeta": {"link": {"group": "commodity", "signal": "commodity"}}
+   A change to that signal in one chart is pushed to every other chart in
+   the same group. Charts render lazily, so the group remembers its latest
+   value and a chart that renders later starts from it. */
+
+const linkGroups = {};
+
+function joinLink(view, link) {
+  const g = (linkGroups[link.group] ??= { value: undefined, members: [] });
+  const member = { view, signal: link.signal };
+  g.members.push(member);
+  if (g.value !== undefined && view.signal(link.signal) !== g.value) {
+    view.signal(link.signal, g.value).runAsync();
+  }
+  view.addSignalListener(link.signal, (_, value) => {
+    if (value === g.value) return;
+    g.value = value;
+    for (const m of g.members) {
+      if (m !== member && m.view.signal(m.signal) !== value) {
+        m.view.signal(m.signal, value).runAsync();
+      }
+    }
+  });
+}
+
 /* ------------------------------------------------------------ render */
 
 async function renderOne(el) {
@@ -92,7 +115,9 @@ async function renderOne(el) {
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const spec = await res.json();
     el.innerHTML = '';
-    await vegaEmbed(el, spec, embedOptions());
+    const result = await vegaEmbed(el, spec, embedOptions());
+    const link = spec.usermeta && spec.usermeta.link;
+    if (link) joinLink(result.view, link);
   } catch (err) {
     el.innerHTML =
       `<p class="chart-error">Could not load this chart (${err.message}).<br>` +
