@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Proportional symbol map of where Australia's food is produced, 2020-21. One symbol per local government area at its centre: the symbol's SHAPE is the council's main type of produce by gross value, its SIZE (area) is the gross value per hectare of the commodity selected in the dropdown or the treemap (spec 16). Symbols use one fill, because hues are reserved for states page-wide. Zoom works like the market map (spec 01): click a state, then its dashed capital-city area; double-click to reset. Plain Vega for the zoom.",
+  "description": "Proportional symbol map of where Australia's food is produced, 2020-21. One symbol per local government area at its centre: the symbol's SHAPE is the council's main type of produce by gross value, its SIZE (area) is the gross value per hectare of the commodity selected in the dropdown or the treemap (spec 16). The main type is encoded twice, by hue (shared with the treemap) and by shape, so it survives colour-blindness and print. Zoom works like the market map (spec 01): click a state, then its dashed capital-city area; double-click to reset. Plain Vega for the zoom.",
   "height": 580,
   "autosize": {
     "type": "pad",
@@ -308,6 +308,26 @@
       ],
       "clamp": true,
       "zero": true
+    },
+    {
+      "name": "food",
+      "type": "ordinal",
+      "domain": [
+        "Meat",
+        "Grains and hay",
+        "Milk, eggs and wool",
+        "Fruit and nuts",
+        "Vegetables",
+        "Nurseries and flowers"
+      ],
+      "range": [
+        "#8c4062",
+        "#c56c00",
+        "#0063a0",
+        "#a17cda",
+        "#2d6101",
+        "#039b8c"
+      ]
     }
   ],
   "legends": [
@@ -329,9 +349,6 @@
           "name": "typeLegendSymbols",
           "interactive": true,
           "update": {
-            "fill": {
-              "value": "#4d6e8d"
-            },
             "strokeWidth": {
               "value": 0
             },
@@ -356,7 +373,8 @@
           }
         }
       },
-      "titleLimit": 600
+      "titleLimit": 600,
+      "fill": "food"
     },
     {
       "size": "size",
@@ -380,7 +398,7 @@
         "symbols": {
           "update": {
             "fill": {
-              "value": "#4d6e8d"
+              "value": "#767c83"
             },
             "strokeWidth": {
               "value": 0
@@ -505,7 +523,8 @@
                 "signal": "max(10, scale('size', datum.per_ha)) * zoomK"
               },
               "fill": {
-                "value": "#4d6e8d"
+                "scale": "food",
+                "field": "p.main_type"
               },
               "stroke": {
                 "value": "#fdfdfc"

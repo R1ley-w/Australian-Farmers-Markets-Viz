@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Treemap of Australia's gross value of agricultural production, 2020-21: categories (meat, grains, fruit and nuts, ...) subdivided into commodities, area proportional to value. One fill throughout: area carries value, so colour carries only the selection. Clicking a tile selects its commodity, which also drives the production map (spec 17) through js/main.js. Plain Vega because Vega-Lite has no treemap layout.",
+  "description": "Treemap of Australia's gross value of agricultural production, 2020-21: categories (meat, grains, fruit and nuts, ...) subdivided into commodities, area proportional to value. Tile colour is the food type (the same six hues and categories as the production map); area is value. Selecting a commodity fades the other tiles. Clicking a tile selects its commodity, which also drives the production map (spec 17) through js/main.js. Plain Vega because Vega-Lite has no treemap layout.",
   "height": 460,
   "autosize": {
     "type": "fit-x",
@@ -245,10 +245,11 @@
             "field": "y1"
           },
           "fill": {
-            "value": "#9ab6d2"
+            "scale": "food",
+            "field": "category"
           },
           "fillOpacity": {
-            "signal": "datum.selected ? 1 : 0.3"
+            "signal": "datum.selected ? 1 : 0.25"
           },
           "stroke": {
             "signal": "hoverId === datum.id || (commodity !== 'total' && datum.selected) ? '#1c1f23' : null"
@@ -287,7 +288,7 @@
             "value": 11.5
           },
           "fill": {
-            "value": "#1c1f23"
+            "signal": "indexof(['Grains and hay','Fruit and nuts','Nurseries and flowers'], datum.category) >= 0 ? '#1c1f23' : '#ffffff'"
           },
           "fillOpacity": {
             "signal": "datum.selected ? 1 : 0.45"
@@ -317,10 +318,10 @@
             "value": 11
           },
           "fill": {
-            "value": "#474d54"
+            "signal": "indexof(['Grains and hay','Fruit and nuts','Nurseries and flowers'], datum.category) >= 0 ? '#1c1f23' : '#ffffff'"
           },
           "fillOpacity": {
-            "signal": "datum.selected ? 1 : 0.45"
+            "signal": "datum.selected ? 0.85 : 0.4"
           }
         }
       }
@@ -364,6 +365,28 @@
           }
         }
       }
+    }
+  ],
+  "scales": [
+    {
+      "name": "food",
+      "type": "ordinal",
+      "domain": [
+        "Meat",
+        "Grains and hay",
+        "Milk, eggs and wool",
+        "Fruit and nuts",
+        "Vegetables",
+        "Nurseries and flowers"
+      ],
+      "range": [
+        "#8c4062",
+        "#c56c00",
+        "#0063a0",
+        "#a17cda",
+        "#2d6101",
+        "#039b8c"
+      ]
     }
   ]
 }

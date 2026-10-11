@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Where Australia's 7.3 million tonnes of annual food waste happens.",
   "width": "container",
-  "height": 190,
+  "height": "container",
   "data": {
     "url": "data/dcceew_food_waste.csv"
   },
@@ -11,7 +11,9 @@
       "mark": {
         "type": "bar",
         "cornerRadius": 3,
-        "height": 54
+        "height": {
+          "expr": "max(54, height * 0.42)"
+        }
       },
       "encoding": {
         "color": {
@@ -73,7 +75,9 @@
       "mark": {
         "type": "text",
         "fontWeight": 650,
-        "fontSize": 13,
+        "fontSize": {
+          "expr": "height > 300 ? 15 : 13"
+        },
         "color": "#ffffff"
       },
       "encoding": {

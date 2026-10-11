@@ -1,15 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Distance from each local government area's centre to the nearest farmers' market, using a log scale the values span 0.1 km to 2,228 km.",
+  "description": "Distance from each local government area's centre to the nearest farmers' market, using a log scale the values span 0.1 km to 2,228 km. A slider hides council areas further than the chosen distance from a market.",
   "width": "container",
   "height": 520,
   "params": [
     {
-      "name": "nearOnly",
-      "value": false,
+      "name": "maxKm",
+      "value": 2300,
       "bind": {
-        "input": "checkbox",
-        "name": "Show only LGAs within 100 km  "
+        "input": "range",
+        "min": 10,
+        "max": 2300,
+        "step": 10,
+        "name": "Show council areas within (km)  "
       }
     }
   ],
@@ -17,6 +20,22 @@
     "type": "mercator"
   },
   "layer": [
+    {
+      "data": {
+        "url": "data/lga.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "LGA_2023_AUST_GDA2020"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e9eaec",
+        "stroke": "#cdced1",
+        "strokeWidth": 0.25,
+        "tooltip": false
+      }
+    },
     {
       "data": {
         "url": "data/lga.topo.json",
@@ -45,7 +64,7 @@
           "filter": "isValid(datum.km_to_nearest_market)"
         },
         {
-          "filter": "!nearOnly || datum.km_to_nearest_market <= 100"
+          "filter": "datum.km_to_nearest_market <= maxKm"
         }
       ],
       "mark": {

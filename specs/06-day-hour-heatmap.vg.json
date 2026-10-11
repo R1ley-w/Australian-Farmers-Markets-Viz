@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Number of farmers' markets by trading day and opening hour.",
   "width": "container",
-  "height": 260,
+  "height": "container",
   "data": {
     "url": "data/day_time_heatmap.csv",
     "format": {
