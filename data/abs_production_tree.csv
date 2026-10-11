@@ -1,0 +1,77 @@
+id,parent,name,category,value,map_key
+root,,Australian agriculture,,,
+c:meat,root,Meat,Meat,,meat
+l:9100158,c:meat,Cattle (beef),Meat,13465395612,cattle
+l:9100258,c:meat,Sheep and lambs,Meat,4332328417,sheep
+l:9100658,c:meat,Poultry (chicken),Meat,2926550404,poultry
+l:9100358,c:meat,Pigs (pork),Meat,1556568229,pigs
+l:9100916,c:meat,Other livestock,Meat,186799597,meat
+c:broadacre,root,Grains and broadacre crops,Grains and broadacre crops,,broadacre
+l:1500158,c:broadacre,Wheat,Grains and broadacre crops,9850955106,broadacre
+l:1501758,c:broadacre,Barley,Grains and broadacre crops,3728467687,broadacre
+l:1900958,c:broadacre,Canola,Grains and broadacre crops,2929727713,broadacre
+l:1803258,c:broadacre,Cotton,Grains and broadacre crops,1465471088,broadacre
+l:1902158,c:broadacre,Sugar cane,Grains and broadacre crops,1284582078,broadacre
+l:1905258,c:broadacre,Lentils,Grains and broadacre crops,604049646,broadacre
+l:1901916,c:broadacre,Other pulses,Grains and broadacre crops,596398994,broadacre
+l:1500858,c:broadacre,Oats,Grains and broadacre crops,541471646,broadacre
+l:1504158,c:broadacre,Sorghum,Grains and broadacre crops,539759359,broadacre
+l:1900358,c:broadacre,Chickpeas,Grains and broadacre crops,519730630,broadacre
+l:1807058,c:broadacre,Lupins,Grains and broadacre crops,348073249,broadacre
+l:1510458,c:broadacre,Other crops,Grains and broadacre crops,235046038,broadacre
+l:1508558,c:broadacre,Rice,Grains and broadacre crops,174389409,broadacre
+l:1505358,c:broadacre,Maize,Grains and broadacre crops,113490152,broadacre
+l:1901716,c:broadacre,Other oilseeds,Grains and broadacre crops,61428082,broadacre
+l:1510316,c:broadacre,Other cereals,Grains and broadacre crops,49566184,broadacre
+c:fruit_nuts,root,Fruit and nuts,Fruit and nuts,,fruit_nuts
+l:5109958,c:fruit_nuts,Wine grapes,Fruit and nuts,1224048128,grapes
+l:4800558,c:fruit_nuts,Table and dried grapes,Fruit and nuts,578217176,grapes
+l:4202258,c:fruit_nuts,Apples,Fruit and nuts,725747876,fruit_nuts
+l:4304658,c:fruit_nuts,Bananas,Fruit and nuts,657471749,fruit_nuts
+l:4200758,c:fruit_nuts,Oranges,Fruit and nuts,643169564,fruit_nuts
+l:4208158,c:fruit_nuts,Almonds,Fruit and nuts,631369182,fruit_nuts
+l:4302558,c:fruit_nuts,Other berries,Fruit and nuts,578357244,fruit_nuts
+l:4201458,c:fruit_nuts,Mandarins,Fruit and nuts,392278351,fruit_nuts
+l:4302258,c:fruit_nuts,Strawberries,Fruit and nuts,388446232,fruit_nuts
+l:4204158,c:fruit_nuts,Avocados,Fruit and nuts,336094778,fruit_nuts
+l:4209058,c:fruit_nuts,Macadamias,Fruit and nuts,289895578,fruit_nuts
+l:4204358,c:fruit_nuts,Cherries,Fruit and nuts,262037990,fruit_nuts
+l:4201658,c:fruit_nuts,Other citrus,Fruit and nuts,250568242,fruit_nuts
+l:4205358,c:fruit_nuts,Mangoes,Fruit and nuts,199826090,fruit_nuts
+l:4205558,c:fruit_nuts,Nectarines,Fruit and nuts,127350250,fruit_nuts
+l:4209758,c:fruit_nuts,Other nuts,Fruit and nuts,122808793,fruit_nuts
+l:4205758,c:fruit_nuts,Olives,Fruit and nuts,120374392,fruit_nuts
+l:4207858,c:fruit_nuts,Other orchard fruit,Fruit and nuts,117003481,fruit_nuts
+l:4207358,c:fruit_nuts,Other stone fruit,Fruit and nuts,115221093,fruit_nuts
+l:4307058,c:fruit_nuts,Other fruit,Fruit and nuts,97555692,fruit_nuts
+l:4202658,c:fruit_nuts,Pears,Fruit and nuts,96671480,fruit_nuts
+l:4206258,c:fruit_nuts,Peaches,Fruit and nuts,78497070,fruit_nuts
+l:4306058,c:fruit_nuts,Pineapples,Fruit and nuts,56685715,fruit_nuts
+c:livestock_products,root,"Milk, eggs and wool","Milk, eggs and wool",,livestock_products
+l:9200258,c:livestock_products,Milk,"Milk, eggs and wool",4687963149,milk
+l:9200159,c:livestock_products,Wool,"Milk, eggs and wool",2644776635,wool
+l:9200348,c:livestock_products,Eggs,"Milk, eggs and wool",1124398155,eggs
+c:vegetables,root,Vegetables,Vegetables,,vegetables
+l:3630016,c:vegetables,Other vegetables,Vegetables,1212681759,vegetables
+l:3505958,c:vegetables,Potatoes,Vegetables,784326632,vegetables
+l:3608858,c:vegetables,Tomatoes,Vegetables,507835318,vegetables
+l:3605858,c:vegetables,Mushrooms,Vegetables,325501714,vegetables
+l:3602458,c:vegetables,Carrots,Vegetables,286604079,vegetables
+l:3611758,c:vegetables,Sweet corn,Vegetables,201230444,vegetables
+l:3610658,c:vegetables,Lettuces,Vegetables,188211320,vegetables
+l:3604258,c:vegetables,Herbs,Vegetables,173185951,vegetables
+l:3614058,c:vegetables,Melons,Vegetables,173030668,vegetables
+l:3601358,c:vegetables,Beans,Vegetables,159921202,vegetables
+l:3611558,c:vegetables,Onions,Vegetables,155587156,vegetables
+l:3613658,c:vegetables,Capsicums,Vegetables,142029653,vegetables
+l:3601758,c:vegetables,Broccoli,Vegetables,137500644,vegetables
+l:3603258,c:vegetables,Cucumbers,Vegetables,129013295,vegetables
+l:3607158,c:vegetables,Pumpkins,Vegetables,68719010,vegetables
+l:3601958,c:vegetables,Cabbages,Vegetables,67422332,vegetables
+l:3602758,c:vegetables,Cauliflowers,Vegetables,66238579,vegetables
+c:hay,root,Hay,Hay,,hay
+l:3307859,c:hay,Hay,Hay,2160429109,hay
+c:nurseries,root,"Nurseries, flowers and turf","Nurseries, flowers and turf",,nurseries
+l:1919259,c:nurseries,Nurseries,"Nurseries, flowers and turf",1360273317,nurseries
+l:1908558,c:nurseries,Turf,"Nurseries, flowers and turf",275087202,nurseries
+l:1919459,c:nurseries,Cut flowers,"Nurseries, flowers and turf",224998607,nurseries
