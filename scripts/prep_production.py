@@ -89,7 +89,7 @@ TREE = [
         ("9100358", "Pigs (pork)", "pigs"),
         ("9100916", "Other livestock", "meat"),
     ]),
-    ("Grains and broadacre crops", "broadacre", [
+    ("Grains and hay", "broadacre", [
         ("1500158", "Wheat", "broadacre"),
         ("1501758", "Barley", "broadacre"),
         ("1900958", "Canola", "broadacre"),
@@ -106,6 +106,7 @@ TREE = [
         ("1505358", "Maize", "broadacre"),
         ("1901716", "Other oilseeds", "broadacre"),
         ("1510316", "Other cereals", "broadacre"),
+        ("3307859", "Hay", "hay"),
     ]),
     ("Fruit and nuts", "fruit_nuts", [
         ("5109958", "Wine grapes", "grapes"),
@@ -156,10 +157,7 @@ TREE = [
         ("3601958", "Cabbages", "vegetables"),
         ("3602758", "Cauliflowers", "vegetables"),
     ]),
-    ("Hay", "hay", [
-        ("3307859", "Hay", "hay"),
-    ]),
-    ("Nurseries, flowers and turf", "nurseries", [
+    ("Nurseries and flowers", "nurseries", [
         ("1919259", "Nurseries", "nurseries"),
         ("1908558", "Turf", "nurseries"),
         ("1919459", "Cut flowers", "nurseries"),
