@@ -1,0 +1,369 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap of Australia's gross value of agricultural production, 2020-21: categories (meat, grains, fruit and nuts, ...) subdivided into commodities, area proportional to value. One fill throughout: area carries value, so colour carries only the selection. Clicking a tile selects its commodity, which also drives the production map (spec 17) through js/main.js. Plain Vega because Vega-Lite has no treemap layout.",
+  "height": 460,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding",
+    "resize": true
+  },
+  "usermeta": {
+    "link": {
+      "group": "commodity",
+      "signal": "commodity"
+    }
+  },
+  "signals": [
+    {
+      "name": "width",
+      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 620",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : width"
+        }
+      ]
+    },
+    {
+      "name": "head",
+      "value": 20
+    },
+    {
+      "name": "commodity",
+      "value": "total",
+      "on": [
+        {
+          "events": "@leaf:click, @header:click",
+          "update": "isObject(datum) ? (datum.map_key === commodity ? 'total' : datum.map_key) : commodity"
+        },
+        {
+          "events": "@leaf:dblclick",
+          "update": "'total'"
+        }
+      ]
+    },
+    {
+      "name": "hoverId",
+      "value": null,
+      "on": [
+        {
+          "events": "@leaf:pointerover",
+          "update": "isObject(datum) ? datum.id : null"
+        },
+        {
+          "events": "@leaf:pointerout",
+          "update": "null"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "nodes",
+      "url": "data/abs_production_tree.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "value": "number"
+        }
+      },
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "treemap",
+          "field": "value",
+          "sort": {
+            "field": "data.value",
+            "order": "descending"
+          },
+          "round": true,
+          "method": "squarify",
+          "ratio": 1.4,
+          "paddingInner": 2,
+          "paddingOuter": 0,
+          "paddingTop": {
+            "signal": "head"
+          },
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height + head"
+            }
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "y0",
+          "expr": "datum.y0 - head"
+        },
+        {
+          "type": "formula",
+          "as": "y1",
+          "expr": "datum.y1 - head"
+        },
+        {
+          "type": "formula",
+          "as": "cat_key",
+          "expr": "datum.depth === 2 ? slice(datum.parent, 2) : datum.map_key"
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "nodes",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 2"
+        },
+        {
+          "type": "joinaggregate",
+          "fields": [
+            "value"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "grand"
+          ]
+        },
+        {
+          "type": "joinaggregate",
+          "groupby": [
+            "parent"
+          ],
+          "fields": [
+            "value"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "cat_total"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "selected",
+          "expr": "commodity === 'total' || datum.map_key === commodity || datum.cat_key === commodity"
+        },
+        {
+          "type": "formula",
+          "as": "money",
+          "expr": "datum.value >= 1e9 ? '$' + format(datum.value / 1e9, '.1f') + 'bn' : '$' + format(datum.value / 1e6, ',.0f') + 'm'"
+        }
+      ]
+    },
+    {
+      "name": "cat_totals",
+      "source": "leaves",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": [
+            "parent"
+          ],
+          "fields": [
+            "value",
+            "grand"
+          ],
+          "ops": [
+            "sum",
+            "max"
+          ],
+          "as": [
+            "total",
+            "grand"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "categories",
+      "source": "nodes",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 1"
+        },
+        {
+          "type": "lookup",
+          "from": "cat_totals",
+          "key": "parent",
+          "fields": [
+            "id"
+          ],
+          "values": [
+            "total",
+            "grand"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "money",
+          "expr": "datum.total >= 1e9 ? '$' + format(datum.total / 1e9, '.1f') + 'bn' : '$' + format(datum.total / 1e6, ',.0f') + 'm'"
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "(datum.x1 - datum.x0) > 170 ? datum.name + '  ' + datum.money : datum.name"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "leaf",
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "enter": {
+          "cursor": {
+            "value": "pointer"
+          }
+        },
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": {
+            "value": "#9ab6d2"
+          },
+          "fillOpacity": {
+            "signal": "datum.selected ? 1 : 0.3"
+          },
+          "stroke": {
+            "signal": "hoverId === datum.id || (commodity !== 'total' && datum.selected) ? '#1c1f23' : null"
+          },
+          "strokeWidth": {
+            "signal": "hoverId === datum.id ? 2 : 1"
+          },
+          "tooltip": {
+            "signal": "{'title': datum.name, 'Category': datum.category, 'Gross value': datum.money, 'Share of Australian agriculture': format(datum.value / datum.grand, '.1%'), 'Share of its category': format(datum.value / datum.cat_total, '.0%')}"
+          }
+        }
+      }
+    },
+    {
+      "name": "leafName",
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 5"
+          },
+          "y": {
+            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 22 ? datum.y0 + 15 : datum.y0"
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 22 ? datum.name : ''"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 8"
+          },
+          "fontSize": {
+            "value": 11.5
+          },
+          "fill": {
+            "value": "#1c1f23"
+          },
+          "fillOpacity": {
+            "signal": "datum.selected ? 1 : 0.45"
+          }
+        }
+      }
+    },
+    {
+      "name": "leafValue",
+      "type": "text",
+      "from": {
+        "data": "leaves"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 5"
+          },
+          "y": {
+            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 38 ? datum.y0 + 29 : datum.y0"
+          },
+          "text": {
+            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 38 ? datum.money : ''"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#474d54"
+          },
+          "fillOpacity": {
+            "signal": "datum.selected ? 1 : 0.45"
+          }
+        }
+      }
+    },
+    {
+      "name": "header",
+      "type": "text",
+      "from": {
+        "data": "categories"
+      },
+      "encode": {
+        "enter": {
+          "cursor": {
+            "value": "pointer"
+          }
+        },
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 1"
+          },
+          "y": {
+            "signal": "datum.y0 + 14"
+          },
+          "text": {
+            "field": "label"
+          },
+          "limit": {
+            "signal": "datum.x1 - datum.x0 - 4"
+          },
+          "fontSize": {
+            "value": 11.5
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "fill": {
+            "value": "#1c1f23"
+          },
+          "tooltip": {
+            "signal": "{'title': datum.name, 'Gross value': datum.money, 'Share of Australian agriculture': format(datum.total / datum.grand, '.0%')}"
+          }
+        }
+      }
+    }
+  ]
+}

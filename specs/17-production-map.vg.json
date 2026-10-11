@@ -1,0 +1,674 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Proportional symbol map of where Australia's food is produced, 2020-21. One symbol per local government area at its centre: the symbol's SHAPE is the council's main type of produce by gross value, its SIZE (area) is the gross value per hectare of the commodity selected in the dropdown or the treemap (spec 16). Symbols use one fill, because hues are reserved for states page-wide. Zoom works like the market map (spec 01): click a state, then its dashed capital-city area; double-click to reset. Plain Vega for the zoom.",
+  "height": 580,
+  "autosize": {
+    "type": "pad",
+    "resize": true
+  },
+  "usermeta": {
+    "link": {
+      "group": "commodity",
+      "signal": "commodity"
+    }
+  },
+  "signals": [
+    {
+      "name": "width",
+      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 760",
+      "on": [
+        {
+          "events": "window:resize",
+          "update": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : width"
+        }
+      ]
+    },
+    {
+      "name": "narrow",
+      "update": "width < 620"
+    },
+    {
+      "name": "mapTop",
+      "update": "narrow ? 148 : 96"
+    },
+    {
+      "name": "mapH",
+      "update": "height - mapTop - 42"
+    },
+    {
+      "name": "commodity",
+      "value": "total",
+      "bind": {
+        "input": "select",
+        "name": "Symbol size shows  ",
+        "options": [
+          "total",
+          "broadacre",
+          "hay",
+          "fruit_nuts",
+          "grapes",
+          "vegetables",
+          "meat",
+          "cattle",
+          "sheep",
+          "pigs",
+          "poultry",
+          "livestock_products",
+          "milk",
+          "eggs",
+          "wool",
+          "nurseries"
+        ],
+        "labels": [
+          "All agriculture",
+          "Grains and broadacre crops",
+          "Hay",
+          "Fruit and nuts (excl. grapes)",
+          "Grapes",
+          "Vegetables",
+          "Meat (all livestock)",
+          "Cattle (beef)",
+          "Sheep and lambs",
+          "Pigs (pork)",
+          "Poultry (chicken)",
+          "Milk, eggs and wool",
+          "Milk",
+          "Eggs",
+          "Wool",
+          "Nurseries, flowers and turf"
+        ]
+      }
+    },
+    {
+      "name": "commodityLabel",
+      "update": "{'total':'all agriculture','broadacre':'grains and broadacre crops','hay':'hay','fruit_nuts':'fruit and nuts','grapes':'grapes','vegetables':'vegetables','meat':'meat','cattle':'cattle','sheep':'sheep and lambs','pigs':'pigs','poultry':'poultry','livestock_products':'milk, eggs and wool','milk':'milk','eggs':'eggs','wool':'wool','nurseries':'nurseries, flowers and turf'}[commodity]"
+    },
+    {
+      "name": "focusState",
+      "value": null,
+      "on": [
+        {
+          "events": "@stateShapes:click, @prodSymbols:click",
+          "update": "focusState ? focusState : isObject(datum) ? (datum.properties.name && !datum.p ? datum.properties.name : datum.stateName) : focusState"
+        },
+        {
+          "events": "@backButton:click, @backLabel:click",
+          "update": "focusArea ? focusState : null"
+        },
+        {
+          "events": "dblclick",
+          "update": "null"
+        }
+      ]
+    },
+    {
+      "name": "focusArea",
+      "value": null,
+      "on": [
+        {
+          "events": "@areaShapes:click",
+          "update": "datum.properties.name"
+        },
+        {
+          "events": "@backButton:click, @backLabel:click",
+          "update": "null"
+        },
+        {
+          "events": "dblclick",
+          "update": "null"
+        }
+      ]
+    },
+    {
+      "name": "zoomK",
+      "update": "focusArea ? 3 : focusState ? 1.6 : 1"
+    },
+    {
+      "name": "typeSel",
+      "value": null,
+      "on": [
+        {
+          "events": "@typeLegendSymbols:click, @typeLegendLabels:click",
+          "update": "datum.value === typeSel ? null : datum.value"
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "name": "states",
+      "url": "data/states.topo.json",
+      "format": {
+        "type": "topojson",
+        "feature": "STE_2021_AUST_GDA2020"
+      }
+    },
+    {
+      "name": "capitalAreas",
+      "url": "data/gccsa.topo.json",
+      "format": {
+        "type": "topojson",
+        "feature": "GCCSA_2021_AUST_GDA2020"
+      },
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "indexof(datum.properties.name, 'Rest of') !== 0"
+        }
+      ]
+    },
+    {
+      "name": "focusStateShape",
+      "source": "states",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.properties.name === focusState"
+        }
+      ]
+    },
+    {
+      "name": "focusAreaShape",
+      "source": "capitalAreas",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.properties.name === focusArea"
+        }
+      ]
+    },
+    {
+      "name": "areasInState",
+      "source": "capitalAreas",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "focusState && !focusArea && datum.properties.state === focusState"
+        }
+      ]
+    },
+    {
+      "name": "production",
+      "url": "data/abs_production_lga.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "lga_code": "string",
+          "area_sqkm": "number",
+          "main_share": "number"
+        }
+      }
+    },
+    {
+      "name": "lgas",
+      "url": "data/lga.topo.json",
+      "format": {
+        "type": "topojson",
+        "feature": "LGA_2023_AUST_GDA2020"
+      },
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "production",
+          "key": "lga_code",
+          "fields": [
+            "properties.code"
+          ],
+          "as": [
+            "p"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "stateName",
+          "expr": "datum.properties.state"
+        }
+      ]
+    },
+    {
+      "name": "symbols",
+      "source": "lgas",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "isObject(datum.p) && datum.p.main_type !== ''"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "toNumber(datum.p[commodity])"
+        },
+        {
+          "type": "filter",
+          "expr": "datum.value > 0"
+        },
+        {
+          "type": "formula",
+          "as": "per_ha",
+          "expr": "datum.value / (datum.p.area_sqkm * 100)"
+        },
+        {
+          "type": "formula",
+          "as": "money",
+          "expr": "datum.value >= 1e9 ? '$' + format(datum.value / 1e9, '.2f') + 'bn' : datum.value >= 1e6 ? '$' + format(datum.value / 1e6, ',.1f') + 'm' : '$' + format(datum.value / 1e3, ',.0f') + 'k'"
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "per_ha",
+            "order": "descending"
+          }
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "name": "projection",
+      "type": "mercator",
+      "fit": {
+        "signal": "focusArea ? data('focusAreaShape') : focusState ? data('focusStateShape') : data('states')"
+      },
+      "extent": {
+        "signal": "[[0, 0], [width, mapH]]"
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "type",
+      "type": "ordinal",
+      "domain": [
+        "Meat",
+        "Grains and hay",
+        "Milk, eggs and wool",
+        "Fruit and nuts",
+        "Vegetables",
+        "Nurseries and flowers"
+      ],
+      "range": [
+        "circle",
+        "square",
+        "triangle-up",
+        "diamond",
+        "cross",
+        "triangle-down"
+      ]
+    },
+    {
+      "name": "size",
+      "type": "linear",
+      "domain": [
+        0,
+        2000
+      ],
+      "range": [
+        0,
+        420
+      ],
+      "clamp": true,
+      "zero": true
+    }
+  ],
+  "legends": [
+    {
+      "shape": "type",
+      "title": "Main type of produce (click to filter)",
+      "orient": "none",
+      "legendX": 0,
+      "legendY": 0,
+      "direction": "horizontal",
+      "columns": {
+        "signal": "narrow ? 2 : 6"
+      },
+      "columnPadding": 14,
+      "rowPadding": 6,
+      "symbolSize": 110,
+      "encode": {
+        "symbols": {
+          "name": "typeLegendSymbols",
+          "interactive": true,
+          "update": {
+            "fill": {
+              "value": "#4d6e8d"
+            },
+            "strokeWidth": {
+              "value": 0
+            },
+            "opacity": {
+              "signal": "!typeSel || datum.value === typeSel ? 1 : 0.25"
+            },
+            "cursor": {
+              "value": "pointer"
+            }
+          }
+        },
+        "labels": {
+          "name": "typeLegendLabels",
+          "interactive": true,
+          "update": {
+            "opacity": {
+              "signal": "!typeSel || datum.value === typeSel ? 1 : 0.4"
+            },
+            "cursor": {
+              "value": "pointer"
+            }
+          }
+        }
+      },
+      "titleLimit": 600
+    },
+    {
+      "size": "size",
+      "title": {
+        "signal": "'Gross value of ' + commodityLabel + ' per hectare'"
+      },
+      "orient": "none",
+      "legendX": 0,
+      "legendY": {
+        "signal": "narrow ? 96 : 44"
+      },
+      "direction": "horizontal",
+      "values": [
+        100,
+        500,
+        1000,
+        2000
+      ],
+      "symbolType": "circle",
+      "encode": {
+        "symbols": {
+          "update": {
+            "fill": {
+              "value": "#4d6e8d"
+            },
+            "strokeWidth": {
+              "value": 0
+            }
+          }
+        },
+        "labels": {
+          "update": {
+            "text": {
+              "signal": "datum.value >= 2000 ? '$2,000+' : '$' + format(datum.value, ',.0f')"
+            }
+          }
+        }
+      },
+      "titleLimit": 600
+    }
+  ],
+  "marks": [
+    {
+      "name": "mapBox",
+      "type": "group",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "signal": "mapTop"
+          },
+          "width": {
+            "signal": "width"
+          },
+          "height": {
+            "signal": "mapH"
+          },
+          "clip": {
+            "value": true
+          }
+        }
+      },
+      "marks": [
+        {
+          "name": "stateShapes",
+          "type": "shape",
+          "from": {
+            "data": "states"
+          },
+          "encode": {
+            "update": {
+              "fill": {
+                "value": "#e9eaec"
+              },
+              "fillOpacity": {
+                "signal": "!focusState || datum.properties.name === focusState ? 1 : 0.4"
+              },
+              "stroke": {
+                "value": "#cdced1"
+              },
+              "strokeWidth": {
+                "value": 0.6
+              },
+              "cursor": {
+                "signal": "focusState ? 'default' : 'zoom-in'"
+              },
+              "tooltip": {
+                "signal": "focusState ? null : datum.properties.name + ' (click to zoom)'"
+              }
+            }
+          },
+          "transform": [
+            {
+              "type": "geoshape",
+              "projection": "projection"
+            }
+          ]
+        },
+        {
+          "type": "shape",
+          "from": {
+            "data": "lgas"
+          },
+          "interactive": false,
+          "encode": {
+            "update": {
+              "fill": {
+                "value": null
+              },
+              "stroke": {
+                "value": "#fdfdfc"
+              },
+              "strokeWidth": {
+                "signal": "focusState ? 0.8 : 0.35"
+              }
+            }
+          },
+          "transform": [
+            {
+              "type": "geoshape",
+              "projection": "projection"
+            }
+          ]
+        },
+        {
+          "name": "prodSymbols",
+          "type": "symbol",
+          "from": {
+            "data": "symbols"
+          },
+          "encode": {
+            "update": {
+              "x": {
+                "signal": "geoCentroid('projection', datum)[0]"
+              },
+              "y": {
+                "signal": "geoCentroid('projection', datum)[1]"
+              },
+              "shape": {
+                "scale": "type",
+                "field": "p.main_type"
+              },
+              "size": {
+                "signal": "max(10, scale('size', datum.per_ha)) * zoomK"
+              },
+              "fill": {
+                "value": "#4d6e8d"
+              },
+              "stroke": {
+                "value": "#fdfdfc"
+              },
+              "strokeWidth": {
+                "value": 0.7
+              },
+              "opacity": {
+                "signal": "(!typeSel || datum.p.main_type === typeSel ? 0.9 : 0.08) * (!focusState || datum.stateName === focusState ? 1 : 0.3)"
+              },
+              "tooltip": {
+                "signal": "{'title': datum.p.lga + ', ' + datum.p.state, 'Main produce': datum.p.main_type + ' (' + format(datum.p.main_share, '.0%') + ' of its value)', 'Value of selection': datum.money, 'Per hectare': '$' + format(datum.per_ha, datum.per_ha < 10 ? ',.2f' : ',.0f')}"
+              },
+              "cursor": {
+                "signal": "focusState ? 'default' : 'zoom-in'"
+              }
+            }
+          }
+        },
+        {
+          "name": "areaShapes",
+          "type": "shape",
+          "from": {
+            "data": "areasInState"
+          },
+          "encode": {
+            "update": {
+              "fill": {
+                "value": "#e2e3e5"
+              },
+              "fillOpacity": {
+                "value": 0.35
+              },
+              "stroke": {
+                "value": "#767c83"
+              },
+              "strokeWidth": {
+                "value": 1
+              },
+              "strokeDash": {
+                "value": [
+                  4,
+                  3
+                ]
+              },
+              "cursor": {
+                "value": "zoom-in"
+              },
+              "tooltip": {
+                "signal": "datum.properties.name + ' (click to zoom)'"
+              }
+            }
+          },
+          "transform": [
+            {
+              "type": "geoshape",
+              "projection": "projection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "backButton",
+      "type": "rect",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "signal": "height - 34"
+          },
+          "width": {
+            "signal": "focusArea ? 150 : 140"
+          },
+          "height": {
+            "value": 26
+          },
+          "cornerRadius": {
+            "value": 4
+          },
+          "fill": {
+            "value": "#ffffff"
+          },
+          "stroke": {
+            "value": "#c3c6ca"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "opacity": {
+            "signal": "focusState ? 1 : 0"
+          },
+          "tooltip": {
+            "signal": "null"
+          }
+        }
+      }
+    },
+    {
+      "name": "backLabel",
+      "type": "text",
+      "encode": {
+        "update": {
+          "x": {
+            "value": 10
+          },
+          "y": {
+            "signal": "height - 21"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "text": {
+            "signal": "focusArea ? '← Back to ' + focusState : '← All of Australia'"
+          },
+          "fontSize": {
+            "value": 11.5
+          },
+          "fill": {
+            "value": "#1c1f23"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "opacity": {
+            "signal": "focusState ? 1 : 0"
+          },
+          "tooltip": {
+            "signal": "null"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "width"
+          },
+          "y": {
+            "signal": "height - 21"
+          },
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "text": {
+            "signal": "focusArea ? focusArea : focusState ? focusState + ' · click the dashed city area to zoom in' : 'Click a state to zoom in'"
+          },
+          "fontSize": {
+            "value": 11.5
+          },
+          "fill": {
+            "value": "#767c83"
+          }
+        }
+      }
+    }
+  ]
+}
