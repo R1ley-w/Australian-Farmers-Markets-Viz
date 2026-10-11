@@ -175,7 +175,7 @@
 <section class="section" id="production">
   <div class="wrap">
 
-    <!-- Row 1: introduction left, food miles chart right -->
+    <!-- Row 1: introduction left, food waste chart right -->
     <div class="chart-grid row-match">
       <header class = "sec-head">
         <h2>
@@ -197,19 +197,15 @@
 
       <figure class="chart">
         <figcaption>
-          <div class="title">How far stallholders travel</div>
-          <p class="sub">Distance to their main market. The line is the running total.</p>
+          <div class="title">Where Australia wastes 7.3 million tonnes of food a year</div>
+          <p class="sub">National Food Waste Baseline, 2016-17. Numbers on the bars are percentage shares.</p>
         </figcaption>
-        <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
-        <p class="source">RIRDC Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014), n = 286 stallholders</p>
+        <div class="viz" data-spec="specs/14-food-waste.vg.json"></div>
+        <p class="source">DCCEEW, National Food Waste Baseline (2016-17 reference year) · the published baseline names only the three largest sectors</p>
       </figure>
     </div>
 
     <!-- Row 2: treemap -->
-    <p>
-      Each tile is a commodity, sized by the gross value farms produced. Click a tile
-      to see where it is grown on the map below, and click it again to clear.
-    </p>
 
     <figure class="chart wide">
       <figcaption>
@@ -220,12 +216,6 @@
     </figure>
 
     <!-- Row 3: production map -->
-    <p>
-      On the map, each council gets one symbol: its shape is the main type of produce,
-      its size the value per hectare. Click a state to zoom in. Queensland's Lockyer
-      Valley, Bundaberg, Whitsunday and Burdekin grow the most vegetables in the country,
-      yet the state has only 13 markets.
-    </p>
 
     <figure class="chart wide">
       <figcaption>
@@ -236,38 +226,13 @@
     </figure>
 
     <!-- Row 4: emissions -->
-    <p>
-      The intuitive case for farmers' markets is transport emissions. The evidence does not
-      support it. Across almost every food, transport is a thin slice of the total footprint —
-      usually under 10%, often under 5%. What you buy matters far more than how far it came.
-    </p>
 
     <figure class="chart">
       <figcaption>
         <div class="title">Where food emissions actually come from</div>
-        <p class="sub">
-          Emissions per kilogram, split by supply-chain stage. Switch to shares to see how
-          thin the transport slice is even for the foods that travel furthest.
-        </p>
       </figcaption>
       <div class="viz" data-spec="specs/13-emissions-by-stage.vg.json"></div>
       <p class="source">Our World in Data, from Poore &amp; Nemecek (2018), <em>Science</em> · CC BY 4.0</p>
-    </figure>
-
-    <p>
-      There is a stronger argument, and it is about waste rather than distance. Almost a
-      third of Australia's food waste happens <em>before food leaves the farm</em> — a
-      large share of it rejected on cosmetic specifications set by retail buyers. Farmers'
-      markets have no cosmetic spec.
-    </p>
-
-    <figure class="chart">
-      <figcaption>
-        <div class="title">Where Australia wastes 7.3 million tonnes of food a year</div>
-        <p class="sub">National Food Waste Baseline, 2016-17. Numbers on the bars are percentage shares.</p>
-      </figcaption>
-      <div class="viz" data-spec="specs/14-food-waste.vg.json"></div>
-      <p class="source">DCCEEW, National Food Waste Baseline (2016-17 reference year) · the published baseline names only the three largest sectors</p>
     </figure>
 
     <div class="takeaway">
@@ -314,6 +279,15 @@
         <p class="source">RIRDC Publication 14/040 (2014), n = 286 stallholders</p>
       </figure>
     </div>
+
+    <figure class="chart">
+      <figcaption>
+        <div class="title">How far stallholders travel</div>
+        <p class="sub">Distance to their main market. The line is the running total.</p>
+      </figcaption>
+      <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
+      <p class="source">RIRDC Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014), n = 286 stallholders</p>
+    </figure>
 
     <figure class="chart">
       <figcaption>

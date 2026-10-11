@@ -384,7 +384,7 @@ figcaption .sub {
   border-top: 1px solid var(--border);
   font-size: 0.78rem;
   color: var(--ink-muted);
-  max-width: 23em;
+  max-width: none;
   align-items: start;
 }
 .source a { color: inherit; }
