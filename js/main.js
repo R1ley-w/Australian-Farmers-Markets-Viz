@@ -69,7 +69,7 @@ function theme() {
 }
 
 const embedOptions = () => ({
-  actions: { export: true, source: false, compiled: false, editor: false },
+  actions: { export: true, source: true, compiled: false, editor: true },
   renderer: 'canvas',
   config: theme(),
   tooltip: { theme: 'light' },
@@ -113,7 +113,7 @@ async function renderOne(el) {
     // on reload instead of being served from the browser's cache.
     const res = await fetch(url, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-    const spec = await res.json();
+    const spec = absoluteUrls(await res.json());
     el.innerHTML = '';
     const result = await vegaEmbed(el, spec, embedOptions());
     const link = spec.usermeta && spec.usermeta.link;
@@ -146,3 +146,20 @@ function observe() {
 }
 
 document.addEventListener('DOMContentLoaded', observe);
+
+
+/* I used relative paths when embedding vega charts, this function rewrites 
+    each specs path to the full url */
+function absoluteUrls(node) {
+  if (Array.isArray(node)) {
+    node.forEach(absoluteUrls);
+  } else if (node && typeof node == 'object') {
+    for (const[key, value] of Object.entries(node)) {
+      if (key === 'url' && typeof value === 'string' && !/^[a-z]+:/i.test(value)) {
+        node[key] = new URL(value, location.href).href;
+      } else {
+        absoluteUrls(value);
+      }
+    } 
+  }
+}

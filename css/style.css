@@ -312,7 +312,7 @@ figure.chart {
   /* Pull the card out by its own padding so the caption's left edge lands
      on the prose above it. Without this the rail is off by the card
      padding and the sight line kinks at every chart. */
-  .wrap > figure.chart { margin-inline: -1.25rem; }
+  .wrap > figure.chart { margin-inline: 0; }
 
   figure.chart {
     display: grid;
