@@ -162,4 +162,5 @@ function absoluteUrls(node) {
       }
     } 
   }
+  return node;
 }
