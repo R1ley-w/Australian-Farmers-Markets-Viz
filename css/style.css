@@ -478,7 +478,7 @@ footer.colophon {
   font-size: 0.86rem;
 }
 footer.colophon h3 { color: var(--ink-2); }
-footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: 21em; }
+footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: none; }
 footer.colophon li { margin-bottom: 0.4em; }
 
 /*  narrow */
