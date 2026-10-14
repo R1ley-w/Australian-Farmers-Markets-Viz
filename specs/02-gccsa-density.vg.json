@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state. Capital-city regions are small at national scale, so their figures are mainly read from tooltips. Clicking a region picks its state; the inset compares the last two picked states at state level. Plain Vega because Vega-Lite cannot cap a selection at two.",
+  "description": "Farmers' markets per 100,000 people by Greater Capital City Statistical Area and rest-of-state.",
   "autosize": {
     "type": "pad",
     "resize": true
@@ -26,7 +26,7 @@
     },
     {
       "name": "insetW",
-      "update": "stacked ? min(width, 340) : 240"
+      "update": "stacked ? min(width, 340) : 290"
     },
     {
       "name": "insetH",
@@ -59,7 +59,7 @@
       "on": [
         {
           "events": "click",
-          "update": "item() && isObject(datum) && isString(datum.state) ? (indexof(picked, datum.state) >= 0 ? (picked[0] === datum.state ? slice(picked, 1) : slice(picked, 0, 1)) : (length(picked) === 0 ? [datum.state] : [peek(picked), datum.state])) : picked"
+          "update": "item() && isObject(datum) && isString(datum.gccsa) ? (indexof(picked, datum.gccsa) >= 0 ? (picked[0] === datum.gccsa ? slice(picked, 1) : slice(picked, 0, 1)) : (length(picked) === 0 ? [datum.gccsa] : [peek(picked), datum.gccsa])) : picked"
         }
       ]
     }
@@ -71,7 +71,16 @@
       "format": {
         "type": "csv",
         "parse": "auto"
-      }
+      },
+      "transform": [
+        {"type": "formula", "as": "short",
+         "expr": "datum.gccsa === 'Australian Capital Territory' ? 'Canberra' : replace(replace(datum.gccsa, 'Greater ', ''), '.', '')"}
+      ]
+    },
+    {
+      "name" : "cities",
+      "source" : "density",
+      "transform": [{"type": "filter", "expr": "datum.kind === 'Capital city'"}]
     },
     {
       "name": "regions",
@@ -88,13 +97,7 @@
           "fields": [
             "properties.name"
           ],
-          "values": [
-            "state",
-            "kind",
-            "markets",
-            "population",
-            "markets_per_100k"
-          ]
+          "values": ["gccsa", "short", "state", "kind", "markets", "population", "markets_per_100k"]
         }
       ]
     },
@@ -104,31 +107,16 @@
       "transform": [
         {
           "type": "filter",
-          "expr": "indexof(picked, datum.state) >= 0"
+          "expr": "indexof(picked, datum.gccsa) >= 0"
         }
       ]
     },
     {
-      "name": "states",
-      "url": "data/markets_by_state.csv",
-      "format": {
-        "type": "csv",
-        "parse": "auto"
-      }
-    },
-    {
-      "name": "pickedStates",
-      "source": "states",
+      "name" : "pickedDensity",
+      "source" : "density",
       "transform": [
-        {
-          "type": "filter",
-          "expr": "indexof(picked, datum.state) >= 0"
-        },
-        {
-          "type": "formula",
-          "as": "slot",
-          "expr": "indexof(picked, datum.state)"
-        }
+        {"type": "filter", "expr": "indexof(picked, datum.gccsa) >= 0"},
+        {"type": "formula", "as": "slot", "expr": "indexof(picked, datum.gccsa)"}
       ]
     }
   ],
@@ -208,7 +196,7 @@
             "value": "pointer"
           },
           "tooltip": {
-            "signal": "{'Region': datum.properties.name, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.state}"
+            "signal": "{'Region': datum.gccsa, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.gccsa}"
           }
         }
       },
@@ -276,6 +264,23 @@
       ]
     },
     {
+      "name": "cityDots",
+      "type": "symbol",
+      "from": {"data": "cities"},
+      "encode": {
+        "update": {
+          "x": {"signal": "scale('projection', [datum.lng, datum.lat])[0]"},
+          "y": {"signal": "scale('projection', [datum.lng, datum.lat])[1]"},
+          "size": {"value": 150},
+          "fill": {"scale": "density", "field": "markets_per_100k"},
+          "stroke": {"signal": "indexof(picked, datum.gccsa) >= 0 ? '#1c1f23' : '#fdfdfc'"},
+          "strokeWidth": {"signal": "indexof(picked, datum.gccsa) >= 0 ? 2.5 : 1.5"},
+          "cursor": {"value": "pointer"},
+          "tooltip": {"signal": "{'Region': datum.gccsa, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare'}"}
+        }
+      }
+    },
+    {
       "name": "inset",
       "type": "group",
       "encode": {
@@ -309,7 +314,7 @@
       "signals": [
         {
           "name": "labelW",
-          "update": "38"
+          "update": "84"
         },
         {
           "name": "valueW",
@@ -325,7 +330,7 @@
           "name": "barX",
           "type": "linear",
           "domain": {
-            "data": "states",
+            "data": "density",
             "field": "markets_per_100k"
           },
           "zero": true,
@@ -351,7 +356,7 @@
                 "value": 20
               },
               "text": {
-                "value": "Compare two states"
+                "value": "Compare two regions"
               },
               "fontWeight": {
                 "value": 700
@@ -377,7 +382,7 @@
                 "signal": "length(picked) === 0 ? 50 : insetH - 12"
               },
               "text": {
-                "signal": "length(picked) === 0 ? ['Click any two states on the map', 'to compare them here.'] : length(picked) === 1 ? 'Click one more state.' : 'Markets per 100,000 people'"
+                "signal": "length(picked) === 0 ? ['Click any two regions on the map', 'to compare them here.'] : length(picked) === 1 ? 'Click one more region.' : 'Markets per 100,000 people'"
               },
               "lineHeight": {
                 "value": 16
@@ -395,7 +400,7 @@
           "name": "bars",
           "type": "rect",
           "from": {
-            "data": "pickedStates"
+            "data": "pickedDensity"
           },
           "encode": {
             "update": {
@@ -460,7 +465,7 @@
         {
           "type": "text",
           "from": {
-            "data": "pickedStates"
+            "data": "pickedDensity"
           },
           "interactive": false,
           "encode": {
@@ -492,7 +497,7 @@
         {
           "type": "text",
           "from": {
-            "data": "pickedStates"
+            "data": "pickedDensity"
           },
           "interactive": false,
           "encode": {
