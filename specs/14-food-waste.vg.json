@@ -1,129 +1,150 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Where Australia's 7.3 million tonnes of annual food waste happens.",
+  "description": "Waffle chart of where Australia's 7.3 million tonnes of annual food waste happens. 100 squares, one per percentage point, so each square is about 73,000 tonnes. Squares fill row by row from the top left, largest share first. The grid is always 10 x 10, left-aligned with the legend and card edge.",
   "width": "container",
   "height": "container",
+  "params": [
+    {
+      "name": "cols",
+      "value": 10
+    },
+    {
+      "name": "rows",
+      "expr": "100 / cols"
+    },
+    {
+      "name": "cell",
+      "expr": "floor(min(width / cols, height / rows))"
+    },
+    {
+      "name": "gap",
+      "expr": "max(2, round(cell * 0.12))"
+    },
+    {
+      "name": "offsetX",
+      "expr": "(width-cell*cols) / 2"
+    },
+    {
+      "name": "offsetY",
+      "expr": "(height - cell * rows) / 2"
+    }
+  ],
   "data": {
     "url": "data/dcceew_food_waste.csv"
   },
-  "layer": [
+  "transform": [
     {
-      "mark": {
-        "type": "bar",
-        "cornerRadius": 3,
-        "height": {
-          "expr": "max(54, height * 0.42)"
+      "window": [
+        {
+          "op": "sum",
+          "field": "share_pct",
+          "as": "cum_end"
         }
-      },
-      "encoding": {
-        "color": {
-          "field": "sector",
-          "type": "nominal",
-          "title": null,
-          "sort": [
-            "Households",
-            "Primary production",
-            "Manufacturing",
-            "Other (wholesale; retail; hospitality)"
-          ],
-          "legend": {
-            "orient": "bottom",
-            "direction": "horizontal",
-            "columns": 2,
-            "labelLimit": 260
-          },
-          "scale": {
-            "domain": [
-              "Households",
-              "Primary production",
-              "Manufacturing",
-              "Other (wholesale; retail; hospitality)"
-            ],
-            "range": [
-              "#243b51",
-              "#b83025",
-              "#6587a7",
-              "#9ab6d2"
-            ]
-          }
-        },
-        "tooltip": [
-          {
-            "field": "sector",
-            "type": "nominal",
-            "title": "Where"
-          },
-          {
-            "field": "tonnes_million",
-            "type": "quantitative",
-            "title": "Million tonnes a year"
-          },
-          {
-            "field": "share_pct",
-            "type": "quantitative",
-            "title": "Share (%)"
-          },
-          {
-            "field": "note",
-            "type": "nominal",
-            "title": "Note"
-          }
-        ]
-      }
+      ],
+      "sort": [
+        {
+          "field": "share_pct",
+          "order": "descending"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
     },
     {
-      "mark": {
-        "type": "text",
-        "fontWeight": 650,
-        "fontSize": {
-          "expr": "height > 300 ? 15 : 13"
-        },
-        "color": "#ffffff"
-      },
-      "encoding": {
-        "text": {
-          "field": "share_pct",
-          "type": "quantitative",
-          "format": ".0f"
-        },
-        "detail": {
-          "field": "sector",
-          "type": "nominal"
-        },
-        "opacity": {
-          "condition": {
-            "test": "datum.share_pct >= 20",
-            "value": 1
-          },
-          "value": 0
-        }
-      }
+      "calculate": "datum.cum_end - datum.share_pct",
+      "as": "cum_start"
+    },
+    {
+      "calculate": "datum.sector + '  ' + datum.share_pct + '%'",
+      "as": "label"
+    },
+    {
+      "calculate": "sequence(datum.cum_start, datum.cum_end)",
+      "as": "cells"
+    },
+    {
+      "flatten": [
+        "cells"
+      ],
+      "as": [
+        "i"
+      ]
+    },
+    {
+      "calculate": "datum.i % cols",
+      "as": "col"
+    },
+    {
+      "calculate": "floor(datum.i / cols)",
+      "as": "row"
     }
   ],
-  "encoding": {
+  "mark": {
+    "type": "rect",
+    "cornerRadius": 2,
+    "strokeWidth": 0,
     "x": {
-      "field": "tonnes_million",
-      "type": "quantitative",
-      "stack": "zero",
-      "title": "Million tonnes of food wasted a year",
-      "axis": {
-        "grid": true,
-        "values": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7
+      "expr": "offsetX + datum.col * cell"
+    },
+    "x2": {
+      "expr": "offsetX + (datum.col + 1) * cell - gap"
+    },
+    "y": {
+      "expr": "offsetY + datum.row * cell"
+    },
+    "y2": {
+      "expr": "offsetY + (datum.row + 1) * cell - gap"
+    }
+  },
+  "encoding": {
+    "color": {
+      "field": "label",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "cum_start"
+      },
+      "scale": {
+        "range": [
+          "#243b51",
+          "#b83025",
+          "#6587a7",
+          "#9ab6d2"
         ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": {
+          "expr": "width < 440 ? 1 : 2"
+        },
+        "labelLimit": 300,
+        "symbolType": "square"
       }
     },
-    "order": {
-      "field": "share_pct",
-      "type": "quantitative",
-      "sort": "descending"
-    }
+    "tooltip": [
+      {
+        "field": "sector",
+        "type": "nominal",
+        "title": "Where"
+      },
+      {
+        "field": "tonnes_million",
+        "type": "quantitative",
+        "title": "Million tonnes a year"
+      },
+      {
+        "field": "share_pct",
+        "type": "quantitative",
+        "title": "Share (%)"
+      },
+      {
+        "field": "note",
+        "type": "nominal",
+        "title": "Note"
+      }
+    ]
   }
 }
