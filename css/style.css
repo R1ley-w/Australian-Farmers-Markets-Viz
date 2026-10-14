@@ -212,7 +212,6 @@ header.masthead {
 
 .stat { background: var(--surface); padding: 1.1rem 1.15rem; }
 .stat .v {
-  font-family: var(--font-serif);
   font-weight: 700;
   font-size: clamp(1.8rem, 3.6vw, 2.4rem);
   line-height: 1.05;
