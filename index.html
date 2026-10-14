@@ -18,11 +18,11 @@
 <header class="masthead">
   <div class="wrap">
     <p class="eyebrow">FIT3179 · Data Visualisation 2 · Riley Wade</p>
-    <h1>Australian Farmer's Markets</h1>
+    <h1>Australian Farmers' Markets</h1>
     <p class="lede">
-      This project aims to visualise various metrics on Farmer's Markets in Australia, it use data from the national Farmer's
-      Market directory which contains 175 markets which are concentrated mostly in eastern Australia and are generally not easy to 
-      get to for most Australians.
+      Where are Australia's farmers' markets, who can reach one, and what do they do for
+      local producers? This page draws on the national farmers' market directory, which lists
+      175 markets. Most are in eastern Australia, and most Australians live a long way from one.
     </p>
 
     <div class="figures">
@@ -60,16 +60,17 @@
           <span class = "sec-q">Where can you find a market?</span>
         </h2>
         <p class = "sec-intro">
-          The Australian Farmers' Markets Association directory was the main source of data I used.
-          It holds 178 listings, which resolve to <strong>175 markets</strong> (after removing duplicates). 
-          New South Wales and Victoria hold 70% of them, Queensland, despite having a much larger crop output, only has thirteen.
+          My main source is the Australian Farmers' Markets Association directory. It holds
+          178 listings, which become <strong>175 markets</strong> once duplicates are removed.
+          New South Wales and Victoria have 70% of them. Queensland, a major food-producing
+          state, has only thirteen.
         </p>
       </header>
 
       <figure class = "chart">
         <figcaption>
           <div class = "title">Organisations running markets</div>
-          <p class = "sub">a few organisations run multiple markets, the rest are independently managed</p>
+          <p class="sub">A few organisations run several markets each; the rest are run independently.</p>
         </figcaption>
         <div class = "viz" data-spec = "specs/08-operators.vg.json"></div>
       </figure>
@@ -88,21 +89,22 @@
     <div class="chart-grid aside-match">         
       <figure class="chart">
         <figcaption>
-          <div class="title">How often do markets trade</div>
-          <p class="sub">Frequency mix within each state from the directory's free-text trading-days field.</p>
+          <div class="title">How often do markets trade?</div>
+          <p class="sub">The mix of weekly, fortnightly and monthly markets in each state.</p>
         </figcaption>
         <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
       </figure>
 
       <div class="aside">                         
         <figure class="photo">
-          <img src="docs/berwick_farmers_market.jpeg" alt="Berwick Farmer's market stalls at the old cheese factory">
+          <img src="docs/berwick_farmers_market.jpeg" alt="Stalls at the Berwick farmers' market, held at the Old Cheese Factory">
           <figcaption>Photo by mammaknowssouth.com.au</figcaption>
         </figure>
 
         <div class="takeaway">
-          Most markets are run by a local committee (including my local market pictured above), church, Rotary club or school, but the busiest metropolitan
-          ones cluster under a few more professional organisers.
+          Most markets are run by a local committee, church, Rotary club or school, as my local
+          market in Berwick is. The busiest city markets, though, are concentrated under a few
+          professional organisers.
         </div>
       </div>
     </div>
@@ -127,9 +129,11 @@
           <span class = "sec-q">How far to the nearest market?</span>
         </h2>
         <p class = "sec-intro">
-          Markets tend to crop up in rural areas far more frequently than highly populated ones. 
-          Rural Victoria and Rural NSW have the highest market density in the country; Greater Brisbane, with 2.8 million people, only has <strong>two</strong>. 
-          Regional towns are well served relative to their size. The problem is that there are not many of them, and they are far apart.
+          Relative to population, markets are far more common outside the capital cities.
+          Regional Victoria and regional NSW have the highest density in the country, while
+          Greater Brisbane, home to 2.8 million people, has only <strong>two</strong>. Regional
+          towns are well served for their size; the problem is that there are few of them, and
+          they are far apart. Click any two regions or city dots on the map to compare them.
         </p>
       </header>
 
@@ -162,11 +166,12 @@
     
 
     <div class="takeaway">
-      <strong>I'm fortunate enough to be within the 47% of Australia's local government areas are within 50 km of a farmers'
-      market. These 'accessible areas' cover only 5% of the land mass, furthermore 86% of markets trade on a weekend morning.</strong>
-      If you work Saturday mornings, most of the national network is closed to you. Whatever
-      farmers' markets do for sustainable shopping, they do it for a particular kind of
-      shopper, in a particular kind of place, at a particular time of week.
+      <strong>Only 47% of Australia's local government areas are within 50 km of a farmers'
+      market, and together they cover just 5% of the land.</strong> I'm lucky enough to live
+      in one. Timing narrows access further: 86% of markets trade on a weekend morning, so if
+      you work Saturdays, most of the national network is closed to you. Whatever farmers'
+      markets do for sustainable shopping, they do it for a particular kind of shopper, in a
+      particular kind of place, at a particular time of the week.
     </div>
   </div>
 </section>
@@ -189,7 +194,7 @@
           <span class = "sec-q">Where is our food produced?</span>
         </h2>
         <p class = "sec-intro">
-          Australian farms produced <strong>$70.9 billion</strong> of food and fibre in 2020-21.
+          Australian farms produced <strong>$70.9 billion</strong> of food and fibre in 2020–21.
           Meat and grain make up almost two thirds of it. Fruit, nuts and vegetables, the
           staples of a market stall, are under a fifth.
         </p>
@@ -198,10 +203,10 @@
       <figure class="chart">
         <figcaption>
           <div class="title">Where Australia wastes 7.3 million tonnes of food a year</div>
-          <p class="sub">National Food Waste Baseline, 2016-17. Numbers on the bars are percentage shares.</p>
+          <p class="sub">National Food Waste Baseline, 2016–17. Numbers on the bars are percentage shares.</p>
         </figcaption>
         <div class="viz" data-spec="specs/14-food-waste.vg.json"></div>
-        <p class="source">DCCEEW, National Food Waste Baseline (2016-17 reference year) · the published baseline names only the three largest sectors</p>
+        <p class="source">DCCEEW, National Food Waste Baseline (2016–17 reference year) · the published baseline names only the three largest sectors</p>
       </figure>
     </div>
 
@@ -212,7 +217,7 @@
         <div class="title">What Australian farms produce</div>
       </figcaption>
       <div class="viz" data-spec="specs/16-production-treemap.vg.json"></div>
-      <p class="source">ABS, <em>Value of Agricultural Commodities Produced, Australia</em>, 2020-21 (CC BY 4.0) · categories follow the ABS groupings</p>
+      <p class="source">ABS, <em>Value of Agricultural Commodities Produced, Australia</em>, 2020–21 (CC BY 4.0) · categories follow the ABS groupings</p>
     </figure>
 
     <!-- Row 3: production map -->
@@ -222,7 +227,7 @@
         <div class="title">Where it is grown</div>
       </figcaption>
       <div class="viz" data-spec="specs/17-production-map.vg.json"></div>
-      <p class="source">ABS, <em>Value of Agricultural Commodities Produced</em> by LGA, 2020-21 · ABS apportions these from SA2 estimates by area, and suppressed values count as zero, so a council with no symbol may still farm · poultry and pigs are heavily suppressed (72% and 88% of the national value is shown) · sizes cap at $2,000 a hectare</p>
+      <p class="source">ABS, <em>Value of Agricultural Commodities Produced</em> by LGA, 2020–21 · ABS apportions these from SA2 estimates by area, and suppressed values count as zero, so a council with no symbol may still farm · poultry and pigs are heavily suppressed (72% and 88% of the national value is shown) · sizes cap at $2,000 a hectare</p>
     </figure>
 
     <!-- Row 4: emissions -->
@@ -236,10 +241,10 @@
     </figure>
 
     <div class="takeaway">
-      <strong>A market stall that sells the misshapen carrot is doing more for emissions than
-      the short drive it arrived on.</strong> 57% of stallholders travel 50 km or less, but
-      transport is a thin slice of any food's footprint. What a market sells, and what it
-      saves from waste, matters more than how far it came.
+      <strong>A market stall that sells the misshapen carrot does more for emissions than the
+      short drive it arrived on.</strong> Transport is a thin slice of almost every food's
+      footprint. What a market sells, and the waste it saves, matters more than how far the
+      food travelled.
     </div>
   </div>
 </section>
@@ -262,11 +267,11 @@
           <span class = "sec-q">Can markets compete with the big two?</span>
         </h2>
         <p class = "sec-intro">
-          At a farmers' market the producer keeps the sale price minus a stall fee, which is
-          typically under $80. There is no wholesaler, distributor or retail margin in between.
-          The best evidence on stallholders is a 2014 RIRDC survey of 286 markets, it is quite old but
-          still the richest Australian dataset that exists. The competition is Coles and
-          Woolworths.
+          At a farmers' market, the producer keeps the sale price minus a stall fee, which is
+          usually under $80. There is no wholesaler, distributor or retailer taking a cut. The
+          best evidence on stallholders is a 2014 survey of 286 of them by the Rural Industries
+          Research and Development Corporation (RIRDC). It is now quite old, but it is still the
+          most detailed Australian dataset available. The competition is Coles and Woolworths.
         </p>
       </header>
 
@@ -284,7 +289,7 @@
       <figure class="chart">
         <figcaption>
           <div class="title">How far stallholders travel</div>
-          <p class="sub">Distance to their main market. The line is the running total.</p>
+          <p class="sub">Distance to their main market. 57% travel 50 km or less; the line is the running total.</p>
         </figcaption>
         <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
         <p class="source">RIRDC Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014), n = 286 stallholders</p>
@@ -307,8 +312,8 @@
       <figcaption>
         <div class="title">Share of Australian supermarket and liquor sales, 1994–2025</div>
           <p class = "sub">
-            Coles and Woolworths together take about 67% of
-            Australian supermarket grocery revenue. 2 companies dominate 2/3 of a market with thousands of grocers.
+            Coles and Woolworths together take about two-thirds of Australian supermarket and
+            liquor sales: two companies hold most of a market shared with thousands of other grocers.
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/18-supermarket-share-time.vg.json"></div>
@@ -316,10 +321,10 @@
     </figure>
 
     <div class="takeaway">
-      most stallholders use alongside local
-      shops, restaurants and wholesale not a replacement for them, and not an alternative
-      food system at national scale. What they are is a direct channel that works well for the
-      producers who can reach one and the shoppers who live near one.
+      <strong>Farmers' markets are not a replacement for the supermarket, and not an
+      alternative food system at national scale.</strong> Most stallholders sell through local
+      shops, restaurants and wholesalers as well. What markets offer is a direct channel that
+      works well for the producers who can reach one, and for the shoppers who live near one.
     </div>
   </div>
 </section>
@@ -334,7 +339,7 @@
       Boundaries © Australian Bureau of Statistics, ASGS Edition 3, CC BY 4.0. Market
       locations scraped from the public AFMA directory; no licence is stated, and they are
       reproduced here for a student assignment with attribution.
-      Agricultural production values © ABS, <em>Value of Agricultural Commodities Produced</em>, 2020-21, CC BY 4.0. Emissions data CC BY 4.0.
+      Agricultural production values © ABS, <em>Value of Agricultural Commodities Produced</em>, 2020–21, CC BY 4.0. Emissions data CC BY 4.0.
     </p>
   </div>
 </footer>
