@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Every farmers' market in the AFMA directory, coloured by trading frequency and sized by hours open on a market day.",
+  "description": "Every farmers' market in the AFMA directory, one dot per market, coloured by frequency",
   "height": 540,
   "autosize" : {"type" : "pad", "resize" : true},
   "signals" : [
@@ -85,7 +85,6 @@
       "format": {"type": "csv", "parse": "auto"},
       "transform": [
         {"type": "filter", "expr": "datum.is_duplicate == 0 && datum.geocode_ok == 1"},
-        {"type": "formula", "as": "hrs", "expr": "datum.hours_open ? datum.hours_open : 4"},
         {
           "type": "formula",
           "as": "stateName",
@@ -105,24 +104,9 @@
       "type" : "ordinal",
       "domain" : ["Weekly", "Fortnightly", "Monthly", "Irregular"],
       "range" : ["#243b51", "#4d6e8d", "#7f9fbe", "#9ab6d2"]
-    },
-    {
-      "name" : "hours",
-      "type" : "sqrt",
-      "domain" : [2,8],
-      "range" : [28, 190]
     }
    ],
   "legends": [
-    {
-      "size" : "hours",
-      "title" : "Hours Open",
-      "orient" : "top-left",
-      "direction" : "horizontal",
-      "values" : [3,4,5,6],
-      "symbolType" : "circle",
-      "encode" : {"symbols" : {"update" : {"fill" : {"value" : "#7f9fbe"}, "strokeWidth" : {"value" : 0}}}}
-    },
     {
       "fill": "freq",
       "title": "Trading frequency",
@@ -211,7 +195,7 @@
               "x": {"signal": "scale('projection', [datum.lng, datum.lat])[0]"},
               "y": {"signal": "scale('projection', [datum.lng, datum.lat])[1]"},
               "shape": {"value": "circle"},
-              "size": {"signal": "scale('hours', datum.hrs) * zoomK"},
+              "size": {"signal": "40*zoomK"},
               "fill": {"scale": "freq", "field": "frequency"},
               "stroke": {"value": "#fdfdfc"},
               "strokeWidth": {"value": 0.8},
