@@ -481,6 +481,17 @@ footer.colophon h3 { color: var(--ink-2); }
 footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: none; }
 footer.colophon li { margin-bottom: 0.4em; }
 
+/* Footer: two columns on wide screens (about/AI/photo | data sources) */
+.colophon-grid { display: grid; gap: 0 3rem; }
+@media (min-width: 900px) {
+  .colophon-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
+}
+footer.colophon h3 { margin: 0 0 0.5rem; }
+footer.colophon p + h3 { margin-top: 1.6rem; }
+footer.colophon a { color: inherit; text-decoration-color: var(--axis); text-underline-offset: 2px; }
+footer.colophon a:hover { color: var(--ink); text-decoration-color: currentColor; }
+
+
 /*  narrow */
 
 @media (max-width: 640px) {
