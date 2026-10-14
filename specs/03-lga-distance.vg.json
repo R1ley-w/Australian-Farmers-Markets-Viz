@@ -17,7 +17,9 @@
     }
   ],
   "projection": {
-    "type": "mercator"
+    "type": "conicEqualArea",
+    "parallels": [-18, -36],
+    "rotate" : [-132, 0, 0]
   },
   "layer": [
     {

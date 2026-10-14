@@ -265,7 +265,9 @@
   "projections": [
     {
       "name": "projection",
-      "type": "mercator",
+      "type": "conicEqualArea",
+      "parallels": [-16, -36],
+      "rotate": [-132, 0] ,
       "fit": {
         "signal": "focusArea ? data('focusAreaShape') : focusState ? data('focusStateShape') : data('states')"
       },

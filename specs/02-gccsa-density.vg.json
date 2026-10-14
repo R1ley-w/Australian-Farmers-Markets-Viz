@@ -135,7 +135,9 @@
   "projections": [
     {
       "name": "projection",
-      "type": "mercator",
+      "type": "conicEqualArea",
+      "parallels": [-18, -36],
+      "rotate" : [-132,0],
       "fit": {
         "signal": "data('regions')"
       },
