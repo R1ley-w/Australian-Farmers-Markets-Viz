@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Beeswarm of the distance from every local government area (council area) to its nearest farmers' market",
+  "autosize": {"type": "pad", "resize": true},
+
+  "signals": [
+    {
+      "name": "width",
+      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] - 200 : 620",
+      "on": [{"events": "window:resize",
+              "update": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] - 200 : width"}]
+    },
+    {"name": "rowH", "value": 58},
+    {"name": "height", "update": "rowH * 8"},
+    {"name": "r", "value": 3.6}
+  ],
+
+  "data": [
+    {
+      "name": "lgas",
+      "url": "data/lga_distance.csv",
+      "format": {"type": "csv", "parse": "auto"},
+      "transform": [
+        {"type": "filter", "expr": "isValid(datum.km_to_nearest_market)"},
+        {"type": "formula", "as": "km", "expr": "max(1, datum.km_to_nearest_market)"}
+      ]
+    },
+    {
+      "name": "swarm",
+      "source": "lgas",
+      "transform": [
+        {"type": "formula", "as": "xfocus", "expr": "scale('x', datum.km)"},
+        {"type": "formula", "as": "yfocus", "expr": "scale('row', datum.state) + rowH / 2"},
+        {"type": "formula", "as": "x", "expr": "datum.xfocus"},
+        {"type": "formula", "as": "y", "expr": "datum.yfocus"},
+        {
+          "type": "force",
+          "static": true,
+          "restart": true,
+          "iterations": 300,
+          "forces": [
+            {"force": "collide", "radius": {"signal": "r + 0.6"}, "iterations": 2},
+            {"force": "x", "x": "xfocus", "strength": 0.6},
+            {"force": "y", "y": "yfocus", "strength": 0.08}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "byState",
+      "source": "lgas",
+      "transform": [
+        {"type": "aggregate", "groupby": ["state"],
+         "ops": ["median", "count"],
+         "fields": ["km_to_nearest_market", "km_to_nearest_market"],
+         "as": ["median_km", "n"]}
+      ]
+    }
+  ],
+
+  "scales": [
+    {"name": "x", "type": "log", "domain": [1, 3000], "range": "width", "clamp": true},
+    {
+      "name": "row", "type": "band", "range": "height", "paddingInner": 0,
+      "domain": {"data": "byState", "field": "state", "sort": {"op": "min", "field": "median_km"}}
+    },
+    {
+      "name": "colour", "type": "log", "domain": [2, 2300], "clamp": true,
+      "range": ["#feefde", "#f7dcbc", "#edc698", "#ddac6e", "#c58d41", "#a96f10", "#8c5600", "#6e4000", "#4f2c00"]
+    }
+  ],
+
+  "axes": [
+    {
+      "orient": "bottom", "scale": "x",
+      "values": [1, 5, 10, 50, 100, 500, 1000],
+      "grid": true, "gridColor": "#e6e6e3", "zindex": 0,
+      "title": "Kilometres from the council area's centre to the nearest market (log scale)",
+      "encode": {"labels": {"update": {"text": {
+        "signal": "datum.value === 1 ? '1 or less' : format(datum.value, ',.0f')"}}}}
+    },
+    {
+      "orient": "left", "scale": "row",
+      "domain": false, "ticks": false, "labelFontWeight": 700, "labelPadding": 8,
+      "encode": {"labels": {"update": {"text": {
+        "signal": "{'NSW':'NSW','VIC':'Victoria','QLD':'Queensland','SA':'South Aust.','WA':'Western Aust.','TAS':'Tasmania','NT':'Northern Terr.','ACT':'ACT'}[datum.value]"}}}}
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "rule", "interactive": false,
+      "encode": {"update": {
+        "x": {"scale": "x", "value": 50},
+        "y": {"value": -6}, "y2": {"signal": "height"},
+        "stroke": {"value": "#1c1f23"}, "strokeWidth": {"value": 1}, "strokeDash": {"value": [4, 3]}
+      }}
+    },
+    {
+      "type": "text", "interactive": false,
+      "encode": {"update": {
+        "x": {"scale": "x", "value": 50, "offset": 5}, "y": {"value": -6},
+        "baseline": {"value": "top"}, "text": {"value": "50 km"},
+        "fontSize": {"value": 11}, "fontWeight": {"value": 700}, "fill": {"value": "#1c1f23"}
+      }}
+    },
+    {
+      "name": "dots",
+      "type": "symbol",
+      "from": {"data": "swarm"},
+      "encode": {
+        "update": {
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "size": {"signal": "PI * r * r"},
+          "fill": {"scale": "colour", "field": "km_to_nearest_market"},
+          "stroke": {"value": "#8a8f95"},
+          "strokeWidth": {"value": 0.4},
+          "tooltip": {"signal": "{'Council area': datum.lga, 'State': datum.state, 'Nearest market': datum.nearest_market, 'Distance': format(datum.km_to_nearest_market, ',.1f') + ' km'}"}
+        },
+        "hover": {"stroke": {"value": "#1c1f23"}, "strokeWidth": {"value": 1.5}}
+      }
+    },
+    {
+      "type": "rule", "from": {"data": "byState"}, "interactive": false,
+      "encode": {"update": {
+        "x": {"scale": "x", "field": "median_km"},
+        "y": {"signal": "scale('row', datum.state) + 8"},
+        "y2": {"signal": "scale('row', datum.state) + rowH - 8"},
+        "stroke": {"value": "#1c1f23"}, "strokeWidth": {"value": 2.5}
+      }}
+    },
+    {
+      "type": "text", "from": {"data": "byState"}, "interactive": false,
+      "encode": {"update": {
+        "x": {"signal": "width + 10"},
+        "y": {"signal": "scale('row', datum.state) + rowH / 2"},
+        "baseline": {"value": "middle"},
+        "text": {"signal": "'median ' + format(datum.median_km, ',.0f') + ' km'"},
+        "fontSize": {"value": 11.5}, "fill": {"value": "#474d54"}
+      }}
+    }
+  ]
+}
