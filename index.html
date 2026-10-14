@@ -6,7 +6,7 @@
 <title>Australian Farmers' Markets</title>
 <meta name="description" content="Where Australia's farmers' markets are, who can actually reach one, what they do for producers, and how the sustainability case really stacks up.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f363d'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23f7f7f5'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23abb7c5'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=9">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
 <script src="vendor/vega.min.js"></script>
@@ -17,7 +17,7 @@
 
 <header class="masthead">
   <div class="wrap">
-    <p class="eyebrow">FIT3179 · Data Visualisation 2 · Riley Wade</p>
+    <p class="eyebrow">FIT3179 Data Visualisation 2 · Riley Wade · October 2026</p>
     <h1>Australian Farmers' Markets</h1>
     <p class="lede">
       Where are Australia's farmers' markets, who can reach one, and what do they do for
@@ -333,14 +333,61 @@
 
 <footer class="colophon">
   <div class="wrap">
-    <h3>Sources</h3>
+    <div class="colophon-grid">
 
-    <p>
-      Boundaries © Australian Bureau of Statistics, ASGS Edition 3, CC BY 4.0. Market
-      locations scraped from the public AFMA directory; no licence is stated, and they are
-      reproduced here for a student assignment with attribution.
-      Agricultural production values © ABS, <em>Value of Agricultural Commodities Produced</em>, 2020–21, CC BY 4.0. Emissions data CC BY 4.0.
-    </p>
+      <div>
+        <h3>About</h3>
+        <p>
+          Designed and built by <strong>Riley Wade</strong> for FIT3179 Data Visualisation,
+          Monash University. Published October 2026.
+        </p>
+        <p>
+          Every chart is drawn with <a href="https://vega.github.io/">Vega and Vega-Lite</a>
+          (BSD-3-Clause licence). The chart specifications and processed data are in the
+          <a href="https://github.com/R1ley-w/Australian-Farmers-Markets-Viz">GitHub repository</a>;
+        </p>
+
+        <h3>Photo</h3>
+        <p>Berwick farmers' market: mammaknowssouth.com.au.</p>
+      </div>
+
+      <div>
+        <h3>Data sources</h3>
+        <ul>
+          <li>Australian Farmers' Markets Association,
+            <a href="https://farmersmarkets.org.au/find-a-market/">“Find a Market” directory</a>,
+            collected 20 September 2026. No licence is stated; listings are reproduced with
+            attribution for a non-commercial student project.</li>
+          <li>Australian Bureau of Statistics,
+            <a href="https://www.abs.gov.au/statistics/industry/agriculture/value-agricultural-commodities-produced-australia/2020-21"><em>Value of Agricultural Commodities Produced, Australia</em>, 2020–21</a>, national and by local government area. CC BY 4.0.</li>
+          <li>Australian Bureau of Statistics,
+            <a href="https://www.abs.gov.au/statistics/people/population/regional-population"><em>Regional Population</em></a> and
+            <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population"><em>National, State and Territory Population</em></a>, 30 June 2025. CC BY 4.0.</li>
+          <li>Australian Bureau of Statistics,
+            <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads">Australian Statistical Geography Standard, Edition 3</a>:
+            state, capital city (GCCSA) and local government area (LGA 2023) boundaries. CC BY 4.0.</li>
+          <li>Australian Bureau of Statistics,
+            <a href="https://www.abs.gov.au/statistics/industry/retail-and-wholesale-trade/retail-trade-australia"><em>Retail Trade, Australia</em></a>,
+            series A3349862V and A3349462J. CC BY 4.0.</li>
+          <li>Rural Industries Research and Development Corporation (now AgriFutures Australia),
+            <a href="https://agrifutures.com.au/product/understanding-the-characteristics-of-australian-farmers-markets/"><em>Understanding the Characteristics of Australian Farmers' Markets</em></a>,
+            Publication 14/040, 2014.</li>
+          <li>Department of Climate Change, Energy, the Environment and Water,
+            National Food Waste Baseline (2016–17 reference year), published under the
+            <a href="https://www.dcceew.gov.au/environment/protection/waste/publications/national-food-waste-strategy">National Food Waste Strategy</a>.</li>
+          <li>Our World in Data,
+            <a href="https://ourworldindata.org/grapher/food-emissions-supply-chain">Food: greenhouse gas emissions across the supply chain</a>,
+            based on Poore, J. &amp; Nemecek, T. (2018),
+            <a href="https://doi.org/10.1126/science.aaq0216">“Reducing food's environmental impacts through producers and consumers”</a>, <em>Science</em> 360(6392). CC BY 4.0.</li>
+          <li>Annual reports and results of
+            <a href="https://woolworthsgroup.com.au/page/investors">Woolworths Group</a>,
+            <a href="https://www.colesgroup.com.au/investors">Coles Group</a>,
+            <a href="https://www.wesfarmers.com.au/">Wesfarmers</a> (owner of Coles, 2007–2018) and
+            <a href="https://www.endeavourgroup.com.au/">Endeavour Group</a>, FY1994–FY2025, including historical Coles Myer reports.</li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 </footer>
 
