@@ -152,7 +152,7 @@ p { margin: 0 0 1em; max-width: var(--measure); }
 a { color: var(--ink-strong); text-underline-offset: 2px; }
 a:hover { color: var(--highlight); }
 
-.lede   { font-size: 1.13rem; color: var(--ink-2); max-width: 18em; }
+.lede   { font-size: 1.13rem; color: var(--ink-2); max-width: none; }
 .muted  { color: var(--ink-muted); }
 .small  { font-size: 0.83rem; }
 code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
