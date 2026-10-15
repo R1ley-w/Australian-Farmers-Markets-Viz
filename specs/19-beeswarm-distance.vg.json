@@ -6,9 +6,9 @@
   "signals": [
     {
       "name": "width",
-      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] - 200 : 620",
+      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] - 340 : 620",
       "on": [{"events": "window:resize",
-              "update": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] - 200 : width"}]
+              "update": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] - 340 : width"}]
     },
     {"name": "rowH", "value": 58},
     {"name": "height", "update": "rowH * 8"},
@@ -83,7 +83,7 @@
       "orient": "left", "scale": "row",
       "domain": false, "ticks": false, "labelFontWeight": 700, "labelPadding": 8,
       "encode": {"labels": {"update": {"text": {
-        "signal": "{'NSW':'NSW','VIC':'Victoria','QLD':'Queensland','SA':'South Aust.','WA':'Western Aust.','TAS':'Tasmania','NT':'Northern Terr.','ACT':'ACT'}[datum.value]"}}}}
+        "signal": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.value]"}}}}
     }
   ],
 
@@ -100,7 +100,7 @@
       "type": "text", "interactive": false,
       "encode": {"update": {
         "x": {"scale": "x", "value": 50, "offset": 5}, "y": {"value": -6},
-        "baseline": {"value": "top"}, "text": {"value": "50 km"},
+        "baseline": {"value": "top"}, "text": {"value": "50 kilometres"},
         "fontSize": {"value": 11}, "fontWeight": {"value": 700}, "fill": {"value": "#1c1f23"}
       }}
     },
@@ -116,10 +116,19 @@
           "fill": {"scale": "colour", "field": "km_to_nearest_market"},
           "stroke": {"value": "#8a8f95"},
           "strokeWidth": {"value": 0.4},
-          "tooltip": {"signal": "{'Council area': datum.lga, 'State': datum.state, 'Nearest market': datum.nearest_market, 'Distance': format(datum.km_to_nearest_market, ',.1f') + ' km'}"}
+          "tooltip": {"signal": "{'Council area': datum.lga, 'State': {'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state], 'Nearest market': replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.nearest_market, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast'), 'Distance': format(datum.km_to_nearest_market, ',.1f') + ' kilometres'}"}
         },
         "hover": {"stroke": {"value": "#1c1f23"}, "strokeWidth": {"value": 1.5}}
       }
+    },
+    {
+      "type": "rule", "from": {"data": "byState"}, "interactive": false,
+      "encode": {"update": {
+        "x": {"scale": "x", "field": "median_km"},
+        "y": {"signal": "scale('row', datum.state) + 8"},
+        "y2": {"signal": "scale('row', datum.state) + rowH - 8"},
+        "stroke": {"value": "#ffffff"}, "strokeWidth": {"value": 5}
+      }}
     },
     {
       "type": "rule", "from": {"data": "byState"}, "interactive": false,
@@ -136,7 +145,7 @@
         "x": {"signal": "width + 10"},
         "y": {"signal": "scale('row', datum.state) + rowH / 2"},
         "baseline": {"value": "middle"},
-        "text": {"signal": "'median ' + format(datum.median_km, ',.0f') + ' km'"},
+        "text": {"signal": "'median ' + format(datum.median_km, ',.0f') + ' kilometres'"},
         "fontSize": {"value": 11.5}, "fill": {"value": "#474d54"}
       }}
     }

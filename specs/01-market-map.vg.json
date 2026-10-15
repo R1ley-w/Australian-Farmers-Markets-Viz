@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Every farmers' market in the AFMA directory, one dot per market, coloured by frequency",
+  "description": "Every farmers' market in the Australian Farmers' Markets Association directory, one dot per market, coloured by frequency",
   "height": 540,
   "autosize" : {"type" : "pad", "resize" : true},
   "signals" : [
@@ -27,12 +27,19 @@
         {"events": "dblclick", "update": "null"}
       ]},
     {"name": "zoomK", "update": "focusArea ? 2.2 : focusState ? 1.4 : 1"},
+    {"name": "gratStep", "update": "focusArea ? [0.25, 0.25] : focusState ? [1, 1] : [5, 5]"},
     {"name" : "freqSel", "value" : null, "on" : [
       {"events": "@freqLegendSymbols:click, @freqLegendLabels:click",
       "update": "datum.value === freqSel ? null : datum.value"}
     ]}
   ],
   "data": [
+    {
+      "name": "graticule",
+      "transform": [
+        {"type": "graticule", "extent": [[112, -44], [154, -10]], "step": {"signal": "gratStep"}}
+      ]
+    },
     {
       "name" : "states",
       "url" : "data/states.topo.json",
@@ -89,7 +96,10 @@
           "type": "formula",
           "as": "stateName",
           "expr": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]"
-        }
+        },
+        {"type": "formula", "as": "nameFull", "expr": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.name, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')"},
+        {"type": "formula", "as": "suburbFull", "expr": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.suburb, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')"},
+        {"type": "formula", "as": "operatorFull", "expr": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.operator, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')"}
       ]
     }
   ],
@@ -152,9 +162,9 @@
           "from": {"data": "states"},
           "encode": {
             "update": {
-              "fill": {"value": "#f1f1f2"},
+              "fill": {"value": "#d6d8db"},
               "fillOpacity": {"signal": "!focusState || datum.properties.name === focusState ? 0.9 : 0.35"},
-              "stroke": {"value": "#cdced1"},
+              "stroke": {"value": "#fdfdfc"},
               "strokeWidth": {"value": 0.6},
               "cursor": {"signal": "focusState ? 'default' : 'zoom-in'"},
               "tooltip": {"signal": "focusState ? null : datum.properties.name + ' (click to zoom)'"}
@@ -187,6 +197,20 @@
           "transform": [{"type": "geoshape", "projection": "projection"}]
         },
         {
+          "type": "shape",
+          "from": {"data": "graticule"},
+          "interactive": false,
+          "encode": {
+            "update": {
+              "fill": {"value": null},
+              "stroke": {"value": "#4a5058"},
+              "strokeOpacity": {"value": 0.35},
+              "strokeWidth": {"value": 0.6}
+            }
+          },
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
           "name": "marketDots",
           "type": "symbol",
           "from": {"data": "markets"},
@@ -205,7 +229,7 @@
               "cursor": {"value": "pointer"},
               "href": {"field": "url"},
               "tooltip": {
-                "signal": "{'Market': datum.name, 'Where': datum.suburb, 'State': datum.state, 'Trades': datum.market_days_raw, 'Frequency': datum.frequency, 'Hours open': isValid(datum.hours_open) ? format(datum.hours_open, '.1f') : '—', 'Operator': datum.operator}"
+                "signal": "{'Market': datum.nameFull, 'Where': datum.suburbFull, 'State': datum.stateName, 'Trades': datum.market_days_raw, 'Frequency': datum.frequency, 'Hours open': isValid(datum.hours_open) ? format(datum.hours_open, '.1f') : '—', 'Operator': datum.operatorFull}"
               }
             }
           }

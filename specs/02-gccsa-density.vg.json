@@ -6,6 +6,7 @@
     "resize": true
   },
   "signals": [
+    {"name": "gratStep", "value": [5, 5]},
     {
       "name": "width",
       "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 760",
@@ -22,7 +23,7 @@
     },
     {
       "name": "height",
-      "update": "stacked ? 532 : 500"
+      "update": "stacked ? 556 : 500"
     },
     {
       "name": "insetW",
@@ -30,7 +31,7 @@
     },
     {
       "name": "insetH",
-      "update": "112"
+      "update": "136"
     },
     {
       "name": "mapW",
@@ -66,6 +67,12 @@
   ],
   "data": [
     {
+      "name": "graticule",
+      "transform": [
+        {"type": "graticule", "extent": [[112, -44], [154, -10]], "step": {"signal": "gratStep"}}
+      ]
+    },
+    {
       "name": "density",
       "url": "data/gccsa_market_density.csv",
       "format": {
@@ -73,8 +80,9 @@
         "parse": "auto"
       },
       "transform": [
+        {"type": "formula", "as": "regionName", "expr": "({'Rest of NSW':'Rest of New South Wales','Rest of Vic.':'Rest of Victoria','Rest of Qld':'Rest of Queensland','Rest of SA':'Rest of South Australia','Rest of WA':'Rest of Western Australia','Rest of Tas.':'Rest of Tasmania','Rest of NT':'Rest of Northern Territory'}[datum.gccsa] || datum.gccsa)"},
         {"type": "formula", "as": "short",
-         "expr": "datum.gccsa === 'Australian Capital Territory' ? 'Canberra' : replace(replace(datum.gccsa, 'Greater ', ''), '.', '')"}
+         "expr": "datum.regionName === 'Australian Capital Territory' ? 'Canberra' : replace(datum.regionName, 'Greater ', '')"}
       ]
     },
     {
@@ -97,7 +105,7 @@
           "fields": [
             "properties.name"
           ],
-          "values": ["gccsa", "short", "state", "kind", "markets", "population", "markets_per_100k"]
+          "values": ["gccsa", "regionName", "short", "state", "kind", "markets", "population", "markets_per_100k"]
         }
       ]
     },
@@ -144,13 +152,13 @@
       ],
       "clamp": true,
       "range": [
-        "#b5cce2",
-        "#9ab6d2",
-        "#7f9fbe",
-        "#6587a7",
-        "#4d6e8d",
-        "#375470",
-        "#243b51"
+        "#f7dcbc",
+        "#edc698",
+        "#ddac6e",
+        "#c58d41",
+        "#a96f10",
+        "#6e4000",
+        "#4f2c00"
       ]
     }
   ],
@@ -196,7 +204,7 @@
             "value": "pointer"
           },
           "tooltip": {
-            "signal": "{'Region': datum.gccsa, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.gccsa}"
+            "signal": "{'Region': datum.regionName, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Markets per 100,000 people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare ' + datum.regionName}"
           }
         }
       },
@@ -234,6 +242,20 @@
       ]
     },
     {
+      "type": "shape",
+      "from": {"data": "graticule"},
+      "interactive": false,
+      "encode": {
+        "update": {
+          "fill": {"value": null},
+          "stroke": {"value": "#4a5058"},
+          "strokeOpacity": {"value": 0.35},
+          "strokeWidth": {"value": 0.6}
+        }
+      },
+      "transform": [{"type": "geoshape", "projection": "projection"}]
+    },
+    {
       "name": "pickedOutline",
       "type": "shape",
       "from": {
@@ -246,7 +268,7 @@
             "value": null
           },
           "stroke": {
-            "value": "#1c1f23"
+            "value": "#b83025"
           },
           "strokeWidth": {
             "value": 2
@@ -273,10 +295,10 @@
           "y": {"signal": "scale('projection', [datum.lng, datum.lat])[1]"},
           "size": {"value": 150},
           "fill": {"scale": "density", "field": "markets_per_100k"},
-          "stroke": {"signal": "indexof(picked, datum.gccsa) >= 0 ? '#1c1f23' : '#fdfdfc'"},
+          "stroke": {"signal": "indexof(picked, datum.gccsa) >= 0 ? '#b83025' : '#fdfdfc'"},
           "strokeWidth": {"signal": "indexof(picked, datum.gccsa) >= 0 ? 2.5 : 1.5"},
           "cursor": {"value": "pointer"},
-          "tooltip": {"signal": "{'Region': datum.gccsa, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare'}"}
+          "tooltip": {"signal": "{'Region': datum.regionName, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Markets per 100,000 people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare'}"}
         }
       }
     },
@@ -314,7 +336,7 @@
       "signals": [
         {
           "name": "labelW",
-          "update": "84"
+          "update": "0"
         },
         {
           "name": "valueW",
@@ -412,7 +434,7 @@
                 "field": "markets_per_100k"
               },
               "y": {
-                "signal": "34 + datum.slot * 28"
+                "signal": "46 + datum.slot * 40"
               },
               "height": {
                 "value": 18
@@ -431,7 +453,7 @@
                 "value": "pointer"
               },
               "tooltip": {
-                "signal": "{'State': datum.state, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Per 100k people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to remove'}"
+                "signal": "{'Region': datum.regionName, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Markets per 100,000 people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to remove'}"
               }
             }
           }
@@ -448,10 +470,10 @@
                 "signal": "12 + labelW"
               },
               "y": {
-                "value": 30
+                "value": 44
               },
               "y2": {
-                "signal": "34 + max(1, length(picked)) * 28 - 6"
+                "signal": "46 + (max(1, length(picked)) - 1) * 40 + 18"
               },
               "stroke": {
                 "value": "#c3c6ca"
@@ -474,13 +496,13 @@
                 "value": 12
               },
               "y": {
-                "signal": "34 + datum.slot * 28 + 9"
+                "signal": "38 + datum.slot * 40"
               },
               "baseline": {
                 "value": "middle"
               },
               "text": {
-                "field": "state"
+                "field": "short"
               },
               "fontWeight": {
                 "value": 700
@@ -506,7 +528,7 @@
                 "signal": "12 + labelW + scale('barX', datum.markets_per_100k) + 6"
               },
               "y": {
-                "signal": "34 + datum.slot * 28 + 9"
+                "signal": "46 + datum.slot * 40 + 9"
               },
               "baseline": {
                 "value": "middle"

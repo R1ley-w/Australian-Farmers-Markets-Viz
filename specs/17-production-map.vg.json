@@ -123,6 +123,7 @@
       "name": "zoomK",
       "update": "focusArea ? 3 : focusState ? 1.6 : 1"
     },
+    {"name": "gratStep", "update": "focusArea ? [0.25, 0.25] : focusState ? [1, 1] : [5, 5]"},
     {
       "name": "typeSel",
       "value": null,
@@ -135,6 +136,12 @@
     }
   ],
   "data": [
+    {
+      "name": "graticule",
+      "transform": [
+        {"type": "graticule", "extent": [[112, -44], [154, -10]], "step": {"signal": "gratStep"}}
+      ]
+    },
     {
       "name": "states",
       "url": "data/states.topo.json",
@@ -250,7 +257,7 @@
         {
           "type": "formula",
           "as": "money",
-          "expr": "datum.value >= 1e9 ? '$' + format(datum.value / 1e9, '.2f') + 'bn' : datum.value >= 1e6 ? '$' + format(datum.value / 1e6, ',.1f') + 'm' : '$' + format(datum.value / 1e3, ',.0f') + 'k'"
+          "expr": "datum.value >= 1e9 ? '$' + format(datum.value / 1e9, '.2f') + ' billion' : datum.value >= 1e6 ? '$' + format(datum.value / 1e6, ',.1f') + ' million' : '$' + format(datum.value / 1e3, ',.0f') + ' thousand'"
         },
         {
           "type": "collect",
@@ -451,13 +458,13 @@
           "encode": {
             "update": {
               "fill": {
-                "value": "#e9eaec"
+                "value": "#d6d8db"
               },
               "fillOpacity": {
                 "signal": "!focusState || datum.properties.name === focusState ? 1 : 0.4"
               },
               "stroke": {
-                "value": "#cdced1"
+                "value": "#fdfdfc"
               },
               "strokeWidth": {
                 "value": 0.6
@@ -504,6 +511,20 @@
           ]
         },
         {
+          "type": "shape",
+          "from": {"data": "graticule"},
+          "interactive": false,
+          "encode": {
+            "update": {
+              "fill": {"value": null},
+              "stroke": {"value": "#4a5058"},
+              "strokeOpacity": {"value": 0.35},
+              "strokeWidth": {"value": 0.6}
+            }
+          },
+          "transform": [{"type": "geoshape", "projection": "projection"}]
+        },
+        {
           "name": "prodSymbols",
           "type": "symbol",
           "from": {
@@ -538,7 +559,7 @@
                 "signal": "(!typeSel || datum.p.main_type === typeSel ? 0.9 : 0.08) * (!focusState || datum.stateName === focusState ? 1 : 0.3)"
               },
               "tooltip": {
-                "signal": "{'title': datum.p.lga + ', ' + datum.p.state, 'Main produce': datum.p.main_type + ' (' + format(datum.p.main_share, '.0%') + ' of its value)', 'Value of selection': datum.money, 'Per hectare': '$' + format(datum.per_ha, datum.per_ha < 10 ? ',.2f' : ',.0f')}"
+                "signal": "{'title': datum.p.lga + ', ' + {'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.p.state], 'Main produce': datum.p.main_type + ' (' + format(datum.p.main_share, '.0%') + ' of its value)', 'Value of selection': datum.money, 'Per hectare': '$' + format(datum.per_ha, datum.per_ha < 10 ? ',.2f' : ',.0f')}"
               },
               "cursor": {
                 "signal": "focusState ? 'default' : 'zoom-in'"

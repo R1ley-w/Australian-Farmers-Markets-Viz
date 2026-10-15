@@ -157,7 +157,7 @@
         {
           "type": "formula",
           "as": "money",
-          "expr": "datum.value >= 1e9 ? '$' + format(datum.value / 1e9, '.1f') + 'bn' : '$' + format(datum.value / 1e6, ',.0f') + 'm'"
+          "expr": "datum.value >= 1e9 ? '$' + format(datum.value / 1e9, '.1f') + ' billion' : '$' + format(datum.value / 1e6, ',.0f') + ' million'"
         }
       ]
     },
@@ -208,7 +208,7 @@
         {
           "type": "formula",
           "as": "money",
-          "expr": "datum.total >= 1e9 ? '$' + format(datum.total / 1e9, '.1f') + 'bn' : '$' + format(datum.total / 1e6, ',.0f') + 'm'"
+          "expr": "datum.total >= 1e9 ? '$' + format(datum.total / 1e9, '.1f') + ' billion' : '$' + format(datum.total / 1e6, ',.0f') + ' million'"
         },
         {
           "type": "formula",

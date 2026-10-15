@@ -12,7 +12,7 @@
         "min": 10,
         "max": 2300,
         "step": 10,
-        "name": "Show council areas within (km)  "
+        "name": "Show council areas within (kilometres)  "
       }
     }
   ],
@@ -32,8 +32,8 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#e9eaec",
-        "stroke": "#cdced1",
+        "fill": "#d6d8db",
+        "stroke": "#fdfdfc",
         "strokeWidth": 0.25,
         "tooltip": false
       }
@@ -67,7 +67,9 @@
         },
         {
           "filter": "datum.km_to_nearest_market <= maxKm"
-        }
+        },
+        {"calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]", "as": "stateName"},
+        {"calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.nearest_market, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')", "as": "nearestFull"}
       ],
       "mark": {
         "type": "geoshape",
@@ -118,26 +120,30 @@
           {
             "field": "lga",
             "type": "nominal",
-            "title": "LGA"
+            "title": "Council area"
           },
           {
-            "field": "state",
+            "field": "stateName",
             "type": "nominal",
             "title": "State"
           },
           {
             "field": "km_to_nearest_market",
             "type": "quantitative",
-            "title": "Distance (km)",
+            "title": "Distance (kilometres)",
             "format": ",.0f"
           },
           {
-            "field": "nearest_market",
+            "field": "nearestFull",
             "type": "nominal",
             "title": "Nearest market"
           }
         ]
       }
+    },
+    {
+      "data": {"graticule": {"step": [5, 5], "extent": [[112, -44], [154, -10]]}},
+      "mark": {"type": "geoshape", "filled": false, "stroke": "#4a5058", "strokeOpacity": 0.35, "strokeWidth": 0.6, "tooltip": false}
     },
     {
       "data": {
@@ -146,12 +152,15 @@
       "transform": [
         {
           "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1"
-        }
+        },
+        {"calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.name, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')", "as": "nameFull"}
       ],
       "mark": {
         "type": "circle",
         "size": 11,
         "color": "#1c1f23",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.6,
         "opacity": 0.9
       },
       "encoding": {
@@ -165,7 +174,7 @@
         },
         "tooltip": [
           {
-            "field": "name",
+            "field": "nameFull",
             "type": "nominal",
             "title": "Market"
           }

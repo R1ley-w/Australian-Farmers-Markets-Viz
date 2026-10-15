@@ -17,7 +17,7 @@
           "Share"
         ],
         "labels": [
-          "kg CO₂e per kg of food",
+          "Kilograms of greenhouse gases per kilogram of food",
           "Share of each food's own footprint"
         ],
         "name": "Show  "
@@ -180,7 +180,7 @@
       {
         "field": "kg_pos",
         "type": "quantitative",
-        "title": "kg CO₂e per kg",
+        "title": "Kilograms of greenhouse gases per kilogram",
         "format": ".2f"
       },
       {

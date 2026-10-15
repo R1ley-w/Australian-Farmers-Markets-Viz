@@ -9,6 +9,14 @@
   "transform": [
     {
       "filter": "datum.markets >= 2"
+    },
+    {
+      "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.states]",
+      "as": "stateName"
+    },
+    {
+      "calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.operator, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')",
+      "as": "operatorName"
     }
   ],
   "layer": [
@@ -47,7 +55,8 @@
           },
           "legend": {
             "orient": "bottom-right",
-            "direction": "vertical"
+            "direction": "vertical",
+            "labelExpr": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.label]"
           }
         }
       }
@@ -72,7 +81,7 @@
   ],
   "encoding": {
     "y": {
-      "field": "operator",
+      "field": "operatorName",
       "type": "nominal",
       "title": null,
       "sort": [
@@ -80,7 +89,7 @@
         "Regional Farmers' Markets",
         "Slow Food Melbourne",
         "Melbourne Farmers' Markets",
-        "QLD Farmers Markets"
+        "Queensland Farmers Markets"
       ],
       "axis": {
         "labelLimit": 240
@@ -110,7 +119,7 @@
     },
     "tooltip": [
       {
-        "field": "operator",
+        "field": "operatorName",
         "type": "nominal",
         "title": "Operator"
       },
@@ -120,9 +129,9 @@
         "title": "Markets run"
       },
       {
-        "field": "states",
+        "field": "stateName",
         "type": "nominal",
-        "title": "States"
+        "title": "State"
       }
     ]
   }

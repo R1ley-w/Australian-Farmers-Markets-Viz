@@ -18,6 +18,7 @@ function theme() {
   const serif = token('--font-serif');
   const sans = token('--font-sans');
   const mag = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => token(`--mag-${i}00`));
+  const seqBrown = ['#f7dcbc', '#edc698', '#ddac6e', '#c58d41', '#a96f10', '#6e4000', '#4f2c00'];
 
   return {
     background: null,
@@ -49,8 +50,10 @@ function theme() {
       // No default categorical range. Every categorical scale in this
       // project names its own domain and range, so a colour cannot pick up
       // a second meaning by falling through to a shared default.
-      heatmap: mag.slice(2, 9),
-      ramp: mag.slice(2, 9),
+      // Sequential (quantitative) scales are one brown, light to dark. Hue is kept for
+      // categories only, so a colour never means both a category and an amount.
+      heatmap: seqBrown,
+      ramp: seqBrown,
       ordinal: [mag[8], mag[6], mag[4], mag[3]],
     },
     mark: { tooltip: true },

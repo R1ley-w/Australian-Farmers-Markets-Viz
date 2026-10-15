@@ -65,7 +65,7 @@
                 "title": "Financial year ending June",
                 "format": "d",
                 "tickMinStep": 1,
-                "labelExpr": "'FY' + slice(datum.label, 2)",
+                "labelExpr": "datum.label",
                 "labelFlush": true
               }
             },
@@ -194,13 +194,13 @@
               {
                 "field": "sales_52w_m",
                 "type": "quantitative",
-                "title": "Sales incl. liquor ($m, 52 wks)",
+                "title": "Sales including liquor (millions of dollars, 52 weeks)",
                 "format": ",.0f"
               },
               {
                 "field": "abs_turnover_m",
                 "type": "quantitative",
-                "title": "Supermarket + liquor market ($m, ABS)",
+                "title": "Supermarket and liquor market (millions of dollars, Australian Bureau of Statistics)",
                 "format": ",.0f"
               },
               {
@@ -291,7 +291,7 @@
             "title": "Drag to choose years",
             "format": "d",
             "tickMinStep": 1,
-            "labelExpr": "'FY' + slice(datum.label, 2)",
+            "labelExpr": "datum.label",
             "labelFlush": true
           }
         },

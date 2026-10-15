@@ -8,16 +8,20 @@
   },
   "encoding": {
     "x": {
-      "field": "band",
+      "field": "bandLabel",
       "type": "nominal",
       "title": "Distance travelled to their main market",
       "sort": [
-        "20 km or less",
-        "21–50 km",
-        "51–100 km",
-        "101–200 km",
-        "201 km or more"
-      ]
+        "20 kilometres or less",
+        "21–50 kilometres",
+        "51–100 kilometres",
+        "101–200 kilometres",
+        "201 kilometres or more"
+      ],
+      "axis": {
+        "labelExpr": "[slice(datum.label, 0, indexof(datum.label, ' kilometres')), 'kilometres', trim(slice(datum.label, indexof(datum.label, ' kilometres') + 11))]",
+        "labelAngle": 0
+      }
     }
   },
   "layer": [
@@ -49,7 +53,7 @@
         },
         "tooltip": [
           {
-            "field": "band",
+            "field": "bandLabel",
             "type": "nominal",
             "title": "Distance"
           },
@@ -114,7 +118,7 @@
         },
         "tooltip": [
           {
-            "field": "band",
+            "field": "bandLabel",
             "type": "nominal",
             "title": "Within"
           },
@@ -146,12 +150,18 @@
           "type": "quantitative"
         },
         "text": {
-          "value": "57% within 50 km"
+          "value": "57% within 50 kilometres"
         },
         "color": {
           "value": "#b83025"
         }
       }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "replace(datum.band, ' km', ' kilometres')",
+      "as": "bandLabel"
     }
   ]
 }
