@@ -113,7 +113,7 @@
       "name" : "freq",
       "type" : "ordinal",
       "domain" : ["Weekly", "Fortnightly", "Monthly", "Irregular"],
-      "range" : ["#243b51", "#4d6e8d", "#7f9fbe", "#9ab6d2"]
+      "range" : ["#4f2c00", "#8c5600", "#c58d41", "#ddac6e"]
     }
    ],
   "legends": [

@@ -6,7 +6,8 @@
 <title>Australian Farmers' Markets</title>
 <meta name="description" content="Where Australia's farmers' markets are, who can actually reach one, what they do for producers, and how the sustainability case really stacks up.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f363d'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23f7f7f5'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23abb7c5'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/style.css?v=9">
+<link rel="preload" href="fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=11">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
 <script src="vendor/vega.min.js"></script>
@@ -17,13 +18,36 @@
 
 <header class="masthead">
   <div class="wrap">
-    <p class="eyebrow">FIT3179 Data Visualisation 2 · Riley Wade · October 2026</p>
+    <p class="eyebrow">FIT3179 Data Visualisation 2 · Monash University</p>
     <h1>Australian Farmers' Markets</h1>
     <p class="lede">
       Where are Australia's farmers' markets, who can reach one, and what do they do for
       local producers? This page draws on the national farmers' market directory, which lists
       175 markets.
     </p>
+
+    <dl class="meta">
+      <div>
+        <dt>By</dt>
+        <dd>Riley Wade</dd>
+      </div>
+      <div>
+        <dt>Published</dt>
+        <dd>October 2026</dd>
+      </div>
+      <div class="meta-wide">
+        <dt>Data</dt>
+        <dd>
+          Australian Farmers' Markets Association directory (2026) ·
+          Australian Bureau of Statistics population, agriculture, retail and boundary data ·
+          Rural Industries Research and Development Corporation stallholder survey (2014) ·
+          Department of Climate Change, Energy, the Environment and Water food waste baseline ·
+          Our World in Data, from Poore and Nemecek (2018) ·
+          Coles, Woolworths, Wesfarmers and Endeavour Group annual reports.
+          <a href="#sources">Full sources</a>
+        </dd>
+      </div>
+    </dl>
   </div>
 </header>
 
@@ -63,10 +87,12 @@
       </figure>
     </div>
 
-    <!-- Row 2: the map across the full width -->
-    <figure class="chart wide">
+    <!-- Row 2: the dot map, caption on the rail -->
+    <figure class="chart">
       <figcaption>
         <div class="title">Every farmers' market in the national directory</div>
+        <p class="sub">Each dot is one market, shaded by how often it trades. Seven in ten are in New South Wales and Victoria, most of them near the coast.</p>
+        <p class="notes">Click a state to zoom in, then click a city area to zoom further. Hover over a dot for the market's name and trading day.</p>
       </figcaption>
       <div class="viz" data-spec="specs/01-market-map.vg.json"></div>
       <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 20 September 2026 · boundaries from the Australian Bureau of Statistics, Australian Statistical Geography Standard, Edition 3 (Creative Commons Attribution 4.0)</p>
@@ -84,15 +110,15 @@
 
       <div class="aside">                         
         <figure class="photo">
-          <img src="docs/berwick_farmers_market.jpeg" alt="Stalls at the Berwick farmers' market, held at the Old Cheese Factory">
-          <figcaption>Photo by mammaknowssouth.com.au</figcaption>
+          <img src="images/berwick-farmers-market.jpg" alt="Stalls at the Berwick farmers' market, held at the Old Cheese Factory">
+          <figcaption>Berwick farmers' market, Victoria. Photo by mammaknowssouth.com.au</figcaption>
         </figure>
 
-        <!--div class="takeaway">
+        <div class="takeaway">
           Most markets are run by a local committee, church, Rotary club or school, as my local
           market in Berwick is. The busiest city markets, though, are concentrated under a few
           professional organisers.
-        </div>-->
+        </div>
       </div>
     </div>
   </div>
@@ -142,9 +168,11 @@
       <p class="source">Australian Farmers' Markets Association directory, 2026 · Australian Bureau of Statistics, Regional Population and National, State and Territory Population, 30 June 2025 · Australian Statistical Geography Standard, Edition 3</p>
     </figure>
 
-    <figure class="chart wide">
+    <figure class="chart">
       <figcaption>
         <div class="title">How far is the nearest market?</div>
+        <p class="sub">Each council area is shaded by the distance from its centre to the nearest market. The darker the green, the further you travel.</p>
+        <p class="notes">Only 47% of council areas are within 50 kilometres of a market. Drag the slider to show only the council areas within a chosen distance.</p>
       </figcaption>
       <div class="viz" data-spec="specs/03-lga-distance.vg.json"></div>
       <p class="source">Straight-line distance from the centre of each council area to the nearest of the 174 markets with a known location · Australian Bureau of Statistics local government area boundaries, 2023</p>
@@ -217,9 +245,11 @@
 
     <!-- Row 3: production map -->
 
-    <figure class="chart wide">
+    <figure class="chart">
       <figcaption>
         <div class="title">Where it is grown</div>
+        <p class="sub">Each symbol is a council area. Its shape shows the main type of produce, and its size shows the value grown per hectare.</p>
+        <p class="notes">Click a produce type in the legend to show only that type. Click a state to zoom in, and use the menu under the map to size symbols by one type of produce.</p>
       </figcaption>
       <div class="viz" data-spec="specs/17-production-map.vg.json"></div>
       <p class="source">Australian Bureau of Statistics, <em>Value of Agricultural Commodities Produced</em> by local government area, 2020–21 · the Bureau estimates these from its small statistical areas (Statistical Area Level 2), shared out by land area, and suppressed values count as zero, so a council with no symbol may still farm · poultry and pigs are heavily suppressed (72% and 88% of the national value is shown) · sizes cap at $2,000 a hectare</p>
@@ -310,6 +340,11 @@
             Coles and Woolworths together take about two-thirds of Australian supermarket and
             liquor sales: two companies hold most of a market shared with thousands of other grocers.
         </p>
+        <p class="notes">
+          In 1994 the two chains took about half of all sales. By 2002 they had two thirds, and
+          they have held close to that share for more than twenty years. Drag across the small
+          chart underneath to look at a shorter run of years.
+        </p>
       </figcaption>
       <div class="viz" data-spec="specs/18-supermarket-share-time.vg.json"></div>
       <p class="source">Woolworths, Endeavour Group, Coles Myer, Coles Group and Wesfarmers annual reports and results (supermarkets plus each company's liquor chains; petrol, Coles Express and New Zealand excluded) as a share of Australian Bureau of Statistics <em>Retail Trade, Australia</em> turnover for supermarkets and grocery plus liquor retailing (series A3349862V and A3349462J, Creative Commons Attribution 4.0)</p>
@@ -347,7 +382,7 @@
       </div>
 
       <div>
-        <h3>Data sources</h3>
+        <h3 id="sources">Data sources</h3>
         <ul>
           <li>Australian Farmers' Markets Association,
             <a href="https://farmersmarkets.org.au/find-a-market/">“Find a Market” directory</a>,

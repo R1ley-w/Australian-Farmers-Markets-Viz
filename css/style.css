@@ -37,39 +37,37 @@
      ============================================================= */
 
   /* --- state identity: a state keeps its colour everywhere ------
-     Six states carry a hue; all-pairs validated, worst CVD ΔE 9.7,
-     worst unsimulated ΔE 18.3. Eight distinct hues is not
-     achievable — the best 8-way set reaches ΔE 12.4 unsimulated,
-     below the 15 floor — so the two territories with two markets
-     and none take neutrals instead. No red anywhere in this set,
-     so a red/green pairing cannot occur.                         */
-  --st-nsw:      #0063a0;  /* blue    */
-  --st-vic:      #c56c00;  /* orange  */
-  --st-qld:      #039b8c;  /* teal    */
-  --st-wa:       #a17cda;  /* violet  */
-  --st-sa:       #8c4062;  /* plum    */
-  --st-tas:      #2d6101;  /* green   */
+     Six bright hues, kept clearly apart from the darker produce
+     palette (treemap and production map) and from the brown
+     frequency ring they sit next to in the sunburst. Worst pair
+     under colour-blindness simulation is Delta E 14 (Western
+     Australia vs Tasmania). The two territories take neutrals.
+     Labels on these fills use dark ink, not white.               */
+  --st-nsw:      #33b5ff;  /* sky blue */
+  --st-vic:      #5a72ff;  /* royal blue */
+  --st-qld:      #e8318c;  /* magenta */
+  --st-wa:       #ffd92e;  /* yellow  */
+  --st-sa:       #2fe0c5;  /* aqua    */
+  --st-tas:      #a3c22b;  /* lime    */
   --st-act:      #767676;  /* neutral — 2 markets */
   --st-nt:       #a6a6a6;  /* neutral — no markets */
 
   /* --- magnitude: any ordered or continuous quantity ------------
-     One muted slate-blue ramp, single hue (OKLCH H 248), monotone
-     in lightness. The legend names the quantity; the colour only
-     ever means "more of it". Its chroma peaks at 0.062, against
-     0.110-0.147 for the state hues, so a quantity reads as a
-     tinted neutral and an identity reads as a colour — which is
-     what keeps the two apart, since six state hues already span
-     the wheel and leave no free hue for a ramp to occupy.        */
-  --mag-100:     #eaf3fc;
-  --mag-200:     #d0e0f0;
-  --mag-300:     #b5cce2;
-  --mag-400:     #9ab6d2;
-  --mag-500:     #7f9fbe;
-  --mag-600:     #6587a7;
-  --mag-700:     #4d6e8d;
-  --mag-800:     #375470;
-  --mag-900:     #243b51;
-  --mag-950:     #132434;  /* only where a scale needs a ninth dark step */
+     One brown ramp, single hue, light to dark. The legend names the
+     quantity; the colour only ever means "more of it". Plain bars use
+     a light step (#ddac6e) so the red highlight stays distinct for
+     red-green colour-blind readers: mid and dark browns are nearly
+     identical to the red under deuteranopia.                      */
+  --mag-100:     #feefde;
+  --mag-200:     #f7dcbc;
+  --mag-300:     #edc698;
+  --mag-400:     #ddac6e;
+  --mag-500:     #c58d41;
+  --mag-600:     #a96f10;
+  --mag-700:     #8c5600;
+  --mag-800:     #6e4000;
+  --mag-900:     #4f2c00;
+  --mag-950:     #2e1a00;  /* only where a scale needs a ninth dark step */
 
   /* --- distance from a market: its own ramp, its own meaning ---- */
   --dist-100:    #feefde;
@@ -88,7 +86,9 @@
   --highlight:   #b83025;
 
 /* --- typography ---------------------------------------------- */
-  --font-serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+  /* Fraunces: a soft, old-style serif with the feel of hand-painted
+     market signage. Vendored in fonts/ (SIL Open Font License). */
+  --font-serif: "Fraunces", Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
   --font-sans:  "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 
   /* Line length is capped so no line of text exceeds ten words.
@@ -104,6 +104,17 @@
      line to follow down the page and each chart sits to the right of
      the text that introduces it.                                     */
   --rail: 20rem;
+}
+
+/* ------------------------------------------------------------ fonts */
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/fraunces-latin-variable.woff2") format("woff2-variations"),
+       url("../fonts/fraunces-latin-variable.woff2") format("woff2");
 }
 
 /* ------------------------------------------------------------ base */
@@ -177,12 +188,11 @@ header.masthead {
   header.masthead .eyebrow,
   header.masthead h1   { grid-column: 1 / -1; }
   header.masthead .lede { grid-column: 1; }
-  header.masthead .figures {
+  header.masthead .meta {
     grid-column: 2;
     grid-row: 3 / span 8;
     align-self: start;
   }
-  header.masthead .figures h2 { margin-top: 0.1rem; }
   header.masthead .stats { grid-template-columns: 1fr 1fr; }
 }
 
@@ -196,6 +206,30 @@ header.masthead {
   color: var(--ink-strong);
   margin: 0 0 1.1em;
 }
+
+/* masthead metadata: author, date, sources, how to read */
+.meta {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 1.1rem 2.5rem;
+  margin: 0.35rem 0 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.meta .meta-wide { grid-column: 1 / -1; max-width: 36em; }
+.meta dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-strong);
+  margin-bottom: 0.15em;
+}
+.meta dd { margin: 0; }
+.meta a { color: var(--ink-strong); }
 
 /*  stat tiles */
 
@@ -236,6 +270,7 @@ section.section:last-of-type { border-bottom: 0; }
 
 /* section titles */
 .sec-head {
+  min-width: 0;                    /* let the grid track shrink; stops overflow into the next column */
   container-type: inline-size;     /* sizes below scale with the block's own width */
   display: grid;
   grid-template-columns: auto 1fr; /* the big number, then everything else */
@@ -248,28 +283,31 @@ section.section:last-of-type { border-bottom: 0; }
 .sec-word { grid-column: 1 / -1; }
 .sec-word svg { display: block; width: 100%; height: auto; overflow: visible; }
 .sec-word text {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: 268px;            /* SVG units: caps fill the 196-unit-tall box */
   font-weight: 700;
-  letter-spacing: -0.06em;     /* letters touch, as in your picture */
+  letter-spacing: 0;           /* textLength sets the width; serifs need their gaps */
   fill: currentColor;
 }
 .sec-num {
   grid-row: 2;
-  font-size: 52cqi;
+  font-family: var(--font-serif);
+  font-size: 44cqi;
   font-weight: 700;
+  font-variation-settings: "opsz" 18;  /* the display cut draws a looped 4 */
   line-height: 0.73;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.02em;
   margin-top: 6cqi;
 }
 .sec-q {
   grid-row: 2;
   grid-column: 2;
-  font-size: 13cqi;
+  font-family: var(--font-serif);
+  font-size: 10.5cqi;
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.01em;
-  margin-top: 4cqi;
+  margin-top: 5cqi;
 }
 .sec-head .sec-intro {
   grid-column: 2;
@@ -362,6 +400,17 @@ figcaption .sub {
   margin: 0;
 }
 
+figcaption .notes {
+  font-family: var(--font-sans);
+  color: var(--ink-muted);
+  font-size: 0.83rem;
+  line-height: 1.55;
+  max-width: none;
+  margin: 0.9em 0 0;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--border);
+}
+
 .viz { width: 100%; min-height: 120px; overflow-x: auto; }
 .viz .vega-embed { width: 100%; }
 .viz .vega-embed summary { opacity: 0.3; }
@@ -402,25 +451,13 @@ figure.photo img {
 
 .aside-match .takeaway { max-width: none; }     /* full column width */
 
-@media (min-width: 740px) {                     /* only when side by side */
-  .chart-grid.aside-match { align-items: stretch; }
-  .aside-match > .aside {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  .aside-match figure.photo {
-    flex: 1 1 0;          /* the photo takes whatever height is left... */
-    min-height: 140px;    /* ...but never shrinks to nothing */
-    display: flex;
-    flex-direction: column;
-  }
-  .aside-match figure.photo img {
-    flex: 1 1 0;
-    min-height: 0;
-    height: 100%;
-    object-fit: cover;    /* crop to fill, never stretch */
-  }
+/* The photo is a wide crop (about half its original height) with the
+   takeaway text underneath, so the column reads picture, then words. */
+.aside-match > .aside { align-content: start; }
+.aside-match figure.photo img {
+  aspect-ratio: 8 / 3;
+  object-fit: cover;      /* crop to fill, never stretch */
+  object-position: 50% 62%;
 }
 
 figure.photo figcaption {
@@ -437,14 +474,9 @@ figure.photo figcaption {
   margin-top: 2.2rem;
 }
 .chart-grid figure.chart { margin-top: 0; }
-.chart-grid.row-match{ align-items: stretch; }
-.row-match > figure.chart {
-  display: flex;
-  flex-direction: column;
-}
+.chart-grid.row-match { align-items: start; }
 .row-match > figure.chart > .viz {
-  flex: 1 1 0;          /* takes all the spare height in the card*/
-  min-height: 260px;    
+  height: clamp(280px, 30vw, 380px);   /* a fixed height, not the header's */
   overflow: hidden;     /* the chart's own size can't push the card taller */
 }
 
