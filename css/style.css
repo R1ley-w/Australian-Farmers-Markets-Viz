@@ -89,6 +89,9 @@
   /* Fraunces: a soft, old-style serif with the feel of hand-painted
      market signage. Vendored in fonts/ (SIL Open Font License). */
   --font-serif: "Fraunces", Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+  /* Section titles: a standard serif. Liberation Serif has the same
+     metrics as Times New Roman, for Linux machines without it. */
+  --font-section: "Times New Roman", Times, "Liberation Serif", serif;
   --font-sans:  "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 
   /* Line length is capped so no line of text exceeds ten words.
@@ -170,30 +173,77 @@ code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size
 
 /*  header */
 
+/* Title face: IM Fell English, a digitised 17th-century letterpress
+   type with rough, hand-cut edges (SIL Open Font License, fonts/).
+   It only has a regular weight; --title-stroke can add a thin outline
+   in the text colour if a heavier weight is wanted (off by default). */
+@font-face {
+  font-family: "IM Fell English";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/im-fell-english-latin-400.woff2") format("woff2");
+}
+:root {
+  --font-title: "IM Fell English", var(--font-serif);
+  /* SVG units, where 1000 units = the content width. At 96 units the
+     letters are the same height on screen as the SECTION word's
+     (measured: both about 87 px at full width). */
+  --title-size: 96px;
+  --title-stroke: 0;       /* SVG units: set to about 2.2px to thicken the regular weight */
+}
+
 header.masthead {
-  padding-block: clamp(3rem, 9vw, 6rem) clamp(2rem, 5vw, 3rem);
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3rem);
   border-bottom: 1px solid var(--border);
 }
 
-/* The masthead follows the same rail: eyebrow and title across the top,
-   the lede on the rail, the headline figures beside it. */
-@media (min-width: 900px) {
-  header.masthead > .wrap {
+/* Three lines at the same scale (1000 units = the content width):
+   "AUSTRALIAN" and "FARMERS'" span the full width, "MARKETS" spans the
+   left 58% (a 580-unit viewBox), and the intro takes the remaining 42%
+   beside it. */
+header.masthead { --cw: calc(min(100vw, 1240px) - 40px); }   /* content width of .wrap */
+.mast-title { margin: 0; }
+.mast-line { display: block; width: 100%; height: auto; overflow: visible; }
+.mast-line + .mast-line { margin-top: calc(var(--cw) * 0.022); }
+.mast-line text {
+  font-family: var(--font-title);
+  font-size: var(--title-size);
+  fill: var(--ink);
+  stroke: var(--ink);
+  stroke-width: var(--title-stroke);
+  stroke-linejoin: round;
+}
+.mast-row { margin-top: calc(var(--cw) * 0.022); }
+
+@media (min-width: 1000px) {
+  .mast-row {
     display: grid;
-    grid-template-columns: var(--rail) minmax(0, 1fr);
-    grid-auto-flow: row dense;
-    column-gap: 2.5rem;
-    align-content: start;
+    grid-template-columns: 58fr 42fr;
+    column-gap: 0;
+    align-items: start;
   }
-  header.masthead .eyebrow,
-  header.masthead h1   { grid-column: 1 / -1; }
-  header.masthead .lede { grid-column: 1; }
-  header.masthead .meta {
-    grid-column: 2;
-    grid-row: 3 / span 8;
-    align-self: start;
-  }
-  header.masthead .stats { grid-template-columns: 1fr 1fr; }
+  .mast-text { padding-left: calc(var(--cw) * 0.03); }
+}
+@media (max-width: 999px) {
+  .mast-row > .mast-line { width: 58%; }
+  .mast-text { margin-top: 1.5rem; }
+}
+
+/* The intro sits beside "MARKETS" and spans the same height: its first
+   line's capitals start at the top of the title letters and its last line
+   sits on the title's baseline. The title scales with the content width,
+   so the intro's size does too (one shared unit, --cw), which keeps the
+   same four line breaks and the alignment at every desktop width. */
+header.masthead .lede {
+  font-size: calc(var(--cw) * 0.0152);
+  line-height: 1.25;
+  color: var(--ink);
+  max-width: none;
+  margin: calc(var(--cw) * 0.0024) 0 0;
+}
+@media (max-width: 999px) {
+  header.masthead .lede { font-size: 1.1rem; line-height: 1.45; margin: 0; }
 }
 
 .eyebrow {
@@ -207,25 +257,20 @@ header.masthead {
   margin: 0 0 1.1em;
 }
 
-/* masthead metadata: author, date, sources, how to read */
+/* masthead metadata: author and date, then the data sources */
 .meta {
   display: grid;
-  grid-template-columns: max-content max-content;
-  gap: 1.1rem 2.5rem;
-  margin: 0.35rem 0 0;
-  padding-left: 1.5rem;
-  border-left: 1px solid var(--border);
+  gap: 1rem;
+  margin: 0;
   font-size: 0.86rem;
   line-height: 1.55;
   color: var(--ink-2);
+  max-width: 40em;
 }
-.meta .meta-wide { grid-column: 1 / -1; max-width: 36em; }
 .meta dt {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-strong);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--ink);
   margin-bottom: 0.15em;
 }
 .meta dd { margin: 0; }
@@ -283,18 +328,17 @@ section.section:last-of-type { border-bottom: 0; }
 .sec-word { grid-column: 1 / -1; }
 .sec-word svg { display: block; width: 100%; height: auto; overflow: visible; }
 .sec-word text {
-  font-family: var(--font-serif);
-  font-size: 268px;            /* SVG units: caps fill the 196-unit-tall box */
+  font-family: var(--font-section);
+  font-size: 222px;            /* SVG units: Times bold "SECTION" is about 1000 wide here, caps 147 tall */
   font-weight: 700;
   letter-spacing: 0;           /* textLength sets the width; serifs need their gaps */
   fill: currentColor;
 }
 .sec-num {
   grid-row: 2;
-  font-family: var(--font-serif);
-  font-size: 44cqi;
+  font-family: var(--font-section);
+  font-size: 28cqi;            /* about the height of a two-line question, so the intro sits close below */
   font-weight: 700;
-  font-variation-settings: "opsz" 18;  /* the display cut draws a looped 4 */
   line-height: 0.73;
   letter-spacing: -0.02em;
   margin-top: 6cqi;
@@ -302,7 +346,7 @@ section.section:last-of-type { border-bottom: 0; }
 .sec-q {
   grid-row: 2;
   grid-column: 2;
-  font-family: var(--font-serif);
+  font-family: var(--font-section);
   font-size: 10.5cqi;
   font-weight: 500;
   line-height: 1.05;
