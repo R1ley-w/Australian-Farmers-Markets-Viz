@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Treemap of Australia's gross value of agricultural production, 2020-21: categories (meat, grains, fruit and nuts, ...) subdivided into commodities, area proportional to value. Tile colour is the food type (the same six hues and categories as the production map); area is value. Selecting a commodity fades the other tiles. Clicking a tile selects its commodity, which also drives the production map (spec 17) through js/main.js. Plain Vega because Vega-Lite has no treemap layout.",
+  "description": "Treemap of Australia's gross value of agricultural production, 2020-21: categories (meat, grains, fruit and nuts, ...) subdivided into commodities, area proportional to value. Tile colour is the food type (the same six hues and categories as the production map); area is value. Selecting a commodity fades the other tiles. Clicking a tile selects its commodity, which also drives the production map (spec 10) through js/main.js. Plain Vega because Vega-Lite has no treemap layout.",
   "height": 460,
   "autosize": {
     "type": "fit-x",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Proportional symbol map of where Australia's food is produced, 2020-21. One symbol per local government area at its centre: the symbol's SHAPE is the council's main type of produce by gross value, its SIZE (area) is the gross value per hectare of the commodity selected in the dropdown or the treemap (spec 16). The main type is encoded twice, by hue (shared with the treemap) and by shape, so it survives colour-blindness and print. Zoom works like the market map (spec 01): click a state, then its dashed capital-city area; double-click to reset. Plain Vega for the zoom.",
+  "description": "Proportional symbol map of where Australia's food is produced, 2020-21. One symbol per local government area at its centre: the symbol's SHAPE is the council's main type of produce by gross value, its SIZE (area) is the gross value per hectare of the commodity selected in the dropdown or the treemap (spec 09). The main type is encoded twice, by hue (shared with the treemap) and by shape, so it survives colour-blindness and print. Zoom works like the market map (spec 02): click a state, then its dashed capital-city area; double-click to reset. Plain Vega for the zoom.",
   "height": 580,
   "autosize": {
     "type": "pad",
