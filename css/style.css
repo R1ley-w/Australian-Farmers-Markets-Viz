@@ -1,63 +1,30 @@
-/* ------------------------------------------------------------------
-   Australian Farmers' Markets — visual system
-
-   Light theme only. The tokens here are handed to Vega-Lite as a
-   shared config in js/main.js so the page and the charts agree.
-
-   Colour encodes exactly one variable. A saturated hue always means
-   a state and nothing else; quantities use the magnitude ramp; the
-   distance-to-a-market quantity has its own ramp; one highlight
-   marks the category a chart is arguing about. Nothing is reused
-   for a second meaning. See docs/design-system.md for the key.
-   ------------------------------------------------------------------ */
-
 :root {
   color-scheme: light;
-
-  /* --- surfaces and chrome (carry no meaning) -------------------- */
   --page:        #f7f7f5;
   --surface:     #fdfdfc;
-  --tint:        #f0f1ee;  /* takeaway panels */
-  --ink:         #1c1f23;  /* primary ink      14.9:1 on page */
-  --ink-2:       #474d54;  /*                   7.9:1 */
-  --ink-muted:   #767c83;  /*                   4.0:1 */
-  --ink-strong:  #3d434a;  /* eyebrows, act numbers, links */
+  --ink:         #1c1f23;  
+  --ink-2:       #474d54;  
+  --ink-muted:   #767c83;  
+  --ink-strong:  #3d434a;  
   --grid:        #e6e6e3;
   --axis:        #c6c6c2;
   --border:      rgba(28, 31, 35, 0.12);
-  --land:        #e9eaec;  /* map landmass — deliberately neutral */
+  --land:        #e9eaec;  
   --land-stroke: #cdced1;
 
-  /* === COLOUR ENCODES ONE VARIABLE =============================
-     Every colour below has exactly one meaning across the whole
-     page. Saturated hues are reserved for STATE IDENTITY and are
-     used nowhere else; quantities use the reserved ramps; the
-     highlight marks the one category a chart is arguing about.
-     See docs/design-system.md for the full key.
-     ============================================================= */
 
-  /* --- state identity: a state keeps its colour everywhere ------
-     Six bright hues, kept clearly apart from the darker produce
-     palette (treemap and production map) and from the brown
-     frequency ring they sit next to in the sunburst. Worst pair
-     under colour-blindness simulation is Delta E 14 (Western
-     Australia vs Tasmania). The two territories take neutrals.
-     Labels on these fills use dark ink, not white.               */
-  --st-nsw:      #33b5ff;  /* sky blue */
-  --st-vic:      #5a72ff;  /* royal blue */
-  --st-qld:      #e8318c;  /* magenta */
-  --st-wa:       #ffd92e;  /* yellow  */
-  --st-sa:       #2fe0c5;  /* aqua    */
-  --st-tas:      #a3c22b;  /* lime    */
-  --st-act:      #767676;  /* neutral — 2 markets */
-  --st-nt:       #a6a6a6;  /* neutral — no markets */
 
-  /* --- magnitude: any ordered or continuous quantity ------------
-     One brown ramp, single hue, light to dark. The legend names the
-     quantity; the colour only ever means "more of it". Plain bars use
-     a light step (#ddac6e) so the red highlight stays distinct for
-     red-green colour-blind readers: mid and dark browns are nearly
-     identical to the red under deuteranopia.                      */
+  /* --- state identity------*/
+  --st-nsw:      #33b5ff;  
+  --st-vic:      #5a72ff;  
+  --st-qld:      #e8318c;  
+  --st-wa:       #ffd92e;  
+  --st-sa:       #2fe0c5;  
+  --st-tas:      #a3c22b;  
+  --st-act:      #767676;  
+  --st-nt:       #a6a6a6;  
+
+  /* --- magnitude ------------*/
   --mag-100:     #feefde;
   --mag-200:     #f7dcbc;
   --mag-300:     #edc698;
@@ -67,9 +34,9 @@
   --mag-700:     #8c5600;
   --mag-800:     #6e4000;
   --mag-900:     #4f2c00;
-  --mag-950:     #2e1a00;  /* only where a scale needs a ninth dark step */
+  --mag-950:     #2e1a00;  
 
-  /* --- distance from a market: its own ramp, its own meaning ---- */
+  /* --- distance from a market---- */
   --dist-100:    #feefde;
   --dist-200:    #f7dcbc;
   --dist-300:    #edc698;
@@ -80,36 +47,25 @@
   --dist-800:    #6e4000;
   --dist-900:    #4f2c00;
 
-  /* --- highlight: the one category a chart is arguing about -----
-     Never appears in a chart that carries state colour, so it
-     never sits beside the green.                                 */
+  /* --- highlight: ---*/
   --highlight:   #b83025;
 
-/* --- typography ---------------------------------------------- */
-  /* Fraunces: a soft, old-style serif with the feel of hand-painted
-     market signage. Vendored in fonts/ (SIL Open Font License). */
+
+/* --- typography --- */
   --font-serif: "Fraunces", Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
-  /* Section titles: a standard serif. Liberation Serif has the same
-     metrics as Times New Roman, for Linux machines without it. */
+
+  /* Section titles*/
   --font-section: "Times New Roman", Times, "Liberation Serif", serif;
   --font-sans:  "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
 
-  /* Line length is capped so no line of text exceeds ten words.
-     The limits are in em, not rem, so each element's own font size
-     sets its character count rather than its pixel width. Ten words
-     of short words is about forty characters, which is what these
-     values are; widening any of them breaks the rule. Measured with
-     measure.mjs, which counts words per rendered line box.        */
+  /* Line length */
   --measure: 20em;
 
-  /* The text rail. Prose, chart captions and source lines all sit in a
-     column of this width at the left edge, so the eye has one vertical
-     line to follow down the page and each chart sits to the right of
-     the text that introduces it.                                     */
-  --rail: 20rem;
+  /* Text on left width */
+  --gap: 24px;
 }
 
-/* ------------------------------------------------------------ fonts */
+/*  fonts */
 
 @font-face {
   font-family: "Fraunces";
@@ -120,13 +76,12 @@
        url("../fonts/fraunces-latin-variable.woff2") format("woff2");
 }
 
-/* ------------------------------------------------------------ base */
+/*  base */
 
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
-  padding-block: 0;
   background: var(--page);
   color: var(--ink);
   font: 16px/1.65 var(--font-sans);
@@ -139,44 +94,23 @@ body {
   padding-inline: 20px;
 }
 
-/* Large titles: bold serif. */
-h1 {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: clamp(2.1rem, 5.4vw, 3.4rem);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  margin: 0 0 0.4em;
-  color: var(--ink);
-}
-
-/* Section titles in the prose: bold Helvetica. */
-h2, h3 {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  line-height: 1.22;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-h2 { font-size: clamp(1.35rem, 3vw, 1.8rem); margin: 0 0 0.35em; }
-h3 { font-size: 1.02rem; margin: 0 0 0.35em; }
-
 /* Body: Helvetica. */
 p { margin: 0 0 1em; max-width: var(--measure); }
 a { color: var(--ink-strong); text-underline-offset: 2px; }
 a:hover { color: var(--highlight); }
 
-.lede   { font-size: 1.13rem; color: var(--ink-2); max-width: none; }
+
 .muted  { color: var(--ink-muted); }
 .small  { font-size: 0.83rem; }
-code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
 
 /*  header */
 
-/* Title face: IM Fell English, a digitised 17th-century letterpress
-   type with rough, hand-cut edges (SIL Open Font License, fonts/).
-   It only has a regular weight; --title-stroke can add a thin outline
-   in the text colour if a heavier weight is wanted (off by default). */
+/* Title face: IM Fell English */
 @font-face {
   font-family: "IM Fell English";
   font-style: normal;
@@ -186,26 +120,19 @@ code    { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size
 }
 :root {
   --font-title: "IM Fell English", var(--font-serif);
-  /* SVG units, where 1000 units = the content width. At 96 units the
-     letters are the same height on screen as the SECTION word's
-     (measured: both about 87 px at full width). */
   --title-size: 96px;
-  --title-stroke: 0;       /* SVG units: set to about 2.2px to thicken the regular weight */
+  --title-stroke: 0;       
 }
 
 header.masthead {
+  --cw: calc(min(100vw, 1240px) - 40px);
   padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3rem);
   border-bottom: 1px solid var(--border);
 }
-
-/* Three lines at the same scale (1000 units = the content width):
-   "AUSTRALIAN" and "FARMERS'" span the full width, "MARKETS" spans the
-   left 58% (a 580-unit viewBox), and the intro takes the remaining 42%
-   beside it. */
-header.masthead { --cw: calc(min(100vw, 1240px) - 40px); }   /* content width of .wrap */
-.mast-title { margin: 0; }
+h1 { margin: 0; }
 .mast-line { display: block; width: 100%; height: auto; overflow: visible; }
-.mast-line + .mast-line { margin-top: calc(var(--cw) * 0.022); }
+.mast-line + .mast-line,
+.mast-row { margin-top: calc(var(--cw) * 0.022); }
 .mast-line text {
   font-family: var(--font-title);
   font-size: var(--title-size);
@@ -214,41 +141,27 @@ header.masthead { --cw: calc(min(100vw, 1240px) - 40px); }   /* content width of
   stroke-width: var(--title-stroke);
   stroke-linejoin: round;
 }
-.mast-row { margin-top: calc(var(--cw) * 0.022); }
+
+/* intro paragraph */
+.lede {
+  font-size: calc(var(--cw) * 0.0152);
+  line-height: 1.25;
+  max-width: none;
+  margin: calc(var(--cw) * 0.0024) 0 0;
+}
 
 @media (min-width: 1000px) {
-  .mast-row {
-    display: grid;
-    grid-template-columns: 58fr 42fr;
-    column-gap: 0;
-    align-items: start;
-  }
+  .mast-row { display: grid; grid-template-columns: 58fr 42fr; align-items: start; }
   .mast-text { padding-left: calc(var(--cw) * 0.03); }
 }
 @media (max-width: 999px) {
   .mast-row > .mast-line { width: 58%; }
   .mast-text { margin-top: 1.5rem; }
-}
-
-/* The intro sits beside "MARKETS" and spans the same height: its first
-   line's capitals start at the top of the title letters and its last line
-   sits on the title's baseline. The title scales with the content width,
-   so the intro's size does too (one shared unit, --cw), which keeps the
-   same four line breaks and the alignment at every desktop width. */
-header.masthead .lede {
-  font-size: calc(var(--cw) * 0.0152);
-  line-height: 1.25;
-  color: var(--ink);
-  max-width: none;
-  margin: calc(var(--cw) * 0.0024) 0 0;
-}
-@media (max-width: 999px) {
-  header.masthead .lede { font-size: 1.1rem; line-height: 1.45; margin: 0; }
+  .lede { font-size: 1.1rem; line-height: 1.45; margin: 0; }
 }
 
 .eyebrow {
-  max-width: none;   /* a short label, already well under ten words */
-  font-family: var(--font-sans);
+  max-width: none;  
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -257,219 +170,80 @@ header.masthead .lede {
   margin: 0 0 1.1em;
 }
 
-/* masthead metadata: author and date, then the data sources */
-.meta {
-  display: grid;
-  gap: 1rem;
-  margin: 0;
-  font-size: 0.86rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 40em;
-}
-.meta dt {
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  color: var(--ink);
-  margin-bottom: 0.15em;
-}
-.meta dd { margin: 0; }
-.meta a { color: var(--ink-strong); }
-
-/*  stat tiles */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin: 2.2rem 0 0;
-}
-
-.stat { background: var(--surface); padding: 1.1rem 1.15rem; }
-.stat .v {
-  font-weight: 700;
-  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-}
-.stat .k {
-  font-size: 0.79rem;
-  color: var(--ink-muted);
-  margin-top: 0.4em;
-  line-height: 1.4;
-}
-
 /* sections */
 
-/* The page markup uses .section / .section-num; .act / .act-num are kept as
-   aliases so either spelling picks up the same styling. */
-section.act,
-section.section { padding-block: clamp(3rem, 7vw, 5rem); border-bottom: 1px solid var(--border); }
-section.act:last-of-type,
-section.section:last-of-type { border-bottom: 0; }
+section { padding-block: 3rem 3.5rem; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: 0; }
 
 /* section titles */
 .sec-head {
-  min-width: 0;                    /* let the grid track shrink; stops overflow into the next column */
-  container-type: inline-size;     /* sizes below scale with the block's own width */
+  min-width: 0;                   
+  container-type: inline-size;     
   display: grid;
-  grid-template-columns: auto 1fr; /* the big number, then everything else */
+  grid-template-columns: auto 1fr; 
   column-gap: 4cqi;
-  color: var(--ink);
-  font-family: var(--font-sans);
+  align-content: start;
 }
-.sec-head h2 { display: contents; }  /* its parts join the grid above */
+.sec-head h2 { display: contents; }  
 
 .sec-word { grid-column: 1 / -1; }
 .sec-word svg { display: block; width: 100%; height: auto; overflow: visible; }
 .sec-word text {
   font-family: var(--font-section);
-  font-size: 222px;            /* SVG units: Times bold "SECTION" is about 1000 wide here, caps 147 tall */
+  font-size: 222px;            
   font-weight: 700;
-  letter-spacing: 0;           /* textLength sets the width; serifs need their gaps */
   fill: currentColor;
 }
+.sec-num, .sec-q { grid-row: 2; font-family: var(--font-section); }
 .sec-num {
-  grid-row: 2;
-  font-family: var(--font-section);
-  font-size: 28cqi;            /* about the height of a two-line question, so the intro sits close below */
+  font-size: 28cqi;           
   font-weight: 700;
   line-height: 0.73;
   letter-spacing: -0.02em;
   margin-top: 6cqi;
 }
 .sec-q {
-  grid-row: 2;
   grid-column: 2;
-  font-family: var(--font-section);
   font-size: 10.5cqi;
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.01em;
   margin-top: 5cqi;
 }
-.sec-head .sec-intro {
-  grid-column: 2;
-  margin: 5cqi 0 0;
-  font-size: 1rem;
-}
-.visually-hidden {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); white-space: nowrap;
-}
 
-.act-num,
-.section-num {
-  max-width: none;   /* a short label, already well under ten words */
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-strong);
-  margin: 0 0 0.7em;
+.sec-intro, figcaption p {
+  font-size: 1.125rem;
+  line-height: 1.6;
 }
+.sec-intro { grid-column: 2; margin: 5cqi 0 0; }
 
 /*  figures */
 
-figure.chart {
-  margin: 2.2rem 0 0;
-  padding: 1.25rem 1.25rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-}
-
-/* Caption and source on the rail, chart beside them. The caption is the
-   first thing read and the chart is immediately to its right, so the eye
-   goes down the rail and across — never back up to find the text that
-   belongs to a chart it has already passed. */
-@media (min-width: 900px) {
-  /* Pull the card out by its own padding so the caption's left edge lands
-     on the prose above it. Without this the rail is off by the card
-     padding and the sight line kinks at every chart. */
-  .wrap > figure.chart { margin-inline: 0; }
-
-  figure.chart {
-    display: grid;
-    grid-template-columns: var(--rail) minmax(0, 1fr);
-    grid-template-areas:
-      "cap viz"
-      "src src";
-    grid-template-rows: auto 1fr;
-    column-gap: 2.5rem;
-    align-items: start;
-  }
-  figure.chart > figcaption { grid-area: cap; }
-  figure.chart > .viz      { grid-area: viz; }
-  figure.chart > .source   { grid-area: src; }
-
-  /* Inside a two-up row each figure is already narrow, so it keeps the
-     caption above the chart rather than splitting again. */
-  .chart-grid figure.chart { display: block; }
-
-  /* The metro comparison is two maps pinned to one shared scale, so it
-     cannot shrink: it needs 726px and would scroll inside the rail layout
-     on a narrow laptop. It takes the full card width, with its caption
-     above — starting on the same rail, so the eye still begins in the
-     same place. */
-  figure.chart:has(> .viz[data-spec*="04-metro"]) { display: block; }
-}
-
-@media (min-width: 900px) {
-  figure.chart.wide { display: block; }
-}
-
-figure.chart > figcaption { margin: 0 0 1rem; }
+figure { margin: 0; }
+figcaption { margin: 0 0 1rem; }
 
 /* Graph titles: serif, regular weight. */
-figcaption .title {
+.title {
   font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 1.16rem;
+  font-size: 1.5rem;
   line-height: 1.3;
-  color: var(--ink);
   margin-bottom: 0.3em;
 }
-figcaption .sub {
-  font-family: var(--font-sans);
-  color: var(--ink-2);
-  font-size: 0.89rem;
-  max-width: none;
-  margin: 0;
-}
-
-figcaption .notes {
-  font-family: var(--font-sans);
-  color: var(--ink-muted);
-  font-size: 0.83rem;
-  line-height: 1.55;
-  max-width: none;
-  margin: 0.9em 0 0;
-  padding-top: 0.8em;
-  border-top: 1px solid var(--border);
-}
+figcaption p { color: var(--ink-2); margin: 0; }   
+figcaption p + p { margin-top: 0.8em; }            
 
 .viz { width: 100%; min-height: 120px; overflow-x: auto; }
 .viz .vega-embed { width: 100%; }
 .viz .vega-embed summary { opacity: 0.3; }
 .viz .vega-embed summary:hover { opacity: 1; }
 .viz .vega-bindings {
-  font-family: var(--font-sans);
   font-size: 0.82rem;
   color: var(--ink-2);
   margin-bottom: 0.5rem;
 }
 .viz .vega-bind { margin-bottom: 0.25rem; }
 
-/* On the rail the source sits under the caption and carries its own rule.
-   Stacked (narrow screens, and inside a two-up row) it sits under the
-   chart instead, and the rule is the chart's full width. */
+/* source */
 .source {
   margin: 0.9rem 0 0;
   padding-top: 0.7rem;
@@ -477,65 +251,8 @@ figcaption .notes {
   font-size: 0.78rem;
   color: var(--ink-muted);
   max-width: none;
-  align-items: start;
 }
 .source a { color: inherit; }
-
-.intro > p:first-child {margin-top: 0;}
-
-.aside { display: grid; gap: 1.25rem; }
-figure.photo { margin: 0; }
-figure.photo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  margin-top: 0;
-}
-
-.aside-match .takeaway { max-width: none; }     /* full column width */
-
-/* The photo is a wide crop (about half its original height) with the
-   takeaway text underneath, so the column reads picture, then words. */
-.aside-match > .aside { align-content: start; }
-.aside-match figure.photo img {
-  aspect-ratio: 8 / 3;
-  object-fit: cover;      /* crop to fill, never stretch */
-  object-position: 50% 62%;
-}
-
-figure.photo figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-  max-width: 23em;   /* keeps the ten-word line limit */
-}
-
-.chart-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.25rem;
-  margin-top: 2.2rem;
-}
-.chart-grid figure.chart { margin-top: 0; }
-.chart-grid.row-match { align-items: start; }
-.row-match > figure.chart > .viz {
-  height: clamp(280px, 30vw, 380px);   /* a fixed height, not the header's */
-  overflow: hidden;     /* the chart's own size can't push the card taller */
-}
-
-.takeaway {
-  margin: 1.5rem 0 0;
-  padding: 0.95rem 1.15rem;
-  border-left: 3px solid var(--ink-strong);
-  background: var(--tint);
-  border-radius: 0 4px 4px 0;
-  font-size: 0.95rem;
-  color: var(--ink-2);
-  max-width: none;
-  margin-top: 0;
-}
-.takeaway strong { color: var(--ink); font-weight: 700; }
 
 .loading, .chart-error {
   padding: 2rem 0;
@@ -544,38 +261,81 @@ figure.photo figcaption {
 }
 .chart-error { color: var(--highlight); }
 
+/* ledger grid */
+
+main .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  main .wrap > * {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+  }
+
+
+  main .wrap > figure {
+    grid-template-rows: auto 1fr;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  main .wrap > figure > figcaption { grid-area: 1 / 1 / 2 / 5; }
+  main .wrap > figure > .source    { grid-area: 2 / 1 / 3 / 5; align-self: end; margin-top: 1rem; }
+  main .wrap > figure > .viz       { grid-area: 1 / 5 / 3 / 13; }
+
+  /* Wide row: for the maps and long charts */
+  main .wrap > figure.wide > * { grid-area: auto / 1 / auto / -1; }
+  main .wrap > figure.wide > .source { margin-top: 0.9rem; }
+
+  /* Lead row */
+  .lead > .sec-head { grid-column: 1 / 5; }
+  .lead > figure { grid-column: 5 / 13; display: flex; flex-direction: column; }
+  .lead > figure > .viz { flex: 1 1 auto; min-height: 300px; }
+  .sec-intro { grid-column: 1 / -1; margin-top: 1.25rem; }
+}
+
+
+@media (max-width: 899px) {
+  .lead > figure > .viz { height: clamp(280px, 70vw, 380px); }
+}
+
 /*  footer */
 
-footer.colophon {
+footer {
   padding-block: 3rem 4rem;
   border-top: 1px solid var(--border);
   color: var(--ink-muted);
   font-size: 0.86rem;
 }
-footer.colophon h3 { color: var(--ink-2); }
-footer.colophon ul { padding-left: 1.1rem; margin: 0 0 1.4rem; max-width: none; }
-footer.colophon li { margin-bottom: 0.4em; }
+footer h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  color: var(--ink-2);
+  margin: 0 0 0.5rem;
+}
+footer p + h3 { margin-top: 1.6rem; }
+footer ul { padding-left: 1.1rem; margin: 0 0 1.4rem; }
+footer li { margin-bottom: 0.4em; }
+footer a { color: inherit; text-decoration-color: var(--axis); }
+footer a:hover { color: var(--ink); text-decoration-color: currentColor; }
 
-/* Footer: two columns on wide screens (about/AI/photo | data sources) */
+/* Footer*/
 .colophon-grid { display: grid; gap: 0 3rem; }
 @media (min-width: 900px) {
   .colophon-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); }
 }
-footer.colophon h3 { margin: 0 0 0.5rem; }
-footer.colophon p + h3 { margin-top: 1.6rem; }
-footer.colophon a { color: inherit; text-decoration-color: var(--axis); text-underline-offset: 2px; }
-footer.colophon a:hover { color: var(--ink); text-decoration-color: currentColor; }
-
 
 /*  narrow */
 
 @media (max-width: 640px) {
   .wrap { padding-inline: 16px; }
-  figure.chart { padding: 1rem 0.85rem 0.85rem; }
-  .stats { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
-

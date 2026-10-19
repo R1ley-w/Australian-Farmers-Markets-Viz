@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f363d'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23f7f7f5'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23abb7c5'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/im-fell-english-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=24">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
 <script src="vendor/vega.min.js"></script>
@@ -23,7 +23,7 @@
          exact width (like the SECTION word). Screen readers get the plain
          text in the hidden span; the SVGs are decorative. -->
     <p class="eyebrow">FIT3179 Data Visualisation 2 · Riley Wade · October 2026</p>
-    <h1 class="mast-title">
+    <h1>
       <span class="visually-hidden">Australian Farmers' Markets</span>
       <svg class="mast-line" viewBox="0 0 1000 78" aria-hidden="true" focusable="false">
         <text x="0" y="75" textLength="1000" lengthAdjust="spacing">AUSTRALIAN</text>
@@ -52,11 +52,11 @@
 <main>
 
 <!--  Section 1 -->
-<section class="section" id="where">
+<section id="where">
   <div class="wrap">
 
     <!-- Row 1: introduction left, organisations chart right -->
-    <div class="chart-grid row-match">
+    <div class="lead">
       <header class = "sec-head">
         <h2>
           <span class = "sec-word">
@@ -76,58 +76,47 @@
         </p>
       </header>
 
-      <figure class = "chart">
+      <figure>
         <figcaption>
           <div class = "title">Organisations running markets</div>
-          <p class="sub">A few organisations run several markets each; the rest are run independently.</p>
+          <p>A few organisations run several markets each; the rest are run independently.</p>
         </figcaption>
         <div class = "viz" data-spec = "specs/08-operators.vg.json"></div>
       </figure>
     </div>
 
-    <!-- Row 2: the dot map, caption on the rail -->
-    <figure class="chart">
+    <!-- Row 2: the dot map, full width -->
+    <figure class="wide">
       <figcaption>
         <div class="title">Every farmers' market in the national directory</div>
-        <p class="sub">Each dot is one market, shaded by how often it trades. Seven in ten are in New South Wales and Victoria, most of them near the coast.</p>
-        <p class="notes">Click a state to zoom in, then click a city area to zoom further. Hover over a dot for the market's name and trading day.</p>
       </figcaption>
       <div class="viz" data-spec="specs/01-market-map.vg.json"></div>
-      <p class="source">Australian Farmers' Markets Association, “Find a Market” directory, scraped 20 September 2026 · boundaries from the Australian Bureau of Statistics, Australian Statistical Geography Standard, Edition 3 (Creative Commons Attribution 4.0)</p>
+      <p class="source">Australian Farmers' Markets Association “Find a Market” directory, Australian Bureau of Statistics, Australian Statistical Geography Standard, Edition 3 (Creative Commons Attribution 4.0)</p>
     </figure>
 
-    <!-- Row 3: sunburst left, image with text underneath right -->
-    <div class="chart-grid aside-match">         
-      <figure class="chart">
-        <figcaption>
-          <div class="title">How often do markets trade?</div>
-          <p class="sub">The mix of weekly, fortnightly and monthly markets in each state.</p>
-        </figcaption>
-        <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
-      </figure>
-
-      <div class="aside">                         
-        <figure class="photo">
-          <img src="images/berwick-farmers-market.jpg" alt="Stalls at the Berwick farmers' market, held at the Old Cheese Factory">
-          <figcaption>Berwick farmers' market, Victoria. Photo by mammaknowssouth.com.au</figcaption>
-        </figure>
-
-        <div class="takeaway">
+    <!-- Row 3: sunburst -->
+    <figure>
+      <figcaption>
+        <div class="title">How often do markets trade?</div>
+        <p>The mix of weekly, fortnightly and monthly markets in each state.</p>
+        <p>
           Most markets are run by a local committee, church, Rotary club or school, as my local
           market in Berwick is. The busiest city markets, though, are concentrated under a few
           professional organisers.
-        </div>
-      </div>
-    </div>
+        </p>
+      </figcaption>
+      <div class="viz" data-spec="specs/07-frequency-by-state.vg.json"></div>
+      <p class="source">Australian Farmers' Markets Association "Find a Market" directory</p>
+    </figure>
   </div>
 </section>
 
 <!-- Section 2 -->
-<section class="section" id="reach">
+<section id="reach">
   <div class="wrap">
 
     <!-- Row 1: introduction-->
-    <div class="chart-grid row-match">
+    <div class="lead">
       <header class = "sec-head">
         <h2>
           <span class = "sec-word">
@@ -148,7 +137,7 @@
         </p>
       </header>
 
-      <figure class="chart">
+      <figure>
         <figcaption>
           <div class="title">When can you actually shop?</div>
         </figcaption>
@@ -158,7 +147,7 @@
     </div>
 
     <!-- row 2 -->
-    <figure class="chart wide">
+    <figure class="wide">
       <figcaption>
         <div class="title">Markets per 100,000 people</div>
       </figcaption>
@@ -166,24 +155,22 @@
       <p class="source">Australian Farmers' Markets Association directory, 2026 · Australian Bureau of Statistics, Regional Population and National, State and Territory Population, 30 June 2025 · Australian Statistical Geography Standard, Edition 3</p>
     </figure>
 
-    <figure class="chart">
+    <figure class="wide">
       <figcaption>
         <div class="title">How far is the nearest market?</div>
-        <p class="sub">Each council area is shaded by the distance from its centre to the nearest market. The darker the green, the further you travel.</p>
-        <p class="notes">Only 47% of council areas are within 50 kilometres of a market. Drag the slider to show only the council areas within a chosen distance.</p>
       </figcaption>
       <div class="viz" data-spec="specs/03-lga-distance.vg.json"></div>
-      <p class="source">Straight-line distance from the centre of each council area to the nearest of the 174 markets with a known location · Australian Bureau of Statistics local government area boundaries, 2023</p>
+      <p class="source">Australian Bureau of Statistics local government area boundaries, 2023</p>
     </figure>
 
     <!--row 3-->
 
-    <figure class = "chart wide">
+    <figure class="wide">
       <figcaption>
         <div class = "title">Some states are much further from a market than others</div>
       </figcaption>
       <div class="viz" data-spec="specs/19-beeswarm-distance.vg.json"></div>
-      <p class="source">Distance from each council area's centre to the nearest market in the Australian Farmers' Markets Association directory, 2026 · Australian Bureau of Statistics local government area boundaries, 2023 · distances under 1 kilometre are drawn at 1 kilometre</p>
+      <p class="source">Australian Farmers' Markets Association directory, 2026 · Australian Bureau of Statistics local government area boundaries, 2023</p>
     </figure>
 
     <!--<div class="takeaway">
@@ -198,11 +185,11 @@
 </section>
 
 <!-- Section 3 -->
-<section class="section" id="production">
+<section id="production">
   <div class="wrap">
 
     <!-- Row 1: introduction left, food waste chart right -->
-    <div class="chart-grid row-match">
+    <div class="lead">
       <header class = "sec-head">
         <h2>
           <span class = "sec-word">
@@ -217,23 +204,26 @@
         <p class = "sec-intro">
           Australian farms produced <strong>$70.9 billion</strong> of food and fibre in 2020–21.
           Meat and grain make up almost two thirds of it. Fruit, nuts and vegetables, the
-          staples of a market stall, are under a fifth.
+          staples of a market stall, are under a fifth. Most Australian Farmers do not sell their 
+          produce at Farmers' Markets. For products that make up most of Australian produce, meat and grain,
+          it is far more profitable to sell directly to commercial buyers than individual customers at a 
+          Farmers' Market
         </p>
       </header>
 
-      <figure class="chart">
+      <figure>
         <figcaption>
           <div class="title">Where Australia wastes 7.3 million tonnes of food a year</div>
-          <p class="sub">Each square is 1% of the total, about 73,000 tonnes. Nearly a third is lost on the farm, before food ever reaches a shop.</p>
+          <p>Each square is 1% of the total, about 73,000 tonnes. Nearly a third is lost on the farm, before food ever reaches a shop.</p>
         </figcaption>
         <div class="viz" data-spec="specs/14-food-waste.vg.json"></div>
-        <p class="source">Department of Climate Change, Energy, the Environment and Water, National Food Waste Baseline (2016–17 reference year) · the published baseline names only the three largest sectors</p>
+        <p class="source">Department of Climate Change, Energy, the Environment and Water, National Food Waste Baseline (2016–17 reference year)</p>
       </figure>
     </div>
 
     <!-- Row 2: treemap -->
 
-    <figure class="chart wide">
+    <figure class="wide">
       <figcaption>
         <div class="title">What Australian farms produce</div>
       </figcaption>
@@ -243,19 +233,17 @@
 
     <!-- Row 3: production map -->
 
-    <figure class="chart">
+    <figure class="wide">
       <figcaption>
         <div class="title">Where it is grown</div>
-        <p class="sub">Each symbol is a council area. Its shape shows the main type of produce, and its size shows the value grown per hectare.</p>
-        <p class="notes">Click a produce type in the legend to show only that type. Click a state to zoom in, and use the menu under the map to size symbols by one type of produce.</p>
       </figcaption>
       <div class="viz" data-spec="specs/17-production-map.vg.json"></div>
-      <p class="source">Australian Bureau of Statistics, <em>Value of Agricultural Commodities Produced</em> by local government area, 2020–21 · the Bureau estimates these from its small statistical areas (Statistical Area Level 2), shared out by land area, and suppressed values count as zero, so a council with no symbol may still farm · poultry and pigs are heavily suppressed (72% and 88% of the national value is shown) · sizes cap at $2,000 a hectare</p>
+      <p class="source">Australian Bureau of Statistics, <em>Value of Agricultural Commodities Produced</em> by local government area, 2020–21</p>
     </figure>
 
     <!-- Row 4: emissions -->
 
-    <figure class="chart wide">
+    <figure class="wide">
       <figcaption>
         <div class="title">Where food emissions actually come from</div>
       </figcaption>
@@ -273,11 +261,11 @@
 </section>
 
 <!-- Section 4 -->
-<section class="section" id="profitability">
+<section id="profitability">
   <div class="wrap">
 
     <!-- Row 1: introduction left, stall fees right -->
-    <div class="chart-grid row-match">
+    <div class="lead">
       <header class = "sec-head">
         <h2>
           <span class = "sec-word">
@@ -298,54 +286,52 @@
         </p>
       </header>
 
-      <figure class="chart">
+      <figure>
         <figcaption>
           <div class="title">What a stall costs</div>
-          <p class="sub">Fee per market day. Mean $61; the full range runs from $3 to $594.</p>
+          <p>Fee per market day. Mean $61; the full range runs from $3 to $594.</p>
         </figcaption>
         <div class="viz" data-spec="specs/10-stall-fees.vg.json"></div>
-        <p class="source">Rural Industries Research and Development Corporation, Publication 14/040 (2014), survey of 286 stallholders</p>
+        <p class="source">Rural Industries Research and Development Corporation, Publication 14/040 (2014)</p>
       </figure>
     </div>
     
-    <div class="chart-grid">
-      <figure class="chart">
-        <figcaption>
-          <div class="title">How far stallholders travel</div>
-          <p class="sub">Distance to their main market. 57% travel 50 kilometres or less; the line is the running total.</p>
-        </figcaption>
-        <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
-        <p class="source">Rural Industries Research and Development Corporation, Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014), survey of 286 stallholders</p>
-      </figure>
+    <figure>
+      <figcaption>
+        <div class="title">How far stallholders travel</div>
+        <p>Distance to their main market. 57% travel 50 kilometres or less; the line is the running total.</p>
+        <p>A third (35%) come from within 20 kilometres, while one in seven travel more than 200.</p>
+      </figcaption>
+      <div class="viz" data-spec="specs/09-travel-distance.vg.json"></div>
+      <p class="source">Rural Industries Research and Development Corporation, Publication 14/040, <em>Understanding the Characteristics of Australian Farmers' Markets</em> (2014)</p>
+    </figure>
 
-      <figure class="chart">
-        <figcaption>
-          <div class="title">The market is one channel among several</div>
-          <p class="sub">
-            Every stallholder sells at a farmers' market by definition <strong>but</strong> only 7% sell
-            <em>only</em> there, and 30% take less than a quarter of their income from it.
-          </p>
-        </figcaption>
-        <div class="viz" data-spec="specs/12-sales-channels.vg.json"></div>
-        <p class="source">Rural Industries Research and Development Corporation, Publication 14/040 (2014), Figure 19 · shares sum to more than 100% because stallholders use several channels</p>
-      </figure>
-    </div>
+    <figure>
+      <figcaption>
+        <div class="title">The market is one channel among several</div>
+        <p>
+          Every stallholder sells at a farmers' market by definition <strong>but</strong> only 7% sell
+          <em>only</em> there, and 30% take less than a quarter of their income from it.
+        </p>
+        <p>More than half also sell to local shops, and half to restaurants. Only 18% supply a major retailer.</p>
+      </figcaption>
+      <div class="viz" data-spec="specs/12-sales-channels.vg.json"></div>
+      <p class="source">Rural Industries Research and Development Corporation, Publication 14/040 (2014), Figure 19</p>
+    </figure>
 
-    <figure class="chart">
+    <figure>
       <figcaption>
         <div class="title">Share of Australian supermarket and liquor sales, 1994–2025</div>
-          <p class = "sub">
+          <p>
             Coles and Woolworths together take about two-thirds of Australian supermarket and
             liquor sales: two companies hold most of a market shared with thousands of other grocers.
-        </p>
-        <p class="notes">
-          In 1994 the two chains took about half of all sales. By 2002 they had two thirds, and
-          they have held close to that share for more than twenty years. Drag across the small
-          chart underneath to look at a shorter run of years.
+            In 1994 the two chains took about half of all sales. By 2002 they had two thirds, and
+            they have held close to that share for more than twenty years. Drag across the small
+            chart underneath to look at a shorter run of years.
         </p>
       </figcaption>
       <div class="viz" data-spec="specs/18-supermarket-share-time.vg.json"></div>
-      <p class="source">Woolworths, Endeavour Group, Coles Myer, Coles Group and Wesfarmers annual reports and results (supermarkets plus each company's liquor chains; petrol, Coles Express and New Zealand excluded) as a share of Australian Bureau of Statistics <em>Retail Trade, Australia</em> turnover for supermarkets and grocery plus liquor retailing (series A3349862V and A3349462J, Creative Commons Attribution 4.0)</p>
+      <p class="source">Woolworths, Endeavour Group, Coles Myer, Coles Group and Wesfarmers annual reports, Australian Bureau of Statistics <em>Retail Trade, Australia</em> turnover for supermarkets and grocery plus liquor retailing (series A3349862V and A3349462J, Creative Commons Attribution 4.0)</p>
     </figure>
 
     <!--<div class="takeaway">
@@ -359,7 +345,7 @@
 
 </main>
 
-<footer class="colophon">
+<footer>
   <div class="wrap">
     <div class="colophon-grid">
 
@@ -374,9 +360,6 @@
           (three-clause Berkeley Software Distribution licence). The chart specifications and processed data are in the
           <a href="https://github.com/R1ley-w/Australian-Farmers-Markets-Viz">GitHub repository</a>;
         </p>
-
-        <h3>Photo</h3>
-        <p>Berwick farmers' market: mammaknowssouth.com.au.</p>
       </div>
 
       <div>
