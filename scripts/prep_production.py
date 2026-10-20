@@ -1,30 +1,5 @@
 """prep_production.py — ABS agricultural production for Section 3.
 
-Input:  data/VACPDCLGA202021.xlsx
-        ABS, Value of Agricultural Commodities Produced, Australia, 2020-21,
-        "Gross and local value estimates by Local Government Area (2021)".
-        Downloaded by hand from
-        https://www.abs.gov.au/statistics/industry/agriculture/value-agricultural-commodities-produced-australia/2020-21
-        (CC BY 4.0). The ABS site is not reachable from scripted downloads,
-        so the file is committed.
-        data/lga_distance.csv (for LGA area, from prep_spatial.py)
-
-Output: data/abs_production_tree.csv  national gross value as a hierarchy
-                                       (treemap, spec 16)
-        data/abs_production_lga.csv   gross value per LGA, wide, one column
-                                       per map commodity (map, spec 17)
-
-Stdlib only, like the other prep scripts: an .xlsx is a zip of XML.
-
-Two properties of the source that the charts must respect (from the
-workbook's own "Guide to estimates" sheet):
-  * LGA values are SA2 estimates apportioned to LGAs by area, not counts of
-    farms inside each council.
-  * Suppressed SA2 cells were replaced with ZERO before apportioning, so a
-    zero (or an absent row) means "not published or negligible", never
-    "none grown here". The map gives those areas their own neutral fill.
-State and national totals do include the suppressed values, which is why
-the tree is built from the national rows, not by summing LGAs.
 """
 
 import csv

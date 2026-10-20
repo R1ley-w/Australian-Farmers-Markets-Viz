@@ -2,22 +2,6 @@
 """
 prep_spatial.py — the spatial joins behind the four map idioms.
 
-Reads the ASGS Edition 3 TopoJSON boundary files and the cleaned market list,
-and produces:
-
-  data/gccsa_market_density.csv   markets per 100k people, by Greater Capital
-                                  City Statistical Area / rest-of-state
-  data/lga_distance.csv           distance from each LGA's centre to the
-                                  nearest farmers' market ("market deserts")
-  data/coverage_curve.csv         share of LGAs and of land area within N km
-  data/states.topo.json           trimmed state boundaries for the map base
-  data/gccsa.topo.json            trimmed GCCSA boundaries
-  data/lga.topo.json              trimmed LGA boundaries
-
-TopoJSON is decoded in pure Python (no geopandas dependency) — the format is
-just quantised delta-encoded arcs plus an index, so decoding it is ~40 lines.
-
-Run from the repo root:  python3 scripts/prep_spatial.py
 """
 
 from __future__ import annotations

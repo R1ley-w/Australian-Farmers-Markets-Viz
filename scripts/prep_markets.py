@@ -2,17 +2,6 @@
 """
 prep_markets.py — clean the scraped AFMA directory into analysis-ready files.
 
-Input   data/afma_markets_raw.tsv   (178 records scraped from the AFMA
-        "Find a Market" WP Store Locator endpoint, 10 Sep 2026)
-
-Output  data/markets.csv            one row per market, cleaned + derived fields
-        data/markets_by_state.csv   counts and rates by state
-        data/frequency_by_state.csv frequency x state, long form
-        data/day_time_heatmap.csv   opening day x start hour
-        data/operators.csv          operator -> market count
-        data/data_quality.csv       issues found, for the write-up
-
-Run from the repo root:  python3 scripts/prep_markets.py
 """
 
 from __future__ import annotations
