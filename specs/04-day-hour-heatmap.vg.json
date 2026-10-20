@@ -71,9 +71,7 @@
           "#cb181d",
           "#99000d"
         ],
-        "domainMin": 0,
-        "type": "pow",
-        "exponent": 0.4
+        "domainMin": 0
       },
       "legend": {
         "orient": "top",
