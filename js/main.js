@@ -1,8 +1,5 @@
 /* ------------------------------------------------------------------
    Chart loader and shared Vega-Lite theme.
-
-   The specs carry no fonts and no chrome colours of their own; they
-   come from here, read off the CSS custom properties in css/style.css
    ------------------------------------------------------------------ */
 
 const token = (name) =>
@@ -47,11 +44,6 @@ function theme() {
     },
     view: { stroke: null, continuousWidth: 620, continuousHeight: 300 },
     range: {
-      // No default categorical range. Every categorical scale in this
-      // project names its own domain and range, so a colour cannot pick up
-      // a second meaning by falling through to a shared default.
-      // Sequential (quantitative) scales are one brown, light to dark. Hue is kept for
-      // categories only, so a colour never means both a category and an amount.
       heatmap: seqBrown,
       ramp: seqBrown,
       ordinal: [mag[8], mag[6], mag[4], mag[3]],
@@ -78,13 +70,11 @@ const embedOptions = () => ({
   tooltip: { theme: 'light' },
 });
 
-/* ------------------------------------------------------------- links
+/* links
 
-   Charts that share a selection declare it in their spec:
-     "usermeta": {"link": {"group": "commodity", "signal": "commodity"}}
-   A change to that signal in one chart is pushed to every other chart in
-   the same group. Charts render lazily, so the group remembers its latest
-   value and a chart that renders later starts from it. */
+   Charts use "usermeta": {"link": {"group": "commodity", "signal": "commodity"}} 
+   
+   */
 
 const linkGroups = {};
 
@@ -106,14 +96,13 @@ function joinLink(view, link) {
   });
 }
 
-/* ------------------------------------------------------------ render */
+/*  render */
 
 async function renderOne(el) {
   const url = el.dataset.spec;
   el.innerHTML = '<p class="loading">Loading chart…</p>';
   try {
-    // no-cache forces a conditional request, so an edited spec is picked up
-    // on reload instead of being served from the browser's cache.
+    // no-cache 
     const res = await fetch(url, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const spec = absoluteUrls(await res.json());
