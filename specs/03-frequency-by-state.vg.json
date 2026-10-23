@@ -1,16 +1,22 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Sunburst of trading frequency by state. Inner ring: each state, sized by its number of markets, in its state colour. Outer ring: each state's markets split by how often they trade, on the frequency ordinal. Plain Vega because Vega-Lite has no partition layout. States too small to label inside the ring are named in the legend on the left.",
-  "height": 340,
+  "description": "Marimekko (mosaic) chart of trading frequency by state. Each band is a state; its height is the state's number of markets and it is split by how often those markets trade, so every block's area is a number of markets. Replaces the sunburst: state and trading frequency are two independent categories, not a hierarchy. Plain Vega so the band positions can be computed with a window transform and every state name sits level beside its band. Bands run top to bottom from the most markets to the fewest.",
+  "height": 400,
+  "padding": {
+    "top": 4,
+    "left": 0,
+    "right": 8,
+    "bottom": 0
+  },
   "autosize": {
-    "type": "fit",
+    "type": "fit-x",
     "contains": "padding",
     "resize": true
   },
   "signals": [
     {
       "name": "width",
-      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 420",
+      "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 640",
       "on": [
         {
           "events": "window:resize",
@@ -19,27 +25,15 @@
       ]
     },
     {
-      "name": "radius",
-      "update": "max(60, min(width, height) / 2 - 16)"
-    },
-    {
-      "name": "cx",
-      "update": "width / 2"
-    },
-    {
-      "name": "cy",
-      "update": "height / 2"
-    },
-    {
       "name": "hoverState",
       "value": null,
       "on": [
         {
-          "events": "@sunburst:pointerover",
+          "events": "@block:pointerover",
           "update": "datum.state"
         },
         {
-          "events": "@sunburst:pointerout",
+          "events": "@block:pointerout",
           "update": "null"
         }
       ]
@@ -57,6 +51,16 @@
       },
       "transform": [
         {
+          "type": "formula",
+          "as": "stateName",
+          "expr": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]"
+        },
+        {
+          "type": "formula",
+          "as": "freqOrder",
+          "expr": "indexof([\"Weekly\", \"Fortnightly\", \"Monthly\", \"Irregular\"], datum.frequency)"
+        },
+        {
           "type": "joinaggregate",
           "groupby": [
             "state"
@@ -68,33 +72,40 @@
             "sum"
           ],
           "as": [
-            "state_total"
+            "stateTotal"
+          ]
+        },
+        {
+          "type": "joinaggregate",
+          "fields": [
+            "markets"
+          ],
+          "ops": [
+            "sum"
+          ],
+          "as": [
+            "allMarkets"
           ]
         },
         {
           "type": "formula",
-          "as": "id",
-          "expr": "datum.state + '|' + datum.frequency"
-        },
-        {
-          "type": "formula",
-          "as": "parent",
-          "expr": "datum.state"
-        },
-        {
-          "type": "formula",
-          "as": "size",
-          "expr": "datum.markets"
-        },
-        {
-          "type": "formula",
           "as": "share",
-          "expr": "datum.markets / datum.state_total"
+          "expr": "datum.markets / datum.stateTotal"
         },
         {
-          "type": "formula",
-          "as": "order",
-          "expr": "indexof(['Weekly','Fortnightly','Monthly','Irregular'], datum.frequency)"
+          "type": "stack",
+          "groupby": [
+            "state"
+          ],
+          "field": "markets",
+          "sort": {
+            "field": "freqOrder"
+          },
+          "offset": "normalize",
+          "as": [
+            "y0",
+            "y1"
+          ]
         }
       ]
     },
@@ -105,7 +116,8 @@
         {
           "type": "aggregate",
           "groupby": [
-            "state"
+            "state",
+            "stateName"
           ],
           "fields": [
             "markets"
@@ -114,156 +126,57 @@
             "sum"
           ],
           "as": [
-            "state_total"
-          ]
-        },
-        {
-          "type": "joinaggregate",
-          "fields": [
-            "state_total"
-          ],
-          "ops": [
-            "sum"
-          ],
-          "as": [
-            "grand_total"
-          ]
-        },
-        {
-          "type": "formula",
-          "as": "id",
-          "expr": "datum.state"
-        },
-        {
-          "type": "formula",
-          "as": "parent",
-          "expr": "'root'"
-        },
-        {
-          "type": "formula",
-          "as": "size",
-          "expr": "0"
-        },
-        {
-          "type": "formula",
-          "as": "share",
-          "expr": "datum.state_total / datum.grand_total"
-        },
-        {
-          "type": "formula",
-          "as": "order",
-          "expr": "-datum.state_total * 100 + indexof(['NSW','VIC','QLD','WA','SA','TAS','ACT','NT'], datum.state)"
-        }
-      ]
-    },
-    {
-      "name": "top",
-      "values": [
-        {
-          "id": "root",
-          "parent": null,
-          "size": 0,
-          "order": 0
-        }
-      ]
-    },
-    {
-      "name": "tree",
-      "source": [
-        "top",
-        "states",
-        "leaves"
-      ],
-      "transform": [
-        {
-          "type": "stratify",
-          "key": "id",
-          "parentKey": "parent"
-        },
-        {
-          "type": "partition",
-          "field": "size",
-          "sort": {
-            "field": "data.order",
-            "order": "ascending"
-          },
-          "size": [
-            {
-              "signal": "2 * PI"
-            },
-            {
-              "value": 1
-            }
-          ],
-          "as": [
-            "a0",
-            "p0",
-            "a1",
-            "p1",
-            "depth",
-            "children"
-          ]
-        },
-        {
-          "type": "filter",
-          "expr": "datum.depth > 0"
-        },
-        {
-          "type": "formula",
-          "as": "r0",
-          "expr": "radius * (datum.depth === 1 ? 0.3 : 0.64)"
-        },
-        {
-          "type": "formula",
-          "as": "r1",
-          "expr": "radius * (datum.depth === 1 ? 0.64 : 1)"
-        },
-        {
-          "type": "formula",
-          "as": "amid",
-          "expr": "(datum.a0 + datum.a1) / 2"
-        },
-        {
-          "type": "formula",
-          "as": "rmid",
-          "expr": "(datum.r0 + datum.r1) / 2"
-        },
-        {
-          "type": "formula",
-          "as": "arclen",
-          "expr": "(datum.a1 - datum.a0) * datum.rmid"
-        },
-        {
-          "type": "formula",
-          "as": "labelw",
-          "expr": "datum.depth === 1 ? length({'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]) * 7.2 + 20 : 0"
-        }
-      ]
-    },
-    {
-      "name": "stateLabels",
-      "source": "tree",
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "datum.depth === 1 && datum.arclen > datum.labelw"
-        }
-      ]
-    },
-    {
-      "name": "centre",
-      "source": "states",
-      "transform": [
-        {
-          "type": "aggregate",
-          "fields": [
-            "state_total"
-          ],
-          "ops": [
-            "sum"
-          ],
-          "as": [
             "total"
+          ]
+        },
+        {
+          "type": "window",
+          "sort": {
+            "field": [
+              "total",
+              "state"
+            ],
+            "order": [
+              "descending",
+              "ascending"
+            ]
+          },
+          "ops": [
+            "sum"
+          ],
+          "fields": [
+            "total"
+          ],
+          "as": [
+            "cum"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "x0",
+          "expr": "datum.cum - datum.total"
+        },
+        {
+          "type": "formula",
+          "as": "x1",
+          "expr": "datum.cum"
+        }
+      ]
+    },
+    {
+      "name": "blocks",
+      "source": "leaves",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "states",
+          "key": "state",
+          "fields": [
+            "state"
+          ],
+          "values": [
+            "x0",
+            "x1"
           ]
         }
       ]
@@ -271,27 +184,28 @@
   ],
   "scales": [
     {
-      "name": "state",
-      "type": "ordinal",
-      "domain": [
-        "NSW",
-        "VIC",
-        "QLD",
-        "WA",
-        "SA",
-        "TAS",
-        "ACT",
-        "NT"
-      ],
+      "name": "y",
+      "type": "linear",
       "range": [
-        "#33b5ff",
-        "#5a72ff",
-        "#e8318c",
-        "#ffd92e",
-        "#2fe0c5",
-        "#a3c22b",
-        "#767676",
-        "#A6A6A6"
+        0,
+        {
+          "signal": "height"
+        }
+      ],
+      "zero": true,
+      "nice": false,
+      "domain": {
+        "data": "states",
+        "field": "x1"
+      }
+    },
+    {
+      "name": "x",
+      "type": "linear",
+      "range": "width",
+      "domain": [
+        0,
+        1
       ]
     },
     {
@@ -311,112 +225,91 @@
       ]
     }
   ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "format": ".0%",
+      "tickCount": {
+        "signal": "width < 250 ? 2 : 5"
+      },
+      "grid": false,
+      "title": "Share of the state's markets",
+      "labelPadding": 4
+    }
+  ],
   "legends": [
     {
       "fill": "freq",
       "orient": "top",
       "direction": "horizontal",
       "symbolType": "square",
-      "columnPadding": 12
-    },
-    {
-      "fill": "state",
-      "title": "State",
-      "orient": "left",
-      "direction": "vertical",
-      "symbolType": "square",
-      "encode": {
-        "symbols": {
-          "update": {
-            "stroke": {
-              "value": null
-            }
-          }
-        },
-        "labels": {
-          "update": {
-            "text": {
-              "signal": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.value]"
-            }
-          }
-        }
+      "title": "Trades",
+      "columnPadding": 14,
+      "columns": {
+        "signal": "width < 300 ? 2 : 4"
       }
     }
   ],
   "marks": [
     {
-      "name": "sunburst",
-      "type": "arc",
+      "type": "rect",
+      "name": "block",
       "from": {
-        "data": "tree"
+        "data": "blocks"
       },
       "encode": {
         "enter": {
-          "cornerRadius": {
-            "value": 0
+          "stroke": {
+            "value": "#ffffff"
+          },
+          "strokeWidth": {
+            "value": 1.5
           }
         },
         "update": {
-          "x": {
-            "signal": "cx"
-          },
           "y": {
-            "signal": "cy"
+            "scale": "y",
+            "field": "x0"
           },
-          "startAngle": {
-            "field": "a0"
+          "y2": {
+            "scale": "y",
+            "field": "x1"
           },
-          "endAngle": {
-            "field": "a1"
+          "x": {
+            "scale": "x",
+            "field": "y0"
           },
-          "innerRadius": {
-            "field": "r0"
+          "x2": {
+            "scale": "x",
+            "field": "y1"
           },
-          "outerRadius": {
-            "field": "r1"
+          "fill": {
+            "scale": "freq",
+            "field": "frequency"
           },
-          "fill": [
-            {
-              "test": "datum.depth === 1",
-              "scale": "state",
-              "field": "state"
-            },
-            {
-              "scale": "freq",
-              "field": "frequency"
-            }
-          ],
           "fillOpacity": {
-            "signal": "hoverState && datum.state !== hoverState ? 0.3 : 1"
+            "signal": "hoverState && datum.state !== hoverState ? 0.35 : 1"
           },
-          "tooltip": [
-            {
-              "test": "datum.depth === 1",
-              "signal": "{'State': {'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state], 'Markets': datum.state_total, 'Share of all markets': format(datum.share, '.0%')}"
-            },
-            {
-              "signal": "{'State': {'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state], 'Trades': datum.frequency, 'Markets': datum.markets, 'Share of the state\\'s markets': format(datum.share, '.0%')}"
-            }
-          ]
+          "tooltip": {
+            "signal": "{'State': datum.stateName, 'Trades': datum.frequency, 'Markets': datum.markets, 'Share of the state\\'s markets': format(datum.share, '.0%'), 'Share of all markets': format(datum.markets / datum.allMarkets, '.0%')}"
+          }
         }
       }
     },
     {
       "type": "text",
       "from": {
-        "data": "stateLabels"
+        "data": "block"
       },
       "interactive": false,
       "encode": {
         "update": {
           "x": {
-            "signal": "cx + sin(datum.amid) * datum.rmid"
+            "signal": "(datum.x + datum.x2) / 2"
           },
           "y": {
-            "signal": "cy - cos(datum.amid) * datum.rmid"
-          },
-          "text": {
-            "signal": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]"
+            "signal": "(datum.y + datum.y2) / 2"
           },
           "align": {
             "value": "center"
@@ -424,52 +317,20 @@
           "baseline": {
             "value": "middle"
           },
-          "fill": {
-            "value": "#1c1f23"
+          "fontSize": {
+            "value": 11.5
           },
           "fontWeight": {
             "value": 700
           },
-          "fontSize": {
-            "value": 11.5
-          },
-          "opacity": {
-            "signal": "hoverState && datum.state !== hoverState ? 0.5 : 1"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {
-        "data": "centre"
-      },
-      "interactive": false,
-      "encode": {
-        "update": {
-          "x": {
-            "signal": "cx"
-          },
-          "y": {
-            "signal": "cy - 2"
-          },
           "text": {
-            "field": "total"
-          },
-          "align": {
-            "value": "center"
-          },
-          "baseline": {
-            "value": "alphabetic"
-          },
-          "font": {
-            "value": "Georgia, \"Iowan Old Style\", \"Times New Roman\", Times, serif"
-          },
-          "fontSize": {
-            "value": 26
+            "signal": "datum.x2 - datum.x >= 34 && datum.y2 - datum.y >= 18 ? format(datum.datum.share, '.0%') : ''"
           },
           "fill": {
-            "value": "#1C1F23"
+            "signal": "indexof(['Weekly','Fortnightly'], datum.datum.frequency) >= 0 ? '#ffffff' : '#1c1f23'"
+          },
+          "opacity": {
+            "signal": "hoverState && datum.datum.state !== hoverState ? 0.4 : 1"
           }
         }
       }
@@ -477,28 +338,72 @@
     {
       "type": "text",
       "from": {
-        "data": "centre"
+        "data": "states"
       },
       "interactive": false,
       "encode": {
         "update": {
           "x": {
-            "signal": "cx"
+            "value": -8
           },
           "y": {
-            "signal": "cy + 6"
+            "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 14 ? (scale('y', datum.x0) + scale('y', datum.x1)) / 2 : scale('y', datum.x0)"
           },
-          "text": {
-            "value": "markets"
+          "dy": {
+            "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 40 ? -7 : 0"
           },
           "align": {
-            "value": "center"
+            "value": "right"
           },
           "baseline": {
-            "value": "top"
+            "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 14 ? 'middle' : 'top'"
           },
           "fontSize": {
             "value": 11.5
+          },
+          "fontWeight": {
+            "value": 700
+          },
+          "fill": {
+            "value": "#1c1f23"
+          },
+          "text": {
+            "field": "stateName"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "states"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "value": -8
+          },
+          "y": {
+            "signal": "(scale('y', datum.x0) + scale('y', datum.x1)) / 2"
+          },
+          "dy": {
+            "value": 8
+          },
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "fontSize": {
+            "value": 11
+          },
+          "fill": {
+            "value": "#767c83"
+          },
+          "text": {
+            "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 40 ? datum.total + ' markets' : ''"
           }
         }
       }
