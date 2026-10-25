@@ -8,3 +8,5 @@ package-lock.json
 *.md
 outputs/
 docs/
+data/Coles_data/
+data/woolworths_data/
