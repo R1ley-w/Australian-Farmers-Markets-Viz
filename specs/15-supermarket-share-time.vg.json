@@ -97,9 +97,9 @@
                   "Everyone else"
                 ],
                 "range": [
-                  "#8a96a2",
-                  "#4e5a66",
-                  "#dfe2e5"
+                  "#9d7cc1",
+                  "#2c5f7a",
+                  "#c7cbd0"
                 ]
               },
               "legend": null
@@ -319,9 +319,9 @@
               "Everyone else"
             ],
             "range": [
-              "#8a96a2",
-              "#4e5a66",
-              "#dfe2e5"
+              "#9d7cc1",
+              "#2c5f7a",
+              "#c7cbd0"
             ]
           },
           "legend": null

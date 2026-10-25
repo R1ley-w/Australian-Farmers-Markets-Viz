@@ -164,11 +164,11 @@
               "Food losses"
             ],
             "range": [
-              "#4e5a66",
-              "#8a96a2",
-              "#c9ced3",
+              "#89CFF0",
+              "#E6E6FA",
+              "#F4C2C2",
               "#b83025",
-              "#6b7682"
+              "#FFDAB9"
             ]
           },
           "legend": {
