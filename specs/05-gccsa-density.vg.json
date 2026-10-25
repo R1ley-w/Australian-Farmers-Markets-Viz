@@ -6,7 +6,13 @@
     "resize": true
   },
   "signals": [
-    {"name": "gratStep", "value": [5, 5]},
+    {
+      "name": "gratStep",
+      "value": [
+        5,
+        5
+      ]
+    },
     {
       "name": "width",
       "init": "isFinite(containerSize()[0]) && containerSize()[0] > 0 ? containerSize()[0] : 760",
@@ -69,7 +75,22 @@
     {
       "name": "graticule",
       "transform": [
-        {"type": "graticule", "extent": [[112, -44], [154, -10]], "step": {"signal": "gratStep"}}
+        {
+          "type": "graticule",
+          "extent": [
+            [
+              112,
+              -44
+            ],
+            [
+              154,
+              -10
+            ]
+          ],
+          "step": {
+            "signal": "gratStep"
+          }
+        }
       ]
     },
     {
@@ -80,15 +101,27 @@
         "parse": "auto"
       },
       "transform": [
-        {"type": "formula", "as": "regionName", "expr": "({'Rest of NSW':'Rest of New South Wales','Rest of Vic.':'Rest of Victoria','Rest of Qld':'Rest of Queensland','Rest of SA':'Rest of South Australia','Rest of WA':'Rest of Western Australia','Rest of Tas.':'Rest of Tasmania','Rest of NT':'Rest of Northern Territory'}[datum.gccsa] || datum.gccsa)"},
-        {"type": "formula", "as": "short",
-         "expr": "datum.regionName === 'Australian Capital Territory' ? 'Canberra' : replace(datum.regionName, 'Greater ', '')"}
+        {
+          "type": "formula",
+          "as": "regionName",
+          "expr": "({'Rest of NSW':'Rest of New South Wales','Rest of Vic.':'Rest of Victoria','Rest of Qld':'Rest of Queensland','Rest of SA':'Rest of South Australia','Rest of WA':'Rest of Western Australia','Rest of Tas.':'Rest of Tasmania','Rest of NT':'Rest of Northern Territory'}[datum.gccsa] || datum.gccsa)"
+        },
+        {
+          "type": "formula",
+          "as": "short",
+          "expr": "datum.regionName === 'Australian Capital Territory' ? 'Canberra' : replace(datum.regionName, 'Greater ', '')"
+        }
       ]
     },
     {
-      "name" : "cities",
-      "source" : "density",
-      "transform": [{"type": "filter", "expr": "datum.kind === 'Capital city'"}]
+      "name": "cities",
+      "source": "density",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.kind === 'Capital city'"
+        }
+      ]
     },
     {
       "name": "regions",
@@ -105,7 +138,16 @@
           "fields": [
             "properties.name"
           ],
-          "values": ["gccsa", "regionName", "short", "state", "kind", "markets", "population", "markets_per_100k"]
+          "values": [
+            "gccsa",
+            "regionName",
+            "short",
+            "state",
+            "kind",
+            "markets",
+            "population",
+            "markets_per_100k"
+          ]
         }
       ]
     },
@@ -120,11 +162,18 @@
       ]
     },
     {
-      "name" : "pickedDensity",
-      "source" : "density",
+      "name": "pickedDensity",
+      "source": "density",
       "transform": [
-        {"type": "filter", "expr": "indexof(picked, datum.gccsa) >= 0"},
-        {"type": "formula", "as": "slot", "expr": "indexof(picked, datum.gccsa)"}
+        {
+          "type": "filter",
+          "expr": "indexof(picked, datum.gccsa) >= 0"
+        },
+        {
+          "type": "formula",
+          "as": "slot",
+          "expr": "indexof(picked, datum.gccsa)"
+        }
       ]
     }
   ],
@@ -132,8 +181,14 @@
     {
       "name": "projection",
       "type": "conicEqualArea",
-      "parallels": [-18, -36],
-      "rotate" : [-132,0],
+      "parallels": [
+        -18,
+        -36
+      ],
+      "rotate": [
+        -132,
+        0
+      ],
       "fit": {
         "signal": "data('regions')"
       },
@@ -243,17 +298,32 @@
     },
     {
       "type": "shape",
-      "from": {"data": "graticule"},
+      "from": {
+        "data": "graticule"
+      },
       "interactive": false,
       "encode": {
         "update": {
-          "fill": {"value": null},
-          "stroke": {"value": "#4a5058"},
-          "strokeOpacity": {"value": 0.35},
-          "strokeWidth": {"value": 0.6}
+          "fill": {
+            "value": null
+          },
+          "stroke": {
+            "value": "#4a5058"
+          },
+          "strokeOpacity": {
+            "value": 0.35
+          },
+          "strokeWidth": {
+            "value": 0.6
+          }
         }
       },
-      "transform": [{"type": "geoshape", "projection": "projection"}]
+      "transform": [
+        {
+          "type": "geoshape",
+          "projection": "projection"
+        }
+      ]
     },
     {
       "name": "pickedOutline",
@@ -288,17 +358,108 @@
     {
       "name": "cityDots",
       "type": "symbol",
-      "from": {"data": "cities"},
+      "from": {
+        "data": "cities"
+      },
       "encode": {
         "update": {
-          "x": {"signal": "scale('projection', [datum.lng, datum.lat])[0]"},
-          "y": {"signal": "scale('projection', [datum.lng, datum.lat])[1]"},
-          "size": {"value": 150},
-          "fill": {"scale": "density", "field": "markets_per_100k"},
-          "stroke": {"signal": "indexof(picked, datum.gccsa) >= 0 ? '#b83025' : '#fdfdfc'"},
-          "strokeWidth": {"signal": "indexof(picked, datum.gccsa) >= 0 ? 2.5 : 1.5"},
-          "cursor": {"value": "pointer"},
-          "tooltip": {"signal": "{'Region': datum.regionName, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Markets per 100,000 people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare'}"}
+          "x": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[0]"
+          },
+          "y": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[1]"
+          },
+          "size": {
+            "value": 150
+          },
+          "fill": {
+            "scale": "density",
+            "field": "markets_per_100k"
+          },
+          "stroke": {
+            "signal": "indexof(picked, datum.gccsa) >= 0 ? '#b83025' : '#fdfdfc'"
+          },
+          "strokeWidth": {
+            "signal": "indexof(picked, datum.gccsa) >= 0 ? 2.5 : 1.5"
+          },
+          "cursor": {
+            "value": "pointer"
+          },
+          "tooltip": {
+            "signal": "{'Region': datum.regionName, 'Markets': datum.markets, 'Population': format(datum.population, ','), 'Markets per 100,000 people': format(datum.markets_per_100k, '.2f'), ' ': 'Click to compare'}"
+          }
+        }
+      }
+    },
+    {
+      "name": "regVicLine",
+      "type": "rule",
+      "from": {
+        "data": "density"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[0] + -9"
+          },
+          "y": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[1]"
+          },
+          "x2": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[0] + -60"
+          },
+          "y2": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[1] + 52"
+          },
+          "stroke": {
+            "value": "#474d54"
+          },
+          "strokeWidth": {
+            "value": 1
+          },
+          "opacity": {
+            "signal": "datum.gccsa === 'Rest of Vic.' ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "name": "regVicText",
+      "type": "text",
+      "from": {
+        "data": "density"
+      },
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[0] + -64"
+          },
+          "y": {
+            "signal": "scale('projection', [datum.lng, datum.lat])[1] + 52"
+          },
+          "text": {
+            "signal": "datum.gccsa === 'Rest of Vic.' ? [\"Regional Victoria has the\", \"most: 1.9 per 100,000\"] : ''"
+          },
+          "align": {
+            "value": "right"
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "lineHeight": {
+            "value": 15
+          },
+          "font": {
+            "value": "\"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif"
+          },
+          "fontSize": {
+            "value": 11.5
+          },
+          "fill": {
+            "value": "#1c1f23"
+          }
         }
       }
     },

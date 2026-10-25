@@ -97,104 +97,159 @@
       "as": "value"
     }
   ],
-  "mark": {
-    "type": "bar",
-    "height": {
-      "band": 0.76
-    }
-  },
-  "encoding": {
-    "y": {
-      "field": "entity",
-      "type": "nominal",
-      "title": null,
-      "sort": {
-        "field": "total",
-        "op": "max",
-        "order": "descending"
-      },
-      "axis": {
-        "labelLimit": 160
-      }
-    },
-    "x": {
-      "field": "value",
-      "type": "quantitative",
-      "stack": "zero",
-      "title": "Emissions per kilogram of food",
-      "axis": {
-        "grid": true,
-        "format": {
-          "expr": "mode == 'Share' ? '.0%' : '~s'"
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": {
+          "band": 0.76
         }
+      },
+      "encoding": {
+        "y": {
+          "field": "entity",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "total",
+            "op": "max",
+            "order": "descending"
+          },
+          "axis": {
+            "labelLimit": 160
+          }
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "stack": "zero",
+          "axis": {
+            "grid": true,
+            "labelExpr": "mode == 'Share' ? format(datum.value, '.0%') : format(datum.value, '~s')",
+            "title": {
+              "expr": "mode == 'Share' ? 'Share of each food\\'s footprint' : 'Kilograms of greenhouse gases per kilogram of food'"
+            }
+          },
+          "scale": {
+            "nice": false
+          }
+        },
+        "color": {
+          "field": "Stage",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Land use change",
+              "Animal feed",
+              "Farm",
+              "Processing",
+              "Transport",
+              "Retail",
+              "Packaging",
+              "Losses"
+            ],
+            "range": [
+              "#5d6b78",
+              "#7f8b97",
+              "#a7b0b9",
+              "#c9ced3",
+              "#b83025",
+              "#d9dcdf",
+              "#b9c0c6",
+              "#8f99a3"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "columns": 4
+          }
+        },
+        "order": {
+          "field": "stage_order",
+          "type": "quantitative",
+          "sort": "ascending"
+        },
+        "tooltip": [
+          {
+            "field": "entity",
+            "type": "nominal",
+            "title": "Food"
+          },
+          {
+            "field": "Stage",
+            "type": "nominal",
+            "title": "Stage"
+          },
+          {
+            "field": "kg_pos",
+            "type": "quantitative",
+            "title": "Kilograms of greenhouse gases per kilogram",
+            "format": ".2f"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "title": "Share of its footprint",
+            "format": ".1%"
+          },
+          {
+            "field": "total",
+            "type": "quantitative",
+            "title": "Total footprint",
+            "format": ".1f"
+          }
+        ]
       }
     },
-    "color": {
-      "field": "Stage",
-      "type": "nominal",
-      "title": null,
-      "scale": {
-        "domain": [
-          "Land use change",
-          "Animal feed",
-          "Farm",
-          "Processing",
-          "Transport",
-          "Retail",
-          "Packaging",
-          "Losses"
-        ],
-        "range": [
-          "#4ea69f",
-          "#456592",
-          "#9ec0d1",
-          "#65496e",
-          "#b83025",
-          "#337d84",
-          "#9ed1c0",
-          "#5692bd"
+    {
+      "data": {
+        "values": [
+          {
+            "entity": "Cheese",
+            "label": [
+              "Transport (red) is under 1 kg for every food here.",
+              "For beef it is 0.5 kg of a 99 kg footprint: what you",
+              "eat matters far more than how far it travelled."
+            ],
+            "value": 33
+          }
         ]
       },
-      "legend": {
-        "orient": "top",
-        "direction": "horizontal",
-        "columns": 4
+      "transform": [
+        {
+          "filter": "mode == 'Absolute'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "lineHeight": 16,
+        "tooltip": false,
+        "color": "#1c1f23",
+        "dy": 6
+      },
+      "encoding": {
+        "y": {
+          "field": "entity",
+          "type": "nominal",
+          "sort": {
+            "field": "total",
+            "op": "max",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
       }
-    },
-    "order": {
-      "field": "stage_order",
-      "type": "quantitative",
-      "sort": "ascending"
-    },
-    "tooltip": [
-      {
-        "field": "entity",
-        "type": "nominal",
-        "title": "Food"
-      },
-      {
-        "field": "Stage",
-        "type": "nominal",
-        "title": "Stage"
-      },
-      {
-        "field": "kg_pos",
-        "type": "quantitative",
-        "title": "Kilograms of greenhouse gases per kilogram",
-        "format": ".2f"
-      },
-      {
-        "field": "share",
-        "type": "quantitative",
-        "title": "Share of its footprint",
-        "format": ".1%"
-      },
-      {
-        "field": "total",
-        "type": "quantitative",
-        "title": "Total footprint",
-        "format": ".1f"
-      }
-    ]
-  }
+    }
+  ]
 }

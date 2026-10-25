@@ -18,10 +18,6 @@
       "filter": "datum.day != 'Unknown'"
     }
   ],
-  "mark": {
-    "type": "rect",
-    "cornerRadius": 2
-  },
   "encoding": {
     "x": {
       "field": "start_hour",
@@ -30,7 +26,23 @@
       "axis": {
         "labelExpr": "(datum.value < 10 ? '0' : '') + datum.value + ':00'"
       },
-      "sort": "ascending"
+      "sort": "ascending",
+      "scale": {
+        "domain": [
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ]
+      }
     },
     "y": {
       "field": "day",
@@ -56,45 +68,133 @@
           "Sunday"
         ]
       }
-    },
-    "color": {
-      "field": "markets",
-      "type": "quantitative",
-      "title": "Markets",
-      "scale": {
-        "range": [
-          "#fee0d2",
-          "#fcbba1",
-          "#fc9272",
-          "#fb6a4a",
-          "#ef3b2c",
-          "#cb181d",
-          "#99000d"
-        ],
-        "domainMin": 0
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 2
       },
-      "legend": {
-        "orient": "top",
-        "direction": "horizontal",
-        "gradientLength": 130
+      "encoding": {
+        "color": {
+          "field": "markets",
+          "type": "quantitative",
+          "title": "Markets",
+          "scale": {
+            "range": [
+              "#fee0d2",
+              "#fcbba1",
+              "#fc9272",
+              "#fb6a4a",
+              "#ef3b2c",
+              "#cb181d",
+              "#99000d"
+            ],
+            "domainMin": 0
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "horizontal",
+            "gradientLength": 130
+          }
+        },
+        "tooltip": [
+          {
+            "field": "day",
+            "type": "nominal",
+            "title": "Day"
+          },
+          {
+            "field": "start_hour",
+            "type": "quantitative",
+            "title": "Opening hour (24-hour clock)"
+          },
+          {
+            "field": "markets",
+            "type": "quantitative",
+            "title": "Markets"
+          }
+        ]
       }
     },
-    "tooltip": [
-      {
-        "field": "day",
-        "type": "nominal",
-        "title": "Day"
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "tooltip": false
       },
-      {
-        "field": "start_hour",
-        "type": "quantitative",
-        "title": "Opening hour (24-hour clock)"
-      },
-      {
-        "field": "markets",
-        "type": "quantitative",
-        "title": "Markets"
+      "encoding": {
+        "text": {
+          "field": "markets",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.markets >= 20",
+            "value": "#ffffff"
+          },
+          "value": "#474d54"
+        }
       }
-    ]
-  }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Monday",
+            "label": "No market opens on a Monday"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -22,
+        "fontSize": 11.5,
+        "fontStyle": "italic",
+        "color": "#474d54",
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "datum": 6,
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "day": "Saturday",
+            "label": "8am Saturday: 40% of all markets"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "normal",
+        "color": "#99000d",
+        "tooltip": false,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "datum": 10,
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
 }

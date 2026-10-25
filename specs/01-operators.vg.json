@@ -33,30 +33,18 @@
           "title": "State",
           "scale": {
             "domain": [
-              "NSW",
               "VIC",
-              "QLD",
-              "WA",
-              "SA",
-              "TAS",
-              "ACT",
-              "NT"
+              "QLD"
             ],
             "range": [
               "#33b5ff",
-              "#5a72ff",
-              "#e8318c",
-              "#ffd92e",
-              "#2fe0c5",
-              "#a3c22b",
-              "#767676",
-              "#a6a6a6"
+              "#FF0000"
             ]
           },
           "legend": {
             "orient": "bottom-right",
             "direction": "vertical",
-            "labelExpr": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.label]"
+            "labelExpr": "{'VIC':'Victoria','QLD':'Queensland'}[datum.label]"
           }
         }
       }

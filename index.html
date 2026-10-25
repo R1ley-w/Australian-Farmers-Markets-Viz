@@ -95,9 +95,12 @@
     </div>
 
     <!-- Row 2: the dot map, full width -->
-    <figure class="wide">
+    <figure class="map-side">
       <figcaption>
         <div class="title">Find your nearest Farmers' Market</div>
+        <p>Markets cling to the south-east coast: 124 of the 175 are in New South Wales and
+          Victoria, and only one lies north of the Tropic of Capricorn. Click a state to zoom in,
+          or click a frequency in the legend to show only those markets.</p>
       </figcaption>
       <div class="viz" data-spec="specs/02-market-map.vg.json"></div>
       <p class="source">Australian Farmers' Markets Association “Find a Market” directory, Australian Bureau of Statistics, Australian Statistical Geography Standard, Edition 3 (Creative Commons Attribution 4.0)</p>
@@ -144,13 +147,15 @@
           Regional Victoria and regional New South Wales have the highest density in the country, while
           Greater Brisbane, home to 2.8 million people, has only <strong>two</strong>. Regional
           towns are well served for their size; the problem is that there are few of them, and
-          they are far apart. Click any two regions or city dots on the map to compare them.
+          they are far apart.
         </p>
       </header>
 
       <figure>
         <figcaption>
           <div class="title">When can you actually shop?</div>
+          <p>Each cell counts the markets that open at that hour. 86% of markets open on a
+            Saturday or Sunday morning, so if you work weekends most of the network is closed to you.</p>
         </figcaption>
         <div class="viz" data-spec="specs/04-day-hour-heatmap.vg.json"></div>
         <p class="source">Australian Farmers' Markets Association directory, 2026 · opening hours taken from the directory's listings</p>
@@ -166,9 +171,12 @@
       <p class="source">Australian Farmers' Markets Association directory, 2026 · Australian Bureau of Statistics, Regional Population and National, State and Territory Population, 30 June 2025 · Australian Statistical Geography Standard, Edition 3</p>
     </figure>
 
-    <figure class="wide">
+    <figure class="map-side">
       <figcaption>
         <div class="title">How far to the nearest market by council?</div>
+        <p>Only 47% of council areas have a market within 50 kilometres of their centre, and
+          together they cover just 5% of Australia's land. In 76 councils the nearest market is
+          more than 500 kilometres away. Drag the slider to hide councils further than a chosen distance.</p>
       </figcaption>
       <div class="viz" data-spec="specs/06-lga-distance.vg.json"></div>
       <p class="source">Australian Bureau of Statistics local government area boundaries, 2023</p>
@@ -246,7 +254,7 @@
 
     <figure class="wide">
       <figcaption>
-        <div class="title">Where is it grown</div>
+        <div class="title">Where is it grown?</div>
       </figcaption>
       <div class="viz" data-spec="specs/10-production-map.vg.json"></div>
       <p class="source">Australian Bureau of Statistics, <em>Value of Agricultural Commodities Produced</em> by local government area, 2020–21</p>
