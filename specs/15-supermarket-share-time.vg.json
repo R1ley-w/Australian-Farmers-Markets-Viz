@@ -97,9 +97,9 @@
                   "Everyone else"
                 ],
                 "range": [
-                  "#e8b4c4",
-                  "#2f8a47",
-                  "#7b52ae"
+                  "#8a96a2",
+                  "#4e5a66",
+                  "#dfe2e5"
                 ]
               },
               "legend": null
@@ -250,10 +250,10 @@
             },
             "color": {
               "condition": {
-                "test": "datum.retailer === 'Coles'",
-                "value": "#1c1f23"
+                "test": "datum.retailer === 'Woolworths'",
+                "value": "#fdfdfc"
               },
-              "value": "#fdfdfc"
+              "value": "#1c1f23"
             }
           }
         }
@@ -319,9 +319,9 @@
               "Everyone else"
             ],
             "range": [
-              "#e8b4c4",
-              "#2f8a47",
-              "#7b52ae"
+              "#8a96a2",
+              "#4e5a66",
+              "#dfe2e5"
             ]
           },
           "legend": null

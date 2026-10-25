@@ -235,7 +235,8 @@
       },
       "grid": false,
       "title": "Share of the state's markets",
-      "labelPadding": 4
+      "labelPadding": 4,
+      "offset": 16
     }
   ],
   "legends": [
@@ -347,7 +348,7 @@
             "value": -8
           },
           "y": {
-            "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 14 ? (scale('y', datum.x0) + scale('y', datum.x1)) / 2 : scale('y', datum.x0)"
+            "signal": "(scale('y', datum.x1) - scale('y', datum.x0)) >= 6 ? (scale('y', datum.x0) + scale('y', datum.x1)) / 2 : scale('y', datum.x1) + 2"
           },
           "dy": {
             "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 40 ? -7 : 0"
@@ -356,7 +357,7 @@
             "value": "right"
           },
           "baseline": {
-            "signal": "scale('y', datum.x1) - scale('y', datum.x0) >= 14 ? 'middle' : 'top'"
+            "signal": "(scale('y', datum.x1) - scale('y', datum.x0)) >= 6 ? 'middle' : 'top'"
           },
           "fontSize": {
             "value": 11.5

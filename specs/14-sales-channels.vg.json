@@ -33,8 +33,9 @@
       "scale": {
         "domain": [
           0,
-          105
-        ]
+          115
+        ],
+        "nice": false
       },
       "axis": {
         "grid": true,

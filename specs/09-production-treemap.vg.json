@@ -276,13 +276,10 @@
             "signal": "datum.x0 + 5"
           },
           "y": {
-            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 22 ? datum.y0 + 15 : datum.y0"
+            "signal": "(datum.x1 - datum.x0) - 9 >= length(datum.name) * 6.4 && (datum.y1 - datum.y0) > 22 ? datum.y0 + 15 : datum.y0"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 22 ? datum.name : ''"
-          },
-          "limit": {
-            "signal": "datum.x1 - datum.x0 - 8"
+            "signal": "(datum.x1 - datum.x0) - 9 >= length(datum.name) * 6.4 && (datum.y1 - datum.y0) > 22 ? datum.name : ''"
           },
           "fontSize": {
             "value": 11.5
@@ -309,10 +306,10 @@
             "signal": "datum.x0 + 5"
           },
           "y": {
-            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 38 ? datum.y0 + 29 : datum.y0"
+            "signal": "(datum.x1 - datum.x0) - 9 >= length(datum.name) * 6.4 && (datum.y1 - datum.y0) > 22 && (datum.x1 - datum.x0) - 9 >= length(datum.money) * 6.1 && (datum.y1 - datum.y0) > 38 ? datum.y0 + 29 : datum.y0"
           },
           "text": {
-            "signal": "(datum.x1 - datum.x0) > 58 && (datum.y1 - datum.y0) > 38 ? datum.money : ''"
+            "signal": "(datum.x1 - datum.x0) - 9 >= length(datum.name) * 6.4 && (datum.y1 - datum.y0) > 22 && (datum.x1 - datum.x0) - 9 >= length(datum.money) * 6.1 && (datum.y1 - datum.y0) > 38 ? datum.money : ''"
           },
           "fontSize": {
             "value": 11
@@ -346,10 +343,7 @@
             "signal": "datum.y0 + 14"
           },
           "text": {
-            "field": "label"
-          },
-          "limit": {
-            "signal": "datum.x1 - datum.x0 - 4"
+            "signal": "length(datum.label) * 5.9 <= (datum.x1 - datum.x0 - 4) ? datum.label : length(datum.name) * 5.9 <= (datum.x1 - datum.x0 - 4) ? datum.name : split(datum.name, ' ')[0]"
           },
           "fontSize": {
             "value": 11.5

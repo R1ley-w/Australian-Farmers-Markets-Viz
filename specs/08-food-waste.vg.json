@@ -108,10 +108,10 @@
       },
       "scale": {
         "range": [
-          "#B3EBF2 ",
+          "#4e5a66",
           "#b83025",
-          "#FFC0CB",
-          "#cfaee0"
+          "#8a96a2",
+          "#c9ced3"
         ]
       },
       "legend": {

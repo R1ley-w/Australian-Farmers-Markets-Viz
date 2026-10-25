@@ -66,7 +66,7 @@
     },
     {
       "name": "colour", "type": "log", "domain": [2, 2300], "clamp": true,
-      "range": ["#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b", "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"]
+      "range": ["#fffbe0", "#fff3b0", "#ffe97f", "#ffdc4a", "#f9c80e", "#e0ad00", "#bf9000", "#977100", "#6b5000"]
     }
   ],
 

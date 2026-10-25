@@ -391,3 +391,6 @@ footer a:hover { color: var(--ink); text-decoration-color: currentColor; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+/* unit after the council-distance slider's live value */
+.viz .vega-bind input[type="range"] + span::after { content: " km"; }

@@ -66,15 +66,32 @@
     },
     {
       "calculate": "{'food_emissions_land_use':'Land use change','food_emissions_animal_feed':'Animal feed','food_emissions_farm':'Farm','food_emissions_processing':'Processing','food_emissions_transport':'Transport','food_emissions_retail':'Retail','food_emissions_packaging':'Packaging','food_emissions_losses':'Losses'}[datum.stage_raw]",
-      "as": "Stage"
-    },
-    {
-      "calculate": "indexof(['Land use change','Animal feed','Farm','Processing','Transport','Retail','Packaging','Losses'], datum.Stage)",
-      "as": "stage_order"
+      "as": "StageRaw"
     },
     {
       "calculate": "max(datum.kg, 0)",
       "as": "kg_pos"
+    },
+    {
+      "calculate": "{'Land use change':'Land use change','Animal feed':'Farm and animal feed','Farm':'Farm and animal feed','Processing':'Processing, packaging and retail','Packaging':'Processing, packaging and retail','Retail':'Processing, packaging and retail','Transport':'Transport','Losses':'Food losses'}[datum.StageRaw]",
+      "as": "Stage"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "kg_pos",
+          "as": "kg_pos"
+        }
+      ],
+      "groupby": [
+        "entity",
+        "Stage"
+      ]
+    },
+    {
+      "calculate": "indexof([\"Land use change\", \"Farm and animal feed\", \"Processing, packaging and retail\", \"Transport\", \"Food losses\"], datum.Stage)",
+      "as": "stage_order"
     },
     {
       "joinaggregate": [
@@ -141,29 +158,24 @@
           "scale": {
             "domain": [
               "Land use change",
-              "Animal feed",
-              "Farm",
-              "Processing",
+              "Farm and animal feed",
+              "Processing, packaging and retail",
               "Transport",
-              "Retail",
-              "Packaging",
-              "Losses"
+              "Food losses"
             ],
             "range": [
-              "#5d6b78",
-              "#7f8b97",
-              "#a7b0b9",
+              "#4e5a66",
+              "#8a96a2",
               "#c9ced3",
               "#b83025",
-              "#d9dcdf",
-              "#b9c0c6",
-              "#8f99a3"
+              "#6b7682"
             ]
           },
           "legend": {
             "orient": "top",
             "direction": "horizontal",
-            "columns": 4
+            "columns": 5,
+            "labelLimit": 0
           }
         },
         "order": {

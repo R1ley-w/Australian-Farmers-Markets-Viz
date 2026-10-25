@@ -12,14 +12,21 @@
         "min": 10,
         "max": 2300,
         "step": 10,
-        "name": "Show council areas within (kilometres)  "
+        "name": "Show council areas within  "
       }
     }
   ],
   "projection": {
     "type": "conicEqualArea",
-    "parallels": [-18, -36],
-    "rotate" : [-132, 0, 0]
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0,
+      0
+    ]
   },
   "layer": [
     {
@@ -68,8 +75,14 @@
         {
           "filter": "datum.km_to_nearest_market <= maxKm"
         },
-        {"calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]", "as": "stateName"},
-        {"calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.nearest_market, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')", "as": "nearestFull"}
+        {
+          "calculate": "{'NSW':'New South Wales','VIC':'Victoria','QLD':'Queensland','SA':'South Australia','WA':'Western Australia','TAS':'Tasmania','NT':'Northern Territory','ACT':'Australian Capital Territory'}[datum.state]",
+          "as": "stateName"
+        },
+        {
+          "calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.nearest_market, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')",
+          "as": "nearestFull"
+        }
       ],
       "mark": {
         "type": "geoshape",
@@ -91,15 +104,15 @@
               2300
             ],
             "range": [
-              "#f7fcf5",
-              "#e5f5e0",
-              "#c7e9c0",
-              "#a1d99b",
-              "#74c476",
-              "#41ab5d",
-              "#238b45",
-              "#006d2c",
-              "#00441b"
+              "#fffbe0",
+              "#fff3b0",
+              "#ffe97f",
+              "#ffdc4a",
+              "#f9c80e",
+              "#e0ad00",
+              "#bf9000",
+              "#977100",
+              "#6b5000"
             ],
             "clamp": true
           },
@@ -142,8 +155,32 @@
       }
     },
     {
-      "data": {"graticule": {"step": [5, 5], "extent": [[112, -44], [154, -10]]}},
-      "mark": {"type": "geoshape", "filled": false, "stroke": "#4a5058", "strokeOpacity": 0.35, "strokeWidth": 0.6, "tooltip": false}
+      "data": {
+        "graticule": {
+          "step": [
+            5,
+            5
+          ],
+          "extent": [
+            [
+              112,
+              -44
+            ],
+            [
+              154,
+              -10
+            ]
+          ]
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "filled": false,
+        "stroke": "#4a5058",
+        "strokeOpacity": 0.35,
+        "strokeWidth": 0.6,
+        "tooltip": false
+      }
     },
     {
       "data": {
@@ -153,7 +190,10 @@
         {
           "filter": "datum.is_duplicate == 0 && datum.geocode_ok == 1"
         },
-        {"calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.name, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')", "as": "nameFull"}
+        {
+          "calculate": "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(datum.name, regexp('^SCPA - ', 'g'), ''), regexp(' ?\\\\((FAB|GSFMA)\\\\)', 'g'), ''), regexp('SAGE Sustainable', 'g'), 'Sustainable'), regexp('\\\\bSAGE\\\\b', 'g'), 'Sustainable Agriculture and Gardening Eurobodalla'), regexp('\\\\bInc\\\\b\\\\.?|\\\\bINC\\\\b', 'g'), 'Incorporated'), regexp('\\\\bPty Ltd\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bPL\\\\b', 'g'), 'Proprietary Limited'), regexp('\\\\bAssoc\\\\b', 'g'), 'Association'), regexp('\\\\bMt\\\\b', 'g'), 'Mount'), regexp('\\\\bSt\\\\b', 'g'), 'Saint'), regexp('\\\\bSth\\\\b', 'g'), 'South'), regexp('\\\\bFM\\\\b', 'g'), 'Farmers’ Market'), regexp('\\\\bQLD\\\\b', 'g'), 'Queensland'), regexp('\\\\bNSW\\\\b', 'g'), 'New South Wales'), regexp('\\\\bCo\\\\b', 'g'), 'Company'), regexp('P&C', 'g'), 'Parents and Citizens Association'), regexp('\\\\bGC\\\\b', 'g'), 'Gold Coast')",
+          "as": "nameFull"
+        }
       ],
       "mark": {
         "type": "circle",
