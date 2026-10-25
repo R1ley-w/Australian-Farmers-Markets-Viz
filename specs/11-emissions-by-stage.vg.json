@@ -222,9 +222,9 @@
             "entity": "Cheese",
             "label": [
               "Transport (red) is under 1 kilogram for every food here,",
-              "and 0.5 of beef's 99 kilograms. What a market sells,",
-              "and the waste it saves, matters more than how far",
-              "the food travelled."
+              "and 0.5 of beef's 99 kilograms. A markets real environmental value",
+              "is the waste it saves rather than the extra transport",
+              "to the supermarket."
             ],
             "value": 33
           }

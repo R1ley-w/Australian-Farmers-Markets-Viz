@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f363d'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23f7f7f5'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23abb7c5'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/im-fell-english-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=33">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
 <script src="vendor/vega.min.js"></script>
@@ -22,7 +22,7 @@
     <!-- The title is drawn as three SVG lines so each one can be spread to an
          exact width (like the SECTION word). Screen readers get the plain
          text in the hidden span; the SVGs are decorative. -->
-    <p class="eyebrow">FIT3179 Data Visualisation 2 · Riley Wade · October 2026</p>
+    <p class="eyebrow">FIT3179 Data Visualisation 2 · Riley Wade · October 25 2026</p>
     <h1>
       <span class="visually-hidden">Australian Farmers' Markets</span>
       <svg class="mast-line" viewBox="0 0 1000 78" aria-hidden="true" focusable="false">
@@ -48,6 +48,12 @@
           providing information on how markets are beneficial to farmers and the environment and how they play 
           into the Australian grocery ecosystem.
         </p>
+        <a class="scroll-cue" href="#where">
+          <span>Scroll down to explore</span>
+          <svg viewBox="0 0 24 36" aria-hidden="true" focusable="false">
+            <path d="M12 2 V32 M3 23 L12 32 L21 23" />
+          </svg>
+        </a>
       </div>
       <figure class="mast-photo">
         <img src="images/berwick-farmers-market.jpg" width="1200" height="800"
@@ -154,8 +160,6 @@
       <figure>
         <figcaption>
           <div class="title">When can you actually shop?</div>
-          <p>Each cell counts the markets that open at that hour. 86% of markets open on a
-            Saturday or Sunday morning, so if you work weekends most of the network is closed to you.</p>
         </figcaption>
         <div class="viz" data-spec="specs/04-day-hour-heatmap.vg.json"></div>
         <p class="source">Australian Farmers' Markets Association directory, 2026 · opening hours taken from the directory's listings</p>
@@ -369,7 +373,7 @@
         <h3>About</h3>
         <p>
           Designed and built by <strong>Riley Wade</strong> for FIT3179 Data Visualisation,
-          Monash University. Published October 2026.
+          Monash University. Published October 25 2026.
         </p>
         <p>
           Every chart is drawn with <a href="https://vega.github.io/">Vega and Vega-Lite</a>

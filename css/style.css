@@ -169,7 +169,7 @@ h1 { margin: 0; }
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: 50% 60%;
 }
@@ -181,6 +181,40 @@ h1 { margin: 0; }
 }
 .mast-photo figcaption a { color: inherit; }
 
+/* Scroll cue under the intro: a label and a down arrow linking to Section 1 */
+.scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  align-self: flex-start;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.scroll-cue svg {
+  width: 20px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: scroll-cue-bob 1.8s ease-in-out infinite;
+}
+.scroll-cue:hover { color: var(--ink); }
+@keyframes scroll-cue-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue svg { animation: none; }
+}
+
 @media (min-width: 900px) {
   .mast-text {
     display: grid;
@@ -189,8 +223,11 @@ h1 { margin: 0; }
     align-items: stretch;
   }
   .mast-intro { grid-column: 1 / 7; }
+  /* The intro text scales with the row width (cqw), as the photo's height does,
+     so the paragraphs fill the column down to the scroll cue at every width. */
+  .mast-text { container-type: inline-size; }
   .lede {
-    font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+    font-size: 2.05cqw;
     line-height: 1.4;
   }
   .lede + .lede { margin-top: 0.8em; }
@@ -203,12 +240,15 @@ h1 { margin: 0; }
     display: flex;
     flex-direction: column;
   }
+  /* The photo shows in full (3:2) and sets the row height; the intro column
+     stretches to match, so the scroll cue sits level with the photo's bottom edge. */
   .mast-photo img {
-    flex: 1 1 0;
-    height: 0;
-    min-height: 0;
-    aspect-ratio: auto;
+    flex: none;
+    height: auto;
+    aspect-ratio: 3 / 2;
   }
+  .mast-intro { display: flex; flex-direction: column; }
+  .scroll-cue { margin-top: auto; }
   .mast-photo figcaption { flex: none; }
 }
 
@@ -394,3 +434,8 @@ footer a:hover { color: var(--ink); text-decoration-color: currentColor; }
 
 /* unit after the council-distance slider's live value */
 .viz .vega-bind input[type="range"] + span::after { content: " km"; }
+
+/* smooth jump when the scroll cue is clicked */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
