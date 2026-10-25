@@ -221,9 +221,10 @@
           {
             "entity": "Cheese",
             "label": [
-              "Transport (red) is under 1 kg for every food here.",
-              "For beef it is 0.5 kg of a 99 kg footprint: what you",
-              "eat matters far more than how far it travelled."
+              "Transport (red) is under 1 kilogram for every food here,",
+              "and 0.5 of beef's 99 kilograms. What a market sells,",
+              "and the waste it saves, matters more than how far",
+              "the food travelled."
             ],
             "value": 33
           }

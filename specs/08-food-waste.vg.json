@@ -81,70 +81,108 @@
       "as": "row"
     }
   ],
-  "mark": {
-    "type": "rect",
-    "cornerRadius": 2,
-    "strokeWidth": 0,
-    "x": {
-      "expr": "offsetX + datum.col * cell"
-    },
-    "x2": {
-      "expr": "offsetX + (datum.col + 1) * cell - gap"
-    },
-    "y": {
-      "expr": "offsetY + datum.row * cell"
-    },
-    "y2": {
-      "expr": "offsetY + (datum.row + 1) * cell - gap"
-    }
-  },
-  "encoding": {
-    "color": {
-      "field": "label",
-      "type": "nominal",
-      "title": null,
-      "sort": {
-        "field": "cum_start"
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 2,
+        "strokeWidth": 0,
+        "x": {
+          "expr": "offsetX + datum.col * cell"
+        },
+        "x2": {
+          "expr": "offsetX + (datum.col + 1) * cell - gap"
+        },
+        "y": {
+          "expr": "offsetY + datum.row * cell"
+        },
+        "y2": {
+          "expr": "offsetY + (datum.row + 1) * cell - gap"
+        }
       },
-      "scale": {
-        "range": [
-          "#FFD8B1",
-          "#b83025",
-          "#B0E0E6",
-          "#FDD7E4"
+      "encoding": {
+        "color": {
+          "field": "label",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "cum_start"
+          },
+          "scale": {
+            "range": [
+              "#FFD8B1",
+              "#b83025",
+              "#B0E0E6",
+              "#FDD7E4"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": {
+              "expr": "width < 440 ? 1 : 2"
+            },
+            "labelLimit": 300,
+            "symbolType": "square"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "sector",
+            "type": "nominal",
+            "title": "Where"
+          },
+          {
+            "field": "tonnes_million",
+            "type": "quantitative",
+            "title": "Million tonnes a year"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share (%)"
+          },
+          {
+            "field": "note",
+            "type": "nominal",
+            "title": "Note"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "t": [
+              "← A stall that sells the",
+              "misshapen carrot does more",
+              "for emissions than the short",
+              "drive it arrived on."
+            ]
+          }
         ]
       },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "columns": {
-          "expr": "width < 440 ? 1 : 2"
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "lineHeight": 16,
+        "color": "#1c1f23",
+        "tooltip": false,
+        "x": {
+          "expr": "offsetX + cell * cols + 10"
         },
-        "labelLimit": 300,
-        "symbolType": "square"
+        "y": {
+          "expr": "offsetY + cell * 4.5"
+        }
+      },
+      "encoding": {
+        "text": {
+          "field": "t"
+        }
       }
-    },
-    "tooltip": [
-      {
-        "field": "sector",
-        "type": "nominal",
-        "title": "Where"
-      },
-      {
-        "field": "tonnes_million",
-        "type": "quantitative",
-        "title": "Million tonnes a year"
-      },
-      {
-        "field": "share_pct",
-        "type": "quantitative",
-        "title": "Share (%)"
-      },
-      {
-        "field": "note",
-        "type": "nominal",
-        "title": "Note"
-      }
-    ]
-  }
+    }
+  ]
 }
