@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f363d'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%23f7f7f5'/%3E%3Ccircle cx='21' cy='19' r='6' fill='%23abb7c5'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/im-fell-english-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=24">
+<link rel="stylesheet" href="css/style.css?v=30">
 <!-- Vega is vendored in vendor/ so the page works offline and the exact
      library versions are pinned in the repo. See vendor/README.md. -->
 <script src="vendor/vega.min.js"></script>
@@ -19,7 +19,7 @@
 
 <header class="masthead">
   <div class="wrap">
-    <!-- The title is drawn as two SVG lines so each one can be spread to an
+    <!-- The title is drawn as three SVG lines so each one can be spread to an
          exact width (like the SECTION word). Screen readers get the plain
          text in the hidden span; the SVGs are decorative. -->
     <p class="eyebrow">FIT3179 Data Visualisation 2 · Riley Wade · October 2026</p>
@@ -31,20 +31,29 @@
       <svg class="mast-line" viewBox="0 0 1000 78" aria-hidden="true" focusable="false">
         <text x="0" y="75" textLength="1000" lengthAdjust="spacing">FARMERS’</text>
       </svg>
+      <svg class="mast-line" viewBox="0 0 1000 78" aria-hidden="true" focusable="false">
+        <text x="0" y="75" textLength="1000" lengthAdjust="spacing">MARKETS</text>
+      </svg>
     </h1>
 
-    <div class="mast-row">
-      <svg class="mast-line" viewBox="0 0 580 78" aria-hidden="true" focusable="false">
-        <text x="0" y="75" textLength="580" lengthAdjust="spacing">MARKETS</text>
-      </svg>
-
-      <div class="mast-text">
+    <div class="mast-text">
+      <div class="mast-intro">
         <p class="lede">
           Where are Australia's farmers' markets, who can reach one, and what do they do for
           local producers? This page draws on the national farmers' market directory, which lists
           175 markets.
         </p>
+        <p class="lede">
+          This visualisation explores where markets are, how easy it is to reach one as well as 
+          providing information on how markets are beneficial to farmers and the environment and how they play 
+          into the Australian grocery ecosystem.
+        </p>
       </div>
+      <figure class="mast-photo">
+        <img src="images/berwick-farmers-market.jpg" width="1200" height="800"
+             alt="Shoppers walking down a gravel aisle between stallholders' tents at a farmers' market, with a crate of apples on the left and a Silverwind Farm tent on the right.">
+        <figcaption>Old Cheese Factory Berwick (my local Farmers' Market). Photo: <a href="https://mamaknowseast.com.au">Mama Knows East</a>.</figcaption>
+      </figure>
     </div>
   </div>
 </header>

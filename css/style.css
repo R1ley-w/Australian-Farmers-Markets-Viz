@@ -49,6 +49,7 @@
 
   /* --- highlight: ---*/
   --highlight:   #b83025;
+  --mat:         #ebe5d8;  
 
 
 /* --- typography --- */
@@ -131,8 +132,7 @@ header.masthead {
 }
 h1 { margin: 0; }
 .mast-line { display: block; width: 100%; height: auto; overflow: visible; }
-.mast-line + .mast-line,
-.mast-row { margin-top: calc(var(--cw) * 0.022); }
+.mast-line + .mast-line { margin-top: calc(var(--cw) * 0.022); }
 .mast-line text {
   font-family: var(--font-title);
   font-size: var(--title-size);
@@ -142,22 +142,74 @@ h1 { margin: 0; }
   stroke-linejoin: round;
 }
 
-/* intro paragraph */
+/* Intro and photo. Under the title: the intro (two paragraphs) in columns 1-6 and a
+   photo with its caption in columns 7-12, using the same 12-column grid as
+   the sections below, so the two halves fill the full width of the title with no gap. */
+.mast-text {
+  margin-top: max(1.75rem, calc(var(--cw) * 0.03));
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
 .lede {
-  font-size: calc(var(--cw) * 0.0152);
-  line-height: 1.25;
+  font-size: 1.05rem;
+  line-height: 1.45;
   max-width: none;
-  margin: calc(var(--cw) * 0.0024) 0 0;
+  margin: 0;
 }
+.lede + .lede { margin-top: 0.9em; }
+/* The figure is the beige container: padding + background draw a mat around
+   the photo and its caption together. */
+.mast-photo {
+  margin: 1.5rem 0 0;
+  padding: 0.75rem;
+  background: var(--mat);
+  border: 1px solid var(--border);
+}
+.mast-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.mast-photo figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+.mast-photo figcaption a { color: inherit; }
 
-@media (min-width: 1000px) {
-  .mast-row { display: grid; grid-template-columns: 58fr 42fr; align-items: start; }
-  .mast-text { padding-left: calc(var(--cw) * 0.03); }
-}
-@media (max-width: 999px) {
-  .mast-row > .mast-line { width: 58%; }
-  .mast-text { margin-top: 1.5rem; }
-  .lede { font-size: 1.1rem; line-height: 1.45; margin: 0; }
+@media (min-width: 900px) {
+  .mast-text {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gap);
+    align-items: stretch;
+  }
+  .mast-intro { grid-column: 1 / 7; }
+  .lede {
+    font-size: clamp(1.05rem, 1.45vw, 1.25rem);
+    line-height: 1.4;
+  }
+  .lede + .lede { margin-top: 0.8em; }
+  /* The container is columns 7-12 and stretches to the intro's height. The
+     photo takes whatever height is left after the caption: flex 1 1 0 with
+     height 0, so the image adds nothing to the row height itself. */
+  .mast-photo {
+    grid-column: 7 / 13;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .mast-photo img {
+    flex: 1 1 0;
+    height: 0;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+  .mast-photo figcaption { flex: none; }
 }
 
 .eyebrow {
